@@ -1,0 +1,21 @@
+package esercizio_testControlli;
+
+public enum Prodotti {
+PASTA,
+SALE, 
+OLIO, 
+PEPE, 
+TONNO,
+ZUCCHERO,
+SAPONE, 
+BAGNOSCHIUMA,
+CARTA_IGIENICA,
+DENTIFRICIO,
+SPAZZOLINO,
+LENZUOLA,
+CUSCINO,
+COPERTA,
+PIUMONE,
+PIGIAMA
+
+}
