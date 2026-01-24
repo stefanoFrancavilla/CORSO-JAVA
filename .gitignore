@@ -1,0 +1,17 @@
+# Eclipse workspace stuff (NON va versionato)
+.metadata/
+
+# Eclipse project settings (ok tenerli, ma questi spesso cambiano)
+# Se vuoi tenerli per import facile: NON ignorare .project e .classpath
+.settings/
+
+# Java build output (NON va versionato)
+**/bin/
+**/target/
+**/out/
+**/build/
+
+# OS / log
+*.log
+Thumbs.db
+.DS_Store
