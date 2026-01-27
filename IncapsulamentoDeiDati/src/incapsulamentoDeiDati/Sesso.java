@@ -3,6 +3,7 @@ package incapsulamentoDeiDati;
 public enum Sesso {
 	MASCHIO,
 	FEMMINA,
+	SCONOSCIUTO
 	
 	/*
 	 * con l'enum si possono definire dei tipi di dati personalizzati

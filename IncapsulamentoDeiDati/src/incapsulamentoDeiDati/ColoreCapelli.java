@@ -6,6 +6,7 @@ public enum ColoreCapelli {
 	NERI,
 	ROSSI,
 	BIANCHI,
-	GRIGI
+	GRIGI,
+	SCONOSCIUTO
 
 }
