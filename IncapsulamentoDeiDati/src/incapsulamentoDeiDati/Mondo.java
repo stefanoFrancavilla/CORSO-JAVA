@@ -38,6 +38,24 @@ marcoRossi.lavora();
 System.out.println();
 System.out.println("2--------------------------");
 System.out.println();
+
+EssereUmano saraVerdi = new EssereUmano("Sara",
+		"Verdi",
+		Sesso.FEMMINA,
+		(byte) 48, // si fa il cast da int a byte, per evitare l'errore di compilazione.
+		1.71f,
+		55f,
+		ColoreOcchi.CASTANI,
+		ColoreCapelli.BIONDI,
+		"Italia");
+
+saraVerdi.stampa();
+
+saraVerdi.mangia();
+	
+saraVerdi.lavora();
+
+
 	}
 
 }
