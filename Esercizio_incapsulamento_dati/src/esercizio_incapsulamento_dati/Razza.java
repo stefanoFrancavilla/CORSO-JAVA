@@ -1,0 +1,13 @@
+package esercizio_incapsulamento_dati;
+
+public enum Razza {
+PASTORE_AUSTRALIANO,
+PASTORE_TEDESCO,
+BULLDOG,
+BEAGLE,
+LABRADOR,
+POODLE,
+CORGI,
+INCROCIO,
+SCONOSCIUTO
+}
