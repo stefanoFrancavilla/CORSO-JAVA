@@ -77,14 +77,44 @@ Alessio.mangia();
 
 Alessio.stampa();
 
-Alberi albero = new Alberi();
+Alberi albero = new Alberi(TipoDiAlbero.SCONOSCIUTO, 0.0, 0, Colore_Foglie.SCONOSCIUTO, Stagione.SCONOSCIUTO);
 
+albero.tipo = TipoDiAlbero.QUERCIA;
 albero.altezza = (double) 5.0;
 albero.eta = 10;
 albero.foglie = Colore_Foglie.VERDE;
 albero.stagione = Stagione.PRIMAVERA;
 albero.cresce();
 albero.stampa();
+
+Esercizio_EssereUmano Stefano = new Esercizio_EssereUmano();
+
+Stefano.nome = "Stefano";
+Stefano.cognome = "Francavilla";
+Stefano.sesso = Esercizio_Sesso.MASCHIO;
+Stefano.anni = 39;
+Stefano.altezza = 1.91f;
+Stefano.peso = 95.0f;
+Stefano.coloreOcchi = Esercizio_ColoreOcchi.VERDI;
+Stefano.coloreCapelli = Esercizio_ColoreCapelli.CASTANI;
+Stefano.nazioneDiNascita = "Italia";
+
+Stefano.dorme();
+Stefano.beve();
+Stefano.stampa();
+
+gatti gatto = new gatti();
+
+gatto.nome = "Micio";
+gatto.sesso = Esercizio_Sesso.MASCHIO;
+gatto.coloreOcchi = Esercizio_ColoreOcchi.VERDI;
+gatto.colorePelo = Colore_cani.NERO;
+gatto.eta = 4;
+gatto.miagola();
+gatto.stampa();
+
+
+
 
 }
 
