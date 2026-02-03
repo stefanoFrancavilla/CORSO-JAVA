@@ -248,6 +248,21 @@ public EssereUmano()
 	System.out.println("EssereUmano (0)"); // per vedere quale costruttore viene chiamato
 }
 
+public EssereUmano(String nome, 
+		String cognome,
+		Sesso sesso)
+{
+	this(nome, cognome, sesso, (byte)0, 100f, 35f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, "ND");
+	// per vedere quale costruttore viene chiamato
+	// this richiama il costruttore con 9 parametri
+	// e assegna dei valori di default alle variabili d'istanza non inizializzate.
+	// il this deve essere la prima istruzione del costruttore.
+	System.out.println("EssereUmano (3)");
+//	this.nome = nome; 
+//	this.cognome = cognome; 
+//	this.sesso = sesso;
+}
+
 // 3
 public EssereUmano(String nome,
 		String cognome,

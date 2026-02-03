@@ -55,7 +55,48 @@ saraVerdi.mangia();
 	
 saraVerdi.lavora();
 
+System.out.println();
+System.out.println("3--------------------------");
+System.out.println();
+EssereUmano GiuliaNeri = new EssereUmano("Giulia",
+		"Neri",
+		Sesso.FEMMINA);
 
+GiuliaNeri.stampa();
+
+System.out.println();
+System.out.println("3.1--------------------------");
+System.out.println();
+
+EssereUmano lucaBianchi = new EssereUmano("Luca", "Bianchi", Sesso.MASCHIO);
+lucaBianchi.stampa();
+
+lucaBianchi.anni = 34;
+lucaBianchi.altezza = 180.5f;
+lucaBianchi.peso = 70.8f;
+lucaBianchi.coloreOccihi = ColoreOcchi.VERDI;
+lucaBianchi.coloreCapelli = ColoreCapelli.ROSSI;
+lucaBianchi.nazioneDiNascita = "Svizzera";
+lucaBianchi.stampa();
+
+System.out.println();
+System.out.println("3.2--------------------------");
+System.out.println();
+
+lucaBianchi.anni = -100;
+lucaBianchi.altezza = 10_000;
+lucaBianchi.peso = -2_000.5F;
+lucaBianchi.stampa();
+/*
+ * notare come non ci siano controlli sui dati inseriti
+ * nell'oggetto lucaBianchi.
+ * infatti si possono inserire valori non realistici
+ * come età negative, altezze e pesi irrealistici.
+ * 
+ * ecco perchè con l'incapsulamento dei dati si usano i metodi setter e getter
+ * per controllare i dati inseriti negli oggetti.
+ * e per evitare di accedere direttamente alle variabili d'istanza dall'esterno della classe.
+ */
 	}
 
 }
