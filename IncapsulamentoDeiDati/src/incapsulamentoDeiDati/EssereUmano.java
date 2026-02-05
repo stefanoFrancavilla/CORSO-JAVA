@@ -219,20 +219,154 @@ public void stampa() {
 //
 //}
 
+//public class EssereUmano {
+//	
+//	// Varialbili d'istanza.
+//	 
+//public String nome; 
+//public String cognome; 
+//public Sesso sesso; 
+//public byte anni;
+//public float altezza;
+//public float peso;
+//public ColoreOcchi coloreOccihi;
+//public ColoreCapelli coloreCapelli;
+//public String nazioneDiNascita;
+//
+//// Costruttori
+//
+//
+//public EssereUmano()
+//{
+//	this("ND", "ND", Sesso.SCONOSCIUTO, (byte)0, 100f, 35f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, "ND");
+//	/*
+//	 * quando chiamiamo il costruttore senza parametri, il this richiama il costruttore con parametri
+//	 * e assegna dei valori di default alle variabili d'istanza.
+//	 * in questo modo evitiamo di scrivere codice duplicato.
+//	 * il this deve essere la prima istruzione del costruttore.
+//	 */
+//	System.out.println("EssereUmano (0)"); // per vedere quale costruttore viene chiamato
+//}
+//
+//public EssereUmano(String nome, 
+//		String cognome,
+//		Sesso sesso)
+//{
+//	this(nome, cognome, sesso, (byte)0, 100f, 35f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, "ND");
+//	// per vedere quale costruttore viene chiamato
+//	// this richiama il costruttore con 9 parametri
+//	// e assegna dei valori di default alle variabili d'istanza non inizializzate.
+//	// il this deve essere la prima istruzione del costruttore.
+//	System.out.println("EssereUmano (3)");
+////	this.nome = nome; 
+////	this.cognome = cognome; 
+////	this.sesso = sesso;
+//}
+//
+//// 3
+//public EssereUmano(String nome,
+//		String cognome,
+//		Sesso sesso,
+//		byte anni,
+//		float altezza,
+//		float peso,
+//		ColoreOcchi coloreOcchi,
+//		ColoreCapelli coloreCapelli,
+//		String nazioneDiNascita
+//		)
+//
+//{
+//	System.out.println("EssereUmano (9)"); // per vedere quale costruttore viene chiamato
+//	this.nome = nome; // uso la parola chiave this per distinguere la variabile d'istanza dal parametro
+//	this.cognome = cognome; 
+//	this.sesso = sesso;
+//	this.anni = anni;
+//	this.altezza = altezza;
+//	this.peso = peso;
+//	this.coloreOccihi = coloreOcchi;
+//	this.coloreCapelli = coloreCapelli;
+//	this.nazioneDiNascita = nazioneDiNascita;
+//	// this si riferisce all'oggetto corrente
+//	// viene usato per accedere alle variabili d'istanza e ai metodi dell'oggetto corrente
+//	// si usa quando c'è ambiguità tra variabili d'istanza e parametri
+//	// in questo caso i nomi sono uguali
+//	// quindi per distinguere si usa this.
+//	// questo è un'altro modo per scrivere i costruttori.
+//}
+//
+//// Metodi
+//public void beve() 
+//{
+//	System.out.println(nome + " " + cognome + " beve");
+//}
+//
+//public void mangia() 
+//{
+//	System.out.println(nome + " " + cognome + " mangia");
+//}
+//
+//public void respira() 
+//{
+//	System.out.println(nome + " " + cognome + " respira");
+//}
+//
+//public void dorme()
+//{
+//	System.out.println(nome + " " + cognome + " dorme");
+//}
+//
+//public void studia()
+//{
+//	System.out.println(nome + " " + cognome + " studia");
+//}
+//
+//public void lavora()
+//{
+//	System.out.println(nome + " " + cognome + " lavora");
+//}
+//
+//public void stampa() 
+//{
+//	System.out.println("----------");
+//	System.out.println("Nome: " + nome);
+//	System.out.println("Cognome: " + cognome);
+//	System.out.println("Sesso: " + sesso);
+//	System.out.println("Anni: " + anni);
+//	System.out.println("Altezza: " + altezza);
+//	System.out.println("Peso: " + peso);
+//	System.out.println("Colore Occhi: " + coloreOccihi);
+//	System.out.println("Colore Capelli: " + coloreCapelli);
+//	System.out.println("Nazione di Nascita: " + nazioneDiNascita);
+//	System.out.println("----------");
+//    
+// }
+//
+//}
+
+//4
 public class EssereUmano {
 	
 	// Varialbili d'istanza.
 	 
-public String nome; 
-public String cognome; 
-public Sesso sesso; 
-public byte anni;
-public float altezza;
-public float peso;
-public ColoreOcchi coloreOccihi;
-public ColoreCapelli coloreCapelli;
-public String nazioneDiNascita;
+private String nome; 
+private String cognome; 
+private Sesso sesso; 
+private byte anni;
+private float altezza;
+private float peso;
+private ColoreOcchi coloreOcchi;
+private ColoreCapelli coloreCapelli;
+private String nazioneDiNascita;
 
+/*
+ * con private intendiamo che le variabili d'istanza sono accessibili solo all'interno della classe EssereUmano
+ * in questo modo proteggiamo i dati dell'oggetto e impediamo l'accesso diretto dall'esterno della classe
+ * per accedere alle variabili d'istanza dall'esterno della classe, si usano i metodi getter e setter
+ * i metodi getter e setter sono dei metodi pubblici che permettono di accedere e modificare le variabili d'istanza private
+ * i metodi getter e setter sono usati per controllare i dati inseriti negli oggetti e per evitare di inserire dati non realistici
+ * ad esempio, con i metodi setter possiamo inserire dei controlli sui dati inseriti, come ad esempio non permettere di inserire età negative o altezze e pesi irrealistici.
+ * mentre con i metodi getter possiamo restituire i valori delle variabili d'istanza private all'esterno della classe.
+ */
 // Costruttori
 
 
@@ -283,7 +417,7 @@ public EssereUmano(String nome,
 	this.anni = anni;
 	this.altezza = altezza;
 	this.peso = peso;
-	this.coloreOccihi = coloreOcchi;
+	this.coloreOcchi = coloreOcchi;
 	this.coloreCapelli = coloreCapelli;
 	this.nazioneDiNascita = nazioneDiNascita;
 	// this si riferisce all'oggetto corrente
@@ -292,6 +426,103 @@ public EssereUmano(String nome,
 	// in questo caso i nomi sono uguali
 	// quindi per distinguere si usa this.
 	// questo è un'altro modo per scrivere i costruttori.
+}
+
+//Metodi getter e setter
+
+public String getNome() {
+	//return this.nome;
+	return nome;
+}
+/*
+ * il metodo getter restituisce il valore della variabile d'istanza nome
+ * il metodo getter non ha parametri
+ * il metodo getter ha come tipo di ritorno lo stesso tipo della variabile d'istanza
+ * il metodo getter è pubblico per permettere l'accesso dall'esterno della classe
+ * il metodo getter non modifica il valore della variabile d'istanza
+ * il metodo getter può essere usato per restituire il valore della variabile d'istanza in modo controllato
+ * ad esempio, possiamo restituire il valore della variabile d'istanza solo se soddisfa determinate condizioni
+ * ad esempio, possiamo restituire il valore della variabile d'istanza solo se non è null o vuota
+ * in questo modo evitiamo di restituire valori non validi
+ */
+
+public void setNome(String nome) {
+	this.nome = nome;
+}
+/*
+ * il metodo setter modifica il valore della variabile d'istanza nome
+ * il metodo setter ha come tipo di ritorno void
+ * il metodo setter ha come parametro lo stesso tipo della variabile d'istanza
+ * il metodo setter è pubblico per permettere l'accesso dall'esterno della classe
+ * il metodo setter può essere usato per modificare il valore della variabile d'istanza in modo controllato
+ * ad esempio, possiamo inserire dei controlli sul valore del parametro prima di assegnarlo alla variabile d'istanza
+ * ad esempio, possiamo non permettere di assegnare valori null o vuoti alla variabile d'istanza
+ * in questo modo evitiamo di inserire valori non validi
+ */
+
+
+public String getCognome() {
+	return cognome;
+}
+
+public void setCognome(String cognome) {
+	this.cognome = cognome;
+}
+
+public Sesso getSesso() {
+	return sesso;
+}
+
+public void setSesso(Sesso sesso) {
+	this.sesso = sesso;
+}
+
+public byte getAnni() {
+	return anni;
+}
+
+public void setAnni(byte anni) {
+	this.anni = anni;
+}
+
+public float getAltezza() {
+	return altezza;
+}
+
+public void setAltezza(float altezza) {
+	this.altezza = altezza;
+}
+
+public float getPeso() {
+	return peso;
+}
+
+public void setPeso(float peso) {
+	this.peso = peso;
+}
+
+public ColoreOcchi getColoreOcchi() {
+	return coloreOcchi;
+}
+
+public void setColoreOcchi(ColoreOcchi coloreOcchi) {
+	this.coloreOcchi = coloreOcchi;
+}
+
+public ColoreCapelli getColoreCapelli() {
+	return coloreCapelli;
+}
+
+public void setColoreCapelli(ColoreCapelli coloreCapelli) {
+	this.coloreCapelli = coloreCapelli;
+}
+
+public String getNazioneDiNascita() {
+	return nazioneDiNascita;
+}
+
+public void setNazioneDiNascita(String nazioneDiNascita) {
+	this.nazioneDiNascita = nazioneDiNascita;
 }
 
 // Metodi
@@ -334,7 +565,7 @@ public void stampa()
 	System.out.println("Anni: " + anni);
 	System.out.println("Altezza: " + altezza);
 	System.out.println("Peso: " + peso);
-	System.out.println("Colore Occhi: " + coloreOccihi);
+	System.out.println("Colore Occhi: " + coloreOcchi);
 	System.out.println("Colore Capelli: " + coloreCapelli);
 	System.out.println("Nazione di Nascita: " + nazioneDiNascita);
 	System.out.println("----------");
