@@ -358,6 +358,21 @@ private ColoreOcchi coloreOcchi;
 private ColoreCapelli coloreCapelli;
 private String nazioneDiNascita;
 
+
+//Costanti.
+private final float min_altezza = 20f; // altezza minima in cm
+private final float max_altezza = 250f; // altezza massima in cm
+private final float default_altezza = 100f; // altezza di default in cm
+private final float min_peso = 35f; // peso minimo in kg
+private final float max_peso = 600f; // peso massimo in kg
+private final float default_peso = 40f; // peso di default in kg
+/*
+ * queste costanti ci permettono di modificare in futuro il range di altezza senza dover cambiare il valore nei metodi setter.
+ * in questo modo rendiamo il codice più flessibile e manutenibile.
+ * una manovra chge ci consente di modificare ed evitare eventuali errori di dimenticanza di modificare il valore in tutti
+ *  i metodi setter che usano il range di altezza.
+ */
+
 /*
  * con private intendiamo che le variabili d'istanza sono accessibili solo all'interno della classe EssereUmano
  * in questo modo proteggiamo i dati dell'oggetto e impediamo l'accesso diretto dall'esterno della classe
@@ -372,7 +387,7 @@ private String nazioneDiNascita;
 
 public EssereUmano()
 {
-	this("ND", "ND", Sesso.SCONOSCIUTO, (byte)0, 100f, 35f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, "ND");
+	this("ND", "ND", Sesso.SCONOSCIUTO, (byte)-1, 100f, 40f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, "ND");
 	/*
 	 * quando chiamiamo il costruttore senza parametri, il this richiama il costruttore con parametri
 	 * e assegna dei valori di default alle variabili d'istanza.
@@ -386,7 +401,7 @@ public EssereUmano(String nome,
 		String cognome,
 		Sesso sesso)
 {
-	this(nome, cognome, sesso, (byte)0, 100f, 35f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, "ND");
+	this(nome, cognome, sesso, (byte)-1, 100f, 40f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, "ND");
 	// per vedere quale costruttore viene chiamato
 	// this richiama il costruttore con 9 parametri
 	// e assegna dei valori di default alle variabili d'istanza non inizializzate.
@@ -415,8 +430,24 @@ public EssereUmano(String nome,
 	this.cognome = cognome; 
 	this.sesso = sesso;
 	this.anni = anni;
-	this.altezza = altezza;
-	this.peso = peso;
+	//1
+//	this.altezza = altezza;
+//	this.peso = peso;
+	/*
+	 * usando this.altezza e this.peso, stiamo accedendo alle variabili d'istanza altezza e peso dell'oggetto corrente
+	 * quindi quando assegnamo il valore del parametro altezza alla variabile d'istanza altezza, 
+	 * stiamo modificando il valore della variabile d'istanza altezza dell'oggetto corrente.
+	 * ed il valore non viene controllato, quindi è possibile inserire valori non realistici per l'altezza e il peso di un essere umano.
+	 */
+	
+	this.setAltezza(altezza);
+	this.setPeso(peso);
+	/*
+	 * invece usando stetAltezza(altezza) e setPeso(peso), 
+	 * stiamo chiamando i metodi setter che abbiamo definito per le variabili d'istanza altezza e peso
+	 * quindi il valore inserito dovrà passare attraverso i controlli che abbiamo inserito nei metodi setter,
+	 */
+	
 	this.coloreOcchi = coloreOcchi;
 	this.coloreCapelli = coloreCapelli;
 	this.nazioneDiNascita = nazioneDiNascita;
@@ -487,10 +518,35 @@ public void setAnni(byte anni) {
 
 public float getAltezza() {
 	return altezza;
+	
 }
 
 public void setAltezza(float altezza) {
-	this.altezza = altezza;
+	
+	if(altezza > min_altezza && altezza < max_altezza) // per dare una misura reale a essere umano abbiamo inserito un controllo sull'altezza, 
+	{                                 //che deve essere compresa tra 20 cm e 250 cm.
+		this.altezza = altezza;
+		System.out.println(this.altezza + " altezza inizializzata");
+	}
+	/*
+	 * quindi con questo controllo evitiamo di inserire valori che non sono realistici per un'essere umano
+	 */
+	else
+	{
+		//quello che chiedo è: se l'altezza corrente(this.altezza) rientra nel range
+		if (this.altezza > min_altezza && this.altezza < max_altezza)
+		{
+			System.out.println(this.altezza + " altezza valida da prima.");
+		//se rientra nel range ,manderà a schermo il valore di this.altezza
+		}
+		// altrimenti se anche l'altezza corrente dell'oggetto non è valida, assegniamo un valore di default di 100 cm.
+		else
+		{
+			this.altezza = default_altezza; // se viene inserito un valore non valido, assegniamo un valore di default di 100 cm.
+			System.out.println(this.altezza + " altezza assegnata di default.");
+		}
+		//System.out.println(altezza + " non è un'altezza valida per un essere umano");
+	}
 }
 
 public float getPeso() {
@@ -498,7 +554,35 @@ public float getPeso() {
 }
 
 public void setPeso(float peso) {
-	this.peso = peso;
+	
+	if(peso < min_peso && peso > max_peso)
+	{
+		this.peso = peso;
+		System.out.println(this.peso + " peso inizializzato");
+	}
+	else
+	{
+		//if(this.getPeso() < min_peso && this.getPeso() > max_peso)
+		/*
+		 * e possibile chiedere anche con getPeso() se il peso corrente dell'oggetto rientra nel range di peso valido per un essere umano
+		 * sono due modi diversi per fare lo stesso controllo, ma in questo caso è più semplice usare this.peso
+		 *  invece di this.getPeso() perché getPeso() restituisce il valore di peso e quindi è più lungo da scrivere.
+		 */
+		
+		//System.out.println(peso + " non è un peso valido per un essere umano");
+		if (this.peso > min_peso && this.peso < max_peso)
+		{
+			System.out.println(this.peso + " peso valido da prima.");
+			//se rientra nel range ,manderà a schermo il valore di this.peso
+		}
+		else
+		{
+			this.peso = default_peso; // se viene inserito un valore non valido, assegniamo un valore di default di 35 kg.
+			System.out.println(this.peso + " peso assegnato di default.");
+		}
+	}
+	
+	
 }
 
 public ColoreOcchi getColoreOcchi() {

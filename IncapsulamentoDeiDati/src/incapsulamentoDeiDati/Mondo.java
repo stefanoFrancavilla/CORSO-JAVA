@@ -54,7 +54,7 @@ EssereUmano saraVerdi = new EssereUmano("Sara",
 		Sesso.FEMMINA,
 		(byte) 48, // si fa il cast da int a byte, per evitare l'errore di compilazione.
 		1.71f,
-		55f,
+		-500_055f,
 		ColoreOcchi.CASTANI,
 		ColoreCapelli.BIONDI,
 		"Italia");
@@ -100,9 +100,11 @@ System.out.println();
 System.out.println("3.2--------------------------");
 System.out.println();
 
-lucaBianchi.setAnni((byte)-45);
-lucaBianchi.setAltezza(-1.80f);
-lucaBianchi.setPeso(-70.8f);
+lucaBianchi.setNome("123");
+lucaBianchi.setAnni((byte)-100);
+lucaBianchi.setAltezza(-10_000f);
+lucaBianchi.setPeso(-2_000f);
+lucaBianchi.setNazioneDiNascita("ciccio");
 lucaBianchi.stampa();
 /*
  * notare come non ci siano controlli sui dati inseriti
@@ -125,6 +127,19 @@ lucaBianchi.stampa();
  * 		
  * 
  */
+
+System.out.println(lucaBianchi.getNome());
+
+
+System.out.println();
+System.out.println("3.2--------------------------");
+System.out.println();
+
+EssereUmano caterinaAzzurri = new EssereUmano();
+caterinaAzzurri.stampa();
+
+caterinaAzzurri.setAltezza(1_000);
+caterinaAzzurri.setPeso(-200);
 	}
 
 }
