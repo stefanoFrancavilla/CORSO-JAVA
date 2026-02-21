@@ -1,5 +1,7 @@
 package esercizio_testControlli;
 
+import java.util.Scanner;
+
 public class esercizio_testControlli6 {
 
 	public static void main(String[] args) {
@@ -105,6 +107,30 @@ e ripeti finché l’utente non scrive NO.
 
 Se il totale finale supera 200€, applica anche un ulteriore sconto di 5€ fisso.
 		 */
+		
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Scegli un mezzo da noleggiare (FURGONE, SCOOTER, E-BIKE, SKATE):");
+		String mezzo = scanner.nextLine();
+		
+		System.out.println("Quanti giorni vuoi noleggiarlo?");
+		int giorni = scanner.nextInt();
+		
+		Noleggio2 noleggio = new Noleggio2(mezzo, giorni);
+		noleggio.calcolaCosto();
+		
+		
+		
+		
+		
+		//voto finale 6 / 10
+		
+		
+		
+		
+		
+		
+		
+		
+	
 	}
-
 }
