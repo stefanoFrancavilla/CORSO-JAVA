@@ -122,7 +122,7 @@ lucaBianchi.stampa();
  * * 	nel corso della sua esistenza
  * * 	manipolando le sue variabili d'istanza
  * * 	tramite i metodi della sua classe.
- * 
+ * 		
  * 
  */
 	}
