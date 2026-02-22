@@ -113,12 +113,198 @@ static double getTariffaOraria(String veicolo)
 static double getSupplemento(int ore)
  */
 		
-	Scanner scanner = new Scanner(System.in);
+
 	
-	boolean continua = true;
+//	while (continua) {
+//	
+//	System.out.println("Vuoi calcolare un parcheggio? (SI/NO)");
+//	String risposta = scanner.nextLine().toUpperCase();
+//	if (risposta.equals("NO")) {
+//		continua = false;
+//		System.out.println("Grazie per aver usato il nostro servizio!");
+//	}
+//	else if (risposta.equals("SI")) {
+//	
+//	System.out.println("quale veicolo vuoi parcheggiare? (AUTO/MOTO/FURGONE/CAMPER)");
+//	String veicolo = scanner.nextLine().toUpperCase();
+//	
+//	System.out.println("quante ore resterai parcheggiato?");
+//	int ore = scanner.nextInt();
+//	scanner.nextLine(); 
+//	
+//	final double parcheggioAuto = 2.50;
+//	final double parcheggioMoto = 1.20;
+//	final double parcheggioFurgone = 3.80;
+//	final double parcheggioCamper = 5.00;
+//	
+//	double tariffaOraria = 0.0;
+//	double costoBase = 0.0;
+//	double supplemento = 0.0;
+//	double totaleSenzaSconto = 0.0;
+//	double scontoApplicato = 0.0;
+//	double totaleFinale = 0.0;
+//	
+//	
+//	if (veicolo.equals("AUTO") || veicolo.equals("MOTO") || veicolo.equals("FURGONE") || veicolo.equals("CAMPER")) {
+//			switch (veicolo ) {
+//			case "AUTO":
+//				if ( ore <= 3) {
+//					supplemento = 1.00;
+//				}
+//				else if (ore >= 4 && ore <= 8) {
+//					supplemento = 2.50;
+//				}
+//				else if (ore > 8) {
+//					supplemento = 4.00;
+//				}
+//				tariffaOraria = parcheggioAuto;
+//				costoBase = tariffaOraria * ore;
+//				totaleSenzaSconto = costoBase + supplemento;
+//				
+//				if (ore >= 3 && ore <= 6) {
+//					scontoApplicato = totaleSenzaSconto * 0.05;
+//				}
+//				else if (ore >= 7 && ore <= 12) {
+//					scontoApplicato = totaleSenzaSconto * 0.10;
+//				}
+//				else if (ore > 12) {
+//					scontoApplicato = totaleSenzaSconto * 0.18;
+//				}
+//				totaleFinale = totaleSenzaSconto - scontoApplicato;
+//				System.out.println("Veicolo: " + veicolo);
+//				System.out.println("Ore: " + ore);
+//				System.out.println("Tariffa oraria: " + tariffaOraria + "€");
+//				System.out.println("Costo base: " + costoBase + "€");
+//				System.out.println("Supplemento: " + supplemento + "€");
+//				System.out.println("Totale senza sconto: " + totaleSenzaSconto + "€");
+//				System.out.println("Sconto applicato: " + scontoApplicato + "€");
+//				System.out.println("Totale da pagare: " + totaleFinale + "€");
+//				
+//				break;
+//				
+//				case "MOTO":
+//					if ( ore <= 3) {
+//						supplemento = 1.00;
+//					}
+//					else if (ore >= 4 && ore <= 8) {
+//						supplemento = 2.50;
+//					}
+//					else if (ore > 8) {
+//						supplemento = 4.00;
+//					}
+//					tariffaOraria = parcheggioMoto;
+//					costoBase = tariffaOraria * ore;
+//					totaleSenzaSconto = costoBase + supplemento;
+//					
+//					if (ore >= 3 && ore <= 6) {
+//						scontoApplicato = totaleSenzaSconto * 0.05;
+//					}
+//					else if (ore >= 7 && ore <= 12) {
+//						scontoApplicato = totaleSenzaSconto * 0.10;
+//					}
+//					else if (ore > 12) {
+//						scontoApplicato = totaleSenzaSconto * 0.18;
+//					}
+//					totaleFinale = totaleSenzaSconto - scontoApplicato;
+//					System.out.println("Veicolo: " + veicolo);
+//					System.out.println("Ore: " + ore);
+//					System.out.println("Tariffa oraria: " + tariffaOraria + "€");
+//					System.out.println("Costo base: " + costoBase + "€");
+//					System.out.println("Supplemento: " + supplemento + "€");
+//					System.out.println("Totale senza sconto: " + totaleSenzaSconto + "€");
+//					System.out.println("Sconto applicato: " + scontoApplicato + "€");
+//					System.out.println("Totale da pagare: " + totaleFinale + "€");
+//					break;
+//					
+//				case "FURGONE":
+//					if ( ore <= 3) {
+//						supplemento = 1.00;
+//					}
+//					else if (ore >= 4 && ore <= 8) {
+//						supplemento = 2.50;
+//					}
+//					else if (ore > 8) {
+//						supplemento = 4.00;
+//					}
+//					tariffaOraria = parcheggioFurgone;
+//					costoBase = tariffaOraria * ore;
+//					totaleSenzaSconto = costoBase + supplemento;
+//					
+//					if (ore >= 3 && ore <= 6) {
+//						scontoApplicato = totaleSenzaSconto * 0.05;
+//					}
+//					else if (ore >= 7 && ore <= 12) {
+//						scontoApplicato = totaleSenzaSconto * 0.10;
+//					}
+//					else if (ore > 12) {
+//						scontoApplicato = totaleSenzaSconto * 0.18;
+//					}
+//					totaleFinale = totaleSenzaSconto - scontoApplicato;
+//					System.out.println("Veicolo: " + veicolo);
+//					System.out.println("Ore: " + ore);
+//					System.out.println("Tariffa oraria: " + tariffaOraria + "€");
+//					System.out.println("Costo base: " + costoBase + "€");
+//					System.out.println("Supplemento: " + supplemento + "€");
+//					System.out.println("Totale senza sconto: " + totaleSenzaSconto + "€");
+//					System.out.println("Sconto applicato: " + scontoApplicato + "€");
+//					System.out.println("Totale da pagare: " + totaleFinale + "€");
+//					break;
+//					
+//					case "CAMPER":
+//						if ( ore <= 3) {
+//							supplemento = 1.00;
+//						}
+//						else if (ore >= 4 && ore <= 8) {
+//							supplemento = 2.50;
+//						}
+//						else if (ore > 8) {
+//							supplemento = 4.00;
+//						}
+//						tariffaOraria = parcheggioCamper;
+//						costoBase = tariffaOraria * ore;
+//						totaleSenzaSconto = costoBase + supplemento;
+//						
+//						if (ore >= 3 && ore <= 6) {
+//							scontoApplicato = totaleSenzaSconto * 0.05;
+//						}
+//						else if (ore >= 7 && ore <= 12) {
+//							scontoApplicato = totaleSenzaSconto * 0.10;
+//						}
+//						else if (ore > 12) {
+//							scontoApplicato = totaleSenzaSconto * 0.18;
+//						}
+//						totaleFinale = totaleSenzaSconto - scontoApplicato;
+//						System.out.println("Veicolo: " + veicolo);
+//						System.out.println("Ore: " + ore);
+//						System.out.println("Tariffa oraria: " + tariffaOraria + "€");
+//						System.out.println("Costo base: " + costoBase + "€");
+//						System.out.println("Supplemento: " + supplemento + "€");
+//						System.out.println("Totale senza sconto: " + totaleSenzaSconto + "€");
+//						System.out.println("Sconto applicato: " + scontoApplicato + "€");
+//						System.out.println("Totale da pagare: " + totaleFinale + "€");
+//						break;
+//						
+//						default:
+//							System.out.println("Errore: veicolo non ammesso");
+//							continua = false;
+//							break;
+//			}
+//		
+//			}
+//			else
+//			{
+//				System.out.println("Errore: veicolo non ammesso");
+//				continua = false;
+//			}
+//	}
+//	}
+		
+		Scanner scanner = new Scanner(System.in);
+		
+		boolean continua = true;
 	
-	while (continua) {
-	
+	while (continua) 
+	{
 	System.out.println("Vuoi calcolare un parcheggio? (SI/NO)");
 	String risposta = scanner.nextLine().toUpperCase();
 	if (risposta.equals("NO")) {
@@ -126,182 +312,113 @@ static double getSupplemento(int ore)
 		System.out.println("Grazie per aver usato il nostro servizio!");
 	}
 	else if (risposta.equals("SI")) {
-	
-	System.out.println("quale veicolo vuoi parcheggiare? (AUTO/MOTO/FURGONE/CAMPER)");
-	String veicolo = scanner.nextLine().toUpperCase();
-	
-	System.out.println("quante ore resterai parcheggiato?");
-	int ore = scanner.nextInt();
-	scanner.nextLine(); 
-	
-	final double parcheggioAuto = 2.50;
-	final double parcheggioMoto = 1.20;
-	final double parcheggioFurgone = 3.80;
-	final double parcheggioCamper = 5.00;
-	
-	double tariffaOraria = 0.0;
-	double costoBase = 0.0;
-	double supplemento = 0.0;
-	double totaleSenzaSconto = 0.0;
-	double scontoApplicato = 0.0;
-	double totaleFinale = 0.0;
-	
-	
-	if (veicolo.equals("AUTO") || veicolo.equals("MOTO") || veicolo.equals("FURGONE") || veicolo.equals("CAMPER")) {
-			switch (veicolo ) {
-			case "AUTO":
-				if ( ore <= 3) {
-					supplemento = 1.00;
-				}
-				else if (ore >= 4 && ore <= 8) {
-					supplemento = 2.50;
-				}
-				else if (ore > 8) {
-					supplemento = 4.00;
-				}
-				tariffaOraria = parcheggioAuto;
-				costoBase = tariffaOraria * ore;
-				totaleSenzaSconto = costoBase + supplemento;
-				
-				if (ore >= 3 && ore <= 6) {
-					scontoApplicato = totaleSenzaSconto * 0.05;
-				}
-				else if (ore >= 7 && ore <= 12) {
-					scontoApplicato = totaleSenzaSconto * 0.10;
-				}
-				else if (ore > 12) {
-					scontoApplicato = totaleSenzaSconto * 0.18;
-				}
-				totaleFinale = totaleSenzaSconto - scontoApplicato;
-				System.out.println("Veicolo: " + veicolo);
-				System.out.println("Ore: " + ore);
-				System.out.println("Tariffa oraria: " + tariffaOraria + "€");
-				System.out.println("Costo base: " + costoBase + "€");
-				System.out.println("Supplemento: " + supplemento + "€");
-				System.out.println("Totale senza sconto: " + totaleSenzaSconto + "€");
-				System.out.println("Sconto applicato: " + scontoApplicato + "€");
-				System.out.println("Totale da pagare: " + totaleFinale + "€");
-				
-				break;
-				
-				case "MOTO":
-					if ( ore <= 3) {
-						supplemento = 1.00;
-					}
-					else if (ore >= 4 && ore <= 8) {
-						supplemento = 2.50;
-					}
-					else if (ore > 8) {
-						supplemento = 4.00;
-					}
-					tariffaOraria = parcheggioMoto;
-					costoBase = tariffaOraria * ore;
-					totaleSenzaSconto = costoBase + supplemento;
-					
-					if (ore >= 3 && ore <= 6) {
-						scontoApplicato = totaleSenzaSconto * 0.05;
-					}
-					else if (ore >= 7 && ore <= 12) {
-						scontoApplicato = totaleSenzaSconto * 0.10;
-					}
-					else if (ore > 12) {
-						scontoApplicato = totaleSenzaSconto * 0.18;
-					}
-					totaleFinale = totaleSenzaSconto - scontoApplicato;
-					System.out.println("Veicolo: " + veicolo);
-					System.out.println("Ore: " + ore);
-					System.out.println("Tariffa oraria: " + tariffaOraria + "€");
-					System.out.println("Costo base: " + costoBase + "€");
-					System.out.println("Supplemento: " + supplemento + "€");
-					System.out.println("Totale senza sconto: " + totaleSenzaSconto + "€");
-					System.out.println("Sconto applicato: " + scontoApplicato + "€");
-					System.out.println("Totale da pagare: " + totaleFinale + "€");
-					break;
-					
-				case "FURGONE":
-					if ( ore <= 3) {
-						supplemento = 1.00;
-					}
-					else if (ore >= 4 && ore <= 8) {
-						supplemento = 2.50;
-					}
-					else if (ore > 8) {
-						supplemento = 4.00;
-					}
-					tariffaOraria = parcheggioFurgone;
-					costoBase = tariffaOraria * ore;
-					totaleSenzaSconto = costoBase + supplemento;
-					
-					if (ore >= 3 && ore <= 6) {
-						scontoApplicato = totaleSenzaSconto * 0.05;
-					}
-					else if (ore >= 7 && ore <= 12) {
-						scontoApplicato = totaleSenzaSconto * 0.10;
-					}
-					else if (ore > 12) {
-						scontoApplicato = totaleSenzaSconto * 0.18;
-					}
-					totaleFinale = totaleSenzaSconto - scontoApplicato;
-					System.out.println("Veicolo: " + veicolo);
-					System.out.println("Ore: " + ore);
-					System.out.println("Tariffa oraria: " + tariffaOraria + "€");
-					System.out.println("Costo base: " + costoBase + "€");
-					System.out.println("Supplemento: " + supplemento + "€");
-					System.out.println("Totale senza sconto: " + totaleSenzaSconto + "€");
-					System.out.println("Sconto applicato: " + scontoApplicato + "€");
-					System.out.println("Totale da pagare: " + totaleFinale + "€");
-					break;
-					
-					case "CAMPER":
-						if ( ore <= 3) {
-							supplemento = 1.00;
-						}
-						else if (ore >= 4 && ore <= 8) {
-							supplemento = 2.50;
-						}
-						else if (ore > 8) {
-							supplemento = 4.00;
-						}
-						tariffaOraria = parcheggioCamper;
-						costoBase = tariffaOraria * ore;
-						totaleSenzaSconto = costoBase + supplemento;
-						
-						if (ore >= 3 && ore <= 6) {
-							scontoApplicato = totaleSenzaSconto * 0.05;
-						}
-						else if (ore >= 7 && ore <= 12) {
-							scontoApplicato = totaleSenzaSconto * 0.10;
-						}
-						else if (ore > 12) {
-							scontoApplicato = totaleSenzaSconto * 0.18;
-						}
-						totaleFinale = totaleSenzaSconto - scontoApplicato;
-						System.out.println("Veicolo: " + veicolo);
-						System.out.println("Ore: " + ore);
-						System.out.println("Tariffa oraria: " + tariffaOraria + "€");
-						System.out.println("Costo base: " + costoBase + "€");
-						System.out.println("Supplemento: " + supplemento + "€");
-						System.out.println("Totale senza sconto: " + totaleSenzaSconto + "€");
-						System.out.println("Sconto applicato: " + scontoApplicato + "€");
-						System.out.println("Totale da pagare: " + totaleFinale + "€");
-						break;
-						
-						default:
-							System.out.println("Errore: veicolo non ammesso");
-							continua = false;
-							break;
-			}
+		System.out.println("quale veicolo vuoi parcheggiare? (AUTO/MOTO/FURGONE/CAMPER)");
+		String veicolo = scanner.nextLine().trim().toUpperCase();
+		System.out.println("quante ore resterai parcheggiato?");
+		int ore = scanner.nextInt();
+		scanner.nextLine();
 		
-			}
-			else
-			{
-				System.out.println("Errore: veicolo non ammesso");
-				continua = false;
-			}
+		switch (veicolo) {
+		case "AUTO":
+			getTariffaOraria(veicolo);
+			getSupplemento(ore);
+			getSconto(ore, getTariffaOraria(veicolo) * ore + getSupplemento(ore));
+			stampaRiepilogo(veicolo, ore, getTariffaOraria(veicolo), getTariffaOraria(veicolo) * ore, getSupplemento(ore), getTariffaOraria(veicolo) * ore + getSupplemento(ore), getSconto(ore, getTariffaOraria(veicolo) * ore + getSupplemento(ore)), (getTariffaOraria(veicolo) * ore + getSupplemento(ore)) - getSconto(ore, getTariffaOraria(veicolo) * ore + getSupplemento(ore)));
+			break;
+			
+		case "MOTO":
+			getTariffaOraria(veicolo);
+			getSupplemento(ore);
+			getSconto(ore, getTariffaOraria(veicolo) * ore + getSupplemento(ore));
+			stampaRiepilogo(veicolo, ore, getTariffaOraria(veicolo), getTariffaOraria(veicolo) * ore, getSupplemento(ore), getTariffaOraria(veicolo) * ore + getSupplemento(ore), getSconto(ore, getTariffaOraria(veicolo) * ore + getSupplemento(ore)), (getTariffaOraria(veicolo) * ore + getSupplemento(ore)) - getSconto(ore, getTariffaOraria(veicolo) * ore + getSupplemento(ore)));
+			break;
+			
+		case "FURGONE":
+			getTariffaOraria(veicolo);
+			getSupplemento(ore);
+			getSconto(ore, getTariffaOraria(veicolo) * ore + getSupplemento(ore));
+			stampaRiepilogo(veicolo, ore, getTariffaOraria(veicolo), getTariffaOraria(veicolo) * ore, getSupplemento(ore), getTariffaOraria(veicolo) * ore + getSupplemento(ore), getSconto(ore, getTariffaOraria(veicolo) * ore + getSupplemento(ore)), (getTariffaOraria(veicolo) * ore + getSupplemento(ore)) - getSconto(ore, getTariffaOraria(veicolo) * ore + getSupplemento(ore)));
+			break;
+			
+		case "CAMPER":
+			getTariffaOraria(veicolo);
+			getSupplemento(ore);
+			getSconto(ore, getTariffaOraria(veicolo) * ore + getSupplemento(ore));
+			stampaRiepilogo(veicolo, ore, getTariffaOraria(veicolo), getTariffaOraria(veicolo) * ore, getSupplemento(ore), getTariffaOraria(veicolo) * ore + getSupplemento(ore), getSconto(ore, getTariffaOraria(veicolo) * ore + getSupplemento(ore)), (getTariffaOraria(veicolo) * ore + getSupplemento(ore)) - getSconto(ore, getTariffaOraria(veicolo) * ore + getSupplemento(ore)));
+			break;
+			
+		default:
+			System.out.println("Errore: veicolo non ammesso");
+			continua = false;
+			break;
+		}
 	}
+		
 	}
 	
 		}
-	}	
+	
+	public static double getTariffaOraria(String veicolo) {
+		double tariffa = 0.0;
+		switch (veicolo) {
+		case "AUTO":
+			tariffa = 2.50;
+			break;
+		case "MOTO":
+			tariffa = 1.20;
+			break;
+		case "FURGONE":
+			tariffa = 3.80;
+			break;
+		case "CAMPER":
+			tariffa = 5.00;
+			break;
+		default:
+			System.out.println("Errore: veicolo non ammesso");
+			break;
+		}
+		return tariffa;
+		
+	}
+	public static double getSupplemento(int ore) {
+		double supplemento = 0.0;
+		if (ore <= 3) {
+			supplemento = 1.00;
+		}
+		else if (ore >= 4 && ore <= 8) {
+			supplemento = 2.50;
+		}
+		else if (ore > 8) {
+			supplemento = 4.00;
+		}
+		return supplemento;
+		
+	}
+	
+	public static double getSconto(int ore, double totaleSenzaSconto) {
+		double sconto = 0.0;
+		if (ore >= 3 && ore <= 6) {
+			sconto = totaleSenzaSconto * 0.05;
+		}
+		else if (ore >= 7 && ore <= 12) {
+			sconto = totaleSenzaSconto * 0.10;
+		}
+		else if (ore > 12) {
+			sconto = totaleSenzaSconto * 0.18;
+		}
+		return sconto;
+	}
+	
+	public static void stampaRiepilogo(String veicolo, int ore, double tariffaOraria, double costoBase, double supplemento, double totaleSenzaSconto, double scontoApplicato, double totaleFinale) {
+		System.out.println("Veicolo: " + veicolo);
+		System.out.println("Ore: " + ore);
+		System.out.println("Tariffa oraria: " + tariffaOraria + "€");
+		System.out.println("Costo base: " + costoBase + "€");
+		System.out.println("Supplemento: " + supplemento + "€");
+		System.out.println("Totale senza sconto: " + totaleSenzaSconto + "€");
+		System.out.println("Sconto applicato: " + scontoApplicato + "€");
+		System.out.println("Totale da pagare: " + totaleFinale + "€");
+	}
+}
 		
 	
