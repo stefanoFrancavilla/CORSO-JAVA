@@ -132,7 +132,7 @@ System.out.println(lucaBianchi.getNome());
 
 
 System.out.println();
-System.out.println("3.2--------------------------");
+System.out.println("3.3--------------------------");
 System.out.println();
 
 EssereUmano caterinaAzzurri = new EssereUmano();
@@ -140,6 +140,41 @@ caterinaAzzurri.stampa();
 
 caterinaAzzurri.setAltezza(1_000);
 caterinaAzzurri.setPeso(-200);
+
+System.out.println();
+System.out.println("3.4--------------------------");
+System.out.println();
+
+EssereUmano fabioArancioni = new EssereUmano("Fa3bio", "Ararncioni", Sesso.MASCHIO);
+
+fabioArancioni.stampa();
+
+fabioArancioni.setNome("Fabio"); // correggo il nome inserito in modo errato.
+
+fabioArancioni.stampa();
+
+fabioArancioni.setNome("Fabio9");
+
+fabioArancioni.stampa();
+
+System.out.println();
+System.out.println("3.5--------------------------");
+System.out.println();
+
+EssereUmano linaVioli = new EssereUmano();
+
+linaVioli.stampa();
+
+//linaVioli.setNome("Lina");
+
+linaVioli.setNome("Lin?a");
+
+//linaVioli.stampa();
+
+//linaVioli.setNome("Linaabcdefghilmno_linaabcdefghilmno");
+
+linaVioli.stampa();
+
 	}
 
 }

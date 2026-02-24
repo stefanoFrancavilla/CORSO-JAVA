@@ -433,7 +433,8 @@ public EssereUmano(String nome,
 
 {
 	System.out.println("EssereUmano (9)"); // per vedere quale costruttore viene chiamato
-	this.nome = nome; // uso la parola chiave this per distinguere la variabile d'istanza dal parametro
+	//this.nome = nome; // uso la parola chiave this per distinguere la variabile d'istanza dal parametro
+	this.setNome(nome); // invece di assegnare direttamente il valore del parametro nome alla variabile d'istanza nome, usiamo il metodo setter setNome(nome) per controllare il valore inserito.
 	this.cognome = cognome; 
 	this.sesso = sesso;
 	
@@ -489,17 +490,77 @@ public String getNome() {
 
 public void setNome(String nome) {
 	
+	boolean nomeCorretto = true;
 	
 	if (verificaCratteri("1234567890!?@", nome)) 
 	{
 		System.out.println("nome non consono");
+		
+		nomeCorretto = false;
+		
+	  /*  if ( this.nome == null)
+		{
+			System.out.println(this.nome + " è null");
+			
+			this.nome = "ND"; // se il nome è null, assegniamo un valore di default "ND" alla variabile d'istanza nome.
+		}
+		else if (!("ND".equals(this.nome))) // se il nome corrente dell'oggetto non è "ND", manteniamo il valore corrente di nome.
+			// se this.nome è diverso da "ND", significa che il nome corrente dell'oggetto è valido, e quindi manteniamo il valore corrente di nome.
+			
+		{
+			System.out.println(this.nome + " è un nome sensato.");
+		}*/
+		
+		//this.nome = "ND"; // se il nome contiene caratteri non validi, assegniamo un valore di default "ND" alla variabile d'istanza nome.
 	}
-	else
+	else if ( verificaLunghezza(nome, 15))
+	{
+		System.out.println("nome troppo lungo");
+		
+		nomeCorretto = false;
+	/*	if ( this.nome == null)
+		{
+			System.out.println(this.nome + " è null 2");
+			
+			this.nome = "ND"; 
+		}
+		else if (!("ND".equals(this.nome))) 
+			
+			
+		{
+			System.out.println(this.nome + " è un nome sensato 2.");
+		}*/
+	}
+	
+	if(nomeCorretto == true) // se il nome è corretto, lo assegniamo alla variabile d'istanza nome
+	{
+		System.out.println("nome ok");
+		this.nome = nome;
+	}
+	else if ( this.nome == null)
+	{
+		System.out.println(this.nome + " è null ");
+		
+		this.nome = "ND"; 
+	}
+	else if (!("ND".equals(this.nome))) 
+		
+		
+	{
+		System.out.println(this.nome + " è un nome sensato .");
+	}
+	
+	/*
+	 * scriverlo in questo modo ci consente di modificare solo una parte del codice in caso di errori
+	 * in questo modo evitiamo di inserire codice duplicato, e rendiamo il codice più leggibile e manutenibile.
+	 */
+	
+/*	else
 	{
 		System.out.println("nome ok");
 		this.nome = nome;
 		// se il nome è valido, lo assegniamo alla variabile d'istanza nome
-	}
+	}*/
 	// con questo metodo di verifica, stiamo controllando se la stringa nome contiene solo caratteri validi, ovvero lettere e spazi, e non contiene numeri o caratteri speciali.
 }
 /*
@@ -685,7 +746,19 @@ private boolean verificaCratteri(String caratteri, String s) {
 }
 
 
-
+private boolean verificaLunghezza(String s, int  limit)
+{
+	boolean troppoLunga = false;
+	
+	if (s.length() > limit) 
+	    troppoLunga = true;
+	return troppoLunga;
+}
+/*
+ * con questo metodo stiamo controllando se la stringa s è troppo lunga, ovvero se la sua lunghezza è maggiore di un limite specificato.
+ * se s.length() > limit, significa che la stringa s è troppo lunga, e quindi restituiamo true, altrimenti restituiamo false.
+ * questo metodo può essere usato ad esempio per controllare la lunghezza di una stringa inserita nei metodi setter, come ad esempio il nome o il cognome, per evitare di inserire stringhe troppo lunghe che potrebbero non essere realistiche per un essere umano.
+ */
 
 
 // Metodi
