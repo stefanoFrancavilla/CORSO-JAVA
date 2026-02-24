@@ -137,7 +137,7 @@ Se il totale finale supera 1000€ → applica un bonus cliente VIP di 50€ di 
 		System.out.println("Scegli una stanza. (SINGOLA, DOPPIA, SUITE, PRESIDENZIALE) ");
 		String stanza = scanner.nextLine().trim().toUpperCase();
 			
-			
+		
 			
 		}
 		

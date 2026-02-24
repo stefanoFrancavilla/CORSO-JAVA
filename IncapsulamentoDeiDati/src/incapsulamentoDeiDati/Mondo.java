@@ -35,7 +35,7 @@ marcoRossi.setNome ("Marco");
 marcoRossi.setCognome ("Rossi");
 marcoRossi.setSesso (Sesso.MASCHIO);
 marcoRossi.setAnni ((byte)18);
-marcoRossi.setAltezza (1.73f);
+marcoRossi.setAltezza (173f);
 marcoRossi.setPeso (70f);
 marcoRossi.setColoreOcchi (ColoreOcchi.AZZURRI);
 marcoRossi.setColoreCapelli (ColoreCapelli.CASTANI);

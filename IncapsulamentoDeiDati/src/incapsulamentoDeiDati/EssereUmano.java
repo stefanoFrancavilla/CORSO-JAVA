@@ -360,12 +360,19 @@ private String nazioneDiNascita;
 
 
 //Costanti.
+private final byte min_anni = 0; // età minima in anni
+private final byte max_anni = 	Byte.MAX_VALUE; // età massima in anni, usiamo il valore massimo di byte perché la variabile anni è di tipo byte
+private final byte default_anni = 18; // età di default in anni
+
 private final float min_altezza = 20f; // altezza minima in cm
 private final float max_altezza = 250f; // altezza massima in cm
 private final float default_altezza = 100f; // altezza di default in cm
+
 private final float min_peso = 35f; // peso minimo in kg
 private final float max_peso = 600f; // peso massimo in kg
 private final float default_peso = 40f; // peso di default in kg
+
+
 /*
  * queste costanti ci permettono di modificare in futuro il range di altezza senza dover cambiare il valore nei metodi setter.
  * in questo modo rendiamo il codice più flessibile e manutenibile.
@@ -387,7 +394,7 @@ private final float default_peso = 40f; // peso di default in kg
 
 public EssereUmano()
 {
-	this("ND", "ND", Sesso.SCONOSCIUTO, (byte)-1, 100f, 40f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, "ND");
+	this("ND", "ND", Sesso.SCONOSCIUTO, (byte)0, 0f, 0f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, "ND");
 	/*
 	 * quando chiamiamo il costruttore senza parametri, il this richiama il costruttore con parametri
 	 * e assegna dei valori di default alle variabili d'istanza.
@@ -401,7 +408,7 @@ public EssereUmano(String nome,
 		String cognome,
 		Sesso sesso)
 {
-	this(nome, cognome, sesso, (byte)-1, 100f, 40f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, "ND");
+	this(nome, cognome, sesso, (byte)0, 0f, 0f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, "ND");
 	// per vedere quale costruttore viene chiamato
 	// this richiama il costruttore con 9 parametri
 	// e assegna dei valori di default alle variabili d'istanza non inizializzate.
@@ -429,8 +436,9 @@ public EssereUmano(String nome,
 	this.nome = nome; // uso la parola chiave this per distinguere la variabile d'istanza dal parametro
 	this.cognome = cognome; 
 	this.sesso = sesso;
-	this.anni = anni;
+	
 	//1
+//	this.anni = anni;
 //	this.altezza = altezza;
 //	this.peso = peso;
 	/*
@@ -440,6 +448,8 @@ public EssereUmano(String nome,
 	 * ed il valore non viene controllato, quindi è possibile inserire valori non realistici per l'altezza e il peso di un essere umano.
 	 */
 	
+//
+	this.setAnni(anni);
 	this.setAltezza(altezza);
 	this.setPeso(peso);
 	/*
@@ -478,7 +488,19 @@ public String getNome() {
  */
 
 public void setNome(String nome) {
-	this.nome = nome;
+	
+	
+	if (verificaCratteri("1234567890!?@", nome)) 
+	{
+		System.out.println("nome non consono");
+	}
+	else
+	{
+		System.out.println("nome ok");
+		this.nome = nome;
+		// se il nome è valido, lo assegniamo alla variabile d'istanza nome
+	}
+	// con questo metodo di verifica, stiamo controllando se la stringa nome contiene solo caratteri validi, ovvero lettere e spazi, e non contiene numeri o caratteri speciali.
 }
 /*
  * il metodo setter modifica il valore della variabile d'istanza nome
@@ -513,7 +535,25 @@ public byte getAnni() {
 }
 
 public void setAnni(byte anni) {
-	this.anni = anni;
+	System.out.println("max anni: " + max_anni);
+	
+	if(anni >= min_anni && anni <= max_anni) // per dare una misura reale a essere umano abbiamo inserito un controllo sull'età, 
+	{
+		this.anni = anni;
+		System.out.println(this.anni + " anni inizializzati");
+	}
+	else
+	{
+		if (this.anni >= min_anni && this.anni <= max_anni) // se l'età corrente dell'oggetto rientra nel range di età valido per un essere umano, manteniamo il valore corrente di anni.
+		{
+			System.out.println(this.anni + " anni validi da prima.");
+		}
+		else
+		{
+			this.anni = default_anni; // se viene inserito un valore non valido, assegniamo un valore di default di 18 anni.
+			System.out.println(this.anni + " anni assegnati di default.");
+		}
+	}
 }
 
 public float getAltezza() {
@@ -555,7 +595,7 @@ public float getPeso() {
 
 public void setPeso(float peso) {
 	
-	if(peso < min_peso && peso > max_peso)
+	if(peso > min_peso && peso < max_peso)
 	{
 		this.peso = peso;
 		System.out.println(this.peso + " peso inizializzato");
@@ -608,6 +648,45 @@ public String getNazioneDiNascita() {
 public void setNazioneDiNascita(String nazioneDiNascita) {
 	this.nazioneDiNascita = nazioneDiNascita;
 }
+//metodi di verifica.
+
+//sono metodi che servono a verificare i dati di input inseriti nei metodi setter, e a restituire un messaggio di errore se i dati non sono validi.
+//saranno privati poichè solo i metodi setter all'interno della classe possono accedere a questi metodi di verifica, e non devono essere accessibili dall'esterno della classe.
+
+private boolean verificaCratteri(String caratteri, String s) {
+	// caratteri = 1234567890!?@
+	//vogliamo controllare se la stringa s contiene solo caratteri validi, ovvero lettere e spazi, e non contiene numeri o caratteri speciali.
+	//se restituisce true, significa che all'interno della stringa ci sono caratteri non validi, mentre se restituisce false, significa che la stringa è valida.
+	
+	boolean presente = false;
+	for (int i = 0; i < caratteri.length(); i++) 
+	{
+		char carattereCorrente = caratteri.charAt(i);
+		System.out.println("carattereCorrente" +  carattereCorrente);
+		
+		if (s.indexOf(caratteri.charAt(i)) != -1) // se il carattere presente nella stringa caratteri è presente anche nella stringa s, allora restituisco true.
+			//se non ci restituisce -1 allora significa che il carattere è presente nella stringa caratteri 
+			                                      //mentre se il carattere controllato da indexOf non è presente nella stringa s, restituisce -1, e quindi non entra nell'if.
+			                                       //quindi se troviamo un carattere non valido, impostiamo la variabile presente a true
+		{
+			presente = true;
+			break; // se troviamo un carattere non valido, usciamo dal ciclo for per evitare di continuare a controllare gli altri caratteri.
+			
+			/*
+			 * con questo if stiamo controllando se la stringa s contiene un carattere non valido, ovvero un carattere presente nella stringa caratteri.
+			 * s.indexOf(caratteri.charAt(i)) restituisce l'indice del primo carattere presente nella stringa s, se il carattere è presente, altrimenti restituisce -1.
+			 * quindi se s.indexOf(caratteri.charAt(i)) != -1, significa che il carattere è presente nella stringa s, e quindi la stringa s non è valida.
+			 * mentre con caratteri.chaAt(i) stiamo prendendo il carattere presente nella stringa caratteri alla posizione i, e lo stiamo confrontando con la stringa s.
+			 * se troviamo un carattere non valido, impostiamo la variabile presente a true
+			 */
+		}
+	}
+	return presente;
+}
+
+
+
+
 
 // Metodi
 public void beve() 
