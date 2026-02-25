@@ -376,7 +376,7 @@ private final float default_peso = 40f; // peso di default in kg
 /*
  * queste costanti ci permettono di modificare in futuro il range di altezza senza dover cambiare il valore nei metodi setter.
  * in questo modo rendiamo il codice più flessibile e manutenibile.
- * una manovra chge ci consente di modificare ed evitare eventuali errori di dimenticanza di modificare il valore in tutti
+ * una manovra che ci consente di modificare ed evitare eventuali errori di dimenticanza di modificare il valore in tutti
  *  i metodi setter che usano il range di altezza.
  */
 
