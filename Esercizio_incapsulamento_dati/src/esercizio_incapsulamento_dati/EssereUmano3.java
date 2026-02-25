@@ -38,19 +38,37 @@ public class EssereUmano3 {
 	
 	public void setNome(String nome)
 	{
-		if (verificaCaratteri("1234567890?!|£$%&/()=", nome))
+		boolean nomeCorretto = true;
+		
+		if (verificaCaratteri("1234567890!?@", nome)) 
 		{
-			System.out.println ("il nome contiene caratteri non consoni");
+			System.out.println("nome non consono");
+			
+			nomeCorretto = false;
 		}
-		if (verificaLunghezza(nome, 10) == true)
+		else if ( verificaLunghezza(nome, 15))
 		{
-			System.out.println("il nome è troppo lungo");
-		}
-		else
-		{
-			System.out.println ("controllo nome ok");
-		}
-		this.nome = nome;
+			System.out.println("nome troppo lungo");
+			
+			nomeCorretto = false;
+			if(nomeCorretto == true) // se il nome è corretto, lo assegniamo alla variabile d'istanza nome
+			{
+				System.out.println("nome ok");
+				this.nome = nome;
+			}
+			else if ( this.nome == null)
+			{
+				System.out.println(this.nome + " è null ");
+				
+				this.nome = "ND"; 
+			}
+			else if (!("ND".equals(this.nome))) 
+				
+				
+			{
+				System.out.println(this.nome + " è un nome sensato .");
+			}
+	}
 	}
 	
 	public String getCognome()
