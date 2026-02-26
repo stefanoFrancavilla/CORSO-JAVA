@@ -165,9 +165,10 @@ EssereUmano linaVioli = new EssereUmano();
 
 linaVioli.stampa();
 
-//linaVioli.setNome("Lina");
+linaVioli.setNome("Lina");
 
-linaVioli.setNome("Lin?a");
+linaVioli.setCognome("Violi");
+//linaVioli.setNome("Lin?a");
 
 //linaVioli.stampa();
 
@@ -175,6 +176,24 @@ linaVioli.setNome("Lin?a");
 
 linaVioli.stampa();
 
+System.out.println();
+System.out.println("4--------------------------");
+System.out.println();
+
+Gatto miagolino = new Gatto();
+
+miagolino.stampa();
+
+miagolino.setNome("Miagolino");
+miagolino.setSesso(Sesso.MASCHIO);
+miagolino.setAnni((byte) 2);
+miagolino.setAltezza(30f);
+miagolino.setPeso(3f);
+miagolino.setColoreOcchi(ColoreOcchi.GRIGI);
+miagolino.setColorePeloGatto(ColorePeloGatto.ROSSO);
+miagolino.setRazzaGatto(RazzaGatto.BRITHISH_SHORTHAIR);
+
+miagolino.stampa();
 	}
 
 }

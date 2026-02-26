@@ -435,7 +435,10 @@ public EssereUmano(String nome,
 	System.out.println("EssereUmano (9)"); // per vedere quale costruttore viene chiamato
 	//this.nome = nome; // uso la parola chiave this per distinguere la variabile d'istanza dal parametro
 	this.setNome(nome); // invece di assegnare direttamente il valore del parametro nome alla variabile d'istanza nome, usiamo il metodo setter setNome(nome) per controllare il valore inserito.
-	this.cognome = cognome; 
+	
+	//this.cognome = cognome; 
+	this.setCognome(cognome);
+	
 	this.sesso = sesso;
 	
 	//1
@@ -491,12 +494,21 @@ public String getNome() {
 public void setNome(String nome) {
 	
 	boolean nomeCorretto = true;
+	/*
+	 * se nomecorretto rimane a true vuol dire che tutti i controlli sono stati superati, e quindi il nome è corretto, 
+	 * mentre se nomeCorretto diventa false vuol dire che almeno uno dei controlli non è stato superato, e quindi il nome non è corretto.
+	 */
 	
 	if (verificaCratteri("1234567890!?@", nome)) 
-	{
-		System.out.println("nome non consono");
 		
-		nomeCorretto = false;
+		/*
+		 * se la funzione verifica caratteri restituisce true significa che la stringa nome contiene almeno un carattere non valido,
+		 *  ovvero un numero o un carattere speciale, e quindi il nome non è corretto.
+		 */
+	{
+		System.out.println("nome non consono"); //quindi manderà a stampa nome non consono.
+		
+		nomeCorretto = false; // di conseguenza, impostiamo nomeCorretto a false per indicare che il nome non è corretto.
 		
 	  /*  if ( this.nome == null)
 		{
@@ -537,7 +549,7 @@ public void setNome(String nome) {
 		System.out.println("nome ok");
 		this.nome = nome;
 	}
-	else if ( this.nome == null)
+    if ( this.nome == null)
 	{
 		System.out.println(this.nome + " è null ");
 		
@@ -580,6 +592,37 @@ public String getCognome() {
 }
 
 public void setCognome(String cognome) {
+	
+	boolean cognomeCorretto = true;
+	
+	if (verificaCratteri("1234567890!?@", cognome)) 
+	{
+		System.out.println("Cognome non consono"); 
+		cognomeCorretto = false;
+	}
+	else if ( verificaLunghezza(cognome, 15))
+	{
+		System.out.println("Cognome troppo lungo");
+		
+		cognomeCorretto = false;
+	}
+	if(cognomeCorretto == true) 
+	{
+		System.out.println("cognome ok");
+		this.cognome = cognome;
+	}
+	if ( this.cognome == null)
+	{
+		System.out.println(this.cognome + " è null ");
+		
+		this.cognome = "ND"; 
+	}
+	else if (!("ND".equals(this.cognome))) 
+		
+		
+	{
+		System.out.println(this.cognome + " è un cognome sensato .");
+	}
 	this.cognome = cognome;
 }
 
