@@ -6,4 +6,5 @@ public enum RazzaGatto {
 	BRITHISH_SHORTHAIR,
 	BRITISH_LONGHAIR,
 	RAGDOLL,
+	SCONOSCIUTO,
 }

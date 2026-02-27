@@ -194,6 +194,27 @@ miagolino.setColorePeloGatto(ColorePeloGatto.ROSSO);
 miagolino.setRazzaGatto(RazzaGatto.BRITHISH_SHORTHAIR);
 
 miagolino.stampa();
+
+miagolino.setNome("1Miago?lino");
+miagolino.setAnni((byte)127);
+miagolino.setAltezza(2_000_000.5f);
+miagolino.setPeso(5_000_000_000.5f);
+miagolino.stampa();
+
+miagolino.stampa();
+
+System.out.println();
+System.out.println("4.1--------------------------");
+System.out.println();
+
+//Gatto gattino = new Gatto("Gattino", Sesso.MASCHIO, (byte) 4);
+Gatto gattino = new Gatto("Ga@ttino", Sesso.MASCHIO, (byte) -14);
+gattino.stampa();
+
+//Animale bestia = new Animale();
+
+
+
 	}
 
 }

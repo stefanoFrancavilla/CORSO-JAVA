@@ -344,17 +344,17 @@ public void stampa() {
 //}
 
 //4
-public class EssereUmano {
+public class EssereUmano extends Animale {
 	
 	// Varialbili d'istanza.
 	 
-private String nome; 
+//private String nome; 
 private String cognome; 
-private Sesso sesso; 
-private byte anni;
-private float altezza;
-private float peso;
-private ColoreOcchi coloreOcchi;
+//private Sesso sesso; 
+//private byte anni;
+//private float altezza;
+//private float peso;
+//private ColoreOcchi coloreOcchi;
 private ColoreCapelli coloreCapelli;
 private String nazioneDiNascita;
 
@@ -396,7 +396,7 @@ public EssereUmano()
 {
 	this("ND", "ND", Sesso.SCONOSCIUTO, (byte)0, 0f, 0f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, "ND");
 	/*
-	 * quando chiamiamo il costruttore senza parametri, il this richiama il costruttore con parametri
+	 * quando chiamiamo il costruttore senza parametri, il this richiama il costruttore con 9 parametri
 	 * e assegna dei valori di default alle variabili d'istanza.
 	 * in questo modo evitiamo di scrivere codice duplicato.
 	 * il this deve essere la prima istruzione del costruttore.
@@ -409,6 +409,11 @@ public EssereUmano(String nome,
 		Sesso sesso)
 {
 	this(nome, cognome, sesso, (byte)0, 0f, 0f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, "ND");
+	/*
+	 * nel costruttore con 0 parametri, abbiamo assegnato dei valori di default alle variabili d'istanza,
+	 * mentre per il costruttore , con 3 parametri abbiamo assegnato a nome, cognome e sesso i valori dei parametri,
+	 */
+	
 	// per vedere quale costruttore viene chiamato
 	// this richiama il costruttore con 9 parametri
 	// e assegna dei valori di default alle variabili d'istanza non inizializzate.
@@ -417,6 +422,14 @@ public EssereUmano(String nome,
 //	this.nome = nome; 
 //	this.cognome = cognome; 
 //	this.sesso = sesso;
+	
+	/*
+	 * qui abbiamo commentato l'assegnazione diretta dei valori dei parametri alle variabili d'istanza,
+	 * cioè this.nome = nome; this.cognome = cognome; this.sesso = sesso;
+	 * perchè abbiamo aggiunto dei paramenti al costruttore,
+	 *  cioè : this(nome, cognome, sesso, (byte)0, 0f, 0f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, "ND");
+	 *  quindi stiamo richiamando il costruttore con 9 parametri, e stiamo assegnando dei valori di default alle variabili d'istanza 
+	 */
 }
 
 // 3
@@ -464,6 +477,12 @@ public EssereUmano(String nome,
 	
 	this.coloreOcchi = coloreOcchi;
 	this.coloreCapelli = coloreCapelli;
+	/*
+	 * sia per colore occhi che per colore capelli, non abbiamo inserito dei controlli nei metodi setter,
+	 * perchè i loro rispettivi valori vengono da una lista di enumerazioni già definita
+	 * di conseguenza non è possibile inserire valori non validi per queste variabili d'istanza,
+	 * allora va bene anche scriverli direttamente senza usare i metodi setter.
+	 */
 	this.nazioneDiNascita = nazioneDiNascita;
 	// this si riferisce all'oggetto corrente
 	// viene usato per accedere alle variabili d'istanza e ai metodi dell'oggetto corrente

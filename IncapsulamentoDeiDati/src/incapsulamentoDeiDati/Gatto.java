@@ -1,14 +1,20 @@
 package incapsulamentoDeiDati;
 
-public class Gatto {
+public class Gatto extends Animale {
+	/*
+	 * la classe Gatto estende la classe Animale,
+	 * quindi eredita tutte le variabili d'istanza e i metodi della classe Animale,
+	 * di conseguenza la classe animale sarà la superclasse di Gatto, mentre la classe Gatto sarà la sottoclasse di Animale.
+	 */
+	
 	// Varialbili d'istanza.
 	 
-	private String nome; 
-	private Sesso sesso; 
-	private byte anni;
-	private float altezza;
-	private float peso;
-	private ColoreOcchi coloreOcchi;
+//	private String nome; 
+//	private Sesso sesso; 
+//	private byte anni;
+//	private float altezza;
+//	private float peso;
+//	private ColoreOcchi coloreOcchi;
 	private ColorePeloGatto colorePeloGatto;
 	private RazzaGatto razzaGatto;
 	
@@ -21,13 +27,58 @@ public class Gatto {
 	private final float max_altezza = 50f; 
 	private final float default_altezza = 15f; 
 	
-	private final float min_peso = 35f; 
-	private final float max_peso = 600f; 
-	private final float default_peso = 40f; 
+	private final float min_peso = 1f; 
+	private final float max_peso = 10f; 
+	private final float default_peso = 2f; 
 
 	//Costruttore.
 	public Gatto() {
+		this("ND", Sesso.SCONOSCIUTO, (byte) 0, 0f, 0f, ColoreOcchi.SCONOSCIUTO, ColorePeloGatto.SCONOSCIUTO, RazzaGatto.SCONOSCIUTO);
+		
 		System.out.println("Gatto (0)"); // questo è il costruttore con 0 parametri
+	}
+	/*
+	 * nel momento in cui chiamiamo il costruttore con 0 parametri,
+	 * in automatico viene chiamato il costruttore con 8 parametri, 
+	 * che inizializza tutte le variabili d'istanza con i valori di default,
+	 * 
+	 * dopo di che vengono effettuati tutti i controlli con i metodi setter all'interno del costruttore con 8 parametri,
+	 * poi viene stampato "Gatto (8)" e successivamente viene stampato "Gatto (0)".
+	 * questo succede perchè all'interno del costruttore con 0 parametri, viene chiamato il costruttore con 8 parametri,
+	 */
+	
+	public Gatto(String nome,
+			     Sesso sesso,
+			     byte anni)
+	{
+		this(nome, sesso, anni, 0f, 0f, ColoreOcchi.SCONOSCIUTO, ColorePeloGatto.SCONOSCIUTO, RazzaGatto.SCONOSCIUTO);
+		
+		System.out.println("Gatto (3)"); //questo è il costruttore con 3 parametri
+		
+//		this.nome = nome;
+//		this.sesso = sesso;
+//		this.anni = anni;
+	}
+	
+	public Gatto(String nome,
+			     Sesso sesso,
+			     byte anni,
+			     float altezza,
+			     float peso,
+			     ColoreOcchi coloreOcchi,
+			     ColorePeloGatto colorePeloGatto,
+			     RazzaGatto razzaGatto)
+	{
+		System.out.println("Gatto (8)"); //questo è il costruttore con 8 parametri
+		
+		this.setNome(nome);
+		this.setSesso(sesso);
+		this.setAnni(anni);
+		this.setAltezza(altezza);
+		this.setPeso(peso);
+		this.setColoreOcchi(coloreOcchi);
+		this.setColorePeloGatto(colorePeloGatto);
+		this.setRazzaGatto(razzaGatto);
 	}
 	
 	    //per generare i metodi getter e setter si può utilizzare il seguente percorso:
@@ -60,6 +111,8 @@ public class Gatto {
 				System.out.println("nome ok");
 				this.nome = nome;
 			}
+			else
+			{
 			if ( this.nome == null)
 			{
 				System.out.println(this.nome + " è null ");
@@ -72,9 +125,18 @@ public class Gatto {
 			{
 				System.out.println(this.nome + " è un nome sensato .");
 			}
-			this.nome = nome;
-			
-		}
+		}	
+	}
+		/*
+		 * nel momento in cui il nome contiene caratteri non consoni,
+		 * passa dal primo if verifica caratteri, che restituisce true e stampa "nome non consono" e imposta nomeCorretto a false.
+		 * una volta che nomeCorretto è false, quando si arriva a : if(nomeCorretto == true) , non si entra nell'if, 
+		 * ma si passa direttamente all'else, che verifica se this.nome è null
+		 * nel nostro caso specifico non è null poichè in precedenza avevamo assegnato un nome corretto ( miagolino )
+		 * quindi non si entra nell'if ( this.nome == null), ma si passa direttamente all'else if (!("ND".equals(this.nome))) , 
+		 * nell'else if (!("ND".equals(this.nome))) si verifica se this.nome è diverso da "ND" , se è diverso da "ND"
+		 * allora valuta qual'è il nome attuale di this.nome, che in questo caso è "miagolino" e stampa "miagolino è un nome sensato ."
+		 */
 
 		public Sesso getSesso() {
 			return sesso;
@@ -108,8 +170,14 @@ public class Gatto {
 					System.out.println(this.anni + " anni assegnati di default.");
 				}
 			}
-			this.anni = anni;
 		}
+		/*
+		 * nel mondo quando abbiamo assegnato a set anni il valore 127, va a finire in  setAnni(byte anni)
+		 * poi viene verificaco dal primo if se 127 è compreso tra min_anni e max_anni,
+		 *  poichè 127 è maggiore di max_anni, allora non si entra nell'if, ma si passa direttamente all'else
+		 *  nel primo if dell'else, viene verificato se this.anni è compreso tra min_anni e max_anni, 
+		 *  
+		 */
 
 		public float getAltezza() {
 			return altezza;
@@ -135,7 +203,6 @@ public class Gatto {
 					System.out.println(this.altezza + " altezza assegnata di default.");
 				}	
 			}
-			this.altezza = altezza;
 		}
 
 		public float getPeso() {
@@ -160,7 +227,6 @@ public class Gatto {
 					System.out.println(this.peso + " peso assegnato di default.");
 				}
 			}
-			this.peso = peso;
 		}
 
 		public ColoreOcchi getColoreOcchi() {
@@ -206,6 +272,16 @@ public class Gatto {
 	public void dorme()
 	{
 		System.out.println(nome + " dorme");
+	}
+	
+	public void faLeFusa() 
+	{
+		System.out.println(nome + " fa le fusa");
+	}
+	
+	public void impasta() 
+	{
+		System.out.println(nome + " impasta");
 	}
 
 	public void stampa() 
