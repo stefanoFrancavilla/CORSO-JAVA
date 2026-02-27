@@ -88,10 +88,11 @@ public class Gatto extends Animale {
 	
 	// Metodi Getter e Setter.
 	
-		public String getNome() {
-			return nome;
-		}
+//		public String getNome() {
+//			return nome;
+	//	}
 
+		
 		public void setNome(String nome) {
 			boolean nomeCorretto = true;
 			
@@ -138,17 +139,17 @@ public class Gatto extends Animale {
 		 * allora valuta qual'è il nome attuale di this.nome, che in questo caso è "miagolino" e stampa "miagolino è un nome sensato ."
 		 */
 
-		public Sesso getSesso() {
-			return sesso;
-		}
+//		public Sesso getSesso() {
+//			return sesso;
+//		}
+//
+//		public void setSesso(Sesso sesso) {
+//			this.sesso = sesso;
+//		}
 
-		public void setSesso(Sesso sesso) {
-			this.sesso = sesso;
-		}
-
-		public byte getAnni() {
-			return anni;
-		}
+//		public byte getAnni() {
+//			return anni;
+//		}
 
 		public void setAnni(byte anni) {
 			System.out.println("max anni: " + max_anni);
@@ -179,9 +180,9 @@ public class Gatto extends Animale {
 		 *  
 		 */
 
-		public float getAltezza() {
-			return altezza;
-		}
+//		public float getAltezza() {
+//			return altezza;
+//		}
 
 		public void setAltezza(float altezza) {
 			if(altezza > min_altezza && altezza < max_altezza) {
@@ -205,9 +206,9 @@ public class Gatto extends Animale {
 			}
 		}
 
-		public float getPeso() {
-			return peso;
-		}
+//		public float getPeso() {
+//			return peso;
+//		}
 
 		public void setPeso(float peso) {
 			if(peso > min_peso && peso < max_peso)
@@ -229,13 +230,13 @@ public class Gatto extends Animale {
 			}
 		}
 
-		public ColoreOcchi getColoreOcchi() {
-			return coloreOcchi;
-		}
-
-		public void setColoreOcchi(ColoreOcchi coloreOcchi) {
-			this.coloreOcchi = coloreOcchi;
-		}
+//		public ColoreOcchi getColoreOcchi() {
+//			return coloreOcchi;
+//		}
+//
+//		public void setColoreOcchi(ColoreOcchi coloreOcchi) {
+//			this.coloreOcchi = coloreOcchi;
+//		}
 
 		public ColorePeloGatto getColorePeloGatto() {
 			return colorePeloGatto;
@@ -254,23 +255,26 @@ public class Gatto extends Animale {
 		}
 	
 	// Metodi
+		
+		@Override
 	public void beve() 
 	{
 		System.out.println(nome + " beve");
 	}
-
+		@Override
 	public void mangia() 
 	{
 		System.out.println(nome + " mangia");
 	}
-
+		@Override
 	public void respira() 
 	{
 		System.out.println(nome + " respira");
 	}
-
+		@Override
 	public void dorme()
 	{
+			super.dorme();
 		System.out.println(nome + " dorme");
 	}
 	

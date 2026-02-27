@@ -165,6 +165,7 @@ EssereUmano linaVioli = new EssereUmano();
 
 linaVioli.stampa();
 
+
 linaVioli.setNome("Lina");
 
 linaVioli.setCognome("Violi");
@@ -175,7 +176,7 @@ linaVioli.setCognome("Violi");
 //linaVioli.setNome("Linaabcdefghilmno_linaabcdefghilmno");
 
 linaVioli.stampa();
-
+linaVioli.dorme();
 System.out.println();
 System.out.println("4--------------------------");
 System.out.println();
@@ -212,6 +213,7 @@ Gatto gattino = new Gatto("Ga@ttino", Sesso.MASCHIO, (byte) -14);
 gattino.stampa();
 
 //Animale bestia = new Animale();
+
 
 
 

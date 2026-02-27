@@ -494,10 +494,10 @@ public EssereUmano(String nome,
 
 //Metodi getter e setter
 
-public String getNome() {
-	//return this.nome;
-	return nome;
-}
+//public String getNome() {
+//	//return this.nome;
+//	return nome;
+//}
 /*
  * il metodo getter restituisce il valore della variabile d'istanza nome
  * il metodo getter non ha parametri
@@ -645,17 +645,17 @@ public void setCognome(String cognome) {
 	this.cognome = cognome;
 }
 
-public Sesso getSesso() {
-	return sesso;
-}
+//public Sesso getSesso() {
+//	return sesso;
+//}
+//
+//public void setSesso(Sesso sesso) {
+//	this.sesso = sesso;
+//}
 
-public void setSesso(Sesso sesso) {
-	this.sesso = sesso;
-}
-
-public byte getAnni() {
-	return anni;
-}
+//public byte getAnni() {
+//	return anni;
+//}
 
 public void setAnni(byte anni) {
 	System.out.println("max anni: " + max_anni);
@@ -679,10 +679,10 @@ public void setAnni(byte anni) {
 	}
 }
 
-public float getAltezza() {
-	return altezza;
-	
-}
+//public float getAltezza() {
+//	return altezza;
+//	
+//}
 
 public void setAltezza(float altezza) {
 	
@@ -712,9 +712,9 @@ public void setAltezza(float altezza) {
 	}
 }
 
-public float getPeso() {
-	return peso;
-}
+//public float getPeso() {
+//	return peso;
+//}
 
 public void setPeso(float peso) {
 	
@@ -748,13 +748,13 @@ public void setPeso(float peso) {
 	
 }
 
-public ColoreOcchi getColoreOcchi() {
-	return coloreOcchi;
-}
-
-public void setColoreOcchi(ColoreOcchi coloreOcchi) {
-	this.coloreOcchi = coloreOcchi;
-}
+//public ColoreOcchi getColoreOcchi() {
+//	return coloreOcchi;
+//}
+//
+//public void setColoreOcchi(ColoreOcchi coloreOcchi) {
+//	this.coloreOcchi = coloreOcchi;
+//}
 
 public ColoreCapelli getColoreCapelli() {
 	return coloreCapelli;
@@ -824,25 +824,53 @@ private boolean verificaLunghezza(String s, int  limit)
 
 
 // Metodi
+
+@Override
+
+/*
+ * con @Override stiamo facendo una sorta di controllo
+ * serve a indicare che il metodo che stiamo scrivendo sta sovrascrivendo un metodo della superclasse Animale
+ * cioè nel momento in cui sbagliamo a scrivere il nome del metodo, o la firma del metodo,
+ * lui ci darà un'errore di compilazione, 
+ * facendoci ricordare che stiamo cercando di sovrascrivere un metodo della superclasse, ma non lo stiamo facendo correttamente.
+ * 
+ * a differenza di quando non usiamo @Override, se sbagliamo a scrivere il nome del metodo o la firma del metodo, 
+ * non ci darà un errore di compilazione, e quindi creeremo un nuovo metodo invece di sovrascrivere il metodo della superclasse,
+ *  e questo potrebbe portare a comportamenti imprevisti nel nostro programma.
+ */
 public void beve() 
 {
 	System.out.println(nome + " " + cognome + " beve");
 }
-
+@Override
 public void mangia() 
 {
 	System.out.println(nome + " " + cognome + " mangia");
 }
-
+@Override
 public void respira() 
 {
 	System.out.println(nome + " " + cognome + " respira");
 }
-
+@Override
 public void dorme()
 {
-	System.out.println(nome + " " + cognome + " dorme");
+	super.dorme(); 
+	System.out.println(nome + " " + cognome + " dorme nel suo letto, tra cuscini e lenzuola");
+//	System.out.println(nome + " " + cognome + " dorme");
 }
+/*
+ * con super.dorme() stiamo chiamando il metodo dorme() della classe padre Animale, che stampa "L'animale dorme".
+ * stiamo sia usando il dorme della superclasse Animale che il dorme della classe EssereUmano
+ * questo ci consente di dare sia una definizione generale di dormire
+ * che una più specifica per l'essere umano
+ * 
+ * in parole povere stiamo richiamando il metodo dorme() della superclasse Animale implementandolo anche alla classe essere umano
+ * 
+ * in questo caso specifico viene prima chiamato il metodo della superclasse animale
+ * e poi successivamente il metodo nella classe essere umano
+ * 
+ */
 
 public void studia()
 {
