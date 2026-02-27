@@ -38,16 +38,20 @@ public class mondo_Esercizio {
 //		EssereUmano3 umano2 = new EssereUmano3(nome, cognome, eta, altezza, peso);
 //		umano2.stampa();
 		
-		gatti micio = new gatti();
+//		gatti micio = new gatti();
+//		
+//		micio.setNome("micio");
+//		micio.setAltezza(32);
+//		micio.setPeso(10);
+//		micio.setEta((byte)4);
+//		micio.setSesso(Esercizio_Sesso.MASCHIO);
+//		micio.setColoreOcchi(Esercizio_ColoreOcchi.GRIGI);
+//		
+//		micio.stampa();
 		
-		micio.setNome("micio");
-		micio.setAltezza(32);
-		micio.setPeso(10);
-		micio.setEta((byte)4);
-		micio.setSesso(Esercizio_Sesso.MASCHIO);
-		micio.setColoreOcchi(Esercizio_ColoreOcchi.GRIGI);
+		Esercizio_EssereUmano giovanna = new Esercizio_EssereUmano("Giovanna", "D'Agnano", Esercizio_Sesso.FEMMINA, (byte) 37, 165f, 65f, Esercizio_ColoreCapelli.CASTANI, Esercizio_ColoreOcchi.CASTANI );
 		
-		micio.stampa();
+		giovanna.stampa();
 	}
 
 }
