@@ -69,14 +69,15 @@ public class Gatto extends Animale {
 			     ColorePeloGatto colorePeloGatto,
 			     RazzaGatto razzaGatto)
 	{
+		super(nome, sesso, anni, altezza, peso, coloreOcchi);
 		System.out.println("Gatto (8)"); //questo è il costruttore con 8 parametri
 		
-		this.setNome(nome);
-		this.setSesso(sesso);
-		this.setAnni(anni);
-		this.setAltezza(altezza);
-		this.setPeso(peso);
-		this.setColoreOcchi(coloreOcchi);
+//		this.setNome(nome);
+//		this.setSesso(sesso);
+//		this.setAnni(anni);
+//		this.setAltezza(altezza);
+//		this.setPeso(peso);
+//		this.setColoreOcchi(coloreOcchi);
 		this.setColorePeloGatto(colorePeloGatto);
 		this.setRazzaGatto(razzaGatto);
 	}
@@ -275,7 +276,8 @@ public class Gatto extends Animale {
 	public void dorme()
 	{
 			super.dorme();
-		System.out.println(nome + " dorme");
+			System.out.println(nome + " dorme accovacciato con il musino rivolto verso l'alto");	
+		//System.out.println(nome + " dorme");
 	}
 	
 	public void faLeFusa() 
@@ -287,17 +289,18 @@ public class Gatto extends Animale {
 	{
 		System.out.println(nome + " impasta");
 	}
-
+       @Override
 	public void stampa() 
 	{
+    	   super.stampa();
 		System.out.println("----------");
-		System.out.println("Nome: " + nome);
-		System.out.println("Sesso: " + sesso);
-		System.out.println("Anni: " + anni);
-		System.out.println("Altezza: " + altezza);
-		System.out.println("Peso: " + peso);
-		System.out.println("Colore Occhi: " + coloreOcchi);
-		System.out.println("Colore Pelo: " + colorePeloGatto);
+//		System.out.println("Nome: " + nome);
+//		System.out.println("Sesso: " + sesso);
+//		System.out.println("Anni: " + anni);
+//		System.out.println("Altezza: " + altezza);
+//		System.out.println("Peso: " + peso);
+//		System.out.println("Colore Occhi: " + coloreOcchi);
+     	System.out.println("Colore Pelo: " + colorePeloGatto);
 		System.out.println("Razza: " + razzaGatto);
 		System.out.println("----------");
 	    

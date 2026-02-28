@@ -32,6 +32,61 @@ public abstract class Animale {
 	 * con quetso sistema possiamo alleggerire il codice nelle sottoClassi, 
 	 * evitando di dover scrivere il metodo get nome in ogni classe che estende la classe Animale,
 	 */
+	
+	//costruttore
+	
+	public Animale() {
+		System.out.println("Animale (0)");
+	}
+	/*
+	 * il procedimento della chiamata del costruttore è il seguente:
+	 * nel momento in cui nel main viene chiamato il costruttore con 8 parametri della classe Gatto,
+	 * prima di entrare nel costruttore con 8 parametri della classe Gatto, 
+	 * viene chiamato per primo il costruttore della classe Animale,
+	 * poi viene chiamato il costruttore con 8 parametri della classe Gatto,
+	 * e questo succede perchè la classe Gatto estende la classe Animale,
+	 *  quindi prima di entrare nel costruttore con 8 parametri della classe Gatto,
+	 *  viene chiamato per primo il costruttore della classe Animale,
+	 *  
+	 *  *  se invece nel main viene chiamato il costruttore con 0 parametri della classe Gatto,
+	 *   prima di entrare nel costruttore con 0 parametri della classe Gatto,
+	 *   viene chiamato per primo il costruttore della classe Animale,
+	 *   poi viene chiamato il costruttore con 8 parametri della classe Gatto,
+	 *   quindi non appena chiamiamo il costruttore della sotto classe, in questo caso gatto,
+	 *   viene chiamato per primo il costruttore della super classe, in questo caso Animale,
+	 *   per poi ritornare nella sottoclasse e chiamare il costruttore con 8 parametri,
+	 *    che inizializza tutte le variabili d'istanza con i valori di default,
+	 */
+	
+	public Animale(String nome,
+				   Sesso sesso,
+				   byte anni,
+				   float altezza,
+				   float peso,
+				   ColoreOcchi coloreOcchi) {
+		
+		this.setNome(nome);
+		this.setSesso(sesso);
+		this.setAnni(anni);
+		this.setAltezza(altezza);
+		this.setPeso(peso);
+		this.setColoreOcchi(coloreOcchi);
+	    System.out.println("Animale (6)");
+	    
+	    /*
+	     * con questo costruttore stiamo inizializzando tutte le variabili in comune con le sottoclassi
+	     * questo ci consente di non scrivere più volte il codice nelle sotto classi,
+	     * e di conseguenza di alleggerire il codice nelle sotto classi
+	     * 
+	     * quindi nelle sotto classi rimangono solo le variabili specifiche della sottoclasse stessa
+	     * es: in gatto rimarrà solo il colore del pelo e la razza, mentre tutte le variabili in comune con la super classe Animale,
+	     * 
+	     * stessa cosa per la classe EssereUmano, rimarranno solo le variabili specifiche della classe EssereUmano, 
+	     * come il colore dei capelli e la nazione di nascita,
+	     */
+	}
+	
+	//metodi getter/setter
 	public String getNome() {
 		return nome;
 	}
@@ -79,6 +134,7 @@ public abstract class Animale {
 	}
 	
 	//Metodi
+	
 	public abstract void respira();
 	
 	public abstract void mangia();
@@ -104,7 +160,16 @@ public abstract class Animale {
 		System.out.println("Questo animale è in uno stato in cui non si è coscienti e ci si riposa");
 	}
 
-	
+	public void stampa() {
+		System.out.println("--------------------------");
+		System.out.println("nome: " + this.getNome());
+		System.out.println("sesso: " + this.getSesso());
+		System.out.println("anni: " + this.getAnni());
+		System.out.println("altezza: " + this.getAltezza());
+		System.out.println("peso: " + this.getPeso());
+		System.out.println("colore occhi: " + this.getColoreOcchi());
+		System.out.println("--------------------------");
+	}
 	
 	
 }

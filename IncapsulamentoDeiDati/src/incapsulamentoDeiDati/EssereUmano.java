@@ -445,14 +445,15 @@ public EssereUmano(String nome,
 		)
 
 {
+	super(nome, sesso, anni, altezza, peso, coloreOcchi);
 	System.out.println("EssereUmano (9)"); // per vedere quale costruttore viene chiamato
 	//this.nome = nome; // uso la parola chiave this per distinguere la variabile d'istanza dal parametro
-	this.setNome(nome); // invece di assegnare direttamente il valore del parametro nome alla variabile d'istanza nome, usiamo il metodo setter setNome(nome) per controllare il valore inserito.
+	//this.setNome(nome); // invece di assegnare direttamente il valore del parametro nome alla variabile d'istanza nome, usiamo il metodo setter setNome(nome) per controllare il valore inserito.
 	
 	//this.cognome = cognome; 
 	this.setCognome(cognome);
 	
-	this.sesso = sesso;
+	//this.sesso = sesso;
 	
 	//1
 //	this.anni = anni;
@@ -466,16 +467,16 @@ public EssereUmano(String nome,
 	 */
 	
 //
-	this.setAnni(anni);
-	this.setAltezza(altezza);
-	this.setPeso(peso);
+	//this.setAnni(anni);
+	//this.setAltezza(altezza);
+	//this.setPeso(peso);
 	/*
 	 * invece usando stetAltezza(altezza) e setPeso(peso), 
 	 * stiamo chiamando i metodi setter che abbiamo definito per le variabili d'istanza altezza e peso
 	 * quindi il valore inserito dovrà passare attraverso i controlli che abbiamo inserito nei metodi setter,
 	 */
 	
-	this.coloreOcchi = coloreOcchi;
+	//this.coloreOcchi = coloreOcchi;
 	this.coloreCapelli = coloreCapelli;
 	/*
 	 * sia per colore occhi che per colore capelli, non abbiamo inserito dei controlli nei metodi setter,
@@ -838,6 +839,7 @@ private boolean verificaLunghezza(String s, int  limit)
  * non ci darà un errore di compilazione, e quindi creeremo un nuovo metodo invece di sovrascrivere il metodo della superclasse,
  *  e questo potrebbe portare a comportamenti imprevisti nel nostro programma.
  */
+
 public void beve() 
 {
 	System.out.println(nome + " " + cognome + " beve");
@@ -884,14 +886,15 @@ public void lavora()
 
 public void stampa() 
 {
+	super.stampa(); // stiamo chiamando il metodo stampa() della superclasse Animale, 
 	System.out.println("----------");
-	System.out.println("Nome: " + nome);
-	System.out.println("Cognome: " + cognome);
-	System.out.println("Sesso: " + sesso);
-	System.out.println("Anni: " + anni);
-	System.out.println("Altezza: " + altezza);
-	System.out.println("Peso: " + peso);
-	System.out.println("Colore Occhi: " + coloreOcchi);
+//	System.out.println("Nome: " + nome);
+//	System.out.println("Cognome: " + cognome);
+//	System.out.println("Sesso: " + sesso);
+//	System.out.println("Anni: " + anni);
+//	System.out.println("Altezza: " + altezza);
+//	System.out.println("Peso: " + peso);
+//	System.out.println("Colore Occhi: " + coloreOcchi);
 	System.out.println("Colore Capelli: " + coloreCapelli);
 	System.out.println("Nazione di Nascita: " + nazioneDiNascita);
 	System.out.println("----------");
