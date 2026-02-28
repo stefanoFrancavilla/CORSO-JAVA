@@ -1,5 +1,6 @@
 package IncapsulamentoDeiDatiEsercizio;
 
+
 public abstract class Animale {
 
 	//variabili di istanza
@@ -8,7 +9,7 @@ public abstract class Animale {
 	protected Sesso sesso;
 	protected float altezza;
 	protected float peso;
-	protected coloreOcchi coloreOcchi;
+	protected ColoreOcchi coloreOcchi;
 	
 	
 	//costruttore
@@ -18,7 +19,7 @@ public abstract class Animale {
 		    Sesso sesso,
 		    float altezza,
 		    float peso,
-		    coloreOcchi coloreOcchi) {
+		    ColoreOcchi coloreOcchi) {
 
 		    this.nome = nome;      // Campo diretto
 		    this.eta = eta;
@@ -70,12 +71,12 @@ public abstract class Animale {
 	public abstract void setPeso(float peso);
 
 
-	public coloreOcchi getColoreOcchi() {
+	public ColoreOcchi getColoreOcchi() {
 		return coloreOcchi;
 	}
 
 
-	public void setColoreOcchi(coloreOcchi coloreOcchi) {
+	public void setColoreOcchi(ColoreOcchi coloreOcchi) {
 		this.coloreOcchi = coloreOcchi;
 	}
 	

@@ -5,6 +5,7 @@ public enum coloreCarnagione {
 	NERA,
 	BIANCA,
 	GIALLA,
-	OLIVASTRA
+	OLIVASTRA,
+	SCONOSCIUTO
 
 }

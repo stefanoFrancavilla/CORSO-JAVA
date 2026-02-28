@@ -1,6 +1,6 @@
 package IncapsulamentoDeiDatiEsercizio;
 
-public enum coloreOcchi {
+public enum ColoreOcchi {
 	NERI,
 	GRIGI,
 	CASTANI,
@@ -8,5 +8,4 @@ public enum coloreOcchi {
 	VERDI,
 	AZZURRI,
 	SCONOSCIUTO
-
 }
