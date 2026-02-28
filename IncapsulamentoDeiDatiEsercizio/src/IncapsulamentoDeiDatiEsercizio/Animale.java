@@ -13,21 +13,20 @@ public abstract class Animale {
 	
 	//costruttore
 	public Animale(
-			String nome,
-			byte eta,
-			Sesso sesso,
-			float altezza,
-			float peso,
-			coloreOcchi coloreOcchi)
-	{
-		this.setNome = nome;
-		this.setEta = eta;
-		this.sesso = sesso;
-		this.setAltezza = altezza;
-		this.setPeso = peso;
-		this.coloreOcchi = coloreOcchi;
-	}
+		    String nome,
+		    byte eta,
+		    Sesso sesso,
+		    float altezza,
+		    float peso,
+		    coloreOcchi coloreOcchi) {
 
+		    this.nome = nome;      // Campo diretto
+		    this.eta = eta;
+		    this.sesso = sesso;
+		    this.altezza = altezza;
+		    this.peso = peso;
+		    this.coloreOcchi = coloreOcchi;
+		}
 	//metodi getter/setter
 	public String getNome() {
 		return nome;
