@@ -7,6 +7,11 @@ public class Cane extends Animale {
 	private colorePeloCane colorePeloCane;
 	
 	//costruttore
+	public Cane() {
+		super("ND", (byte) 0, Sesso.SCONOSCIUTO, 0.0f, 0.0f, ColoreOcchi.SCONOSCIUTO);
+		this.razzaCane = RazzaCane.SCONOSCIUTO;
+		this.colorePeloCane = colorePeloCane.SCONOSCIUTO;
+	}
 	
 	public Cane(
 			String nome,

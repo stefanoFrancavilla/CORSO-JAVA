@@ -7,6 +7,13 @@ public class Gatto extends Animale {
 	private colorePeloGatto colorePeloGatto;
 	
 	//costruttore
+	
+	public Gatto() {
+		super("ND", (byte) 0, Sesso.SCONOSCIUTO, 0.0f, 0.0f, ColoreOcchi.SCONOSCIUTO);
+		this.razzaGatto = RazzaGatto.SCONOSCIUTO;
+		this.colorePeloGatto = colorePeloGatto.SCONOSCIUTO;
+	}
+	
 	public Gatto( 
 			String nome,
             String cognome,
