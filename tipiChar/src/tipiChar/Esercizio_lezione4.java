@@ -13,36 +13,38 @@ public class Esercizio_lezione4 {
 		System.out.println("esercizio 1 lezione 4-------------------------- ");
 		System.out.println();
 		
-		/*Scrivi un programma Java che:
-
-Chieda all’utente di inserire un numero intero.
-
-Usi un’espressione booleana per determinare se il numero è pari o dispari.
-
-Salvi il risultato in una variabile booleana chiamata isEven.
-
-Usi un costrutto if per stampare:
-
-"Il numero è pari" se isEven è true.
-
-"Il numero è dispari" se isEven è false.*/
-		
-		/*Scanner scanner = new Scanner(System.in);
-		
-		System.out.println("scrivi un numero");
-		int n1 = scanner.nextInt();
-		scanner.nextLine();
-		
-		boolean isEven = true;
-		
-		if((n1 %2 == 0) == true) {
-			System.out.println(n1 + " è pari");
-		}
-		else
-		{
-			System.out.println(n1 + " è dispari");
-		}
-		scanner.close();*/
+//		/*Scrivi un programma Java che:
+//
+//Chieda all’utente di inserire un numero intero.
+//
+//Usi un’espressione booleana per determinare se il numero è pari o dispari.
+//
+//Salvi il risultato in una variabile booleana chiamata isEven.
+//
+//Usi un costrutto if per stampare:
+//
+//"Il numero è pari" se isEven è true.
+//
+//"Il numero è dispari" se isEven è false.*/
+//		
+//		Scanner scanner = new Scanner(System.in);
+//		
+//		System.out.println("Inserisci un numero intero");
+//		int n1 = scanner.nextInt();
+//		
+//		boolean isEven = true;
+//		
+//		if(n1 %2 == 0)
+//		{
+//			System.out.println("Il numero " + n1 + " inserito è pari");
+//		}
+//		else
+//		{
+//			isEven = false;
+//			System.out.println("Il numero "+ n1 + " inserito è dispari");
+//		}
+//		
+		//esercizio svolto correttamente
 		
 		
 		
@@ -57,38 +59,32 @@ Usi un costrutto if per stampare:
 		
 		
 		
-		/*Scanner scanner =new Scanner(System.in);
-		
-		System.out.println("inserisci primo numero");
-		int n1 = scanner.nextInt();
-		System.out.println();
-		
-		System.out.println("inserisci secondo numero");
-		int n2 = scanner.nextInt();
-		System.out.println();
-		
-		boolean isEvenN1 = n1 %2 == 0;
-		boolean isEvenN2 = n2 %2 == 0;
-		
-		if (isEvenN1) {
-			System.out.println(n1 + " è pari");
-		}
-		else
-		{
-			System.out.println(n1 + " è dispari");
-		}
-			
-		if (isEvenN2) {
-		    System.out.println(n2 + " è pari");
-		}
-		else 
-		{
-			System.out.println(n2 + " è dispari");
-		}
-		scanner.close();*/
-		
-		
-		
+//		Scanner scanner =new Scanner(System.in);
+//		
+//		System.out.println("Inserisci il primo numero intero.");
+//		
+//		int n1 = scanner.nextInt();
+//		scanner.nextLine();
+//		
+//        System.out.println("Inserisci il secondo numero intero.");
+//		
+//		int n2 = scanner.nextInt();
+//		scanner.nextLine();
+//		
+//		if ((n1 %2 == 0) && (n2 %2 == 0))
+//		{
+//			System.out.println("tutti e due i numeri sono pari");
+//		}
+//		else if ((n1 %2 == 0) || (n2 %2 == 0))
+//		{
+//			System.out.println("Almeno un numero è pari");
+//		}
+//		else
+//		{
+//			System.out.println("Tutti e due i numeri sono dispari");
+//		}
+//		
+		//l'esercizio è svolto correttamente
 		
 		
 		System.out.println();
@@ -109,27 +105,29 @@ Stampare inoltre i valori di Character.MIN_VALUE e Character.MAX_VALUE come nume
 
 Aggiungere un ciclo for che stampi i caratteri dal codice 65 al 90 (cioè dalla A alla Z) insieme al loro codice numerico.*/
 		
-		/*char ch1 = 'A';
-		char ch2 = 'a';
-	    char ch3 = '0';
-	    
-	    char chMin = Character.MIN_VALUE;
-	    char chMax = Character.MAX_VALUE;
-	    
-	    System.out.println(ch1 + " " + (int) ch1);
-	    System.out.println(ch2 + " " + (int) ch2);
-	    System.out.println(ch3 + " " + (int) ch3);
-	    System.out.println();
-	    
-	    System.out.println("il valore minimo di char è: " + (int) chMin);
-	    System.out.println("il valore massimo di char è: " + (int) chMax);
-	    System.out.println();
-	    
-	    for(int counter = 'A'; counter <= 'Z'; counter++) {
-	    	System.out.println("il valore numerico corrispondente al carattere  " + (char) counter + "  è:  " + counter);
-	    }*/
-	    
-		
+//		char char1 = 'A';
+//		char char2 = 'a';
+//		char char3 = '0';
+//		
+//		int char_max =(int)Character.MAX_VALUE;
+//		int char_min =(int)Character.MIN_VALUE;
+//		
+//		System.out.println("il valore numerico di char1 è: " + (int)char1);
+//		System.out.println("il valore numerico di char2 è: " + (int)char2);
+//		System.out.println("il valore numerico di char3 è: " + (int)char3);
+//		System.out.println();
+//		
+//		System.out.println(char_min + " è il valore minimo di char");
+//		System.out.println(char_max + " è il valore massimo di char");
+//		System.out.println();
+//		
+//		for (int i = 65; i <= 90 ; i++)
+//		{
+//			System.out.println("il carattere " + (char)i + " ha come valore numerico " + i);
+//		}
+//		
+		// esercizio svolto correttamente.
+		//voto 9.5 / 10
 		
 		
 		
@@ -147,29 +145,31 @@ Aggiungere un ciclo for che stampi i caratteri dal codice 65 al 90 (cioè dalla 
 
           oppure un altro simbolo*/
 	    
-		/*Scanner scanner = new Scanner(System.in);
-		
-		System.out.println("inserisci un carattere");
-		char ch1 = scanner.next().charAt(0);
-		
-		if (Character.isDigit(ch1) == true) {
-		    System.out.println("il carattere " + ch1 + " è un numero , ed il suo valore numerico è: " + (int) ch1);
-		}   
-		    else if (Character.isUpperCase(ch1) == true) {
-			System.out.println(ch1 + " è maiuscola " + " " + " ed il suo codice numerico è: " + (int) ch1 );
-		}
-		    else if ( Character.isLowerCase(ch1) == true)
-		{
-			System.out.println(ch1 + " è minuscola " + " " + " ed il suo codice numerico è: " + (int) ch1 );
-		}
-		    else 
-		    {
-		    	System.out.println(ch1 + " è un altro simbolo , ed il suo valore numerico è: " + (int) ch1);
-		    }
-	    
-	     scanner.close();*/
-		
-	        
+	
+//		Scanner scanner = new Scanner(System.in);
+//		
+//		System.out.println("inserisci un carattere");
+//		
+//		char char1 = scanner.next().charAt(0);
+//		
+//		if (Character.isUpperCase(char1))
+//		{
+//		     System.out.println("Il carattere inserito è una lettera maiuscola");
+//		}
+//		else if (Character.isLowerCase(char1))
+//		{
+//			System.out.println("Il carattere inserito è una lettera minuscola");
+//		}
+//		else if (Character.isDigit(char1))
+//		{
+//			System.out.println("Il carattere inserito è un numero");
+//		}
+//		else 
+//		{
+//			System.out.println("Il carattere inserito è un simbolo");
+//		}
+//		scanner.close();
+//	        
 	     
 	        System.out.println();
 			System.out.println("esercizio 2.2 lezione 4-------------------------- ");
@@ -189,34 +189,46 @@ Aggiungere un ciclo for che stampi i caratteri dal codice 65 al 90 (cioè dalla 
 			oppure un simbolo speciale.*/
 			
 			
-			/*Scanner scanner = new Scanner(System.in);
+			Scanner scanner = new Scanner(System.in);
 			
-			System.out.println("inserisci un carattere");
-			char ch = scanner.next().charAt(0);
+			System.out.println("Inserisci un carattere");
+			char char1 = scanner.next().charAt(0);
+			scanner.nextLine();
 			
-			if (Character.isDigit(ch) == true) {
-				System.out.println("il carattere " + ch + " è un numero, ed il suo valore numerico è: " + (int) ch);
-			}
-			else if (Character.isUpperCase(ch) == true) {
-				
-				if (ch == 'A' || ch == 'E' || ch == 'I' || ch == 'O' || ch == 'U' ) {
-					System.out.println("il carattere " + ch + " è una vocale maiuscola, e il suo valore numerico è: " +(int) ch );
+			if (Character.isLetter(char1))
+			{
+				if (Character.isUpperCase(char1))
+				{
+				if ((char1 == 'A') || (char1 == 'E') || (char1 == 'I') || (char1 == 'O') || (char1 == 'U') )
+				{
+					System.out.println("Il carattere inserito è una vocale maiuscola");
 				}
-				else
-				System.out.println("il carattere " + ch + " è una consonante maiuscola, e il suo valore numerico è: " +  (int) ch);
-			}
-			else if (Character.isLowerCase(ch) == true) {
-				
-				if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' ) {
-					System.out.println("il carattere " + ch + " è una vocale minuuscola, e il suo valore numerico è: " +(int) ch );
+		       }
+				else if (Character.isLowerCase(char1))
+				{
+					if ((char1 == 'a') || (char1 == 'e') || (char1 == 'i') || (char1 == 'o') || (char1 == 'u') )
+					{
+						System.out.println("Il carattere inserito è una vocale minuscola");
+					}
 				}
-				else
-				System.out.print("il carattere " + ch + " è una consonante minuscola, e il suo valore numerico è: " + (int) ch);
+				else 
+				{
+					System.out.println("Il carattere inserito è una consonante");
+				}
+			 
 			}
-			else {
-				System.out.println("il carattere " + ch + " è un simbolo speciale, e il suo valore numerico è: " + (int) ch );
+			else if (Character.isDigit(char1))
+			{
+				System.out.println("Il carattere inserito è un numero");
 			}
-			scanner.close();*/
+			else 
+			{
+				System.out.println("Il carattere inserito è un carattere speciale");
+			}
+			
+			scanner.close();
+		
+			//esercizio svolto correttamente voto 8/10
 			
 	}
 	}
