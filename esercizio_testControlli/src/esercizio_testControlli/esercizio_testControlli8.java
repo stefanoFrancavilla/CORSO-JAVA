@@ -119,10 +119,11 @@ Se il totale finale supera 1000€ → applica un bonus cliente VIP di 50€ di 
 		
 		Scanner scanner = new Scanner(System.in);
 		boolean continua = true;
+		System.out.println("Vuoi effettuare una prenotazione? SI/NO");
+	
 		
 		while (continua) {
-		System.out.println("Vuoi effettuare una prenotazione? SI/NO");
-		String risposta = scanner.nextLine().trim().toUpperCase();
+			String risposta = scanner.nextLine().trim().toUpperCase();
 		if (risposta.equalsIgnoreCase("NO") ) {
 			continua = false;
 			System.out.println("Grazie per aver scelto il nostro Hotel");
@@ -131,22 +132,62 @@ Se il totale finale supera 1000€ → applica un bonus cliente VIP di 50€ di 
 		{
 			continua = false;
 			System.out.println("Errore nella scelta");
+			System.out.println("Grazie per aver scelto il nostro Hotel");
 		}
 		else
 		{
 		System.out.println("Scegli una stanza. (SINGOLA, DOPPIA, SUITE, PRESIDENZIALE) ");
 		String stanza = scanner.nextLine().trim().toUpperCase();
 			
+		System.out.println("Quante notti vuoi prenotare?");
+		int notti = scanner.nextInt();
+		double costoBase = prezzoNotte(stanza) * notti;
+		double tassaSoggiorno = tassa(notti);
+		double totaleSenzaSconto = costoBase + tassaSoggiorno;
+		double scontoPercentuale = ((sconto(notti)) * (totaleSenzaSconto)) / 100;
+		double totale = totaleSenzaSconto - scontoPercentuale;
+		double totaleScontato = totale - scontoPercentuale;
+		double scontoApplicato = totale - totaleScontato;
+		double totale_finale = totale;
+		if (totale > 1000)
+		{
+			totale_finale = totale - 50;
+			System.out.println("Bonus cliente VIP applicato: 50€");
+		}
 		
+		System.out.println("Stanza: " + stanza);
+		System.out.println("Notti: " + notti);
+		System.out.println("Prezzo per notte: " + prezzoNotte(stanza));
+		System.out.println("Costo base: " + costoBase);
+		System.out.println("Tassa soggiorno " + tassaSoggiorno);
+		System.out.println("Totale senza sconto: " + totaleSenzaSconto);
+		System.out.println("Sconto applicato: " + scontoApplicato);
+		System.out.println("Totale da pagare: " + totale_finale);
+		System.out.println("");
+		System.out.println("Vuoi effettuare un'altra prenotazione?");
+		String risposta2 = scanner.nextLine().trim().toUpperCase();
+		if (risposta2.equalsIgnoreCase("NO") ) {
+			continua = false;
+			System.out.println("Grazie per aver scelto il nostro Hotel");
+		}
+		else if (!risposta.equalsIgnoreCase("SI") && !risposta.equalsIgnoreCase("NO"))
+		{
+			continua = false;
+			System.out.println("Errore nella scelta");
+		}
+		else {
+			continue;
+		}
 			
 		}
 		
 		}	
+		scanner.close();
 	}
 
-	public static int prezzoNotte(String s)
+	public static double prezzoNotte(String s)
 	{
-		int costoStanza = 0;
+		double costoStanza = 0;
 		switch (s)
 		{
 		
@@ -161,6 +202,7 @@ Se il totale finale supera 1000€ → applica un bonus cliente VIP di 50€ di 
 			
 		case "SUITE":
 			costoStanza = 150;
+			break;
 		
 		case "PRESIDENZIALE":
 			costoStanza = 280;

@@ -23,6 +23,26 @@ default -> "Altro"
 
 ✅ Fallo con switch -> senza break.
  */
+		
+		System.out.println(tipoDevice(Device.PC));
+		System.out.println(tipoDevice(Device.SMART_PHONE));
+		System.out.println(tipoDevice(Device.TABLET));
+		System.out.println(tipoDevice(Device.MOUSE));
+		System.out.println(tipoDevice(Device.KEYBOARD));
 	}
-
+	
+	public static String tipoDevice(Device d)
+	{
+		String result = "";
+		
+		switch(d)
+		{
+			case PC -> result = "Fisso";
+			case SMART_PHONE, TABLET -> result = "Mobile";
+			case MOUSE, KEYBOARD -> result = "Accessori";
+			default -> result = "Altro";
+		}
+		
+		return result;
+	}
 }
