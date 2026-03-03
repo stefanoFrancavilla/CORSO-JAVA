@@ -109,9 +109,9 @@ almeno 3 metodi
 
 Esempio:
 
-static double getPrezzoNotte(String stanza)
-static double getTassa(int notti)
-static double getSconto(int notti, double totale)
+static double prezzoNotte(String stanza)
+static double tassa(int notti)
+static double sconto(int notti, double totale)
 ⭐ Extra (facoltativo)
 
 Se il totale finale supera 1000€ → applica un bonus cliente VIP di 50€ di sconto.
@@ -144,4 +144,85 @@ Se il totale finale supera 1000€ → applica un bonus cliente VIP di 50€ di 
 		}	
 	}
 
+	public static int prezzoNotte(String s)
+	{
+		int costoStanza = 0;
+		switch (s)
+		{
+		
+		
+		case "SINGOLA":
+			costoStanza = 55;
+			break;
+			
+		case "DOPPIA":
+			costoStanza = 90;
+			break;
+			
+		case "SUITE":
+			costoStanza = 150;
+		
+		case "PRESIDENZIALE":
+			costoStanza = 280;
+			break;
+			
+		default:
+			System.out.println("Errore: stanza non disponibile");
+			
+		}
+		return costoStanza;
+	}
+	
+	public static int tassa(int n)
+	{
+		int costoAggiuntivo = 0;
+		
+		switch (n)
+		{
+		
+		
+		case 1, 2:
+			costoAggiuntivo = 8;
+		    break;
+		    
+		case 3, 4, 5:
+			costoAggiuntivo = 15;
+		    break;
+		    
+		default:
+			costoAggiuntivo = 25;
+		    break;
+			
+		}
+		
+		return costoAggiuntivo;
+	}
+	
+	public static int sconto (int sc)
+	{
+		int scontoApplicato = 0;
+		
+		switch (sc)
+		{
+		case 1, 2:
+			scontoApplicato = 0;
+		break;
+		
+		case 3, 4:
+			scontoApplicato = 6;
+		break;
+		
+		case 5, 6, 7:
+			scontoApplicato = 12;
+		break;
+		
+		default: 
+			scontoApplicato = 20;
+			break;
+		}
+		
+		
+		
+		return scontoApplicato;
+	}
 }
