@@ -17,6 +17,13 @@ Stampa tutti i valori di Ruolo, ma in questo formato:
 
 ✅ Suggerimento: contatore int i = 1;
  */
+		
+		int i = 0;
+		for (Ruolo ruolo : Ruolo.values())
+		{
+			System.out.println(i + ") " + ruolo);
+			i++;
+		}
 	}
 
 }

@@ -21,6 +21,19 @@ Che usa puòAccedere(ruolo) e ritorna:
 
 ✅ Stessa logica del tuo ottieniMessaggioPerTipoDiPianeta.
  */
-	}
+        Ruolo ruolo1 = Ruolo.UTENTE;
+        System.out.println(messaggioAccesso(ruolo1));
+    }
 
+    public static boolean puòAccedere(Ruolo ruolo) {
+        return ruolo == Ruolo.ADMIN || ruolo == Ruolo.UTENTE;
+    }
+
+    public static String messaggioAccesso(Ruolo ruolo) {
+        if (puòAccedere(ruolo)) {
+            return "Accesso consentito";
+        } else {
+            return "Accesso negato";
+        }
+    }
 }
