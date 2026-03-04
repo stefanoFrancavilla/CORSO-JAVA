@@ -30,6 +30,22 @@ default → 0
 
 ✅ Stampa il prezzo nel main.
  */
+		
+		Device device = Device.PC;
+		int prezzo = prezzoDevice(device);
+		System.out.println("Il prezzo del device " + device + " è: " + prezzo);
+		
 	}
-
+	
+	public static int prezzoDevice(Device d)
+	{
+		int prezzo = switch(d) {
+			case PC -> 800;
+			case SMART_PHONE -> 600;
+			case TABLET -> 450;
+			default -> 0;
+		};
+		
+		return prezzo;
+	}
 }
