@@ -13,10 +13,11 @@ public abstract class EssereVivente {
 	}
 	
 	public EssereVivente(byte anni, float altezza, float peso) {
+		System.out.println("EssereVivente (3)");
 		this.setAnni (anni);
 		this.setAltezza (altezza);
 		this.setPeso (peso);
-		System.out.println("EssereVivente (3)");
+		
 	}
 	
 	//metodi getter/setter

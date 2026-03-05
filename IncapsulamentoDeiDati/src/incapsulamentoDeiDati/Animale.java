@@ -64,14 +64,15 @@ public abstract class Animale extends EssereVivente {
 				   float altezza,
 				   float peso,
 				   ColoreOcchi coloreOcchi) {
-		
+		super(anni, altezza, peso);
+		System.out.println("Animale (6)");
 		this.setNome(nome);
 		this.setSesso(sesso);
-		this.setAnni(anni);
-		this.setAltezza(altezza);
-		this.setPeso(peso);
+//		this.setAnni(anni);
+//		this.setAltezza(altezza);
+//		this.setPeso(peso);
 		this.setColoreOcchi(coloreOcchi);
-	    System.out.println("Animale (6)");
+	  
 	    
 	    /*
 	     * con questo costruttore stiamo inizializzando tutte le variabili in comune con le sottoclassi

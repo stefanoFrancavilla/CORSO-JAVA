@@ -1,5 +1,5 @@
 package incapsulamentoDeiDati;
-
+import incapsulamentoDeiDati.utilities.Verifica;
 //1
 /*
 public class EssereUmano {
@@ -360,17 +360,29 @@ private String nazioneDiNascita;
 
 
 //Costanti.
-private final byte min_anni = 0; // età minima in anni
-private final byte max_anni = 	Byte.MAX_VALUE; // età massima in anni, usiamo il valore massimo di byte perché la variabile anni è di tipo byte
-private final byte default_anni = 18; // età di default in anni
+private static final byte min_anni = 0; // età minima in anni
+private static final byte max_anni = 	Byte.MAX_VALUE; // età massima in anni, usiamo il valore massimo di byte perché la variabile anni è di tipo byte
+private static final byte default_anni = 18; // età di default in anni
 
-private final float min_altezza = 20f; // altezza minima in cm
-private final float max_altezza = 250f; // altezza massima in cm
-private final float default_altezza = 100f; // altezza di default in cm
+private static final float min_altezza = 20f; // altezza minima in cm
+private static final float max_altezza = 250f; // altezza massima in cm
+private static final float default_altezza = 100f; // altezza di default in cm
 
-private final float min_peso = 35f; // peso minimo in kg
-private final float max_peso = 600f; // peso massimo in kg
-private final float default_peso = 40f; // peso di default in kg
+private static final float min_peso = 35f; // peso minimo in kg
+private static final float max_peso = 600f; // peso massimo in kg
+private static final float default_peso = 40f; // peso di default in kg
+/*
+ * aggiungenso static alle costanti, stiamo dichiarando che queste costanti appartengono alla classe EssereUmano,
+ *  e non agli oggetti della classe EssereUmano.
+ *  in questo modo, possiamo accedere a queste costanti direttamente dalla classe EssereUmano,
+ *   senza dover creare un oggetto della classe EssereUmano.
+ *   
+ *   cioe in parole semplici, le costanti sono condivise da tutti gli oggetti della classe EssereUmano,
+ *    e non appartengono a nessun oggetto in particolare.
+ */
+
+
+//prorietà statiche
 
 private static int totaleEssereUmani = 0; // variabile statica per contare il numero totale di oggetti della classe EssereUmano creati
 /*
@@ -534,7 +546,7 @@ public void setNome(String nome) {
 	 * mentre se nomeCorretto diventa false vuol dire che almeno uno dei controlli non è stato superato, e quindi il nome non è corretto.
 	 */
 	
-	if (verificaCratteri("1234567890!?@", nome)) 
+	if (Verifica.verificaCratteri("1234567890!?@", nome)) 
 		
 		/*
 		 * se la funzione verifica caratteri restituisce true significa che la stringa nome contiene almeno un carattere non valido,
@@ -560,7 +572,7 @@ public void setNome(String nome) {
 		
 		//this.nome = "ND"; // se il nome contiene caratteri non validi, assegniamo un valore di default "ND" alla variabile d'istanza nome.
 	}
-	else if ( verificaLunghezza(nome, 15))
+	else if ( Verifica.verificaLunghezza(nome, 15))
 	{
 		System.out.println("nome troppo lungo");
 		
@@ -630,12 +642,12 @@ public void setCognome(String cognome) {
 	
 	boolean cognomeCorretto = true;
 	
-	if (verificaCratteri("1234567890!?@", cognome)) 
+	if (Verifica.verificaCratteri("1234567890!?@", cognome)) 
 	{
 		System.out.println("Cognome non consono"); 
 		cognomeCorretto = false;
 	}
-	else if ( verificaLunghezza(cognome, 15))
+	else if ( Verifica.verificaLunghezza(cognome, 15))
 	{
 		System.out.println("Cognome troppo lungo");
 		
@@ -674,16 +686,16 @@ public void setCognome(String cognome) {
 //}
 
 public void setAnni(byte anni) {
-	System.out.println("max anni: " + max_anni);
+	System.out.println("max anni: " + EssereUmano.max_anni);
 	
-	if(anni >= min_anni && anni <= max_anni) // per dare una misura reale a essere umano abbiamo inserito un controllo sull'età, 
+	if(anni >= EssereUmano.min_anni && anni <= EssereUmano.max_anni) // per dare una misura reale a essere umano abbiamo inserito un controllo sull'età, 
 	{
 		this.anni = anni;
 		System.out.println(this.anni + " anni inizializzati");
 	}
 	else
 	{
-		if (this.anni >= min_anni && this.anni <= max_anni) // se l'età corrente dell'oggetto rientra nel range di età valido per un essere umano, manteniamo il valore corrente di anni.
+		if (this.anni >= EssereUmano.min_anni && this.anni <= EssereUmano.max_anni) // se l'età corrente dell'oggetto rientra nel range di età valido per un essere umano, manteniamo il valore corrente di anni.
 		{
 			System.out.println(this.anni + " anni validi da prima.");
 		}
@@ -792,46 +804,46 @@ public void setNazioneDiNascita(String nazioneDiNascita) {
 //sono metodi che servono a verificare i dati di input inseriti nei metodi setter, e a restituire un messaggio di errore se i dati non sono validi.
 //saranno privati poichè solo i metodi setter all'interno della classe possono accedere a questi metodi di verifica, e non devono essere accessibili dall'esterno della classe.
 
-private boolean verificaCratteri(String caratteri, String s) {
-	// caratteri = 1234567890!?@
-	//vogliamo controllare se la stringa s contiene solo caratteri validi, ovvero lettere e spazi, e non contiene numeri o caratteri speciali.
-	//se restituisce true, significa che all'interno della stringa ci sono caratteri non validi, mentre se restituisce false, significa che la stringa è valida.
-	
-	boolean presente = false;
-	for (int i = 0; i < caratteri.length(); i++) 
-	{
-		char carattereCorrente = caratteri.charAt(i);
-		System.out.println("carattereCorrente" +  carattereCorrente);
-		
-		if (s.indexOf(caratteri.charAt(i)) != -1) // se il carattere presente nella stringa caratteri è presente anche nella stringa s, allora restituisco true.
-			//se non ci restituisce -1 allora significa che il carattere è presente nella stringa caratteri 
-			                                      //mentre se il carattere controllato da indexOf non è presente nella stringa s, restituisce -1, e quindi non entra nell'if.
-			                                       //quindi se troviamo un carattere non valido, impostiamo la variabile presente a true
-		{
-			presente = true;
-			break; // se troviamo un carattere non valido, usciamo dal ciclo for per evitare di continuare a controllare gli altri caratteri.
-			
-			/*
-			 * con questo if stiamo controllando se la stringa s contiene un carattere non valido, ovvero un carattere presente nella stringa caratteri.
-			 * s.indexOf(caratteri.charAt(i)) restituisce l'indice del primo carattere presente nella stringa s, se il carattere è presente, altrimenti restituisce -1.
-			 * quindi se s.indexOf(caratteri.charAt(i)) != -1, significa che il carattere è presente nella stringa s, e quindi la stringa s non è valida.
-			 * mentre con caratteri.chaAt(i) stiamo prendendo il carattere presente nella stringa caratteri alla posizione i, e lo stiamo confrontando con la stringa s.
-			 * se troviamo un carattere non valido, impostiamo la variabile presente a true
-			 */
-		}
-	}
-	return presente;
-}
-
-
-private boolean verificaLunghezza(String s, int  limit)
-{
-	boolean troppoLunga = false;
-	
-	if (s.length() > limit) 
-	    troppoLunga = true;
-	return troppoLunga;
-}
+//private boolean verificaCratteri(String caratteri, String s) {
+//	// caratteri = 1234567890!?@
+//	//vogliamo controllare se la stringa s contiene solo caratteri validi, ovvero lettere e spazi, e non contiene numeri o caratteri speciali.
+//	//se restituisce true, significa che all'interno della stringa ci sono caratteri non validi, mentre se restituisce false, significa che la stringa è valida.
+//	
+//	boolean presente = false;
+//	for (int i = 0; i < caratteri.length(); i++) 
+//	{
+//		char carattereCorrente = caratteri.charAt(i);
+//		System.out.println("carattereCorrente" +  carattereCorrente);
+//		
+//		if (s.indexOf(caratteri.charAt(i)) != -1) // se il carattere presente nella stringa caratteri è presente anche nella stringa s, allora restituisco true.
+//			//se non ci restituisce -1 allora significa che il carattere è presente nella stringa caratteri 
+//			                                      //mentre se il carattere controllato da indexOf non è presente nella stringa s, restituisce -1, e quindi non entra nell'if.
+//			                                       //quindi se troviamo un carattere non valido, impostiamo la variabile presente a true
+//		{
+//			presente = true;
+//			break; // se troviamo un carattere non valido, usciamo dal ciclo for per evitare di continuare a controllare gli altri caratteri.
+//			
+//			/*
+//			 * con questo if stiamo controllando se la stringa s contiene un carattere non valido, ovvero un carattere presente nella stringa caratteri.
+//			 * s.indexOf(caratteri.charAt(i)) restituisce l'indice del primo carattere presente nella stringa s, se il carattere è presente, altrimenti restituisce -1.
+//			 * quindi se s.indexOf(caratteri.charAt(i)) != -1, significa che il carattere è presente nella stringa s, e quindi la stringa s non è valida.
+//			 * mentre con caratteri.chaAt(i) stiamo prendendo il carattere presente nella stringa caratteri alla posizione i, e lo stiamo confrontando con la stringa s.
+//			 * se troviamo un carattere non valido, impostiamo la variabile presente a true
+//			 */
+//		}
+//	}
+//	return presente;
+//}
+//
+//
+//private boolean verificaLunghezza(String s, int  limit)
+//{
+//	boolean troppoLunga = false;
+//	
+//	if (s.length() > limit) 
+//	    troppoLunga = true;
+//	return troppoLunga;
+//}
 /*
  * con questo metodo stiamo controllando se la stringa s è troppo lunga, ovvero se la sua lunghezza è maggiore di un limite specificato.
  * se s.length() > limit, significa che la stringa s è troppo lunga, e quindi restituiamo true, altrimenti restituiamo false.
@@ -847,6 +859,7 @@ public void nasce()
 	super.nasce(); // stiamo chiamando il metodo nasce() della superclasse Animale, che stampa a video "L'animale nasce".
 	EssereUmano.totaleEssereUmani++; // ogni volta che viene creato un nuovo oggetto della classe EssereUmano,
 	                                 //incrementiamo la variabile totaleEssereUmani di 1.
+	System.out.println("totale EssereUmani " + EssereUmano.totaleEssereUmani);
 }
 
 @Override
@@ -884,6 +897,7 @@ public void muore()
 	super.muore(); 
 	EssereUmano.totaleEssereUmani--; // ogni volta che viene chiamato il metodo muore() di un oggetto della classe EssereUmano,
 	                                 //decrementiamo la variabile totaleEssereUmani di 1.
+	System.out.println("totale EssereUmani " + EssereUmano.totaleEssereUmani);
 }
 @Override
 public void dorme()

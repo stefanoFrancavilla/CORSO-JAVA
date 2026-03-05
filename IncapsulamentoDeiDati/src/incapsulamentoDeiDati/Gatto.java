@@ -1,5 +1,5 @@
 package incapsulamentoDeiDati;
-
+import incapsulamentoDeiDati.utilities.Verifica;
 public class Gatto extends Animale {
 	/*
 	 * la classe Gatto estende la classe Animale,
@@ -19,17 +19,17 @@ public class Gatto extends Animale {
 	private RazzaGatto razzaGatto;
 	
 	// Variabili Constanti.
-	private final byte min_anni = 0; 
-	private final byte max_anni = 20; 
-	private final byte default_anni = 3;
+	private static final byte min_anni = 0; 
+	private static final byte max_anni = 20; 
+	private static final byte default_anni = 3;
 	
-	private final float min_altezza = 7f; 
-	private final float max_altezza = 50f; 
-	private final float default_altezza = 15f; 
+	private static final float min_altezza = 7f; 
+	private static final float max_altezza = 50f; 
+	private static final float default_altezza = 15f; 
 	
-	private final float min_peso = 1f; 
-	private final float max_peso = 10f; 
-	private final float default_peso = 2f; 
+	private static final float min_peso = 1f; 
+	private static final float max_peso = 10f; 
+	private static final float default_peso = 2f; 
 	
 	private static int totaleGatti; // variabile statica che conta il numero totale di gatti creati
 
@@ -100,12 +100,12 @@ public class Gatto extends Animale {
 		public void setNome(String nome) {
 			boolean nomeCorretto = true;
 			
-			if (verificaCratteri("1234567890!?@", nome)) 
+			if (Verifica.verificaCratteri("1234567890!?@", nome)) 
 			{
 				System.out.println("nome non consono"); 
 				nomeCorretto = false;
 			}
-			else if ( verificaLunghezza(nome, 20))
+			else if ( Verifica.verificaLunghezza(nome, 20))
 			{
 				System.out.println("nome troppo lungo");
 				
@@ -324,26 +324,26 @@ public class Gatto extends Animale {
 	
 	//metodi di verifica
 	
-	private boolean verificaCratteri(String caratteri, String s) {
-		boolean presente = false;
-		for (int i = 0; i < caratteri.length(); i++) 
-		{
-			char carattereCorrente = caratteri.charAt(i);
-			System.out.println("carattereCorrente" +  carattereCorrente);
-			if (s.indexOf(caratteri.charAt(i)) != -1)
-			{
-				presente = true;
-				break;
-			}
-	}
-		return presente;
-}
-	private boolean verificaLunghezza(String s, int  limit)
-	{
-		boolean troppoLunga = false;
-		
-		if (s.length() > limit) 
-		    troppoLunga = true;
-		return troppoLunga;
-	}
+//	private boolean verificaCratteri(String caratteri, String s) {
+//		boolean presente = false;
+//		for (int i = 0; i < caratteri.length(); i++) 
+//		{
+//			char carattereCorrente = caratteri.charAt(i);
+//			System.out.println("carattereCorrente" +  carattereCorrente);
+//			if (s.indexOf(caratteri.charAt(i)) != -1)
+//			{
+//				presente = true;
+//				break;
+//			}
+//	}
+//		return presente;
+//}
+//	private boolean verificaLunghezza(String s, int  limit)
+//	{
+//		boolean troppoLunga = false;
+//		
+//		if (s.length() > limit) 
+//		    troppoLunga = true;
+//		return troppoLunga;
+//	}
 }
