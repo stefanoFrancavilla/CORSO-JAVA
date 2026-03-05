@@ -372,6 +372,18 @@ private final float min_peso = 35f; // peso minimo in kg
 private final float max_peso = 600f; // peso massimo in kg
 private final float default_peso = 40f; // peso di default in kg
 
+private static int totaleEssereUmani = 0; // variabile statica per contare il numero totale di oggetti della classe EssereUmano creati
+/*
+ * la variabile totaleEssereUmani è dichiarata come static perché deve essere condivisa da tutti gli oggetti della classe EssereUmano,
+ * quindi non appartiene a nessun oggetto in particolare, ma è una variabile di classe che viene condivisa da tutti gli oggetti della classe EssereUmano.
+ * in questo modo, ogni volta che viene creato un nuovo oggetto della classe EssereUmano, la variabile totaleEssereUmani viene incrementata di 1,
+ * e possiamo tenere traccia del numero totale di oggetti della classe EssereUmano creati.
+ * 
+ * questo ci permette di avere un contatore che ci dice quanti oggetti della classe EssereUmano sono stati creati,
+ * senza dover creare un contatore esterno al main, o senza dover creare un contatore all'interno del main,
+ */
+
+
 
 /*
  * queste costanti ci permettono di modificare in futuro il range di altezza senza dover cambiare il valore nei metodi setter.
@@ -485,6 +497,9 @@ public EssereUmano(String nome,
 	 * allora va bene anche scriverli direttamente senza usare i metodi setter.
 	 */
 	this.nazioneDiNascita = nazioneDiNascita;
+	this.nasce(); // quando viene creato un oggetto della classe EssereUmano,
+	//viene chiamato il metodo nasce() che stampa a video "EssereUmano nasce".
+	//
 	// this si riferisce all'oggetto corrente
 	// viene usato per accedere alle variabili d'istanza e ai metodi dell'oggetto corrente
 	// si usa quando c'è ambiguità tra variabili d'istanza e parametri
@@ -827,6 +842,14 @@ private boolean verificaLunghezza(String s, int  limit)
 // Metodi
 
 @Override
+public void nasce() 
+{
+	super.nasce(); // stiamo chiamando il metodo nasce() della superclasse Animale, che stampa a video "L'animale nasce".
+	EssereUmano.totaleEssereUmani++; // ogni volta che viene creato un nuovo oggetto della classe EssereUmano,
+	                                 //incrementiamo la variabile totaleEssereUmani di 1.
+}
+
+@Override
 
 /*
  * con @Override stiamo facendo una sorta di controllo
@@ -853,6 +876,14 @@ public void mangia()
 public void respira() 
 {
 	System.out.println(nome + " " + cognome + " respira");
+}
+
+@Override
+public void muore() 
+{
+	super.muore(); 
+	EssereUmano.totaleEssereUmani--; // ogni volta che viene chiamato il metodo muore() di un oggetto della classe EssereUmano,
+	                                 //decrementiamo la variabile totaleEssereUmani di 1.
 }
 @Override
 public void dorme()
@@ -889,7 +920,7 @@ public void stampa()
 	super.stampa(); // stiamo chiamando il metodo stampa() della superclasse Animale, 
 	System.out.println("----------");
 //	System.out.println("Nome: " + nome);
-//	System.out.println("Cognome: " + cognome);
+	System.out.println("Cognome: " + cognome);
 //	System.out.println("Sesso: " + sesso);
 //	System.out.println("Anni: " + anni);
 //	System.out.println("Altezza: " + altezza);

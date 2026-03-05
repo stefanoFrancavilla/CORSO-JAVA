@@ -30,6 +30,8 @@ public class Gatto extends Animale {
 	private final float min_peso = 1f; 
 	private final float max_peso = 10f; 
 	private final float default_peso = 2f; 
+	
+	private static int totaleGatti; // variabile statica che conta il numero totale di gatti creati
 
 	//Costruttore.
 	public Gatto() {
@@ -80,6 +82,7 @@ public class Gatto extends Animale {
 //		this.setColoreOcchi(coloreOcchi);
 		this.setColorePeloGatto(colorePeloGatto);
 		this.setRazzaGatto(razzaGatto);
+		this.nasce();
 	}
 	
 	    //per generare i metodi getter e setter si può utilizzare il seguente percorso:
@@ -257,6 +260,13 @@ public class Gatto extends Animale {
 	
 	// Metodi
 		
+		@Override	
+		public void nasce()
+		{
+			super.nasce();
+			Gatto.totaleGatti++;
+			System.out.println("totaleGatti:" + Gatto.totaleGatti);
+		}
 		@Override
 	public void beve() 
 	{
@@ -272,6 +282,12 @@ public class Gatto extends Animale {
 	{
 		System.out.println(nome + " respira");
 	}
+		public void muore()
+		{
+			super.muore();
+			Gatto.totaleGatti--;
+			System.out.println("totaleGatti:" + Gatto.totaleGatti);
+		}
 		@Override
 	public void dorme()
 	{

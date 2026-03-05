@@ -176,7 +176,10 @@ linaVioli.setCognome("Violi");
 //linaVioli.setNome("Linaabcdefghilmno_linaabcdefghilmno");
 
 linaVioli.stampa();
+
+linaVioli.siNutre();
 linaVioli.dorme();
+linaVioli.muore();
 System.out.println();
 System.out.println("4--------------------------");
 System.out.println();
@@ -213,6 +216,8 @@ Gatto gattino = new Gatto("Gattino", Sesso.MASCHIO, (byte) 4);
 //gattino.stampa();
 gattino.dorme();
 gattino.stampa();
+gattino.siNutre();
+gattino.muore();
 //Animale bestia = new Animale();
 
 

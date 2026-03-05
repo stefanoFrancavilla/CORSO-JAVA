@@ -1,6 +1,6 @@
 package incapsulamentoDeiDati;
 
-public abstract class Animale {
+public abstract class Animale extends EssereVivente {
 
 	/* con la parola chiave "abstract" stiamo dichiarando una classe astratta,
 	*  che non può essere istanziata direttamente, 
@@ -10,9 +10,9 @@ public abstract class Animale {
 	//variabili di istanza
 	protected String nome; 
 	protected Sesso sesso; 
-	protected byte anni;
-	protected float altezza;
-	protected float peso;
+//	protected byte anni;
+//	protected float altezza;
+//	protected float peso;
 	protected ColoreOcchi coloreOcchi;
 	
 	/*
@@ -107,23 +107,23 @@ public abstract class Animale {
 		this.sesso = sesso;
 	}
 	
-	public byte getAnni() {
-		return anni;
-	}
+//	public byte getAnni() {
+//		return anni;
+//	}
+//	
+//	public abstract void setAnni(byte anni);
 	
-	public abstract void setAnni(byte anni);
-	
-	public float getAltezza() {
-		return altezza;
-	}
-	
-	public abstract void setAltezza(float altezza);
-	
-	public float getPeso() {
-		return peso;
-	}
-
-	public abstract void setPeso(float peso);
+//	public float getAltezza() {
+//		return altezza;
+//	}
+//	
+//	public abstract void setAltezza(float altezza);
+//	
+//	public float getPeso() {
+//		return peso;
+//	}
+//
+//	public abstract void setPeso(float peso);
 	
 	public ColoreOcchi getColoreOcchi() {
 		return coloreOcchi;
@@ -135,7 +135,29 @@ public abstract class Animale {
 	
 	//Metodi
 	
-	public abstract void respira();
+	@Override
+	public void nasce() {
+		System.out.println("Il cuore ha iniziato a battere.");
+	}
+	@Override
+	public void siNutre() {
+		this.mangia();
+		this.beve();
+	}
+	/*
+	 * con il concetto si nutre stiamo generalizzando il concetto di nutrizione, che è comune a tutti gli animali,
+	 * ma ogni animale si nutre in modo diverso, quindi all'interno del metodo si nutre, stiamo chiamando i metodi mangia e beve,
+	 * che sono metodi astratti, quindi ogni classe che estende la classe Animale, è obbligata ad implementare i metodi mangia e beve,
+	 * quindi ogni classe che estende animale implementarà i metodi mangia e beve in modo diverso,
+	 *  in base alle caratteristiche specifiche di ogni animale,
+	 */
+	
+	@Override
+	public void muore() {
+		System.out.println("Il cuore ha cessato di battere.");
+	}
+	
+	//public abstract void respira();
 	
 	public abstract void mangia();
 	
