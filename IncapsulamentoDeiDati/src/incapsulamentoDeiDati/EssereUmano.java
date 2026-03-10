@@ -344,7 +344,21 @@ public void stampa() {
 //}
 
 //4
-public class EssereUmano extends Animale {
+public class EssereUmano extends Animale implements IVolatile {
+	
+	/*
+	 * con la parola chiave extends, stiamo dichiarando che la classe EssereUmano
+	 *  è una sottoclasse della classe Animale,
+	 *  
+	 *  mentre con la parola chiave implements, stiamo dichiarando che la classe EssereUmano
+	 *  implementa l'interfaccia IVolatile,
+	 *   quindi deve implementare tutti i metodi dichiarati nell'interfaccia IVolatile,
+	 *   
+	 *   questo perchè in java non esiste l'ereditarietà multipla,
+	 *    quindi una classe può estendere solo una classe,
+	 *     ma può implementare più interfacce.
+	 */
+	
 	
 	// Varialbili d'istanza.
 	 
@@ -928,7 +942,12 @@ public void lavora()
 {
 	System.out.println(nome + " " + cognome + " lavora");
 }
-
+@Override
+public void vola() 
+{
+	System.out.println(nome + " " + cognome + " vola con l'aereo");
+}
+@Override
 public void stampa() 
 {
 	super.stampa(); // stiamo chiamando il metodo stampa() della superclasse Animale, 

@@ -44,6 +44,7 @@ marcoRossi.setNazioneDiNascita ("Italia");
 marcoRossi.stampa();
 marcoRossi.mangia();
 marcoRossi.lavora();
+marcoRossi.vola();
 
 System.out.println();
 System.out.println("2--------------------------");
@@ -163,6 +164,22 @@ System.out.println();
 
 EssereUmano linaVioli = new EssereUmano();
 
+//linaVioli.getCognome("Rossi");
+/*
+ * nel caso volessimo cambiare il cognome a lina violi, non è possiblie farlo ,
+ * poichè nella classe Essere Umano abbiamo dichiarato il cognome con private,
+ * quindi non è accessibile dall'esterno della classe,
+ *  e non è possibile modificarlo direttamente,
+ */
+
+linaVioli.nome = "Paola";
+/*
+ * mentre nel caso volessimo cambiare il nome a lina violi, è possibile farlo ,
+ * poichè la classe che estende essere umano(animale in questo caso)
+ * dove essere umano prende l'istanza di nome 
+ *  ha dichiarato il nome con protected,	
+ */
+
 linaVioli.stampa();
 
 
@@ -221,6 +238,13 @@ gattino.muore();
 //Animale bestia = new Animale();
 
 
+System.out.println();	
+System.out.println("4.2--------------------------");
+System.out.println();
+
+ClasseProtettiStessoPackage testProtected1 = new ClasseProtettiStessoPackage();
+testProtected1.nome = "Luca";
+testProtected1.stampa();
 
 
 	}
