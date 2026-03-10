@@ -1,5 +1,5 @@
 package incapsulamentoDeiDati;
-
+import incapsulamentoDeiDati.test.*;
 public class Mondo {
 
 	public static void main(String[] args) {
@@ -172,7 +172,7 @@ EssereUmano linaVioli = new EssereUmano();
  *  e non è possibile modificarlo direttamente,
  */
 
-linaVioli.nome = "Paola";
+//linaVioli.nome = "Paola";
 /*
  * mentre nel caso volessimo cambiare il nome a lina violi, è possibile farlo ,
  * poichè la classe che estende essere umano(animale in questo caso)
@@ -246,6 +246,14 @@ ClasseProtettiStessoPackage testProtected1 = new ClasseProtettiStessoPackage();
 testProtected1.nome = "Luca";
 testProtected1.stampa();
 
+ClasseProtettiDiversoPackage testProtected2 = new ClasseProtettiDiversoPackage();
+//testProtected2.nome = "Luca";
+//testProtected2.stampa();
+
+/*
+ * con protected no riusciamo ad accedere alla classe che si trova in un package diverso
+ * 
+ */
 
 	}
 

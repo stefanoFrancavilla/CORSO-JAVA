@@ -2,9 +2,9 @@ package incapsulamentoDeiDati;
 
 public abstract class EssereVivente {
 	//variabili di istanza
-	protected byte anni;
-	protected float altezza;
-	protected float peso;
+	private byte anni;
+	private float altezza;
+	private float peso;
 	
 	
 	//Costruttori
@@ -25,8 +25,10 @@ public abstract class EssereVivente {
 	public byte getAnni() {
 		return anni;
 	}
-	
-	public abstract void setAnni(byte anni);
+	//public abstract void setAnni(byte anni);
+	public void setAnni(byte anni) {
+		this.anni = anni;
+	}
 	/*
 	 * se importiamo il metodo da una classe astratta , ad un'altra super classe astratta , non abbiamo l'obbligo di implementarlo
 	 * a differenza di una classe astratta che passa il suo metodo alla classe normale,
@@ -44,14 +46,19 @@ public abstract class EssereVivente {
 	public float getAltezza() {
 		return altezza;
 	}
-	
-	public abstract void setAltezza(float altezza);
+	//public abstract void setAltezza(float altezza);
+	public  void setAltezza(float altezza) {
+		this.altezza = altezza;
+	}
 	
 	public float getPeso() {
 		return peso;
 	}
 
-	public abstract void setPeso(float peso);
+	//public abstract void setPeso(float peso);
+	public void setPeso(float peso) {
+		this.peso = peso;
+	}
 	
 	//metodi 
 	public abstract void nasce();
@@ -61,4 +68,11 @@ public abstract class EssereVivente {
 	public abstract void respira();
 	
 	public abstract void muore();
+	
+	public void stampa() {
+		System.out.println("Anni: " + this.getAnni());
+		System.out.println("Altezza: " + this.getAltezza());
+		System.out.println("Peso: " + this.getPeso());
+		System.out.println("--------------------------");
+	}
 }

@@ -96,7 +96,7 @@ public class Gatto extends Animale {
 //			return nome;
 	//	}
 
-		
+		@Override
 		public void setNome(String nome) {
 			boolean nomeCorretto = true;
 			
@@ -114,21 +114,22 @@ public class Gatto extends Animale {
 			if(nomeCorretto == true) 
 			{
 				System.out.println("nome ok");
-				this.nome = nome;
+				super.setNome(nome);
 			}
 			else
 			{
-			if ( this.nome == null)
+				String nomeCorrente = super.getNome();
+			if ( nomeCorrente == null)
 			{
-				System.out.println(this.nome + " è null ");
+				System.out.println(nomeCorrente + " è null ");
 				
-				this.nome = "ND"; 
+				super.setNome("ND");
 			}
-			else if (!("ND".equals(this.nome))) 
+			else if (!("ND".equals(nomeCorrente))) 
 				
 				
 			{
-				System.out.println(this.nome + " è un nome sensato .");
+				System.out.println(nomeCorrente + " è un nome sensato .");
 			}
 		}	
 	}
@@ -155,24 +156,26 @@ public class Gatto extends Animale {
 //			return anni;
 //		}
 
+		 @Override
 		public void setAnni(byte anni) {
 			System.out.println("max anni: " + max_anni);
 			
 			if(anni >= min_anni && anni <= max_anni) 
 			{
-				this.anni = anni;
-				System.out.println(this.anni + " anni inizializzati");
+				super.setAnni(anni);
+				System.out.println(super.getAnni() + " anni inizializzati");
 			}
 			else
 			{
-				if (this.anni >= min_anni && this.anni <= max_anni) 
+				byte anniCorrenti = super.getAnni();
+				if (anniCorrenti >= min_anni && anniCorrenti <= max_anni) 
 				{
-					System.out.println(this.anni + " anni validi da prima.");
+					System.out.println(anniCorrenti + " anni validi da prima.");
 				}
 				else
 				{
-					this.anni = default_anni; 
-					System.out.println(this.anni + " anni assegnati di default.");
+					super.setAnni(default_anni); 
+					System.out.println(anniCorrenti + " anni assegnati di default.");
 				}
 			}
 		}
@@ -188,24 +191,25 @@ public class Gatto extends Animale {
 //			return altezza;
 //		}
 
+		 @Override
 		public void setAltezza(float altezza) {
 			if(altezza > min_altezza && altezza < max_altezza) {
-				this.altezza = altezza;
-				System.out.println(this.altezza + " altezza inizializzata");
+				super.setAltezza(altezza);
+				System.out.println(super.getAltezza() + " altezza inizializzata");
 			}
 			
 			else
 			{
-				
-				if (this.altezza > min_altezza && this.altezza < max_altezza)
+				float altezzaCorrente = super.getAltezza();
+				if (altezzaCorrente > min_altezza && altezzaCorrente < max_altezza)
 				{
-					System.out.println(this.altezza + " altezza valida da prima.");
+					System.out.println(altezzaCorrente + " altezza valida da prima.");
 				}
 			
 				else
 				{
-					this.altezza = default_altezza; 
-					System.out.println(this.altezza + " altezza assegnata di default.");
+					super.setAltezza(default_altezza);
+					System.out.println(altezzaCorrente + " altezza assegnata di default.");
 				}	
 			}
 		}
@@ -214,22 +218,24 @@ public class Gatto extends Animale {
 //			return peso;
 //		}
 
+		 @Override
 		public void setPeso(float peso) {
 			if(peso > min_peso && peso < max_peso)
 			{
-				this.peso = peso;
-				System.out.println(this.peso + " peso inizializzato");
+				super.setPeso(peso);
+				System.out.println(super.getPeso() + " peso inizializzato");
 			}
 			else
 			{
-				if (this.peso > min_peso && this.peso < max_peso)
+				float pesoCorrente = super.getPeso();
+				if (pesoCorrente > min_peso && pesoCorrente < max_peso)
 				{
-					System.out.println(this.peso + " peso valido da prima.");
+					System.out.println(pesoCorrente + " peso valido da prima.");
 				}
 				else
 				{
-					this.peso = default_peso; 
-					System.out.println(this.peso + " peso assegnato di default.");
+					super.setPeso(default_peso); 
+					System.out.println(pesoCorrente + " peso assegnato di default.");
 				}
 			}
 		}
@@ -242,6 +248,7 @@ public class Gatto extends Animale {
 //			this.coloreOcchi = coloreOcchi;
 //		}
 
+		
 		public ColorePeloGatto getColorePeloGatto() {
 			return colorePeloGatto;
 		}
@@ -270,17 +277,17 @@ public class Gatto extends Animale {
 		@Override
 	public void beve() 
 	{
-		System.out.println(nome + " beve");
+		System.out.println(super.getNome() + " beve");
 	}
 		@Override
 	public void mangia() 
 	{
-		System.out.println(nome + " mangia");
+		System.out.println(super.getNome() + " mangia");
 	}
 		@Override
 	public void respira() 
 	{
-		System.out.println(nome + " respira");
+		System.out.println(super.getPeso() + " respira");
 	}
 		public void muore()
 		{
@@ -292,18 +299,18 @@ public class Gatto extends Animale {
 	public void dorme()
 	{
 			super.dorme();
-			System.out.println(nome + " dorme accovacciato con il musino rivolto verso l'alto");	
+			System.out.println(super.getAltezza() + " dorme accovacciato con il musino rivolto verso l'alto");	
 		//System.out.println(nome + " dorme");
 	}
 	
 	public void faLeFusa() 
 	{
-		System.out.println(nome + " fa le fusa");
+		System.out.println(super.getNome() + " fa le fusa");
 	}
 	
 	public void impasta() 
 	{
-		System.out.println(nome + " impasta");
+		System.out.println(super.getNome() + " impasta");
 	}
        @Override
 	public void stampa() 
@@ -318,7 +325,7 @@ public class Gatto extends Animale {
 //		System.out.println("Colore Occhi: " + coloreOcchi);
      	System.out.println("Colore Pelo: " + colorePeloGatto);
 		System.out.println("Razza: " + razzaGatto);
-		System.out.println("----------");
+		
 	    
 	 }
 	

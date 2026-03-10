@@ -45,7 +45,7 @@ public abstract class Pianta extends EssereVivente {
 	}
 	
 	public byte getAnni() {
-		return anni;
+		return super.getAnni();
 	}
 	
 	public void setAnni() {
@@ -53,14 +53,14 @@ public abstract class Pianta extends EssereVivente {
 	}
 	
 	public float getaltezza() {
-		return altezza;
+		return super.getAltezza();
 	}
 	public void setAltezza() {
 		
 	}
 	
 	public float getPeso() {
-		return peso;
+		return super.getPeso();
 	}
 	
 	public void setPeso() {

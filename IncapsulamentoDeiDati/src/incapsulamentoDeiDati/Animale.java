@@ -8,12 +8,12 @@ public abstract class Animale extends EssereVivente {
 	*/
 	
 	//variabili di istanza
-	protected String nome; 
-	protected Sesso sesso; 
+	private String nome; 
+	private Sesso sesso; 
 //	protected byte anni;
 //	protected float altezza;
 //	protected float peso;
-	protected ColoreOcchi coloreOcchi;
+	private ColoreOcchi coloreOcchi;
 	
 	/*
 	 * le variabili d'istanza sono dichiarate con il modificatore di accesso "protected",
@@ -92,7 +92,10 @@ public abstract class Animale extends EssereVivente {
 		return nome;
 	}
 	
-	public abstract void setNome(String nome);
+	//public abstract void setNome(String nome);
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 	
 	/*
 	 * con la parola chiave "abstract" stiamo dichiarando un metodo astratto,
@@ -191,7 +194,8 @@ public abstract class Animale extends EssereVivente {
 		System.out.println("altezza: " + this.getAltezza());
 		System.out.println("peso: " + this.getPeso());
 		System.out.println("colore occhi: " + this.getColoreOcchi());
-		System.out.println("--------------------------");
+		
+		super.stampa();
 	}
 	
 	

@@ -551,7 +551,7 @@ public EssereUmano(String nome,
  * ad esempio, possiamo restituire il valore della variabile d'istanza solo se non è null o vuota
  * in questo modo evitiamo di restituire valori non validi
  */
-
+@Override
 public void setNome(String nome) {
 	
 	boolean nomeCorretto = true;
@@ -608,19 +608,29 @@ public void setNome(String nome) {
 	if(nomeCorretto == true) // se il nome è corretto, lo assegniamo alla variabile d'istanza nome
 	{
 		System.out.println("nome ok");
-		this.nome = nome;
+		//this.nome = nome;
+		super.setNome(nome);
+		// invece di assegnare direttamente il valore del parametro nome alla variabile d'istanza nome,
+		// usiamo il metodo setter setNome(nome) per controllare il valore inserito.
 	}
-    if ( this.nome == null)
+	else
 	{
-		System.out.println(this.nome + " è null ");
+		String nomeCorrente = super.getNome(); 
+		//con super.getNome() stiamo chiamando il metodo getter getNome() della classe padre Animale
+		// per ottenere il valore corrente del nome dell'oggetto, e lo stiamo assegnando alla variabile locale nomeCorrente.
+
+    if ( nomeCorrente == null)
+	{
+		System.out.println(nomeCorrente + " è null ");
 		
-		this.nome = "ND"; 
+		super.setNome("ND"); 
 	}
-	else if (!("ND".equals(this.nome))) 
+	else if (!("ND".equals(nomeCorrente))) 
 		
 		
 	{
-		System.out.println(this.nome + " è un nome sensato .");
+		System.out.println(nomeCorrente + " è un nome sensato .");
+	}
 	}
 	
 	/*
@@ -704,19 +714,24 @@ public void setAnni(byte anni) {
 	
 	if(anni >= EssereUmano.min_anni && anni <= EssereUmano.max_anni) // per dare una misura reale a essere umano abbiamo inserito un controllo sull'età, 
 	{
-		this.anni = anni;
-		System.out.println(this.anni + " anni inizializzati");
+		//this.anni = anni;
+		super.setAnni(anni);
+		System.out.println(super.getAnni() + " anni inizializzati");
 	}
 	else
 	{
-		if (this.anni >= EssereUmano.min_anni && this.anni <= EssereUmano.max_anni) // se l'età corrente dell'oggetto rientra nel range di età valido per un essere umano, manteniamo il valore corrente di anni.
+		byte anniCorrenti = super.getAnni();
+		if (anniCorrenti >= EssereUmano.min_anni && anniCorrenti <= EssereUmano.max_anni) // se l'età corrente dell'oggetto rientra nel range di età valido per un essere umano, manteniamo il valore corrente di anni.
 		{
-			System.out.println(this.anni + " anni validi da prima.");
+			System.out.println(anniCorrenti + " anni validi da prima.");
 		}
 		else
 		{
-			this.anni = default_anni; // se viene inserito un valore non valido, assegniamo un valore di default di 18 anni.
-			System.out.println(this.anni + " anni assegnati di default.");
+			// this.anni = default_anni; // se viene inserito un valore non valido, assegniamo un valore di default di 18 anni.
+			super.setAnni(default_anni);
+			
+			System.out.println(super.getAnni() + " anni assegnati di default.");
+			//System.out.println(getAnni() + " anni assegnati di default.");
 		}
 	}
 }
@@ -730,25 +745,26 @@ public void setAltezza(float altezza) {
 	
 	if(altezza > min_altezza && altezza < max_altezza) // per dare una misura reale a essere umano abbiamo inserito un controllo sull'altezza, 
 	{                                 //che deve essere compresa tra 20 cm e 250 cm.
-		this.altezza = altezza;
-		System.out.println(this.altezza + " altezza inizializzata");
+		super.setAltezza(altezza);
+		System.out.println(super.getAltezza() + " altezza inizializzata");
 	}
 	/*
 	 * quindi con questo controllo evitiamo di inserire valori che non sono realistici per un'essere umano
 	 */
 	else
 	{
+		float altezzaCorrente = super.getAltezza();
 		//quello che chiedo è: se l'altezza corrente(this.altezza) rientra nel range
-		if (this.altezza > min_altezza && this.altezza < max_altezza)
+		if (altezzaCorrente > min_altezza && altezzaCorrente < max_altezza)
 		{
-			System.out.println(this.altezza + " altezza valida da prima.");
+			System.out.println(altezzaCorrente + " altezza valida da prima.");
 		//se rientra nel range ,manderà a schermo il valore di this.altezza
 		}
 		// altrimenti se anche l'altezza corrente dell'oggetto non è valida, assegniamo un valore di default di 100 cm.
 		else
 		{
-			this.altezza = default_altezza; // se viene inserito un valore non valido, assegniamo un valore di default di 100 cm.
-			System.out.println(this.altezza + " altezza assegnata di default.");
+			super.setAltezza(default_altezza); // se viene inserito un valore non valido, assegniamo un valore di default di 100 cm.
+			System.out.println(super.getAltezza() + " altezza assegnata di default.");
 		}
 		//System.out.println(altezza + " non è un'altezza valida per un essere umano");
 	}
@@ -762,11 +778,12 @@ public void setPeso(float peso) {
 	
 	if(peso > min_peso && peso < max_peso)
 	{
-		this.peso = peso;
-		System.out.println(this.peso + " peso inizializzato");
+		super.setPeso(peso);
+		System.out.println(super.getPeso() + " peso inizializzato");
 	}
 	else
 	{
+		float pesoCorrente = super.getPeso();
 		//if(this.getPeso() < min_peso && this.getPeso() > max_peso)
 		/*
 		 * e possibile chiedere anche con getPeso() se il peso corrente dell'oggetto rientra nel range di peso valido per un essere umano
@@ -775,15 +792,15 @@ public void setPeso(float peso) {
 		 */
 		
 		//System.out.println(peso + " non è un peso valido per un essere umano");
-		if (this.peso > min_peso && this.peso < max_peso)
+		if (pesoCorrente > min_peso && pesoCorrente < max_peso)
 		{
-			System.out.println(this.peso + " peso valido da prima.");
+			System.out.println(pesoCorrente + " peso valido da prima.");
 			//se rientra nel range ,manderà a schermo il valore di this.peso
 		}
 		else
 		{
-			this.peso = default_peso; // se viene inserito un valore non valido, assegniamo un valore di default di 35 kg.
-			System.out.println(this.peso + " peso assegnato di default.");
+			super.setPeso(default_peso); // se viene inserito un valore non valido, assegniamo un valore di default di 35 kg.
+			System.out.println(super.getPeso() + " peso assegnato di default.");
 		}
 	}
 	
@@ -892,17 +909,17 @@ public void nasce()
 
 public void beve() 
 {
-	System.out.println(nome + " " + cognome + " beve");
+	System.out.println(super.getNome() + " " + cognome + " beve");
 }
 @Override
 public void mangia() 
 {
-	System.out.println(nome + " " + cognome + " mangia");
+	System.out.println(super.getNome() + " " + cognome + " mangia");
 }
 @Override
 public void respira() 
 {
-	System.out.println(nome + " " + cognome + " respira");
+	System.out.println(super.getNome() + " " + cognome + " respira");
 }
 
 @Override
@@ -917,7 +934,7 @@ public void muore()
 public void dorme()
 {
 	super.dorme(); 
-	System.out.println(nome + " " + cognome + " dorme nel suo letto, tra cuscini e lenzuola");
+	System.out.println(super.getNome() + " " + cognome + " dorme nel suo letto, tra cuscini e lenzuola");
 //	System.out.println(nome + " " + cognome + " dorme");
 }
 /*
@@ -935,17 +952,17 @@ public void dorme()
 
 public void studia()
 {
-	System.out.println(nome + " " + cognome + " studia");
+	System.out.println(super.getNome() + " " + cognome + " studia");
 }
 
 public void lavora()
 {
-	System.out.println(nome + " " + cognome + " lavora");
+	System.out.println(super.getNome() + " " + cognome + " lavora");
 }
 @Override
 public void vola() 
 {
-	System.out.println(nome + " " + cognome + " vola con l'aereo");
+	System.out.println(super.getNome() + " " + cognome + " vola con l'aereo");
 }
 @Override
 public void stampa() 
