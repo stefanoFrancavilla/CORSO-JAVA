@@ -190,9 +190,9 @@ public abstract class Animale extends EssereVivente {
 		System.out.println("--------------------------");
 		System.out.println("nome: " + this.getNome());
 		System.out.println("sesso: " + this.getSesso());
-		System.out.println("anni: " + this.getAnni());
-		System.out.println("altezza: " + this.getAltezza());
-		System.out.println("peso: " + this.getPeso());
+		//System.out.println("anni: " + this.getAnni());
+		//System.out.println("altezza: " + this.getAltezza());
+		//System.out.println("peso: " + this.getPeso());
 		System.out.println("colore occhi: " + this.getColoreOcchi());
 		
 		super.stampa();

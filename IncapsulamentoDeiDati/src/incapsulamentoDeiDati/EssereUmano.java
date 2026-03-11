@@ -374,17 +374,17 @@ private String nazioneDiNascita;
 
 
 //Costanti.
-private static final byte min_anni = 0; // età minima in anni
-private static final byte max_anni = 	Byte.MAX_VALUE; // età massima in anni, usiamo il valore massimo di byte perché la variabile anni è di tipo byte
-private static final byte default_anni = 18; // età di default in anni
+private static final byte MIN_ANNI = 0; // età minima in anni
+private static final byte MAX_ANNI = 	Byte.MAX_VALUE; // età massima in anni, usiamo il valore massimo di byte perché la variabile anni è di tipo byte
+private static final byte DEFAULT_ANNI = 18; // età di default in anni
 
-private static final float min_altezza = 20f; // altezza minima in cm
-private static final float max_altezza = 250f; // altezza massima in cm
-private static final float default_altezza = 100f; // altezza di default in cm
+private static final float MIN_ALTEZZA = 20f; // altezza minima in cm
+private static final float MAX_ALTEZZA = 250f; // altezza massima in cm
+private static final float DEFAULT_ALTEZZA = 100f; // altezza di default in cm
 
-private static final float min_peso = 35f; // peso minimo in kg
-private static final float max_peso = 600f; // peso massimo in kg
-private static final float default_peso = 40f; // peso di default in kg
+private static final float MIN_PESO = 35f; // peso minimo in kg
+private static final float MAX_PESO = 600f; // peso massimo in kg
+private static final float DEFAULT_PESO = 40f; // peso di default in kg
 /*
  * aggiungenso static alle costanti, stiamo dichiarando che queste costanti appartengono alla classe EssereUmano,
  *  e non agli oggetti della classe EssereUmano.
@@ -710,9 +710,9 @@ public void setCognome(String cognome) {
 //}
 
 public void setAnni(byte anni) {
-	System.out.println("max anni: " + EssereUmano.max_anni);
+	System.out.println("max anni: " + EssereUmano.MAX_ANNI);
 	
-	if(anni >= EssereUmano.min_anni && anni <= EssereUmano.max_anni) // per dare una misura reale a essere umano abbiamo inserito un controllo sull'età, 
+	if(anni >= EssereUmano.MIN_ANNI && anni <= EssereUmano.MAX_ANNI) // per dare una misura reale a essere umano abbiamo inserito un controllo sull'età, 
 	{
 		//this.anni = anni;
 		super.setAnni(anni);
@@ -721,14 +721,14 @@ public void setAnni(byte anni) {
 	else
 	{
 		byte anniCorrenti = super.getAnni();
-		if (anniCorrenti >= EssereUmano.min_anni && anniCorrenti <= EssereUmano.max_anni) // se l'età corrente dell'oggetto rientra nel range di età valido per un essere umano, manteniamo il valore corrente di anni.
+		if (anniCorrenti >= EssereUmano.MIN_ANNI && anniCorrenti <= EssereUmano.MAX_ANNI) // se l'età corrente dell'oggetto rientra nel range di età valido per un essere umano, manteniamo il valore corrente di anni.
 		{
 			System.out.println(anniCorrenti + " anni validi da prima.");
 		}
 		else
 		{
 			// this.anni = default_anni; // se viene inserito un valore non valido, assegniamo un valore di default di 18 anni.
-			super.setAnni(default_anni);
+			super.setAnni(DEFAULT_ANNI);
 			
 			System.out.println(super.getAnni() + " anni assegnati di default.");
 			//System.out.println(getAnni() + " anni assegnati di default.");
@@ -743,7 +743,7 @@ public void setAnni(byte anni) {
 
 public void setAltezza(float altezza) {
 	
-	if(altezza > min_altezza && altezza < max_altezza) // per dare una misura reale a essere umano abbiamo inserito un controllo sull'altezza, 
+	if(altezza > MIN_ALTEZZA && altezza < MAX_ALTEZZA) // per dare una misura reale a essere umano abbiamo inserito un controllo sull'altezza, 
 	{                                 //che deve essere compresa tra 20 cm e 250 cm.
 		super.setAltezza(altezza);
 		System.out.println(super.getAltezza() + " altezza inizializzata");
@@ -755,7 +755,7 @@ public void setAltezza(float altezza) {
 	{
 		float altezzaCorrente = super.getAltezza();
 		//quello che chiedo è: se l'altezza corrente(this.altezza) rientra nel range
-		if (altezzaCorrente > min_altezza && altezzaCorrente < max_altezza)
+		if (altezzaCorrente > MIN_ALTEZZA && altezzaCorrente < MAX_ALTEZZA)
 		{
 			System.out.println(altezzaCorrente + " altezza valida da prima.");
 		//se rientra nel range ,manderà a schermo il valore di this.altezza
@@ -763,7 +763,7 @@ public void setAltezza(float altezza) {
 		// altrimenti se anche l'altezza corrente dell'oggetto non è valida, assegniamo un valore di default di 100 cm.
 		else
 		{
-			super.setAltezza(default_altezza); // se viene inserito un valore non valido, assegniamo un valore di default di 100 cm.
+			super.setAltezza(DEFAULT_ALTEZZA); // se viene inserito un valore non valido, assegniamo un valore di default di 100 cm.
 			System.out.println(super.getAltezza() + " altezza assegnata di default.");
 		}
 		//System.out.println(altezza + " non è un'altezza valida per un essere umano");
@@ -776,7 +776,7 @@ public void setAltezza(float altezza) {
 
 public void setPeso(float peso) {
 	
-	if(peso > min_peso && peso < max_peso)
+	if(peso > MIN_PESO && peso < MAX_PESO)
 	{
 		super.setPeso(peso);
 		System.out.println(super.getPeso() + " peso inizializzato");
@@ -792,14 +792,14 @@ public void setPeso(float peso) {
 		 */
 		
 		//System.out.println(peso + " non è un peso valido per un essere umano");
-		if (pesoCorrente > min_peso && pesoCorrente < max_peso)
+		if (pesoCorrente > MIN_PESO && pesoCorrente < MAX_PESO)
 		{
 			System.out.println(pesoCorrente + " peso valido da prima.");
 			//se rientra nel range ,manderà a schermo il valore di this.peso
 		}
 		else
 		{
-			super.setPeso(default_peso); // se viene inserito un valore non valido, assegniamo un valore di default di 35 kg.
+			super.setPeso(DEFAULT_PESO); // se viene inserito un valore non valido, assegniamo un valore di default di 35 kg.
 			System.out.println(super.getPeso() + " peso assegnato di default.");
 		}
 	}

@@ -19,17 +19,17 @@ public class Gatto extends Animale {
 	private RazzaGatto razzaGatto;
 	
 	// Variabili Constanti.
-	private static final byte min_anni = 0; 
-	private static final byte max_anni = 20; 
-	private static final byte default_anni = 3;
+	private static final byte MIN_ANNI = 0; 
+	private static final byte MAX_ANNI = 20; 
+	private static final byte DEFAULT_ANNI = 3;
 	
-	private static final float min_altezza = 7f; 
-	private static final float max_altezza = 50f; 
-	private static final float default_altezza = 15f; 
+	private static final float MIN_ALTEZZA = 7f; 
+	private static final float MAX_ALTEZZA = 50f; 
+	private static final float DEFAULT_ALTEZZA = 15f; 
 	
-	private static final float min_peso = 1f; 
-	private static final float max_peso = 10f; 
-	private static final float default_peso = 2f; 
+	private static final float MIN_PESO = 1f; 
+	private static final float MAX_PESO = 10f; 
+	private static final float DEFAULT_PESO = 2f; 
 	
 	private static int totaleGatti; // variabile statica che conta il numero totale di gatti creati
 
@@ -158,9 +158,9 @@ public class Gatto extends Animale {
 
 		 @Override
 		public void setAnni(byte anni) {
-			System.out.println("max anni: " + max_anni);
+			System.out.println("max anni: " + Gatto.MAX_ANNI);
 			
-			if(anni >= min_anni && anni <= max_anni) 
+			if(anni >= Gatto.MIN_ANNI && anni <= Gatto.MAX_ANNI) 
 			{
 				super.setAnni(anni);
 				System.out.println(super.getAnni() + " anni inizializzati");
@@ -168,13 +168,13 @@ public class Gatto extends Animale {
 			else
 			{
 				byte anniCorrenti = super.getAnni();
-				if (anniCorrenti >= min_anni && anniCorrenti <= max_anni) 
+				if (anniCorrenti >= Gatto.MIN_ANNI && anniCorrenti <= Gatto.MAX_ANNI) 
 				{
 					System.out.println(anniCorrenti + " anni validi da prima.");
 				}
 				else
 				{
-					super.setAnni(default_anni); 
+					super.setAnni(Gatto.DEFAULT_ANNI); 
 					System.out.println(anniCorrenti + " anni assegnati di default.");
 				}
 			}
@@ -193,7 +193,7 @@ public class Gatto extends Animale {
 
 		 @Override
 		public void setAltezza(float altezza) {
-			if(altezza > min_altezza && altezza < max_altezza) {
+			if(altezza > Gatto.MIN_ALTEZZA && altezza < Gatto.MAX_ALTEZZA) {
 				super.setAltezza(altezza);
 				System.out.println(super.getAltezza() + " altezza inizializzata");
 			}
@@ -201,14 +201,14 @@ public class Gatto extends Animale {
 			else
 			{
 				float altezzaCorrente = super.getAltezza();
-				if (altezzaCorrente > min_altezza && altezzaCorrente < max_altezza)
+				if (altezzaCorrente > Gatto.MIN_ALTEZZA && altezzaCorrente < Gatto.MAX_ALTEZZA)
 				{
 					System.out.println(altezzaCorrente + " altezza valida da prima.");
 				}
 			
 				else
 				{
-					super.setAltezza(default_altezza);
+					super.setAltezza(Gatto.DEFAULT_ALTEZZA);
 					System.out.println(altezzaCorrente + " altezza assegnata di default.");
 				}	
 			}
@@ -220,7 +220,7 @@ public class Gatto extends Animale {
 
 		 @Override
 		public void setPeso(float peso) {
-			if(peso > min_peso && peso < max_peso)
+			if(peso > Gatto.MIN_PESO&& peso < Gatto.MAX_PESO)
 			{
 				super.setPeso(peso);
 				System.out.println(super.getPeso() + " peso inizializzato");
@@ -228,13 +228,13 @@ public class Gatto extends Animale {
 			else
 			{
 				float pesoCorrente = super.getPeso();
-				if (pesoCorrente > min_peso && pesoCorrente < max_peso)
+				if (pesoCorrente > Gatto.MIN_PESO && pesoCorrente < Gatto.MAX_PESO)
 				{
 					System.out.println(pesoCorrente + " peso valido da prima.");
 				}
 				else
 				{
-					super.setPeso(default_peso); 
+					super.setPeso(Gatto.DEFAULT_PESO); 
 					System.out.println(pesoCorrente + " peso assegnato di default.");
 				}
 			}
