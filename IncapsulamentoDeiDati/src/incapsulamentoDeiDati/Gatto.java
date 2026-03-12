@@ -156,29 +156,29 @@ public class Gatto extends Animale {
 //			return anni;
 //		}
 
-		 @Override
-		public void setAnni(byte anni) {
-			System.out.println("max anni: " + Gatto.MAX_ANNI);
-			
-			if(anni >= Gatto.MIN_ANNI && anni <= Gatto.MAX_ANNI) 
-			{
-				super.setAnni(anni);
-				System.out.println(super.getAnni() + " anni inizializzati");
-			}
-			else
-			{
-				byte anniCorrenti = super.getAnni();
-				if (anniCorrenti >= Gatto.MIN_ANNI && anniCorrenti <= Gatto.MAX_ANNI) 
-				{
-					System.out.println(anniCorrenti + " anni validi da prima.");
-				}
-				else
-				{
-					super.setAnni(Gatto.DEFAULT_ANNI); 
-					System.out.println(anniCorrenti + " anni assegnati di default.");
-				}
-			}
-		}
+//		 @Override
+//		public void setAnni(byte anni) {
+//			System.out.println("max anni: " + Gatto.MAX_ANNI);
+//			
+//			if(anni >= Gatto.MIN_ANNI && anni <= Gatto.MAX_ANNI) 
+//			{
+//				super.setAnni(anni);
+//				System.out.println(super.getAnni() + " anni inizializzati");
+//			}
+//			else
+//			{
+//				byte anniCorrenti = super.getAnni();
+//				if (anniCorrenti >= Gatto.MIN_ANNI && anniCorrenti <= Gatto.MAX_ANNI) 
+//				{
+//					System.out.println(anniCorrenti + " anni validi da prima.");
+//				}
+//				else
+//				{
+//					super.setAnni(Gatto.DEFAULT_ANNI); 
+//					System.out.println(anniCorrenti + " anni assegnati di default.");
+//				}
+//			}
+//		}
 		/*
 		 * nel mondo quando abbiamo assegnato a set anni il valore 127, va a finire in  setAnni(byte anni)
 		 * poi viene verificaco dal primo if se 127 è compreso tra min_anni e max_anni,
@@ -263,6 +263,20 @@ public class Gatto extends Animale {
 
 		public void setRazzaGatto(RazzaGatto razzaGatto) {
 			this.razzaGatto = razzaGatto;
+		}
+		
+	//metodi getter per le costanti statiche
+
+		public byte getMinAnni() {
+			return Gatto.MIN_ANNI;
+		}
+
+		public byte getMaxAnni() {
+			return Gatto.MAX_ANNI;
+		}
+
+		public byte getDefaultAnni() {
+			return Gatto.DEFAULT_ANNI;
 		}
 	
 	// Metodi

@@ -26,8 +26,41 @@ public abstract class EssereVivente {
 		return anni;
 	}
 	//public abstract void setAnni(byte anni);
+//	public void setAnni(byte anni) {
+//		
+//		this.anni = anni;
+	//}
+	 
 	public void setAnni(byte anni) {
-		this.anni = anni;
+		final byte minAnni = this.getMinAnni();
+		final byte maxAnni = this.getMaxAnni();
+		final byte defaultAnni = this.getDefaultAnni();
+		
+		System.out.println("minAnni: " + minAnni);
+		System.out.println("maxAnni: " + maxAnni);
+		System.out.println("default_anni: " + defaultAnni);
+		
+		
+		
+		if(anni >= minAnni && anni <= maxAnni) 
+		{
+			this.anni = anni;
+			System.out.println(this.anni + " anni inizializzati");
+		}
+		else
+		{
+			byte anniCorrenti = this.anni = anni;
+			
+			if (anniCorrenti >= minAnni && anniCorrenti <= maxAnni) 
+			{
+				System.out.println(anniCorrenti + " anni validi da prima.");
+			}
+			else
+			{
+				this.anni = defaultAnni;
+				System.out.println(this.anni + " anni assegnati di default.");
+			}
+		}
 	}
 	/*
 	 * se importiamo il metodo da una classe astratta , ad un'altra super classe astratta , non abbiamo l'obbligo di implementarlo
@@ -59,6 +92,15 @@ public abstract class EssereVivente {
 	public void setPeso(float peso) {
 		this.peso = peso;
 	}
+	//metodi getter per le costanti statiche
+	
+	public abstract byte getMinAnni();
+	
+	public abstract byte getMaxAnni();
+	
+	public abstract byte getDefaultAnni();
+	
+	
 	
 	//metodi 
 	public abstract void nasce();

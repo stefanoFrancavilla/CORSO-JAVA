@@ -709,32 +709,32 @@ public void setCognome(String cognome) {
 //	return anni;
 //}
 
-public void setAnni(byte anni) {
-	System.out.println("max anni: " + EssereUmano.MAX_ANNI);
-	
-	if(anni >= EssereUmano.MIN_ANNI && anni <= EssereUmano.MAX_ANNI) // per dare una misura reale a essere umano abbiamo inserito un controllo sull'età, 
-	{
-		//this.anni = anni;
-		super.setAnni(anni);
-		System.out.println(super.getAnni() + " anni inizializzati");
-	}
-	else
-	{
-		byte anniCorrenti = super.getAnni();
-		if (anniCorrenti >= EssereUmano.MIN_ANNI && anniCorrenti <= EssereUmano.MAX_ANNI) // se l'età corrente dell'oggetto rientra nel range di età valido per un essere umano, manteniamo il valore corrente di anni.
-		{
-			System.out.println(anniCorrenti + " anni validi da prima.");
-		}
-		else
-		{
-			// this.anni = default_anni; // se viene inserito un valore non valido, assegniamo un valore di default di 18 anni.
-			super.setAnni(DEFAULT_ANNI);
-			
-			System.out.println(super.getAnni() + " anni assegnati di default.");
-			//System.out.println(getAnni() + " anni assegnati di default.");
-		}
-	}
-}
+//public void setAnni(byte anni) {
+//	System.out.println("max anni: " + EssereUmano.MAX_ANNI);
+//	
+//	if(anni >= EssereUmano.MIN_ANNI && anni <= EssereUmano.MAX_ANNI) // per dare una misura reale a essere umano abbiamo inserito un controllo sull'età, 
+//	{
+//		//this.anni = anni;
+//		super.setAnni(anni);
+//		System.out.println(super.getAnni() + " anni inizializzati");
+//	}
+//	else
+//	{
+//		byte anniCorrenti = super.getAnni();
+//		if (anniCorrenti >= EssereUmano.MIN_ANNI && anniCorrenti <= EssereUmano.MAX_ANNI) // se l'età corrente dell'oggetto rientra nel range di età valido per un essere umano, manteniamo il valore corrente di anni.
+//		{
+//			System.out.println(anniCorrenti + " anni validi da prima.");
+//		}
+//		else
+//		{
+//			// this.anni = default_anni; // se viene inserito un valore non valido, assegniamo un valore di default di 18 anni.
+//			super.setAnni(DEFAULT_ANNI);
+//			
+//			System.out.println(super.getAnni() + " anni assegnati di default.");
+//			//System.out.println(getAnni() + " anni assegnati di default.");
+//		}
+//	}
+//}
 
 //public float getAltezza() {
 //	return altezza;
@@ -830,6 +830,21 @@ public String getNazioneDiNascita() {
 public void setNazioneDiNascita(String nazioneDiNascita) {
 	this.nazioneDiNascita = nazioneDiNascita;
 }
+//metodi getter per le costanti statiche
+
+public byte getMinAnni() {
+	return EssereUmano.MIN_ANNI;
+}
+
+public byte getMaxAnni() {
+	return EssereUmano.MAX_ANNI;
+}
+
+public byte getDefaultAnni() {
+	return EssereUmano.DEFAULT_ANNI;
+}
+
+
 //metodi di verifica.
 
 //sono metodi che servono a verificare i dati di input inseriti nei metodi setter, e a restituire un messaggio di errore se i dati non sono validi.
