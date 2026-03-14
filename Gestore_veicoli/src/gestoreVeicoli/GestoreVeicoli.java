@@ -37,7 +37,15 @@ public class GestoreVeicoli {
                 +---------------------+
 		 */
 		
+		Auto auto1 = new Auto("alfa", "159", 3);
+		auto1.avvia();
+		auto1.ferma();
+		auto1.apriBagagliaio();
 		
+		System.out.println("------------------------------");
+		Moto moto1 = new Moto("Piaggio", "Vespa", false );
+		moto1.avvia();
+		moto1.ferma();
 	}
 
 }
