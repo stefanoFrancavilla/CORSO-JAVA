@@ -1,32 +1,36 @@
 package gestoreZoo;
 
-public abstract class Mammifero extends Animale{
-	 
+public class Aquila extends Uccello {
 	//variabili di istanza
-	private boolean haPelo;
 	
-	//costruttori
-	public Mammifero(String nome, double peso, boolean haPelo) {
-		super(nome, peso);
+	private String tipoAli;
+	
+	//costruttore
+	public Aquila(String nome, double peso, String tipoAli) {
+		super (nome, peso, tipoAli);
+		this.tipoAli = "acute";
+	}
+	
+	
+	public String getTipoAli() {
+		return tipoAli;
+	}
+
+	public void setTipoAli(String tipoAli) {
 		
-		this.haPelo = haPelo;
-	}
-	
-	//metodi getter/setter
-
-	public boolean getHaPelo() {
-		return haPelo;
+		this.tipoAli = "acute";	
 	}
 
-	public void setHaPelo(boolean haPelo) {
-		this.haPelo = haPelo;
+   //metodi
+   @Override
+	public void vola() {
+		System.out.println("L'aquila plana in alto!");
+	}
+	@Override
+	public void mangia() {
+		System.out.println("L'aquila caccia in picchiata!");
+		
 	}
 	
-	//metodi
-	
-	public void allatta() {
-		System.out.print(super.getNome() + " allatta");
-	}
-
 	
 }

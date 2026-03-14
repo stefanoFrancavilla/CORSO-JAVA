@@ -41,7 +41,7 @@ public abstract class Animale {
 	
 	public double getCostoGiorno() {
 		
-		double costoGiorno = costoBase + (peso * 0.5);
+		double costoGiorno = costoBase + (this.peso * 0.5);
 		return costoGiorno;
 		
 	}
