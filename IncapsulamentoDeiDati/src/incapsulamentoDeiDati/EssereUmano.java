@@ -741,71 +741,71 @@ public void setCognome(String cognome) {
 //	
 //}
 
-public void setAltezza(float altezza) {
-	
-	if(altezza > MIN_ALTEZZA && altezza < MAX_ALTEZZA) // per dare una misura reale a essere umano abbiamo inserito un controllo sull'altezza, 
-	{                                 //che deve essere compresa tra 20 cm e 250 cm.
-		super.setAltezza(altezza);
-		System.out.println(super.getAltezza() + " altezza inizializzata");
-	}
-	/*
-	 * quindi con questo controllo evitiamo di inserire valori che non sono realistici per un'essere umano
-	 */
-	else
-	{
-		float altezzaCorrente = super.getAltezza();
-		//quello che chiedo è: se l'altezza corrente(this.altezza) rientra nel range
-		if (altezzaCorrente > MIN_ALTEZZA && altezzaCorrente < MAX_ALTEZZA)
-		{
-			System.out.println(altezzaCorrente + " altezza valida da prima.");
-		//se rientra nel range ,manderà a schermo il valore di this.altezza
-		}
-		// altrimenti se anche l'altezza corrente dell'oggetto non è valida, assegniamo un valore di default di 100 cm.
-		else
-		{
-			super.setAltezza(DEFAULT_ALTEZZA); // se viene inserito un valore non valido, assegniamo un valore di default di 100 cm.
-			System.out.println(super.getAltezza() + " altezza assegnata di default.");
-		}
-		//System.out.println(altezza + " non è un'altezza valida per un essere umano");
-	}
-}
+//public void setAltezza(float altezza) {
+//	
+//	if(altezza > MIN_ALTEZZA && altezza < MAX_ALTEZZA) // per dare una misura reale a essere umano abbiamo inserito un controllo sull'altezza, 
+//	{                                 //che deve essere compresa tra 20 cm e 250 cm.
+//		super.setAltezza(altezza);
+//		System.out.println(super.getAltezza() + " altezza inizializzata");
+//	}
+//	/*
+//	 * quindi con questo controllo evitiamo di inserire valori che non sono realistici per un'essere umano
+//	 */
+//	else
+//	{
+//		float altezzaCorrente = super.getAltezza();
+//		//quello che chiedo è: se l'altezza corrente(this.altezza) rientra nel range
+//		if (altezzaCorrente > MIN_ALTEZZA && altezzaCorrente < MAX_ALTEZZA)
+//		{
+//			System.out.println(altezzaCorrente + " altezza valida da prima.");
+//		//se rientra nel range ,manderà a schermo il valore di this.altezza
+//		}
+//		// altrimenti se anche l'altezza corrente dell'oggetto non è valida, assegniamo un valore di default di 100 cm.
+//		else
+//		{
+//			super.setAltezza(DEFAULT_ALTEZZA); // se viene inserito un valore non valido, assegniamo un valore di default di 100 cm.
+//			System.out.println(super.getAltezza() + " altezza assegnata di default.");
+//		}
+//		//System.out.println(altezza + " non è un'altezza valida per un essere umano");
+//	}
+//}
 
 //public float getPeso() {
 //	return peso;
 //}
 
-public void setPeso(float peso) {
-	
-	if(peso > MIN_PESO && peso < MAX_PESO)
-	{
-		super.setPeso(peso);
-		System.out.println(super.getPeso() + " peso inizializzato");
-	}
-	else
-	{
-		float pesoCorrente = super.getPeso();
-		//if(this.getPeso() < min_peso && this.getPeso() > max_peso)
-		/*
-		 * e possibile chiedere anche con getPeso() se il peso corrente dell'oggetto rientra nel range di peso valido per un essere umano
-		 * sono due modi diversi per fare lo stesso controllo, ma in questo caso è più semplice usare this.peso
-		 *  invece di this.getPeso() perché getPeso() restituisce il valore di peso e quindi è più lungo da scrivere.
-		 */
-		
-		//System.out.println(peso + " non è un peso valido per un essere umano");
-		if (pesoCorrente > MIN_PESO && pesoCorrente < MAX_PESO)
-		{
-			System.out.println(pesoCorrente + " peso valido da prima.");
-			//se rientra nel range ,manderà a schermo il valore di this.peso
-		}
-		else
-		{
-			super.setPeso(DEFAULT_PESO); // se viene inserito un valore non valido, assegniamo un valore di default di 35 kg.
-			System.out.println(super.getPeso() + " peso assegnato di default.");
-		}
-	}
-	
-	
-}
+//public void setPeso(float peso) {
+//	
+//	if(peso > MIN_PESO && peso < MAX_PESO)
+//	{
+//		super.setPeso(peso);
+//		System.out.println(super.getPeso() + " peso inizializzato");
+//	}
+//	else
+//	{
+//		float pesoCorrente = super.getPeso();
+//		//if(this.getPeso() < min_peso && this.getPeso() > max_peso)
+//		/*
+//		 * e possibile chiedere anche con getPeso() se il peso corrente dell'oggetto rientra nel range di peso valido per un essere umano
+//		 * sono due modi diversi per fare lo stesso controllo, ma in questo caso è più semplice usare this.peso
+//		 *  invece di this.getPeso() perché getPeso() restituisce il valore di peso e quindi è più lungo da scrivere.
+//		 */
+//		
+//		//System.out.println(peso + " non è un peso valido per un essere umano");
+//		if (pesoCorrente > MIN_PESO && pesoCorrente < MAX_PESO)
+//		{
+//			System.out.println(pesoCorrente + " peso valido da prima.");
+//			//se rientra nel range ,manderà a schermo il valore di this.peso
+//		}
+//		else
+//		{
+//			super.setPeso(DEFAULT_PESO); // se viene inserito un valore non valido, assegniamo un valore di default di 35 kg.
+//			System.out.println(super.getPeso() + " peso assegnato di default.");
+//		}
+//	}
+//	
+//	
+//}
 
 //public ColoreOcchi getColoreOcchi() {
 //	return coloreOcchi;
@@ -831,17 +831,41 @@ public void setNazioneDiNascita(String nazioneDiNascita) {
 	this.nazioneDiNascita = nazioneDiNascita;
 }
 //metodi getter per le costanti statiche
-
+@Override
 public byte getMinAnni() {
 	return EssereUmano.MIN_ANNI;
 }
-
+@Override
 public byte getMaxAnni() {
 	return EssereUmano.MAX_ANNI;
 }
-
+@Override
 public byte getDefaultAnni() {
 	return EssereUmano.DEFAULT_ANNI;
+}
+@Override
+public float getMinAltezza() {
+	return EssereUmano.MIN_ALTEZZA;
+}
+@Override
+public float getMaxAltezza() {
+	return EssereUmano.MAX_ALTEZZA;
+}
+@Override
+public float getDefaultAltezza() {
+	return EssereUmano.DEFAULT_ALTEZZA;
+}
+@Override
+public float getMinPeso() {
+	return EssereUmano.MIN_PESO;
+}
+@Override
+public float getMaxPeso() {
+	return EssereUmano.MAX_PESO;
+}
+@Override
+public float getDefaultPeso() {
+	return EssereUmano.DEFAULT_PESO;
 }
 
 
@@ -974,6 +998,19 @@ public void lavora()
 {
 	System.out.println(super.getNome() + " " + cognome + " lavora");
 }
+
+public int somma (final int a , final int b) 
+{
+	//a = 25;
+	// se proviamo a modificare il valore di a o b, ci darà un errore di compilazione, perchè sono dichiarati come final.
+	int somma = a + b;
+	return somma;
+}
+/*
+ * con questo metodo stiamo dando all'esserre umano la capacità di sommare due numeri interi,
+ * con la dicitura di final stiamo escludendo la possibilità di modificare il loro valore in futuro all'interno del metodo,
+ */
+
 @Override
 public void vola() 
 {

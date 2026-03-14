@@ -36,6 +36,7 @@ public abstract class EssereVivente {
 		final byte maxAnni = this.getMaxAnni();
 		final byte defaultAnni = this.getDefaultAnni();
 		
+		
 		System.out.println("minAnni: " + minAnni);
 		System.out.println("maxAnni: " + maxAnni);
 		System.out.println("default_anni: " + defaultAnni);
@@ -80,25 +81,95 @@ public abstract class EssereVivente {
 		return altezza;
 	}
 	//public abstract void setAltezza(float altezza);
-	public  void setAltezza(float altezza) {
-		this.altezza = altezza;
-	}
+//	public  void setAltezza(float altezza) {
+//		this.altezza = altezza;
+//	}
+	
+		public void setAltezza(float altezza) {
+		 
+		 final float minAltezza = this.getMinAltezza();
+		 final float maxAltezza = this.getMaxAltezza();
+		 final float defaultAltezza = this.getDefaultAltezza();
+		 
+		 System.out.println("minAltezza: " + minAltezza);
+		 System.out.println("maxAltezza: " + maxAltezza);
+		 System.out.println("defaultAltezza: " + defaultAltezza);
+		 
+		 
+			if(altezza > minAltezza && altezza < maxAltezza) {
+//				super.setAltezza(altezza);
+				this.altezza = altezza;
+				System.out.println(this.altezza + " altezza inizializzata");
+			}
+			
+			else
+			{
+				float altezzaCorrente = this.altezza;
+				//this.altezza = altezza;
+				if (altezzaCorrente > minAltezza && altezzaCorrente < maxAltezza)
+				{
+					System.out.println(altezzaCorrente + " altezza valida da prima.");
+				}
+			
+				else
+				{
+					this.altezza = defaultAltezza;
+					System.out.println(this.altezza + " altezza assegnata di default.");
+				}	
+			}
+		}
 	
 	public float getPeso() {
 		return peso;
 	}
 
 	//public abstract void setPeso(float peso);
+//	public void setPeso(float peso) {
+//		this.peso = peso;
+//	}
 	public void setPeso(float peso) {
-		this.peso = peso;
+		final float minPeso = this.getMinPeso();
+		final float maxPeso = this.getMaxPeso();
+		final float defaultPeso = this.getDefaultPeso();
+		
+		System.out.println("minPeso: " + minPeso);
+		System.out.println("maxPeso: " + maxPeso);
+		System.out.println("defaultPeso: " + defaultPeso);
+		
+		if(peso > minPeso && peso < maxPeso)
+		{
+			//super.setPeso(peso);
+			this.peso = peso;
+			System.out.println(this.peso + " peso inizializzato");
+		}
+		else
+		{
+			float pesoCorrente = this.peso;
+			if (pesoCorrente > minPeso && pesoCorrente < maxPeso)
+			{
+				System.out.println(pesoCorrente + " peso valido da prima.");
+			}
+			else
+			{
+//				super.setPeso(Gatto.DEFAULT_PESO); 
+				this.peso = defaultPeso;
+				System.out.println(this.peso + " peso assegnato di default.");
+			}
+		}
 	}
 	//metodi getter per le costanti statiche
 	
 	public abstract byte getMinAnni();
-	
 	public abstract byte getMaxAnni();
-	
 	public abstract byte getDefaultAnni();
+	
+	public abstract float getMinAltezza();
+	public abstract float getMaxAltezza();
+	public abstract float getDefaultAltezza();
+	
+	public abstract float getMinPeso();
+	public abstract float getMaxPeso();
+	public abstract float getDefaultPeso();
 	
 	
 	

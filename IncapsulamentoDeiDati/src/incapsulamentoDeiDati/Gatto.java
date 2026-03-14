@@ -1,7 +1,10 @@
 package incapsulamentoDeiDati;
 import incapsulamentoDeiDati.utilities.Verifica;
-public class Gatto extends Animale {
+public final class Gatto extends Animale {
 	/*
+	 * con la parola final stiamo dichiarando una classe finale,
+	 * cioè una classe che non può essere estesa da altre classi,
+	 * 
 	 * la classe Gatto estende la classe Animale,
 	 * quindi eredita tutte le variabili d'istanza e i metodi della classe Animale,
 	 * di conseguenza la classe animale sarà la superclasse di Gatto, mentre la classe Gatto sarà la sottoclasse di Animale.
@@ -191,54 +194,54 @@ public class Gatto extends Animale {
 //			return altezza;
 //		}
 
-		 @Override
-		public void setAltezza(float altezza) {
-			if(altezza > Gatto.MIN_ALTEZZA && altezza < Gatto.MAX_ALTEZZA) {
-				super.setAltezza(altezza);
-				System.out.println(super.getAltezza() + " altezza inizializzata");
-			}
-			
-			else
-			{
-				float altezzaCorrente = super.getAltezza();
-				if (altezzaCorrente > Gatto.MIN_ALTEZZA && altezzaCorrente < Gatto.MAX_ALTEZZA)
-				{
-					System.out.println(altezzaCorrente + " altezza valida da prima.");
-				}
-			
-				else
-				{
-					super.setAltezza(Gatto.DEFAULT_ALTEZZA);
-					System.out.println(altezzaCorrente + " altezza assegnata di default.");
-				}	
-			}
-		}
+//		 @Override
+//		public void setAltezza(float altezza) {
+//			if(altezza > Gatto.MIN_ALTEZZA && altezza < Gatto.MAX_ALTEZZA) {
+//				super.setAltezza(altezza);
+//				System.out.println(super.getAltezza() + " altezza inizializzata");
+//			}
+//			
+//			else
+//			{
+//				float altezzaCorrente = super.getAltezza();
+//				if (altezzaCorrente > Gatto.MIN_ALTEZZA && altezzaCorrente < Gatto.MAX_ALTEZZA)
+//				{
+//					System.out.println(altezzaCorrente + " altezza valida da prima.");
+//				}
+//			
+//				else
+//				{
+//					super.setAltezza(Gatto.DEFAULT_ALTEZZA);
+//					System.out.println(altezzaCorrente + " altezza assegnata di default.");
+//				}	
+//			}
+//		}
 
 //		public float getPeso() {
 //			return peso;
 //		}
 
-		 @Override
-		public void setPeso(float peso) {
-			if(peso > Gatto.MIN_PESO&& peso < Gatto.MAX_PESO)
-			{
-				super.setPeso(peso);
-				System.out.println(super.getPeso() + " peso inizializzato");
-			}
-			else
-			{
-				float pesoCorrente = super.getPeso();
-				if (pesoCorrente > Gatto.MIN_PESO && pesoCorrente < Gatto.MAX_PESO)
-				{
-					System.out.println(pesoCorrente + " peso valido da prima.");
-				}
-				else
-				{
-					super.setPeso(Gatto.DEFAULT_PESO); 
-					System.out.println(pesoCorrente + " peso assegnato di default.");
-				}
-			}
-		}
+	//	 @Override
+//		public void setPeso(float peso) {
+//			if(peso > Gatto.MIN_PESO&& peso < Gatto.MAX_PESO)
+//			{
+//				super.setPeso(peso);
+//				System.out.println(super.getPeso() + " peso inizializzato");
+//			}
+//			else
+//			{
+//				float pesoCorrente = super.getPeso();
+//				if (pesoCorrente > Gatto.MIN_PESO && pesoCorrente < Gatto.MAX_PESO)
+//				{
+//					System.out.println(pesoCorrente + " peso valido da prima.");
+//				}
+//				else
+//				{
+//					super.setPeso(Gatto.DEFAULT_PESO); 
+//					System.out.println(pesoCorrente + " peso assegnato di default.");
+//				}
+//			}
+//		}
 
 //		public ColoreOcchi getColoreOcchi() {
 //			return coloreOcchi;
@@ -266,18 +269,45 @@ public class Gatto extends Animale {
 		}
 		
 	//metodi getter per le costanti statiche
-
+        @Override
 		public byte getMinAnni() {
 			return Gatto.MIN_ANNI;
 		}
 
+		 @Override
 		public byte getMaxAnni() {
 			return Gatto.MAX_ANNI;
 		}
-
+		 @Override
 		public byte getDefaultAnni() {
 			return Gatto.DEFAULT_ANNI;
 		}
+		 
+		@Override
+		public float getMinAltezza() {
+			return Gatto.MIN_ALTEZZA;
+		}
+		 @Override
+		public float getMaxAltezza() {
+			return Gatto.MAX_ALTEZZA;
+		}
+		 @Override
+		public float getDefaultAltezza() {
+			return Gatto.DEFAULT_ALTEZZA;
+		}
+		 
+		 @Override
+		 public float getMinPeso() {
+			 return Gatto.MIN_PESO;
+		 }
+		 @Override
+		 public float getMaxPeso() {
+			 return Gatto.MAX_PESO;
+		 }
+		 @Override
+		 public float getDefaultPeso() {
+			 return Gatto.DEFAULT_PESO;
+		 }
 	
 	// Metodi
 		

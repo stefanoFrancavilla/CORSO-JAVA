@@ -194,6 +194,7 @@ linaVioli.setCognome("Violi");
 
 linaVioli.stampa();
 
+System.out.println(linaVioli.somma(10, 38));
 linaVioli.siNutre();
 linaVioli.dorme();
 linaVioli.muore();
