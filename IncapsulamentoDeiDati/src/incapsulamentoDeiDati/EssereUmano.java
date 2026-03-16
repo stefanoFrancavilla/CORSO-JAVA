@@ -988,6 +988,10 @@ public void dorme()
  * e poi successivamente il metodo nella classe essere umano
  * 
  */
+public void canta()
+{
+	System.out.println(super.getNome() + " " + cognome + " canta");
+}
 
 public void studia()
 {

@@ -256,6 +256,23 @@ ClasseProtettiDiversoPackage testProtected2 = new ClasseProtettiDiversoPackage()
  * 
  */
 
+System.out.println();	
+System.out.println("5--------------------------");
+System.out.println();
+
+Cantautore vascoRossi = new Cantautore("Vasco", "Rossi", Sesso.MASCHIO);
+
+vascoRossi.stampa();
+vascoRossi.setTotaleConcerti(30);
+
+vascoRossi.aggiungiTitoloCanzoneScritta("Alba chiara");
+vascoRossi.aggiungiTitoloCanzoneScritta("C'è chi dice no");
+vascoRossi.aggiungiTitoloCanzoneScritta("Liberi liberi");
+vascoRossi.stampaTitoliCanzoniScritte();
+
+
+
+
 	}
 
 }
