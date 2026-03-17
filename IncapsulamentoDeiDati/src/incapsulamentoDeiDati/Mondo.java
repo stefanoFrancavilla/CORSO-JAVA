@@ -268,7 +268,12 @@ vascoRossi.setTotaleConcerti(30);
 vascoRossi.aggiungiTitoloCanzoneScritta("Alba chiara");
 vascoRossi.aggiungiTitoloCanzoneScritta("C'è chi dice no");
 vascoRossi.aggiungiTitoloCanzoneScritta("Liberi liberi");
+vascoRossi.aggiungiTitoloCanzoneScritta("Brava Giulia");
+vascoRossi.aggiungiTitoloCanzoneScritta("Domeniica lunatica");
+vascoRossi.aggiungiTitoloCanzoneScritta("Vivere una favola");
+vascoRossi.aggiungiTitoloCanzoneScritta("Gli spari sopra");
 vascoRossi.stampaTitoliCanzoniScritte();
+
 
 
 

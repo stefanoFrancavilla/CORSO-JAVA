@@ -13,6 +13,7 @@ public final class Cantautore extends Cantante {
 	
 	private String[] titoliCanzoniScritte;
 	private byte contatoreCanzoniScritte;
+	private int maxCanzoniScritte;
 	
 	//costruttore
 	
@@ -25,12 +26,18 @@ public final class Cantautore extends Cantante {
 		super(nome, cognome, sesso);
 		
 		System.out.println("Cantautore(3)");	
+		
+		this.setMaxCanzoniScritte(3);
+		//il max canzoni scritte ci serve per tenere traccia del limite	
+		//è stato messo al primo posto perchè devo inizializzare il limite prima di inizializzare l'array dei titoli delle canzoni scritte,
+		
 		this.inizializzaTitoliCanzoniScritte();
 		//ogni volta che viene creato un cantautore , ha la posibilità di creare al massimo 10 canzoni
 		
 		this.setContatoreCanzoniScritte((byte)0);
 		//il contatore ci serve per tenere traccia di quante canzoni ha scritto il cantautore, 
 		//in modo da non superare il limite di 10 canzoni
+		
 	}
 
 
@@ -45,22 +52,80 @@ public final class Cantautore extends Cantante {
 		this.contatoreCanzoniScritte = contatoreCanzoniScritte;
 	}
 	
-	private void inizializzaTitoliCanzoniScritte() {
-		titoliCanzoniScritte = new String[3];
+	public int getMaxCanzoniScritte() {
+		return maxCanzoniScritte;
+	}
+
+	private void setMaxCanzoniScritte(int maxCanzoniScritte) {
+		this.maxCanzoniScritte = maxCanzoniScritte;
 	}
 	
+	
+	//metodi
+	private void inizializzaTitoliCanzoniScritte() {
+		titoliCanzoniScritte = new String[maxCanzoniScritte];
+	}
+	
+//	public void aggiungiTitoloCanzoneScritta(String titolo) {
+//		
+//		if(contatoreCanzoniScritte < titoliCanzoniScritte.length )
+//		{
+//		titoliCanzoniScritte[contatoreCanzoniScritte] = titolo;
+//		contatoreCanzoniScritte++;
+//		}
+//		else
+//		{
+//			System.out.println("Arrey piena. Miglioreremo con le collection");
+//	    }
+//		
+//	}
+//	
+	
 	public void aggiungiTitoloCanzoneScritta(String titolo) {
+	
+	if(contatoreCanzoniScritte < maxCanzoniScritte )
+	{
+//	titoliCanzoniScritte[contatoreCanzoniScritte] = titolo;
+//	contatoreCanzoniScritte++;
+		aggiungiTitolo(titolo);
+	
+	System.out.println("contatore canzoni scritte: " + contatoreCanzoniScritte);
+	}
+	else
+	{
+		maxCanzoniScritte = maxCanzoniScritte + 3;
+		//quando il contatore delle canzoni scritte arriva al suo massimo (10) in questo caso,allora aumento il limite di canzoni scritte di 10
+		//quindi se il limite era 10, allora diventa 20, se era 20 diventa 30 e così via,
+		//in questo modo posso continuare ad aggiungere canzoni scritte senza dovermi preoccupare di superare il limite.
 		
-		if(contatoreCanzoniScritte < titoliCanzoniScritte.length )
-		{
+		String[] temp = new String[maxCanzoniScritte];
+		/*
+		 * questo nuovo array temp, mi serve per creare un nuovo array con il nuovo limite di canzoni scritte,	
+		 */
+		
+		for(int i = 0; i < titoliCanzoniScritte.length; i++) {
+			
+			temp[i] = titoliCanzoniScritte[i];
+		}
+		titoliCanzoniScritte = temp;
+		
+		System.out.println("titoli canzoni scritte: " + titoliCanzoniScritte.length);
+		
+        
+//		titoliCanzoniScritte[contatoreCanzoniScritte] = titolo;
+//		contatoreCanzoniScritte++;
+		aggiungiTitolo(titolo);
+        for(int i = 0; i < maxCanzoniScritte; i++) {
+			
+			System.out.println("titoli canzoni scritte:[" + i + "]" + titoliCanzoniScritte[i]);
+		}
+		System.out.println("Espando l'array");
+    }
+	
+}
+	private void aggiungiTitolo(String titolo) {
 		titoliCanzoniScritte[contatoreCanzoniScritte] = titolo;
 		contatoreCanzoniScritte++;
-		}
-		else
-		{
-			System.out.println("Arrey piena. Miglioreremo con le collection");
-	    }
-		
 	}
 	
 	public void stampaTitoliCanzoniScritte() {
@@ -73,7 +138,7 @@ public final class Cantautore extends Cantante {
 		 *  senza dover creare una nuova stringa ogni volta che concatenamo una nuova stringa.
 		 */
 		
-		for(int i = 0; i < contatoreCanzoniScritte; i++)
+		for(int i = 0; i < titoliCanzoniScritte.length; i++)
 		{
 			if(titoliCanzoniScritte[i] != null) // se il titolo della canzone è diverso da null
 			{
@@ -108,5 +173,6 @@ public final class Cantautore extends Cantante {
 	   }
 		
 		System.out.println(sb.toString());
+		
 	}
 }
