@@ -63,4 +63,11 @@ public final class ArchivioPubblicazioni {
 		}
 		
 	}
+	public void stampaArchivio() {
+		StringBuilder sb = new StringBuilder();
+		for(int i = 0; i < pubblicazioni.length; i++) {
+			sb.append("Pubblicazione: " + pubblicazioni[i] + "\n");
+		}
+		System.out.println(sb.toString());
+	}
 }

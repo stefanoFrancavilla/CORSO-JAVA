@@ -186,11 +186,16 @@ Separazione della logica in metodi privati di supporto (inizializzaArchivio, agg
 	
 	
 	
-		Libro libro = new Libro();
+	ArchivioPubblicazioni archivio = new ArchivioPubblicazioni();
+	archivio.aggiungiPubblicazione(new Libro("Il Signore degli Anelli", "J.R.R. Tolkien", Genere.FANTASY, 1954));
+	archivio.aggiungiPubblicazione(new Libro("Il Nome della Rosa", "Umberto Eco", Genere.ROMANZO, 1980));
+	archivio.aggiungiPubblicazione(new Libro("Il Gattopardo", "Giuseppe Tomasi di Lampedusa", Genere.ROMANZO, 1958));
+	archivio.stampaArchivio();
+	
+	
 		
-		libro.setGenere(Genere.SCONOSCIUTO);
-		Rivista rivista = new Rivista();
-		libro.stampaDettagli();
+		//voto finale 8/10
+		
 	}
 
 }
