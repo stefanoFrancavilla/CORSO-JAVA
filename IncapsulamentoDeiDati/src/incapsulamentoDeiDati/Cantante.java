@@ -55,8 +55,15 @@ public sealed class Cantante extends EssereUmano permits Cantautore{
 		
 		/*
 		 * esercizio implementare le logiche di controllo per evitare
-		 * che vengano assegnati dei valori strampalati alla variabile totale Conceerti
+		 * che vengano assegnati dei valori strampalati alla variabile totale Concerti
 		 */
+		if (totaleConcerti < 0) {
+			this.totaleConcerti = 0;
+			System.out.println("Il totale dei concerti non può essere negativo. Impostato a 0.");
+		}
+		else {
+			this.totaleConcerti = totaleConcerti;
+		}
 	}
 	
 	//metodi
@@ -72,7 +79,9 @@ public sealed class Cantante extends EssereUmano permits Cantautore{
 	 */
 	
 	
-	
+	public void canta() {
+		System.out.println("Il cantante sta cantando una canzone del genere " + this.getGenereMusicale());
+	}
 	
 	
 	

@@ -12,6 +12,12 @@ public class StringBuilder_append {
            (usa loop e System.currentTimeMillis()).
 		 */
 		
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append(" Ciao").append(" mondo");
+		System.out.println(sb.toString() + "\n capacity " + sb.capacity() + "\n lunghezza " + sb.length());
+		
+		
 	}
 
 }
