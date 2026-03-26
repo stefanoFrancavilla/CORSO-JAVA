@@ -24,5 +24,14 @@ public interface ElectronicDevice {
 	 *    che possono essere di default o astratti,
 	 *    con l'unica cosa che non possono avere dei campi di istanza, ma solo delle costanti.
 	 *   
+	 *  sia  con electronicDevice che con IO, stiamo definedo dei comportamenti 
+	 *  che possono essere implementati da qualsiasi classe che implementa queste interfacce,
+	 *  
+	 *  cioè tutti i dispositivi che implementano l'interfaccia ElectronicDevice, avranno il comportamento di switchOn e switchOff,
+	 *  quindi hanno la possibilità di accendersi e spegnersi,
+	 *  
+	 *   e tutti i dispositivi che implementano l'interfaccia IO, avranno il comportamento di getInput e provideOutput,
+	 *   mentre i dispositivi che implementano IO hanno la possibilità di ricevere input e fornire output.
+	 *   
 	 */
 }
