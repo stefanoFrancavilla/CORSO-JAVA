@@ -22,6 +22,7 @@ public abstract class Computer implements ElectronicDevice, IO {
 	private Ram ram; // questa è un'altra classe che permetterà di modellare il concetto di memoria dinamica
 	
 	
+	
 	//	costruttore
 	public Computer() {
 		this.setCpu();
@@ -45,7 +46,7 @@ public abstract class Computer implements ElectronicDevice, IO {
 	{
 		System.out.println("Eseguo una computazione");
 		
-		int numeroDiIstruzioni = 10;
+		int numeroDiIstruzioni = 3;
 		
 		for(int i = 0; i < numeroDiIstruzioni; i++)
 		{

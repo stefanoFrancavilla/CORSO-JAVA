@@ -12,7 +12,7 @@ public class Start {
 		pc.provideOutput();
 		pc.switchOff();
 		
-		System.out.println(Cpu.getTransistorMaterial());
+		System.out.println(Transistor.getTransistorMaterial());
 	}
 
 }
