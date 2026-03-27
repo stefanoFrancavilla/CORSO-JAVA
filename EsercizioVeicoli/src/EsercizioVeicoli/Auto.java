@@ -51,10 +51,4 @@ public int getNumeroruote() {
 }
 
 
-
-
-
-
-
-
 }

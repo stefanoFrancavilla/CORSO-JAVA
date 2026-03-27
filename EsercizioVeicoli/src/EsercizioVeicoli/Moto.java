@@ -33,7 +33,7 @@ public class Moto extends Mezzo {
 	public void setSidecar(boolean sidecar) {
 		this.sidecar = sidecar;
 	}
-
+	//metodi
 	@Override
 	public void mostraInfo() {
 		
@@ -51,13 +51,5 @@ public class Moto extends Mezzo {
 		
 		return numeroRuote;
 	}
-	
-	//metodi
-	
-	
-	
-	
-	
-	
 	
 }

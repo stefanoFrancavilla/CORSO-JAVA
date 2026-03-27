@@ -32,8 +32,29 @@ public abstract class Mezzo implements Veicolo {
 
 	public void avvia()
 	{
-     
+        
+    	 System.out.println("Il mezzo " + marca + " " + modello + " è in movimento");
+    
 	}
+     public void ferma()
+     {
+    	
+    	 System.out.println("Il mezzo " + marca + " " + modello + " è fermo");
+     
+    }
+     
+     public void inMovimento()
+     {
+    	 if(inMovimento == true)
+    	 {
+    		 this.avvia();
+    	 }
+    	 else
+    	 {
+    		 this.ferma();
+    	 }
+     }
+	
 	
 	//metodi
 	public abstract int getNumeroruote();
