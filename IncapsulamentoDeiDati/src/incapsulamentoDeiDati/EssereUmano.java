@@ -1,4 +1,5 @@
 package incapsulamentoDeiDati;
+import incapsulamentoDeiDati.utilities.Calcolo;
 import incapsulamentoDeiDati.utilities.Verifica;
 //1
 /*
@@ -953,7 +954,7 @@ public void beve()
 @Override
 public void mangia() 
 {
-	System.out.println(super.getNome() + " " + cognome + " mangia");
+	System.out.println(super.getNome() + " " + cognome + " mangia con le posate");
 }
 @Override
 public void respira() 
@@ -1003,18 +1004,113 @@ public void lavora()
 	System.out.println(super.getNome() + " " + cognome + " lavora");
 }
 
-public int somma (final int a , final int b) 
+//1
+//public int somma (final int a , final int b) 
+//{
+//	//a = 25;
+//	// se proviamo a modificare il valore di a o b, ci darà un errore di compilazione, perchè sono dichiarati come final.
+//	int somma = a + b;
+//	return somma;
+//}
+
+//2
+public double somma (double...ns )
 {
-	//a = 25;
-	// se proviamo a modificare il valore di a o b, ci darà un errore di compilazione, perchè sono dichiarati come final.
-	int somma = a + b;
-	return somma;
+System.out.println("somma varargs");
+	
+	return Calcolo.somma(ns);
 }
+
 /*
  * con questo metodo stiamo dando all'esserre umano la capacità di sommare due numeri interi,
  * con la dicitura di final stiamo escludendo la possibilità di modificare il loro valore in futuro all'interno del metodo,
  */
 
+//1
+public int moltiplica (final int a , final int b) 
+{
+	System.out.println("moltiplica 1");
+	//b = 100;
+	int prodotto = a * b;
+	return prodotto;
+}
+
+//2
+//public float moltiplica (final float a , final int b) 
+//{
+//	System.out.println("moltiplica 2");
+//	//b = 100;
+//	float prodotto = a * b;
+//	return prodotto;
+//}
+//
+//public float moltiplica (final int a , final float b) 
+//{
+//	System.out.println("moltiplica 3");
+//	//b = 100;
+//	float prodotto = a * b;
+//	return prodotto;
+//}
+//
+//public double moltiplica (final int a , final float b , final int c , final double d) 
+//{
+//	System.out.println("moltiplica 4");
+//	//b = 100;
+//	double prodotto = a * b;
+//	return prodotto;
+//}
+//3
+
+//public double moltiplica(double... ns)
+//{
+//	System.out.println("moltiplica varargs");
+//	
+//	double prodotto = 1;
+//	
+//	for (int i = 0; i < ns.length; i++) 
+//	
+//		prodotto *= ns[i];
+//	
+//	return prodotto;
+//}
+
+//4
+
+public double moltiplica(double... ns)
+{
+	System.out.println("moltiplica varargs");
+	
+	return Calcolo.moltiplica(ns);
+}
+/*
+ * con il punto 4 stiamo usando un metodo statico della classe calcolo.
+ * a differenza del punto 3 che era implementato nella classe Essere umano,
+ * con questo metodo stiamo delelgando la responsabilità del calcolo del prodotto dei numeri al metodo moltiplica della classe Calcolo,
+ * e quindi stiamo ottimizzando il codice, rendendolo più leggibile, e manutenibile.
+ * 
+ * in questo modo abbiamo la possibilità anche di riusarlo in altri contesti , non necessariamente solo nella classe EssereUmano,
+ * 
+ */
+
+
+
+/*
+ * per usare questo mmetodo di moltiplica con varargs, bisogna trattarlo come se stessimo usando un'array.
+ * quindi come prima cosa inizializziamo il prodotto a 1.
+ * poi usiamo il ciclo for per scorrere tutti gli elementi dell'array ns.
+ * ad ogni iterazione del ciclo moltiplichiamo il prodotto per l'elemento corrente dell'array ns, che è ns[i].
+ * quindi che gli arrivi un double , anzichè un int , o un float, o un numero indefinito di numeri,
+ * lui sarà sempre in grado di moltiplicarli, grazie al metodo varargs che abbiamo creato.
+ * 
+ */
+
+/*
+ * con il metodo varargs stiamo dando la possibilità di moltiplicare un numero indefinito di numeri
+ * con i tre metodi moltiplica con parametri diversi, stiamo dando la possibilità di moltiplicare numeri di tipi diversi, e con un numero diverso di parametri
+ * senza specificare un numero preciso di parametri per ogni metodo
+ */
+
+//4
 @Override
 public void vola() 
 {
@@ -1036,6 +1132,17 @@ public void stampa()
 	System.out.println("Nazione di Nascita: " + nazioneDiNascita);
 	System.out.println("----------");
     
+	
+	/*
+	 * con il metodo overload  stiamo dicendo che il metodo stampa() della classe EssereUmano è un'estensione del metodo stampa() della superclasse Animale,
+	 * quindi stiamo aggiungendo ulteriori informazioni da stampare oltre a quelle già presenti nel metodo stampa() della superclasse Animale.
+	 * 
+	 * in questo modo, quando chiamiamo il metodo stampa() su un oggetto della classe EssereUmano,
+	 *  verranno stampate tutte le informazioni presenti nel metodo stampa() della superclasse Animale,
+	 *  
+	 *  in parole semplici stiamo estendendo il metodo stampa() della superclasse Animale,
+	 *   aggiungendo ulteriori informazioni specifiche per la classe EssereUmano.
+	 */
  }
 
 }

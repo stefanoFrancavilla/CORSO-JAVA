@@ -184,8 +184,25 @@ linaVioli.stampa();
 
 
 linaVioli.setNome("Lina");
-
 linaVioli.setCognome("Violi");
+System.out.println(linaVioli.somma(10, 38));
+System.out.println(linaVioli.somma(new double[] {10, 38, 2.0, 10F}));
+//1
+//System.out.println(linaVioli.moltiplica(10, 38));
+
+//2
+//System.out.println(linaVioli.moltiplica(10, 38));
+//System.out.println(linaVioli.moltiplica(10.3F, 38));
+//System.out.println(linaVioli.moltiplica(10, 38.5F));
+//System.out.println(linaVioli.moltiplica(10, 38.5F, 5, 3.7));
+
+//3 e 4
+
+//System.out.println(linaVioli.moltiplica(10, 38));
+//System.out.println(linaVioli.moltiplica(10, 38, 2.0F));
+//System.out.println(linaVioli.moltiplica(10, 38, 2.0, 10F));
+//System.out.println(linaVioli.moltiplica(new double[] {10, 38, 2.0, 10F}));
+
 //linaVioli.setNome("Lin?a");
 
 //linaVioli.stampa();
@@ -273,6 +290,110 @@ vascoRossi.aggiungiTitoloCanzoneScritta("Domeniica lunatica");
 vascoRossi.aggiungiTitoloCanzoneScritta("Vivere una favola");
 vascoRossi.aggiungiTitoloCanzoneScritta("Gli spari sopra");
 vascoRossi.stampaTitoliCanzoniScritte();
+
+System.out.println();	
+System.out.println("6--------------------------");
+System.out.println();
+/*
+ * in questo caso abbiamo creato una variabile di riferimento di tipo Animale che punta ad un oggetto di tipo EssereUmano.
+ * cioè abbiamo creato un oggetto di tipo EssereUmano e lo abbiamo assegnato ad una variabile di riferimento di tipo Animale.
+ */
+//Animale animale1 = new EssereUmano();
+//
+//System.out.println("animale1: " + animale1);
+//
+//animale1.mangia();
+//animale1.dorme();
+//animale1.lavora();
+/*
+ * se proviamo a chiamare il metodo lavora() sulla variabile di riferimento animale1, otteniamo un errore di compilazione,
+ * perchè il metodo lavora() è definito nella classe EssereUmano e non nella classe Animale.
+ * quindi con animale possiamo chimare solo i metodi che sono definiti nella classe Animale, anche se l'oggetto a cui punta è di tipo EssereUmano.
+ */
+
+Animale animale2 = new Gatto();
+System.out.println("animale2: " + animale2);
+
+animale2.mangia();
+animale2.dorme();
+//animale2.faLeFusa();
+
+System.out.println();	
+System.out.println("6.1--------------------------");
+System.out.println();
+
+Animale[] animali = new Animale[4];
+/*
+ * in questo caso abbiamo un'array di animali in generale ma di tipo animale
+ * all'interno dell'array abbiamo inserito sia i gattini creati nelle righe precedenti, sia l'essere umano fabio arancioni e lina violi.
+ * quindi quando siamo andati ad inserire gli elementi nell'array, abbiamo inserito sia oggetti di tipo Gatto che oggetti di tipo EssereUmano,
+ * 
+ * con il ciclo for, iteriamo su tutti gli elementi dell'array animali e chiamiamo i metodi mangia() e dorme() su ogni animale.
+ */
+animali[0] = gattino;
+animali[1] = miagolino;
+animali[2] = linaVioli;
+animali[3] = fabioArancioni;
+
+/*
+ * con questo ciclo for, iteriamo su tutti gli elementi dell'array animali e chiamiamo i metodi mangia() e dorme() su ogni animale.
+ * notare che anche se l'array è di tipo Animale, possiamo chiamare i metodi mangia() e dorme() su ogni elemento dell'array,
+ * perchè questi metodi sono definiti nella classe Animale e sono ereditati da tutte le classi che estendono Animale, come EssereUmano e Gatto.
+ * ecco perchè con l'ereditarietà e il polimorfismo, possiamo trattare tutti gli animali in modo uniforme, anche se sono di tipi diversi.
+ * 
+ */
+for(int i = 0; i < animali.length; i++) {
+	Animale animaleCorrente = animali[i];
+	animaleCorrente.mangia();
+	animaleCorrente.dorme();
+	
+	/*
+	 * con l'if stiamo dicendo che se l'animale corrente è un'istanza di EssereUmano, allora possiamo chiamare il metodo lavora() su di esso,
+	 * perchè il metodo lavora() è definito nella classe EssereUmano e non nella classe Animale,
+	 *  quindi dobbiamo prima verificare che l'animale corrente sia effettivamente un'istanza di EssereUmano prima di poter chiamare il metodo lavora() su di esso.
+	 *  
+	 *  il codice che ci serve in questione è il seguente: instanceof è un operatore che ci permette di verificare se un oggetto è un'istanza di una determinata classe 
+	 *  o di una sua sottoclasse.
+	 */
+	if(animaleCorrente instanceof EssereUmano) 
+	{
+		//animaleCorrente.lavora(); chiamandolo in questo modo non funziona perchè il metodo lavora() è definito nella classe EssereUmano e non nella classe Animale,
+		//quindi dobbiamo fare un cast esplicito da Animale a EssereUmano per poter chiamare il metodo lavora() su di esso.
+		
+		//1
+		//((EssereUmano) animaleCorrente).lavora();
+		
+		/*
+		 * per far si che il codice funzioni, dobbiamo fare un cast esplicito da Animale a EssereUmano, 
+		 * in questo modo stiamo dicendo al compilatore che l'oggetto animaleCorrente è effettivamente un'istanza di EssereUmano 
+		 * e quindi possiamo chiamare il metodo lavora() su di esso.
+		 */
+		
+		//2
+		EssereUmano essereUmano = (EssereUmano) animaleCorrente;
+		essereUmano.lavora();
+		/*
+		 * in sotanza stiamo referendo l'oggetto animaleCorrente come un oggetto di tipo EssereUmano,
+		 * quindi stiamo dicendo al compilatore che l'oggetto animaleCorrente è effettivamente un'istanza di EssereUmano
+		 * in pratica questi sono due modi diversi per fare la stessa cosa
+		 */
+		
+	}
+	else if(animaleCorrente instanceof Gatto) 
+	{
+		
+		((Gatto) animaleCorrente).faLeFusa();
+		
+	}
+}
+ /*
+  * con questo sistema possiamo trattare tutti gli animali in modo uniforme, anche se sono di tipi diversi,
+  *  senza doverci preoccupare del tipo specifico di animale che stiamo trattando.
+  *  
+  *  possiamo inoltre aggiungere nuovi tipi di animali, come ad esempio un cane, senza dover modificare il codice che tratta gli animali in generale,
+  *  basta che il nuovo tipo di animale estenda la classe Animale e implementi i metodi mangia() e dorme(),
+  *   e il codice che tratta gli animali in generale funzionerà senza problemi.
+  */
 
 
 

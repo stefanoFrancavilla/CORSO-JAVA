@@ -1,6 +1,10 @@
 package problemaDelDiamante;
 
 //public interface Animale {
+
+/*
+ * nelle interfacce è possibile dichiarare dei metodi statici e dei metodi default
+ */
 	public sealed interface Animale permits AnimaleMarino, AnimaleTerrestre {
 		/*con questa riga di codice stiamo dicendo che interfaccia animale può essere estesa
 		 * SOLO da animaleMarino e AnimaleTerrestre

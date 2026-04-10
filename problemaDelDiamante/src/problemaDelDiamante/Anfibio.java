@@ -1,12 +1,12 @@
 package problemaDelDiamante;
 
-public abstract class Anfibio implements AnimaleMarino, AnimaleTerrestre {
-
-	public void respira()
-	{
-		AnimaleMarino.super.respira();
-		AnimaleTerrestre.super.respira();
-	}
+//public abstract class Anfibio implements AnimaleMarino, AnimaleTerrestre {
+//
+//	public void respira()
+//	{
+//		AnimaleMarino.super.respira();
+//		AnimaleTerrestre.super.respira();
+//	}
 	
 	/*
 	 * il problema del diamante è che se io non implemento il metodo respira() in Anfibio,
@@ -23,5 +23,14 @@ public abstract class Anfibio implements AnimaleMarino, AnimaleTerrestre {
 	 */
 	
 	
-	
+	public non-sealed abstract class Anfibio implements AnimaleMarino, AnimaleTerrestre {
+		public static void stampaAnfibio() {
+			System.out.println("Sono un anfibio"); // questo viene ereditato
+		}
+
+		public void respira()
+		{
+			AnimaleMarino.super.respira();
+			AnimaleTerrestre.super.respira();
+		}
 }

@@ -326,7 +326,7 @@ public final class Gatto extends Animale {
 		@Override
 	public void mangia() 
 	{
-		System.out.println(super.getNome() + " mangia");
+		System.out.println(super.getNome() + " mangia nella ciotola");
 	}
 		@Override
 	public void respira() 
