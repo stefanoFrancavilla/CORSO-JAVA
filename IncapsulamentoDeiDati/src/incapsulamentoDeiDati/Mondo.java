@@ -1,4 +1,7 @@
 package incapsulamentoDeiDati;
+import java.time.LocalDate;
+import java.time.Month;
+
 import incapsulamentoDeiDati.test.*;
 public class Mondo {
 
@@ -58,7 +61,9 @@ EssereUmano saraVerdi = new EssereUmano("Sara",
 		-500_055f,
 		ColoreOcchi.CASTANI,
 		ColoreCapelli.BIONDI,
-		"Italia");
+		"Italia",
+		LocalDate.of(1978, Month.AUGUST, 10),
+		"AAABBB111111111111");
 
 saraVerdi.stampa();
 
@@ -264,7 +269,7 @@ ClasseProtettiStessoPackage testProtected1 = new ClasseProtettiStessoPackage();
 testProtected1.nome = "Luca";
 testProtected1.stampa();
 
-ClasseProtettiDiversoPackage testProtected2 = new ClasseProtettiDiversoPackage();
+//ClasseProtettiDiversoPackage testProtected2 = new ClasseProtettiDiversoPackage();
 //testProtected2.nome = "Luca";
 //testProtected2.stampa();
 
@@ -396,9 +401,112 @@ for(int i = 0; i < animali.length; i++) {
   */
 
 
+System.out.println();	
+System.out.println("6.2--------------------------");
+System.out.println();
+
+/*
+ * con questo metodo for-each, iteriamo su tutti gli elementi dell'array animali e chiamiamo i metodi mangia() e dorme() su ogni animale.
+ * con l'if invece verifichiamo se l'animale corrente è un'istanza di EssereUmano,
+ * con questo codice stiamo usando il metodo pattern matching per il cast,
+ *  che ci permette di fare il cast in modo più semplice e leggibile, 
+ *  senza dover creare una variabile di riferimento temporanea come nel caso precedente.
+ *  
+ *  in parole semplici con il pattern matching per il cast, possiamo fare il cast direttamente all'interno dell'if,
+ *  e se l'animale corrente è effettivamente un'istanza di EssereUmano,
+ *   allora la variabile persona sarà automaticamente referenziata all'oggetto animaleCorrente come un oggetto di tipo EssereUmano,
+ *   
+ *   questo ci consente di chiamare il metodo lavora() su di esso senza dover fare un cast esplicito come nel caso precedente.
+ *   
+ *   quindi il metodo pattern matching ci permette di scrivere codice più semplice e leggibile, 
+ *   evitando la necessità di creare variabili di riferimento temporanee per fare il cast,
+ */
+
+//1
 
 
+//for(Animale animaleCorrente : animali) {
+//	
+//	animaleCorrente.mangia();
+//	animaleCorrente.dorme();
+//	
+//	if(animaleCorrente instanceof EssereUmano persona)
+//	{
+//	    persona.lavora();
+//	}
+//	
+//	else 
+//	{
+//		//persona.lavora(); non può funzionare poichè non è stato creato nessun oggetto di tipo essereUmano.
+//		//quindi l'else in questo caso serve per gestire il caso in cui l'animale corrente non sia un'istanza di EssereUmano,
+//	}
+//	/*
+//	 * questo if si potrebbe leggere cosi: animale corrente contiene un riferimento ad un'oggetto di tipo EssereUmano
+//	 * allora viene creata una variabile persona in riferimento a quell'oggetto di tipo EssereUmano e possiamo chiamare il metodo lavora() su di esso.
+//	 * 	 
+//	 */
+//	if(animaleCorrente instanceof Gatto gatto)
+//	{
+//		gatto.faLeFusa();
+//	}
+//
+//	}
 
+
+//2
+
+
+for(Animale animaleCorrente : animali) {
+	
+	animaleCorrente.mangia();
+	animaleCorrente.dorme();
+	
+	if(!(animaleCorrente instanceof EssereUmano persona))
+	{
+	 //   persona.lavora(); 
+		//con il not logico stiamo dicendo che :
+		//se animaleCorrente non è un'istanza di EssereUmano, allora non viene creata la variabile persona e quindi non possiamo chiamare il metodo lavora() su di esso,
 	}
+	
+	else
+	{
+		persona.lavora();  
+		 
+	}
+}
 
+System.out.println();	
+System.out.println("6.3--------------------------");
+System.out.println();
+
+fabioArancioni.abbraccia(linaVioli);
+linaVioli.abbraccia(miagolino);
+
+
+System.out.println();	
+System.out.println("7--------------------------");
+System.out.println();
+
+EssereUmano persona1 = new EssereUmano("Carlo", "Neri", Sesso.MASCHIO);
+persona1.setCodiceFiscale("CCCNNN80B22A662Z");
+
+EssereUmano persona2 = new EssereUmano("Carlo", "Neri", Sesso.MASCHIO);
+persona2.setCodiceFiscale("CCCNNN80B22A662Z");
+
+EssereUmano persona3 = new EssereUmano("Carlo", "Neri", Sesso.MASCHIO);
+persona3.setCodiceFiscale("CCCNNN80B22A662Z");
+
+//System.out.println(persona1.equals(persona1)); // proprietà riflessiva dell'equals, un oggetto è sempre uguale a se stesso.
+//
+//System.out.println(persona1.equals(persona2)); // prorietà simmetrica dell'equals, se persona1 è uguale a persona2, allora persona2 è uguale a persona1.
+//System.out.println(persona2.equals(persona1)); // prorietà simmetrica dell'equals, se persona2 è uguale a persona1, allora persona1 è uguale a persona2.
+
+System.out.println(persona1.equals(persona2));// proprietà transitiva dell'equals, se persona1 è uguale a persona2 e persona2 è uguale a persona3, allora persona1 è uguale a persona3.
+System.out.println(persona2.equals(persona3));
+System.out.println(persona1.equals(persona3));
+
+System.out.println(persona1.hashCode());
+System.out.println(persona2.hashCode());
+System.out.println(persona2.hashCode());
+	}
 }

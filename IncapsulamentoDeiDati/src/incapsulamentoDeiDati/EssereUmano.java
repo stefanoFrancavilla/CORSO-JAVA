@@ -1,4 +1,7 @@
 package incapsulamentoDeiDati;
+import java.time.LocalDate;
+import java.time.Month;
+
 import incapsulamentoDeiDati.utilities.Calcolo;
 import incapsulamentoDeiDati.utilities.Verifica;
 //1
@@ -372,6 +375,11 @@ private String cognome;
 //private ColoreOcchi coloreOcchi;
 private ColoreCapelli coloreCapelli;
 private String nazioneDiNascita;
+private LocalDate dataDiNascita;  // con LocalDate possiamo gestire dei punti temporali, 
+                                  //come ad esempio la data di nascita di un essere umano,
+                                  //e possiamo fare dei calcoli con le date, come ad esempio calcolare l'età di un essere umano 
+                                  //a partire dalla sua data di nascita.
+private String codiceFiscale;  
 
 
 //Costanti.
@@ -433,7 +441,7 @@ private static int totaleEssereUmani = 0; // variabile statica per contare il nu
 
 public EssereUmano()
 {
-	this("ND", "ND", Sesso.SCONOSCIUTO, (byte)0, 0f, 0f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, "ND");
+	this("ND", "ND", Sesso.SCONOSCIUTO, (byte)0, 0f, 0f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, "ND", LocalDate.of(1900, Month.JANUARY, 1), "ND");
 	/*
 	 * quando chiamiamo il costruttore senza parametri, il this richiama il costruttore con 9 parametri
 	 * e assegna dei valori di default alle variabili d'istanza.
@@ -447,7 +455,7 @@ public EssereUmano(String nome,
 		String cognome,
 		Sesso sesso)
 {
-	this(nome, cognome, sesso, (byte)0, 0f, 0f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, "ND");
+	this(nome, cognome, sesso, (byte)0, 0f, 0f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, "ND", LocalDate.of(1900, Month.JANUARY, 1), "ND");
 	/*
 	 * nel costruttore con 0 parametri, abbiamo assegnato dei valori di default alle variabili d'istanza,
 	 * mentre per il costruttore , con 3 parametri abbiamo assegnato a nome, cognome e sesso i valori dei parametri,
@@ -480,7 +488,9 @@ public EssereUmano(String nome,
 		float peso,
 		ColoreOcchi coloreOcchi,
 		ColoreCapelli coloreCapelli,
-		String nazioneDiNascita
+		String nazioneDiNascita,
+		LocalDate dataDiNascita,
+		String codiceFiscale
 		)
 
 {
@@ -524,6 +534,9 @@ public EssereUmano(String nome,
 	 * allora va bene anche scriverli direttamente senza usare i metodi setter.
 	 */
 	this.nazioneDiNascita = nazioneDiNascita;
+	this.setDataDiNascita(dataDiNascita);
+	this.setCodiceFiscale(codiceFiscale);
+	
 	this.nasce(); // quando viene creato un oggetto della classe EssereUmano,
 	//viene chiamato il metodo nasce() che stampa a video "EssereUmano nasce".
 	//
@@ -831,6 +844,23 @@ public String getNazioneDiNascita() {
 public void setNazioneDiNascita(String nazioneDiNascita) {
 	this.nazioneDiNascita = nazioneDiNascita;
 }
+
+public LocalDate getDataDiNascita() {
+	return dataDiNascita;
+}
+
+public void setDataDiNascita(LocalDate dataDiNascita) {
+	this.dataDiNascita = dataDiNascita;
+}
+
+public String getCodiceFiscale() {
+	return codiceFiscale;
+}
+
+public void setCodiceFiscale(String codiceFiscale) {
+	this.codiceFiscale = codiceFiscale;
+}
+
 //metodi getter per le costanti statiche
 @Override
 public byte getMinAnni() {
@@ -868,6 +898,47 @@ public float getMaxPeso() {
 public float getDefaultPeso() {
 	return EssereUmano.DEFAULT_PESO;
 }
+
+// sovrascrittura dei metodi equals() e hashCode();
+@Override
+public boolean equals(Object obj)
+{
+	if(this == obj) // se l'oggetto attuale è uguale all'oggetto obj (ovvero se sono lo stesso oggetto in memoria), allora restituiamo true, altrimenti restituiamo false.
+	{
+		System.out.println("equals 1");
+		return true;}
+	
+	if(!(obj instanceof EssereUmano)) // se l'oggetto obj non è un'istanza della classe EssereUmano, allora restituiamo false, altrimenti continuiamo con il controllo.
+	{
+		System.out.println("equals 2");
+		return false;}
+	
+	EssereUmano essereUmano = (EssereUmano) obj; // facciamo un cast dell'oggetto obj alla classe EssereUmano, in modo da poter accedere alle sue variabili d'istanza e ai suoi metodi.
+	
+	if(essereUmano.codiceFiscale.length() != this.codiceFiscale.length()) // se la lunghezza del codice fiscale dell'oggetto essereUmano è diversa dalla lunghezza del codice fiscale dell'oggetto attuale, allora restituiamo false, altrimenti continuiamo con il controllo.
+	{
+		System.out.println("equals 3");
+	
+		return false;}
+	
+	boolean sonoUguali = essereUmano.codiceFiscale.equals(this.codiceFiscale); // se il codice fiscale dell'oggetto essereUmano è uguale al codice fiscale dell'oggetto attuale, allora restituiamo true, altrimenti restituiamo false.
+	
+	System.out.println("equals 4");
+	return sonoUguali;
+}
+
+@Override
+public int hashCode() 
+{
+	int result = 17; // inizializziamo una variabile result con un valore qualsiasi, in questo caso 17.
+	result = 31 * result * this.codiceFiscale.hashCode(); // moltiplichiamo result per 31 (un numero primo) e per il valore hash del codice fiscale dell'oggetto attuale, in modo da ottenere un valore hash unico per ogni oggetto della classe EssereUmano.
+
+	return result; // restituiamo il valore hash calcolato.
+}
+/*
+ * se due istanze Essereumano hanno lo stesso codice fiscale, allora sono considerate uguali, e quindi il metodo equals() restituisce true, altrimenti restituisce false.
+ */
+
 
 
 //metodi di verifica.
@@ -1111,11 +1182,63 @@ public double moltiplica(double... ns)
  */
 
 //4
+
+/*
+ * con la funzione abbraccia stiamo dando la possibilità a un essere umano di abbracciare un altro essere umano,
+ * ma non stiamo specificando come avviene l'abbraccio, quindi stiamo lasciando la possibilità di interpretare l'abbraccio in diversi modi,
+ */
+
+//1.
+
+//public void abbraccia(EssereUmano altro)
+//{
+//	//System.out.println(super.getNome() + " " + cognome + " abbraccia " + altro.getNome());
+//	System.out.println(this.getNome() + " " + cognome + " abbraccia " + altro.getNome());
+//}
+///*
+// *  nel primo caso abbiamo usato super poichè nome viene ereditato dalla superclasse Animale,
+// *  e quindi per accedere al nome dell'oggetto corrente, dobbiamo usare super.getNome() 
+// *  per chiamare il metodo getter getNome() della superclasse Animale.
+// *  
+// *  mentre nel secondo caso abbiamo usato this, poichè getNome() è un metodo che abbiamo sovrascritto nella classe EssereUmano,
+// *   e quindi per accedere al nome dell'oggetto corrente, possiamo usare this.getNome()  
+// */
+//public void abbraccia(Gatto altro)
+//{
+//	//System.out.println(super.getNome() + " " + cognome + " abbraccia " + altro.getNome());
+//	System.out.println(this.getNome() + " " + cognome + " abbraccia " + altro.getNome());
+//}
+
+//2.
+public void abbraccia(Animale altro)
+{
+	//System.out.println(super.getNome() + " " + cognome + " abbraccia " + altro.getNome());
+	System.out.println(this.getNome() + " " + cognome + " abbraccia " + altro.getNome());
+}
+/* con la seconda versione del metodo abbraccia, stiamo dando la possibilità a un essere umano di abbracciare qualsiasi animale, 
+ * non solo un altro essere umano o un gatto, ma anche un cane, un uccello, o qualsiasi altro animale che estende la classe Animale.
+ * in questo modo stiamo rendendo il metodo abbraccia più flessibile e riusabile in diversi contesti.
+ * questo ci consente di evitare di scrivere più versioni del metodo abbraccia per ogni tipo di animale, e quindi stiamo ottimizzando il codice
+ * 
+ * con il referernce altro che e di tipo animale è un supertipo sia di essere umano che di gatto, 
+ * e quindi possiamo passare come parametro sia un oggetto della classe EssereUmano che un oggetto della classe Gatto, 
+ * o qualsiasi altro animale che estende la classe Animale.
+ * 
+ * quindi se volessimo aggiungere altri metodi interni ad abbraccia ,
+ * bisogna tenere conto che altro può usare i metodi della classe Animale, ma non i metodi specifici di EssereUmano o Gatto,
+ * 
+ * per usare i metodi delle sottoclassi di animale bisogna usare l'operatore instanceof per verificare se l'oggetto passato come parametro
+ *  è un'istanza di una sottoclasse specifica, e poi fare un cast per accedere ai metodi specifici di quella sottoclasse.
+ */
+
+
 @Override
 public void vola() 
 {
 	System.out.println(super.getNome() + " " + cognome + " vola con l'aereo");
+		
 }
+
 @Override
 public void stampa() 
 {
