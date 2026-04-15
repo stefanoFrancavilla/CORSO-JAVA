@@ -2,6 +2,7 @@ package incapsulamentoDeiDati;
 import java.time.LocalDate;
 import java.time.Month;
 
+import incapsulamentoDeiDati.customthread.MacchinettaDelCaffeThread;
 import incapsulamentoDeiDati.test.*;
 public class Mondo {
 
@@ -508,5 +509,66 @@ System.out.println(persona1.equals(persona3));
 System.out.println(persona1.hashCode());
 System.out.println(persona2.hashCode());
 System.out.println(persona2.hashCode());
+
+//System.out.println();	
+//System.out.println("8--------------------------");
+//System.out.println();
+//
+//Dipendente dipendente1 = new Dipendente();
+//dipendente1.faIlCaffe();
+//
+//Dipendente dipendente2 = new Dipendente();
+//dipendente2.faIlCaffe();
+
+System.out.println();	
+System.out.println("9--------------------------");
+System.out.println();
+
+for (int i = 0; i < 15; i++) {
+	MacchinettaDelCaffeThread macchinettaDelCaffeThread = new MacchinettaDelCaffeThread();
+	macchinettaDelCaffeThread.start();
+}
+/*
+ * con questo ciclo for stiamo creando 15 thread che chiamano il metodo getInstance() della classe MacchinettaDelCaffe,
+ * e con questo stiamo verificando che anche in un contesto multithread,
+ *  il pattern singleton funzioni correttamente e che venga creata una sola istanza della classe MacchinettaDelCaffe,
+ *  
+ *  con la dicitura start() stiamo avviando i thread, e ogni thread eseguirà il metodo run() della classe MacchinettaDelCaffeThread,
+ *  
+ *  in questo caso, ogni thread chiamerà il metodo getInstance() della classe MacchinettaDelCaffe, e se il pattern singleton è implementato correttamente,
+ *  allora verrà creata una sola istanza della classe MacchinettaDelCaffe, e ogni thread otterrà la stessa istanza quando chiamerà il metodo getInstance().
+ *  
+ *  nel primo caso thread è riuscito ad entrare ben 6 volte nel blocco di codice che crea l'istanza della macchinetta del caffè,
+ *   creando così 6 istanze diverse della macchinetta del caffè,
+ *   
+ *   questo perchè il pattern singleton non è stato implementato in modo thread-safe,
+ *    e quindi quando più thread cercano di accedere al metodo getInstance() contemporaneamente,
+ *    
+ *    
+ *    dopo la modifica con il costruttore static e l'eliminazione del controllo con l'if, il pattern singleton è diventato thread-safe, 
+ *    e quindi anche in un contesto multithread,
+ *    
+ *    mentre con il primo test è riuscito ad entrare più volte, con il secondo test non è riuscito ad entrare più volte,
+ *     e quindi è stata creata una sola istanza della macchinetta del caffè,
+ *     
+ *     nel terzo test abbiamo eliminato il costruttore static e abbiamo lasciato il controllo con l'if
+ *     questa volta però abbiamo aggiunto il synchronized al metodo getInstance(), in modo da rendere il metodo thread-safe,
+ *      e quindi anche in questo caso è stata creata una sola istanza della macchinetta del caffè,
+ *      
+ *      nel quarto test abbiamo spostato il synchronized nella parte del codice che crea l'istanza della macchinetta del caffè,
+ *       in modo da rendere il blocco di codice che crea l'istanza thread-safe,
+ *       quindi il syncronized verrà applicato solo quando viene creato l'oggetto, 
+ *       e non ogni volta che viene chiamato il metodo getInstance(), ottimizzando le prestazioni del metodo getInstance() in un contesto multithread.
+ *     
+ *     nel quinto test abbiamo eliminato l'if e abbiamo creato una classe statica interna che contiene l'istanza della macchinetta del caffè,
+ *      in questo modo il pattern singleton è diventato thread-safe senza dover usare il synchronized,
+ *      e ci migliora le postazioni del metodo getInstance() in un contesto multithread,
+ *       poichè non c'è più bisogno di sincronizzare l'accesso al metodo getInstance(),
+ *     */
+
+
+
+
+
 	}
 }

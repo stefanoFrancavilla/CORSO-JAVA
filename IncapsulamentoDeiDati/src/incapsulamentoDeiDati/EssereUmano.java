@@ -1235,8 +1235,13 @@ public void abbraccia(Animale altro)
 @Override
 public void vola() 
 {
-	System.out.println(super.getNome() + " " + cognome + " vola con l'aereo");
-		
+	//System.out.println(super.getNome() + " " + cognome + " vola con l'aereo");
+	System.out.println(this.getNome() + " " + cognome + " vola con l'aereo");	
+}
+
+public void faIlCaffe()
+{
+	System.out.println(this.getNome() + " " + cognome + " fa il caffè");
 }
 
 @Override
