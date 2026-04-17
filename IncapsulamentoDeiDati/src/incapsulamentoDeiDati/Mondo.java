@@ -3,6 +3,7 @@ import java.time.LocalDate;
 import java.time.Month;
 
 import incapsulamentoDeiDati.customthread.MacchinettaDelCaffeThread;
+import incapsulamentoDeiDati.customthread.StampanteThread;
 import incapsulamentoDeiDati.test.*;
 public class Mondo {
 
@@ -524,10 +525,10 @@ System.out.println();
 System.out.println("9--------------------------");
 System.out.println();
 
-for (int i = 0; i < 15; i++) {
-	MacchinettaDelCaffeThread macchinettaDelCaffeThread = new MacchinettaDelCaffeThread();
-	macchinettaDelCaffeThread.start();
-}
+//for (int i = 0; i < 15; i++) {
+//	MacchinettaDelCaffeThread macchinettaDelCaffeThread = new MacchinettaDelCaffeThread();
+//	macchinettaDelCaffeThread.start();
+//}
 /*
  * con questo ciclo for stiamo creando 15 thread che chiamano il metodo getInstance() della classe MacchinettaDelCaffe,
  * e con questo stiamo verificando che anche in un contesto multithread,
@@ -566,9 +567,26 @@ for (int i = 0; i < 15; i++) {
  *       poichè non c'è più bisogno di sincronizzare l'accesso al metodo getInstance(),
  *     */
 
+System.out.println();	
+System.out.println("10--------------------------");
+System.out.println();
+
+//Dipendente dipendente1 = new Dipendente();
+//dipendente1.stampaDocumento();
+//
+//Dipendente dipendente2 = new Dipendente();
+//dipendente2.stampaDocumento();
 
 
+System.out.println();	
+System.out.println("11--------------------------");
+System.out.println();
 
+for (int i = 0; i < 20; i++) 
+{
+	StampanteThread stampanteThread = new StampanteThread();
+	stampanteThread.start();
+}
 
 	}
 }

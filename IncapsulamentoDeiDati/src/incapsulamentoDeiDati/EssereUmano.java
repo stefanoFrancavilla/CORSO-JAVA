@@ -1243,6 +1243,10 @@ public void faIlCaffe()
 {
 	System.out.println(this.getNome() + " " + cognome + " fa il caffè");
 }
+public void stampaDocumento()
+{
+	System.out.println(this.getNome() + " " + cognome + " stampa un documento");
+}
 
 @Override
 public void stampa() 
@@ -1260,6 +1264,10 @@ public void stampa()
 	System.out.println("Nazione di Nascita: " + nazioneDiNascita);
 	System.out.println("----------");
     
+	super.stampa(); // stiamo richiamando il metodo stampa() della superclasse Animale, in modo da stampare anche le informazioni generali dell'animale,
+	//come ad esempio il nome, il sesso, l'età, l'altezza, il peso, e il colore degli occhi.
+	
+	
 	
 	/*
 	 * con il metodo overload  stiamo dicendo che il metodo stampa() della classe EssereUmano è un'estensione del metodo stampa() della superclasse Animale,
