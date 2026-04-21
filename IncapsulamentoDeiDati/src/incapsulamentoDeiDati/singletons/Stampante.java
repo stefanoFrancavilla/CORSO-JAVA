@@ -120,7 +120,7 @@ private static void setContetoreDocumenti()
 {
 	contatoreDocumenti++;
 }
-public synchronized void stampaDocumento()
+public synchronized void StampaDocumento()
 {
 	System.out.println(this.marchio + " dell'azienda " + this.azienda + " sta per stampare un documento.");
 	

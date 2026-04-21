@@ -287,16 +287,77 @@ System.out.println();
 Cantautore vascoRossi = new Cantautore("Vasco", "Rossi", Sesso.MASCHIO);
 
 vascoRossi.stampa();
-vascoRossi.setTotaleConcerti(30);
+//vascoRossi.setTotaleConcerti(30);
 
-vascoRossi.aggiungiTitoloCanzoneScritta("Alba chiara");
-vascoRossi.aggiungiTitoloCanzoneScritta("C'è chi dice no");
-vascoRossi.aggiungiTitoloCanzoneScritta("Liberi liberi");
-vascoRossi.aggiungiTitoloCanzoneScritta("Brava Giulia");
-vascoRossi.aggiungiTitoloCanzoneScritta("Domeniica lunatica");
-vascoRossi.aggiungiTitoloCanzoneScritta("Vivere una favola");
-vascoRossi.aggiungiTitoloCanzoneScritta("Gli spari sopra");
-vascoRossi.stampaTitoliCanzoniScritte();
+//1
+//vascoRossi.aggiungiTitoloCanzoneScritta("Alba chiara");
+//vascoRossi.aggiungiTitoloCanzoneScritta("C'è chi dice no");
+//vascoRossi.aggiungiTitoloCanzoneScritta("Liberi liberi");
+//vascoRossi.aggiungiTitoloCanzoneScritta("Brava Giulia");
+//vascoRossi.aggiungiTitoloCanzoneScritta("Domeniica lunatica");
+//vascoRossi.aggiungiTitoloCanzoneScritta("Vivere una favola");
+//vascoRossi.aggiungiTitoloCanzoneScritta("Gli spari sopra");
+//vascoRossi.stampaTitoliCanzoniScritte();
+
+
+//2
+
+/*
+ * con questo sistema, stiamo creando un nuovo oggetto di tipo Canzone, che è una classe interna non statica della classe Cantautore,
+ * infatti la sintassi diversa rispetto alla creazione di un oggetto di tipo Concerto, che è una classe interna statica della classe Cantante,
+ * per creare un oggetto di tipo Canzone, dobbiamo prima creare un oggetto di tipo Cantautore, e poi usare quell'oggetto per creare l'oggetto di tipo Canzone,
+ * 
+ * l'utilizzo in questo caso di vascoRossi.new Canzone("Alba chiara", "aaa bbb ccc") è necessario perchè la classe Canzone è una classe interna non statica della classe Cantautore,
+ * e quindi per creare un oggetto di tipo Canzone, dobbiamo prima creare un oggetto di tipo Cantautore, e poi usare quell'oggetto per creare l'oggetto di tipo Canzone,
+ */
+vascoRossi.setGenereMusicale(GenereMusicale.ROCK);
+
+Cantautore.Canzone canzone1 = vascoRossi.new Canzone("Alba chiara", "aaa bbb ccc");
+
+System.out.println("canzone1 titolo: " + canzone1.getTitolo());
+System.out.println("canzone1 testo: " + canzone1.getTesto());
+canzone1.stampaInfoAutore();
+canzone1.stampaTipo("MONDO");
+
+vascoRossi.aggiungiCanzone(canzone1);
+vascoRossi.aggiungiCanzone(vascoRossi.new Canzone("C'è chi dice no", "ddd eee fff"));
+vascoRossi.aggiungiCanzone(vascoRossi.new Canzone("Liberi liberi", "ggg hhh iii"));
+vascoRossi.aggiungiCanzone(vascoRossi.new Canzone("Brava Giulia", "jjj kkk lll"));
+vascoRossi.stampaCanzoni();
+
+
+
+
+Cantante.Concerto concerto1 = new Cantante.Concerto("Milano", LocalDate.of(2024, Month.MARCH, 3));
+System.out.println(concerto1.getLuogo());
+System.out.println(concerto1.getData());
+
+Cantante.Concerto concerto2 = new Cantante.Concerto("Rimini", LocalDate.of(2024, Month.APRIL, 4));
+System.out.println(concerto2.getLuogo());
+System.out.println(concerto2.getData());
+
+vascoRossi.aggiungiConcerto(concerto1);
+vascoRossi.aggiungiConcerto(concerto2);
+vascoRossi.aggiungiConcerto(new Cantante.Concerto("Modena", LocalDate.of(2024, Month.MAY, 10)));
+vascoRossi.aggiungiConcerto(new Cantante.Concerto("Parma", LocalDate.of(2024, Month.JUNE, 23)));
+vascoRossi.stampaConcerti();
+
+Cantante elvisPresley = new Cantante("Elvis", "Presley", Sesso.MASCHIO);
+elvisPresley.stampa();
+Cantante.Concerto concertolep = new Cantante.Concerto("New York", LocalDate.of(1970, Month.MARCH, 13));
+/*
+ * con Cantante.Concerto stiamo accedendo alla classe statica interna Concerto della classe Cantante,
+ * e stiamo creando un nuovo oggetto di tipo Concerto, passando come argomenti il luogo e la data del concerto.
+ * con questo sistema possiamo creare un concerto anche senza avere un oggetto di tipo Cantante,
+ * poichè la classe Concerto è statica, e quindi non ha bisogno di un oggetto di tipo Cantante per essere istanziata.
+ */
+System.out.println(concertolep.getLuogo());
+System.out.println(concertolep.getData());
+
+elvisPresley.aggiungiConcerto(concertolep);
+elvisPresley.stampaConcerti();
+
+
 
 System.out.println();	
 System.out.println("6--------------------------");
