@@ -3,7 +3,7 @@ package esercizioSiingleton2;
 public class Cliente extends Thread{
 
 	//variabili d'istanza
-	public static String nome;
+	private String nome;
 	
 	//costruttore
 	public Cliente(String nome)
@@ -15,18 +15,18 @@ public class Cliente extends Thread{
 	
 	//metodi getter e setter
 	
-	public static String getNome() {
+	public String getNome() {
 		return nome;
 	}
 
-	public static void setNome(String nome) {
-		Cliente.nome = nome;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 	
 	@Override
 	public void run()
 	{
-		
+		CentraleTaxi.getInstance().corsaTaxi();
 	}
 	
 }
