@@ -77,7 +77,18 @@ mostraDati()
 		 */
 		
 		
+		ContoCorrente marco = new ContoCorrente("marco", 7831, 1000);
+		ContoCorrente giulia = new ContoCorrente("giulia", 5845, 500);
 		
+		marco.versa(200);
+		marco.preleva(100);
+		giulia.versa(100);
+		giulia.preleva(700);
+		
+		ContoCorrente.trasferimento(marco, giulia, 200);
+		
+		giulia.infoConto();
+		marco.infoConto();
 		
 		
 		
