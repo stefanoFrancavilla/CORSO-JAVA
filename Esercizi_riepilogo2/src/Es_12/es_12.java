@@ -59,7 +59,33 @@ Metodi statici
 Logica simile al tuo ContoCorrente (ma con stato booleano)
 		 */
 		
-		
-	}
+		Libro pinocchio = new Libro("Pinocchio", "Collodi", 450 );
+		Libro ilCodiceDaVinci = new Libro("Il codice Da Vinci", "Dan Brown", 510 );
+		Libro dizionario = new Libro("Dizionario", "Deagostini", 280 );
 
+		System.out.println(pinocchio.getContatoreLibro());
+		pinocchio.presta();
+		System.out.println(pinocchio.getContatoreLibro());
+		pinocchio.presta();
+		pinocchio.restituisci();
+		System.out.println(pinocchio.getContatoreLibro());
+		pinocchio.presta();
+		pinocchio.stampaInfo();
+		
+		
+		Libro[] libri = new Libro[3];
+		libri[0] = pinocchio;
+		libri[1] = ilCodiceDaVinci;
+		libri[2] = dizionario;
+		
+		Libro.contaDisponibili(libri);
+		
+		for(int i = 0; i < libri.length; i++)
+		{
+			libri[i].presta();
+			libri[i].presta();
+			libri[i].restituisci();
+			libri[i].stampaInfo();
+		}
+	}
 }
