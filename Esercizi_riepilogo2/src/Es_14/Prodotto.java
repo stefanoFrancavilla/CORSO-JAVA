@@ -81,7 +81,7 @@ nome non vuoto
 
 	public void setPrezzo(double prezzo) {
 		
-		if(prezzo < 0)
+		if(prezzo <= 0)
 		{
 			System.out.println("Il prezzo non è valido");
 			return;
@@ -99,7 +99,7 @@ nome non vuoto
 
 	public void setQuantita(int quantita) {
 		
-		if(quantita <= 0)
+		if(quantita < 0)
 		{
 			System.out.println("La quantità non è valida");
 			return;

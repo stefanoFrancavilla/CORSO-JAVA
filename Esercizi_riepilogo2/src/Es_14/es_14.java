@@ -76,16 +76,17 @@ nome non vuoto
 +---------------------------+
 
 		 */
-		Prodotto pasta = new Prodotto("Pasta", 0.50, 5 );
-		Prodotto uova = new Prodotto("Uova", 1.5, 4 );
-		Prodotto latte = new Prodotto("Latte", 1, 7 );
-		Prodotto bistecche = new Prodotto("Bistecche", 4.5, 2 );
-		Prodotto sale = new Prodotto("Sale", 0.50, 6 );
-		
-		Prodotto[] prodotti = {pasta, pasta, uova,uova, latte, latte, latte,  bistecche, sale,sale };
-		Carrello carrello = new Carrello(prodotti);
-		carrello.stampaCarrello(prodotti);
-		System.out.println("Il totale del costo del carrello è: " + carrello.totaleCarrello(prodotti));
-	}
+		 Prodotto pasta = new Prodotto("Pasta", 0.50, 5);
+		    Prodotto uova = new Prodotto("Uova", 1.5, 4);
+		    Prodotto latte = new Prodotto("Latte", 1, 7);
+		    Prodotto bistecche = new Prodotto("Bistecche", 4.5, 2);
+		    Prodotto sale = new Prodotto("Sale", 0.50, 6);
 
+		    Prodotto[] prodotti = {pasta, pasta, uova, uova, latte, latte, latte, bistecche, sale, sale};
+
+		    Carrello carrello = new Carrello(prodotti);
+
+		    carrello.stampaCarrello(); 
+		    System.out.println("Totale: " + carrello.totaleCarrello());
+		}
 }
