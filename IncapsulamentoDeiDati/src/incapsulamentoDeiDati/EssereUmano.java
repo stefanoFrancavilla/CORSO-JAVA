@@ -379,6 +379,7 @@ private LocalDate dataDiNascita;  // con LocalDate possiamo gestire dei punti te
                                   //come ad esempio la data di nascita di un essere umano,
                                   //e possiamo fare dei calcoli con le date, come ad esempio calcolare l'età di un essere umano 
                                   //a partire dalla sua data di nascita.
+private Comune comuneDiNascita;
 private String codiceFiscale;  
 
 
@@ -445,7 +446,7 @@ private static int totaleEssereUmani = 0; // variabile statica per contare il nu
 public EssereUmano()
 {
 	//this("ND", "ND", Sesso.SCONOSCIUTO, (byte)0, 0f, 0f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, "ND", LocalDate.of(1900, Month.JANUARY, 1), "ND");
-	this("ND", "ND", Sesso.SCONOSCIUTO,0f, 0f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, "ND", LocalDate.now(), "ND");
+	this("ND", "ND", Sesso.SCONOSCIUTO,0f, 0f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, "ND", LocalDate.now(), Comune.SCONOSCIUTO);
 	
 	/*
 	 * quando chiamiamo il costruttore senza parametri, il this richiama il costruttore con 9 parametri
@@ -463,7 +464,7 @@ public EssereUmano(String nome,
 {
 	//this(nome, cognome, sesso, (byte)0, 0f, 0f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, "ND", LocalDate.of(1900, Month.JANUARY, 1), "ND");
 	
-	this(nome, cognome, sesso, 0f, 0f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, "ND", LocalDate.now(), "ND");
+	this(nome, cognome, sesso, 0f, 0f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, "ND", LocalDate.now(), Comune.SCONOSCIUTO);
 	
 	/*
 	 * nel costruttore con 0 parametri, abbiamo assegnato dei valori di default alle variabili d'istanza,
@@ -503,7 +504,7 @@ public EssereUmano(String nome,
 		ColoreCapelli coloreCapelli,
 		String nazioneDiNascita,
 		LocalDate dataDiNascita,
-		String codiceFiscale
+		Comune comuneDiNascita
 		)
 
 {
@@ -554,6 +555,8 @@ public EssereUmano(String nome,
 	this.nazioneDiNascita = nazioneDiNascita;
 	
 	//this.setDataDiNascita(dataDiNascita);
+	
+	this.comuneDiNascita = comuneDiNascita;
 	
 	//this.setCodiceFiscale(codiceFiscale);
 	
@@ -913,7 +916,12 @@ private String buildCodiceFiscale()
 		//costruttore
 		CodiceFiscale()
 		{
-			//codiceFiscale
+			codiceFiscale = getPorzioneCognome() +
+					getPorzioneNome() +
+			        getAnnoDiNascita() +
+			        getMeseDiNascita() + 
+			        getGiornoDiNascita() ;
+			
 		}
 		
 		//metodi getter /setter
@@ -972,8 +980,143 @@ private String buildCodiceFiscale()
 			
 			return porzioneCognome;
 		}
-	}
+		
+		private String getPorzioneNome()
+		{
+			String nome = getNome();
+			String porzioneNome = "";
+			String caratterePadding = "X"; // questo serve per riempire eventuali buchi. esempio se ho bisogno di tre caratter e il cognome è solo di due , aggiunge la X per completare
+			String vocali = "AEIOU";
+			
+			nome = nome.toUpperCase();
+			
+			if(nome.length() == 1)
+			{
+				porzioneNome = nome + caratterePadding + caratterePadding;
+			}
+			else if (nome.length() == 2)
+			{
+				porzioneNome = nome;
+				/*
+				 * se la Stringa vocali contiene il primo carattere di cognome, ( quindi è una vocale)
+				 * mentre nella seconda parte dell'if stiamo chiedendo che
+				 * se non è vero che (!) nella stringa vocali è contenuto il secondo carattere di cognome ( quindi è una consonante)
+				 */
+				if(vocali.contains(String.valueOf(nome.charAt(0))) &&   //se è vero che il primo carattere del cognome è una vocale
+						!vocali.contains(String.valueOf(nome.charAt(1)))) // e contemporaneamente il secondo carattere non è una vocale ma una consonate
+					//con String.valueOf non faccio altro che convertire un char in una stringa
+			     {
+					porzioneNome  = String.valueOf(nome.charAt(1)) +
+							           String.valueOf(nome.charAt(0)); 
+					//in pratica stiamo invertendo le posizioni delle lettere, se prima avevamo A/C adesso abbiamo C/A
+					System.out.println("	porzioneCognome 2: " + porzioneNome);
+			     }
+				porzioneNome = porzioneNome + caratterePadding;
+			}
+			else
+			{
+				/*
+				 * Esercizio: provare ad implementare il reale algoritmo per la costruzione del codice fiscale
+				 * http://it.wikipedia.org/wiki/Codice_Fiscale
+				 */
+				
+				//semplificazione
+				
+				porzioneNome = nome.substring(0, 3); // con questo comando stiamo prendendo solo i primi 3 caratteri della Stringa cognome
+				
+			}
+			System.out.println("	porzioneNome: " + porzioneNome);
+			
+			return porzioneNome;
+		}
+		
+		private String getAnnoDiNascita()
+		{
+			String annoDiNascita = String.valueOf(getDataDiNascita().getYear()).substring(2, 4); 
+			/*
+			 *  con String.valueOf stiamoconvetrendo la data di nascita in una stringa
+			 *  getDataDiNascita() ci restituisce la data di nascita
+			 *  getYear() ci restituisce solo l'anno di nascita
+			 *  subString (2, 4) ci permette di prendere solo gli ultimi 2 caratteri dell'anno di nascita
+			 *  ad esempio se l'anno di nascita è 1990, con subString(2, 4) prendiamo solo il 90,
+			 *  quindi tutta la riga di codice ci restituisce gli ultimi 2 caratteri dell'anno di nascita
+			 *  
+			 *  per far si che subString prenda solo le ultime 2 cifre bisogna mettere come indice
+			 *  l'ultimo indice deve essere 3 + 1, 
+			 *  perchè subString prende i caratteri dall'indice di inizio (incluso) all'indice di fine (escluso)
+			 *     
+			 */
+			
+			System.out.println("	annoDiNascita: " + annoDiNascita);
+			
+			return annoDiNascita;
+		}
+		private String getMeseDiNascita()
+		{
+			String meseDiNascita;
+			
+			enum CodiceMese
+			{
+				A, // Gennaio
+				B, // Febbraio
+				C, // Marzo
+				D, // Aprile
+				E, // Maggio
+				H, // Giugno
+				L, // Luglio
+				M, // Agosto
+				P, // Settembre
+				R, // Ottobre
+				S, // Novembre
+				T  // Dicembre
+			}
+			
+			CodiceMese codiceMese = switch(getDataDiNascita().getMonth())
+					{
+						case JANUARY -> CodiceMese.A;
+						case FEBRUARY -> CodiceMese.B;
+						case MARCH -> CodiceMese.C;
+						case APRIL -> CodiceMese.D;
+						case MAY -> CodiceMese.E;
+						case JUNE -> CodiceMese.H;
+						case JULY -> CodiceMese.L;
+						case AUGUST -> CodiceMese.M;
+						case SEPTEMBER -> CodiceMese.P;
+						case OCTOBER -> CodiceMese.R;
+						case NOVEMBER -> CodiceMese.S;
+						case DECEMBER -> CodiceMese.T;
+					};
+					
+					meseDiNascita = codiceMese.toString();
+					
+					System.out.println("	meseDiNascita: " + meseDiNascita);
+					
+					return meseDiNascita;
+					
+					/*
+					 * con questo switch stiamo associando ad ogni mese dell'anno un codice corrispondente,
+					 * questo ci permette di usare un unum per rappresentare i mesi dell'anno, 
+					 * e di associare ad ogni mese un codice corrispondente,
+					 */
+		}
+		
+		private String getGiornoDiNascita()
+		{
+			String giornoDiNascita;
+			int giorno = getDataDiNascita().getDayOfMonth();
+			
+			if(getSesso() == Sesso.FEMMINA)
+			
+				giorno = giorno + 40; // per le femmine al giorno di nascita si aggiunge 40, in modo da distinguere i codici fiscali maschili da quelli femminili.
+			if(giorno < 10)
+				giornoDiNascita = "0" + giorno; // se il giorno di nascita è minore di 10, aggiungiamo uno 0 davanti al numero del giorno, in modo da avere sempre due cifre per il giorno di nascita.
+			else
+				giornoDiNascita = String.valueOf(giorno); // altrimenti, se il giorno di nascita è maggiore o uguale a 10, lo convertiamo in una stringa e lo restituiamo così com'è.
+			System.out.println("	giornoDiNascita: " + giornoDiNascita);
+			return giornoDiNascita;
+		}
 	
+	}
 	
 }
 
@@ -1380,7 +1523,9 @@ public void stampa()
 	System.out.println("Nazione di Nascita: " + nazioneDiNascita);
 	System.out.println("----------");
     
-	super.stampa(); // stiamo richiamando il metodo stampa() della superclasse Animale, in modo da stampare anche le informazioni generali dell'animale,
+	super.stampa();
+}
+	// stiamo richiamando il metodo stampa() della superclasse Animale, in modo da stampare anche le informazioni generali dell'animale,
 	//come ad esempio il nome, il sesso, l'età, l'altezza, il peso, e il colore degli occhi.
 	
 	
@@ -1395,6 +1540,21 @@ public void stampa()
 	 *  in parole semplici stiamo estendendo il metodo stampa() della superclasse Animale,
 	 *   aggiungendo ulteriori informazioni specifiche per la classe EssereUmano.
 	 */
- }
+	
+	//tipi interni.
+	
+	enum Comune
+	{
+		ROMA,
+		MILANO,
+		NAPOLI,
+		GENOVA,
+		BARI,
+		SCONOSCIUTO
+	}
+ 
+
+
+
 
 }
