@@ -36,7 +36,8 @@ public abstract class Animale extends EssereVivente {
 	//costruttore
 	
 	public Animale() {
-		System.out.println("Animale (0)");
+		System.out.println("--------------------------");
+		System.out.println("Animale (0)"); 
 	}
 	/*
 	 * il procedimento della chiamata del costruttore è il seguente:
@@ -60,12 +61,17 @@ public abstract class Animale extends EssereVivente {
 	
 	public Animale(String nome,
 				   Sesso sesso,
-				   byte anni,
+				  // byte anni,
 				   float altezza,
 				   float peso,
-				   ColoreOcchi coloreOcchi) {
-		super(anni, altezza, peso);
+				   ColoreOcchi coloreOcchi,
+	               LocalDate dataDiNascita) 
+	{
+		//super(anni, altezza, peso);
+		super(altezza, peso, dataDiNascita);
+		System.out.println("--------------------------");
 		System.out.println("Animale (6)");
+		
 		this.setNome(nome);
 		this.setSesso(sesso);
 //		this.setAnni(anni);
@@ -141,10 +147,16 @@ public abstract class Animale extends EssereVivente {
 	
 	@Override
 	public void nasce() {
-		System.out.println("Il cuore ha iniziato a battere.");
+		System.out.println("--------------------------");
+		System.out.println("Animale -> nasce");
+		
+		System.out.println("	Il cuore ha iniziato a battere.");
 	}
 	@Override
 	public void siNutre() {
+		System.out.println("--------------------------");
+		System.out.println("Animale -> siNutre");
+		
 		this.mangia();
 		this.beve();
 	}
@@ -158,7 +170,10 @@ public abstract class Animale extends EssereVivente {
 	
 	@Override
 	public void muore() {
-		System.out.println("Il cuore ha cessato di battere.");
+		System.out.println("--------------------------");
+		System.out.println("Animale -> Muore");
+		
+		System.out.println("	Il cuore ha cessato di battere.");
 	}
 	
 	//public abstract void respira();
@@ -183,17 +198,22 @@ public abstract class Animale extends EssereVivente {
 	//2
 	public void dorme()
 	{
+		System.out.println("--------------------------");
+		System.out.println("Animale -> dorme");
+		
 		System.out.println("Questo animale è in uno stato in cui non si è coscienti e ci si riposa");
 	}
 
 	public void stampa() {
+		
 		System.out.println("--------------------------");
-		System.out.println("nome: " + this.getNome());
-		System.out.println("sesso: " + this.getSesso());
+		System.out.println("Animale -> stampa");
+		System.out.println("	nome: " + this.getNome());
+		System.out.println("	sesso: " + this.getSesso());
 		//System.out.println("anni: " + this.getAnni());
 		//System.out.println("altezza: " + this.getAltezza());
 		//System.out.println("peso: " + this.getPeso());
-		System.out.println("colore occhi: " + this.getColoreOcchi());
+		System.out.println("	colore occhi: " + this.getColoreOcchi());
 		
 		super.stampa();
 	}

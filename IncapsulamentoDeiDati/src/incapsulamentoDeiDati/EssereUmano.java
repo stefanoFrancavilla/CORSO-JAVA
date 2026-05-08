@@ -385,15 +385,17 @@ private String codiceFiscale;
 //Costanti.
 private static final byte MIN_ANNI = 0; // età minima in anni
 private static final byte MAX_ANNI = 	Byte.MAX_VALUE; // età massima in anni, usiamo il valore massimo di byte perché la variabile anni è di tipo byte
-private static final byte DEFAULT_ANNI = 18; // età di default in anni
+private static final byte DEFAULT_ANNI = 0; // età di default in anni
 
-private static final float MIN_ALTEZZA = 20f; // altezza minima in cm
+private static final float MIN_ALTEZZA = 40f; // altezza minima in cm
 private static final float MAX_ALTEZZA = 250f; // altezza massima in cm
-private static final float DEFAULT_ALTEZZA = 100f; // altezza di default in cm
+private static final float DEFAULT_ALTEZZA = 50f; // altezza di default in cm
 
-private static final float MIN_PESO = 35f; // peso minimo in kg
+private static final float MIN_PESO = 2.5f; // peso minimo in kg
 private static final float MAX_PESO = 600f; // peso massimo in kg
-private static final float DEFAULT_PESO = 40f; // peso di default in kg
+private static final float DEFAULT_PESO = 3.3f; // peso di default in kg
+
+
 /*
  * aggiungenso static alle costanti, stiamo dichiarando che queste costanti appartengono alla classe EssereUmano,
  *  e non agli oggetti della classe EssereUmano.
@@ -436,18 +438,22 @@ private static int totaleEssereUmani = 0; // variabile statica per contare il nu
  * ad esempio, con i metodi setter possiamo inserire dei controlli sui dati inseriti, come ad esempio non permettere di inserire età negative o altezze e pesi irrealistici.
  * mentre con i metodi getter possiamo restituire i valori delle variabili d'istanza private all'esterno della classe.
  */
+
 // Costruttori
 
 
 public EssereUmano()
 {
-	this("ND", "ND", Sesso.SCONOSCIUTO, (byte)0, 0f, 0f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, "ND", LocalDate.of(1900, Month.JANUARY, 1), "ND");
+	//this("ND", "ND", Sesso.SCONOSCIUTO, (byte)0, 0f, 0f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, "ND", LocalDate.of(1900, Month.JANUARY, 1), "ND");
+	this("ND", "ND", Sesso.SCONOSCIUTO,0f, 0f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, "ND", LocalDate.now(), "ND");
+	
 	/*
 	 * quando chiamiamo il costruttore senza parametri, il this richiama il costruttore con 9 parametri
 	 * e assegna dei valori di default alle variabili d'istanza.
 	 * in questo modo evitiamo di scrivere codice duplicato.
 	 * il this deve essere la prima istruzione del costruttore.
 	 */
+	System.out.println("--------------------------");
 	System.out.println("EssereUmano (0)"); // per vedere quale costruttore viene chiamato
 }
 
@@ -455,7 +461,10 @@ public EssereUmano(String nome,
 		String cognome,
 		Sesso sesso)
 {
-	this(nome, cognome, sesso, (byte)0, 0f, 0f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, "ND", LocalDate.of(1900, Month.JANUARY, 1), "ND");
+	//this(nome, cognome, sesso, (byte)0, 0f, 0f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, "ND", LocalDate.of(1900, Month.JANUARY, 1), "ND");
+	
+	this(nome, cognome, sesso, 0f, 0f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, "ND", LocalDate.now(), "ND");
+	
 	/*
 	 * nel costruttore con 0 parametri, abbiamo assegnato dei valori di default alle variabili d'istanza,
 	 * mentre per il costruttore , con 3 parametri abbiamo assegnato a nome, cognome e sesso i valori dei parametri,
@@ -465,7 +474,11 @@ public EssereUmano(String nome,
 	// this richiama il costruttore con 9 parametri
 	// e assegna dei valori di default alle variabili d'istanza non inizializzate.
 	// il this deve essere la prima istruzione del costruttore.
+	
+	System.out.println("--------------------------");
 	System.out.println("EssereUmano (3)");
+	
+	
 //	this.nome = nome; 
 //	this.cognome = cognome; 
 //	this.sesso = sesso;
@@ -483,7 +496,7 @@ public EssereUmano(String nome,
 public EssereUmano(String nome,
 		String cognome,
 		Sesso sesso,
-		byte anni,
+		//byte anni,
 		float altezza,
 		float peso,
 		ColoreOcchi coloreOcchi,
@@ -494,12 +507,17 @@ public EssereUmano(String nome,
 		)
 
 {
-	super(nome, sesso, anni, altezza, peso, coloreOcchi);
-	System.out.println("EssereUmano (9)"); // per vedere quale costruttore viene chiamato
+	//super(nome, sesso, anni, altezza, peso, coloreOcchi);
+	super(nome, sesso, altezza, peso, coloreOcchi, dataDiNascita);
+	
+	System.out.println("--------------------------");
+	System.out.println("EssereUmano (10)");
+	
+	// per vedere quale costruttore viene chiamato
 	//this.nome = nome; // uso la parola chiave this per distinguere la variabile d'istanza dal parametro
 	//this.setNome(nome); // invece di assegnare direttamente il valore del parametro nome alla variabile d'istanza nome, usiamo il metodo setter setNome(nome) per controllare il valore inserito.
-	
 	//this.cognome = cognome; 
+	
 	this.setCognome(cognome);
 	
 	//this.sesso = sesso;
@@ -534,8 +552,12 @@ public EssereUmano(String nome,
 	 * allora va bene anche scriverli direttamente senza usare i metodi setter.
 	 */
 	this.nazioneDiNascita = nazioneDiNascita;
-	this.setDataDiNascita(dataDiNascita);
-	this.setCodiceFiscale(codiceFiscale);
+	
+	//this.setDataDiNascita(dataDiNascita);
+	
+	//this.setCodiceFiscale(codiceFiscale);
+	
+	this.codiceFiscale = "ND"; // per evitare di inserire un codice fiscale non valido, assegniamo un valore di default "
 	
 	this.nasce(); // quando viene creato un oggetto della classe EssereUmano,
 	//viene chiamato il metodo nasce() che stampa a video "EssereUmano nasce".
@@ -567,6 +589,8 @@ public EssereUmano(String nome,
  */
 @Override
 public void setNome(String nome) {
+	System.out.println("--------------------------");
+	System.out.println("EssereUmano -> setNome()"); 
 	
 	boolean nomeCorretto = true;
 	/*
@@ -581,7 +605,7 @@ public void setNome(String nome) {
 		 *  ovvero un numero o un carattere speciale, e quindi il nome non è corretto.
 		 */
 	{
-		System.out.println("nome non consono"); //quindi manderà a stampa nome non consono.
+		System.out.println("	nome non consono"); //quindi manderà a stampa nome non consono.
 		
 		nomeCorretto = false; // di conseguenza, impostiamo nomeCorretto a false per indicare che il nome non è corretto.
 		
@@ -602,7 +626,7 @@ public void setNome(String nome) {
 	}
 	else if ( Verifica.verificaLunghezza(nome, 15))
 	{
-		System.out.println("nome troppo lungo");
+		System.out.println("	nome troppo lungo");
 		
 		nomeCorretto = false;
 	/*	if ( this.nome == null)
@@ -621,7 +645,7 @@ public void setNome(String nome) {
 	
 	if(nomeCorretto == true) // se il nome è corretto, lo assegniamo alla variabile d'istanza nome
 	{
-		System.out.println("nome ok");
+		System.out.println("	nome ok");
 		//this.nome = nome;
 		super.setNome(nome);
 		// invece di assegnare direttamente il valore del parametro nome alla variabile d'istanza nome,
@@ -635,7 +659,7 @@ public void setNome(String nome) {
 
     if ( nomeCorrente == null)
 	{
-		System.out.println(nomeCorrente + " è null ");
+		System.out.println("	" + nomeCorrente + " è null ");
 		
 		super.setNome("ND"); 
 	}
@@ -643,7 +667,7 @@ public void setNome(String nome) {
 		
 		
 	{
-		System.out.println(nomeCorrente + " è un nome sensato .");
+		System.out.println("	" + nomeCorrente + " è un nome sensato .");
 	}
 	}
 	
@@ -677,28 +701,30 @@ public String getCognome() {
 }
 
 public void setCognome(String cognome) {
+	System.out.println("--------------------------");
+	System.out.println("EssereUmano -> setCognome()"); 
 	
 	boolean cognomeCorretto = true;
 	
 	if (Verifica.verificaCratteri("1234567890!?@", cognome)) 
 	{
-		System.out.println("Cognome non consono"); 
+		System.out.println("	Cognome non consono"); 
 		cognomeCorretto = false;
 	}
 	else if ( Verifica.verificaLunghezza(cognome, 15))
 	{
-		System.out.println("Cognome troppo lungo");
+		System.out.println("	Cognome troppo lungo");
 		
 		cognomeCorretto = false;
 	}
 	if(cognomeCorretto == true) 
 	{
-		System.out.println("cognome ok");
+		System.out.println("	cognome ok");
 		this.cognome = cognome;
 	}
 	if ( this.cognome == null)
 	{
-		System.out.println(this.cognome + " è null ");
+		System.out.println("	" + this.cognome + " è null ");
 		
 		this.cognome = "ND"; 
 	}
@@ -706,7 +732,7 @@ public void setCognome(String cognome) {
 		
 		
 	{
-		System.out.println(this.cognome + " è un cognome sensato .");
+		System.out.println("	" + this.cognome + " è un cognome sensato");
 	}
 	this.cognome = cognome;
 }
@@ -845,20 +871,110 @@ public void setNazioneDiNascita(String nazioneDiNascita) {
 	this.nazioneDiNascita = nazioneDiNascita;
 }
 
-public LocalDate getDataDiNascita() {
-	return dataDiNascita;
-}
-
-public void setDataDiNascita(LocalDate dataDiNascita) {
-	this.dataDiNascita = dataDiNascita;
-}
+//public LocalDate getDataDiNascita() {
+//	return dataDiNascita;
+//}
+//
+//public void setDataDiNascita(LocalDate dataDiNascita) {
+//	this.dataDiNascita = dataDiNascita;
+//}
 
 public String getCodiceFiscale() {
 	return codiceFiscale;
 }
 
+//public void setCodiceFiscale(String codiceFiscale) {
+//	this.codiceFiscale = codiceFiscale;
+//}
+
 public void setCodiceFiscale(String codiceFiscale) {
+	System.out.println("--------------------------");
+	System.out.println("EssereUmano -> setCodiceFiscale()"); 
+	
+	
 	this.codiceFiscale = codiceFiscale;
+}
+
+private String buildCodiceFiscale() 
+
+/*
+ * in questa funzione voglio creare una classe locale
+ * che mi cosente di creare un'oggetto della classe CodiceFiscale, che mi consente di costruire un codice fiscale a partire dai dati dell'oggetto EssereUmano.
+ */
+{
+	System.out.println("--------------------------");
+	System.out.println("EssereUmano -> buildCodiceFiscale()"); 
+	
+	class CodiceFiscale 
+	{
+		//variabile di istanza
+		private String codiceFiscale;
+		
+		//costruttore
+		CodiceFiscale()
+		{
+			//codiceFiscale
+		}
+		
+		//metodi getter /setter
+		private String getCodiceFiscale()
+		{
+			return codiceFiscale;
+		}
+		
+		//metodi /funzioni
+		
+		private String getPorzioneCognome()
+		{
+			String cognome = getCognome();
+			String porzioneCognome = "";
+			String caratterePadding = "X"; // questo serve per riempire eventuali buchi. esempio se ho bisogno di tre caratter e il cognome è solo di due , aggiunge la X per completare
+			String vocali = "AEIOU";
+			
+			cognome = cognome.toUpperCase();
+			
+			if(cognome.length() == 1)
+			{
+				porzioneCognome = cognome + caratterePadding + caratterePadding;
+			}
+			else if (cognome.length() == 2)
+			{
+				porzioneCognome = cognome;
+				/*
+				 * se la Stringa vocali contiene il primo carattere di cognome, ( quindi è una vocale)
+				 * mentre nella seconda parte dell'if stiamo chiedendo che
+				 * se non è vero che (!) nella stringa vocali è contenuto il secondo carattere di cognome ( quindi è una consonante)
+				 */
+				if(vocali.contains(String.valueOf(cognome.charAt(0))) &&   //se è vero che il primo carattere del cognome è una vocale
+						!vocali.contains(String.valueOf(cognome.charAt(1)))) // e contemporaneamente il secondo carattere non è una vocale ma una consonate
+					//con String.valueOf non faccio altro che convertire un char in una stringa
+			     {
+					porzioneCognome  = String.valueOf(cognome.charAt(1)) +
+							           String.valueOf(cognome.charAt(0)); 
+					//in pratica stiamo invertendo le posizioni delle lettere, se prima avevamo A/C adesso abbiamo C/A
+					System.out.println("	porzioneCognome 2: " + porzioneCognome);
+			     }
+				porzioneCognome = porzioneCognome + caratterePadding;
+			}
+			else
+			{
+				/*
+				 * Esercizio: provare ad implementare il reale algoritmo per la costruzione del codice fiscale
+				 * http://it.wikipedia.org/wiki/Codice_Fiscale
+				 */
+				
+				//semplificazione
+				
+				porzioneCognome = cognome.substring(0, 3); // con questo comando stiamo prendendo solo i primi 3 caratteri della Stringa cognome
+				
+			}
+			System.out.println("	porzioneCognome: " + porzioneCognome);
+			
+			return porzioneCognome;
+		}
+	}
+	
+	
 }
 
 //metodi getter per le costanti statiche

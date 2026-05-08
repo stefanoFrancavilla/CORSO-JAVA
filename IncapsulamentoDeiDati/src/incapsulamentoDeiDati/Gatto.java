@@ -24,7 +24,7 @@ public final class Gatto extends Animale {
 	// Variabili Constanti.
 	private static final byte MIN_ANNI = 0; 
 	private static final byte MAX_ANNI = 20; 
-	private static final byte DEFAULT_ANNI = 3;
+	private static final byte DEFAULT_ANNI = 0;
 	
 	private static final float MIN_ALTEZZA = 7f; 
 	private static final float MAX_ALTEZZA = 50f; 
