@@ -374,11 +374,13 @@ private String cognome;
 //private float peso;
 //private ColoreOcchi coloreOcchi;
 private ColoreCapelli coloreCapelli;
-private String nazioneDiNascita;
-private LocalDate dataDiNascita;  // con LocalDate possiamo gestire dei punti temporali, 
+private Nazione nazioneDiNascita;
+//private LocalDate dataDiNascita;  // con LocalDate possiamo gestire dei punti temporali, 
                                   //come ad esempio la data di nascita di un essere umano,
                                   //e possiamo fare dei calcoli con le date, come ad esempio calcolare l'età di un essere umano 
                                   //a partire dalla sua data di nascita.
+
+
 private Comune comuneDiNascita;
 private String codiceFiscale;  
 
@@ -446,7 +448,7 @@ private static int totaleEssereUmani = 0; // variabile statica per contare il nu
 public EssereUmano()
 {
 	//this("ND", "ND", Sesso.SCONOSCIUTO, (byte)0, 0f, 0f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, "ND", LocalDate.of(1900, Month.JANUARY, 1), "ND");
-	this("ND", "ND", Sesso.SCONOSCIUTO,0f, 0f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, "ND", LocalDate.now(), Comune.SCONOSCIUTO);
+	this("ND", "ND", Sesso.SCONOSCIUTO,0f, 0f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, Nazione.SCONOSCIUTO, LocalDate.now(), Comune.SCONOSCIUTO);
 	
 	/*
 	 * quando chiamiamo il costruttore senza parametri, il this richiama il costruttore con 9 parametri
@@ -464,7 +466,7 @@ public EssereUmano(String nome,
 {
 	//this(nome, cognome, sesso, (byte)0, 0f, 0f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, "ND", LocalDate.of(1900, Month.JANUARY, 1), "ND");
 	
-	this(nome, cognome, sesso, 0f, 0f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, "ND", LocalDate.now(), Comune.SCONOSCIUTO);
+	this(nome, cognome, sesso, 0f, 0f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, Nazione.SCONOSCIUTO, LocalDate.now(), Comune.SCONOSCIUTO);
 	
 	/*
 	 * nel costruttore con 0 parametri, abbiamo assegnato dei valori di default alle variabili d'istanza,
@@ -502,7 +504,7 @@ public EssereUmano(String nome,
 		float peso,
 		ColoreOcchi coloreOcchi,
 		ColoreCapelli coloreCapelli,
-		String nazioneDiNascita,
+		Nazione nazioneDiNascita,
 		LocalDate dataDiNascita,
 		Comune comuneDiNascita
 		)
@@ -866,13 +868,23 @@ public void setColoreCapelli(ColoreCapelli coloreCapelli) {
 	this.coloreCapelli = coloreCapelli;
 }
 
-public String getNazioneDiNascita() {
+public Nazione getNazioneDiNascita() {
 	return nazioneDiNascita;
 }
 
-public void setNazioneDiNascita(String nazioneDiNascita) {
+public void setNazioneDiNascita(Nazione nazioneDiNascita) {
 	this.nazioneDiNascita = nazioneDiNascita;
 }
+
+
+public Comune getComuneDiNascita() {
+	return comuneDiNascita;
+}
+
+public void setComuneDiNascita(Comune comuneDiNascita) {
+	this.comuneDiNascita = comuneDiNascita;
+}
+
 
 //public LocalDate getDataDiNascita() {
 //	return dataDiNascita;
@@ -883,6 +895,7 @@ public void setNazioneDiNascita(String nazioneDiNascita) {
 //}
 
 public String getCodiceFiscale() {
+	
 	return codiceFiscale;
 }
 
@@ -894,8 +907,45 @@ public void setCodiceFiscale(String codiceFiscale) {
 	System.out.println("--------------------------");
 	System.out.println("EssereUmano -> setCodiceFiscale()"); 
 	
+	if(this.getNazioneDiNascita() != Nazione.ITALIA) // se la nazione di nascita dell'oggetto è diversa da Italia, non è possibile definire il codice fiscale, perchè il codice fiscale è un codice identificativo italiano.
+	{
+		System.out.println("	Il codice fiscale vale per l'italia");
+	    return;	
+	}
+	if(getNome().equalsIgnoreCase("ND")) // se il nome dell'oggetto è "ND", significa che manca il nome, e quindi non è possibile definire il codice fiscale.
+	{
+		System.out.println("	Manca il nome e non è possibile definire il codice fiscale.");
+	    return;	
+	}
 	
-	this.codiceFiscale = codiceFiscale;
+	if(getCognome().equalsIgnoreCase("ND"))
+	{
+		System.out.println("	Manca il cognome e non è possibile definire il codice fiscale.");
+	    return;	
+	}
+	
+	if(getSesso() == Sesso.SCONOSCIUTO)
+	{
+		System.out.println("	Manca il sesso e non è possibile definire il codice fiscale.");
+	    return;	
+	}
+	
+	int limiteAnno = LocalDate.now().getYear() - getDataDiNascita().getYear(); // con questo calcolo stiamo ottenendo l'età dell'oggetto a partire dalla sua data di nascita, e stiamo confrontando l'età con un limite di 18 anni, che è l'età minima per poter definire un codice fiscale.
+	System.out.println("	limiteAnno: " + limiteAnno);
+	
+	if(limiteAnno > EssereUmano.MAX_ANNI)
+	{
+		System.out.println("	Data di nascita non corretta e non è possibile definire il codice fiscale.");
+	    return;	
+	}
+	
+	if(getComuneDiNascita() == Comune.SCONOSCIUTO)
+	{
+		System.out.println("	Manca il comune di nascita non definito e non è possibile definire il codice fiscale.");
+	    return;	
+	}
+	//this.codiceFiscale = codiceFiscale;
+	this.codiceFiscale = buildCodiceFiscale();
 }
 
 private String buildCodiceFiscale() 
@@ -920,7 +970,9 @@ private String buildCodiceFiscale()
 					getPorzioneNome() +
 			        getAnnoDiNascita() +
 			        getMeseDiNascita() + 
-			        getGiornoDiNascita() ;
+			        getGiornoDiNascita() +
+			        getComune() +
+			        getCodiceDiControllo();
 			
 		}
 		
@@ -1116,8 +1168,47 @@ private String buildCodiceFiscale()
 			return giornoDiNascita;
 		}
 	
+		private String getComune()
+		{
+			String comuneDiNascita;
+			
+			enum CodiceComune
+			{
+				H501, // Roma
+				F205, // Milano
+				L219, // Napoli
+				D969, // Genova
+				A662, // Bari
+				
+			}
+			CodiceComune codiceComune = switch(getComuneDiNascita())
+					{
+						case ROMA -> CodiceComune.H501;
+						case MILANO -> CodiceComune.F205;
+						case NAPOLI -> CodiceComune.L219;
+						case GENOVA -> CodiceComune.D969;
+						case BARI -> CodiceComune.A662;
+			            default -> throw new IllegalArgumentException("Unexpected value: " + getComuneDiNascita());
+						
+					};
+			           comuneDiNascita = String.valueOf(codiceComune);
+			           System.out.println("		comuneDiNascita: " + comuneDiNascita);
+			           return comuneDiNascita;
+		}
+		
+		private String getCodiceDiControllo()
+		{
+			String codiceDiControllo = String.valueOf(getNome().charAt(0)).toUpperCase(); //del nome della persona stiamo prendendo solo il primo carattere
+			System.out.println("	codiceDiControllo: " + codiceDiControllo);
+			return codiceDiControllo;
+		}
 	}
 	
+	CodiceFiscale codiceFiscale = new CodiceFiscale();  //creiamo un'oggetto della classe locale CodiceFiscale, che ci permette di costruire un codice fiscale a partire dai dati dell'oggetto EssereUmano.
+	
+	System.out.println("	codiceFiscale: " + codiceFiscale);
+	
+	return codiceFiscale.getCodiceFiscale(); // restituiamo il codice fiscale costruito dall'oggetto codiceFiscale, che è un'istanza della classe locale CodiceFiscale.
 }
 
 //metodi getter per le costanti statiche
@@ -1543,7 +1634,7 @@ public void stampa()
 	
 	//tipi interni.
 	
-	enum Comune
+	public enum Comune
 	{
 		ROMA,
 		MILANO,
@@ -1553,7 +1644,63 @@ public void stampa()
 		SCONOSCIUTO
 	}
  
+public enum Nazione 
+/*
+ * con questa enumerazione stiamo definendo un insieme di costanti che rappresentano le nazioni di nascita degli esseri umani,
+ * ogni nazione contiene una sotto informazione sul continente di appartenenza e sull'estensione territoriale,
+ * in questo modo possiamo associare ad ogni nazione una serie di informazioni che possono essere utili per la costruzione del codice fiscale, o per altre funzionalità della classe EssereUmano.
+ * abbiamo creato delle costanti per rappresentare le nazioni di nascita più comuni, e una costante SCONOSCIUTO per rappresentare una nazione di nascita non definita o sconosciuta.
+ * poi abbiamo definito il costruttore che ha la funzione di inizializzare le variabili di istanza continente ed estensione per ogni costante della enumerazione Nazione,
+ *  in modo da associare ad ogni nazione le informazioni sul continente di appartenenza e sull'estensione territoriale.
+ *  facendo così possiamo accedere a queste informazioni in modo semplice e veloce, ad esempio quando costruiamo il codice fiscale o quando vogliamo stampare le informazioni dell'essere umano.
+ *  
+ *  è una classe a tutti gli effetti, tanto è vero che possiamo definire i metodi getter e anche altri metodi interni alla enumerazione Nazione,
+ *   come ad esempio il metodo getInformazioni() che stampa a video le informazioni di tutte le nazioni presenti nella enumerazione.
+ */
+{
+	ITALIA ("Europa", 301),
+	SVIZZERA ("Europa", 100),
+	BRASILE ("America del sud", 600),
+	CILE ("America del sud", 150),
+	INDIA ("Asia", 800),
+	SCONOSCIUTO ("Sconosciuto", 0);
+	
+	//variablili di istanza / costanti
+	private final String continente;
+	private final int estensione;
+	
+	
+	//costruttore
+	private Nazione(String continente, int estensione)  
+	{
+		this.continente = continente;
+		this.estensione = estensione;
+	}
 
+	//metodi getter
+	public String getContinente() {
+		return continente;
+	}
+
+	public int getEstensione() {
+		return estensione;
+	}
+	
+	//metodi /funzioni
+	public static void getInformazioni()
+	{
+		for(Nazione nazione : Nazione.values())
+		{
+			System.out.println(nazione + 
+					", appartiene al continente: " + 
+					nazione.getContinente() +
+					" ed è estesa: " +
+					nazione.getEstensione() + " km2");
+		}
+	}
+	
+	
+}
 
 
 
