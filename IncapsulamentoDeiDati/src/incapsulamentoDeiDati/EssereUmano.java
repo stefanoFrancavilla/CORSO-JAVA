@@ -903,7 +903,7 @@ public String getCodiceFiscale() {
 //	this.codiceFiscale = codiceFiscale;
 //}
 
-public void setCodiceFiscale(String codiceFiscale) {
+public void setCodiceFiscale() {
 	System.out.println("--------------------------");
 	System.out.println("EssereUmano -> setCodiceFiscale()"); 
 	
@@ -1349,9 +1349,21 @@ public int hashCode()
 public void nasce() 
 {
 	super.nasce(); // stiamo chiamando il metodo nasce() della superclasse Animale, che stampa a video "L'animale nasce".
+	System.out.println("--------------------------");
+	System.out.println("EssereUmano -> nasce()");
+	
 	EssereUmano.totaleEssereUmani++; // ogni volta che viene creato un nuovo oggetto della classe EssereUmano,
 	                                 //incrementiamo la variabile totaleEssereUmani di 1.
-	System.out.println("totale EssereUmani " + EssereUmano.totaleEssereUmani);
+	System.out.println("	totale EssereUmani " + EssereUmano.totaleEssereUmani);
+}
+
+@Override
+public void respira() 
+{
+	System.out.println("--------------------------");
+	System.out.println("EssereUmano -> respira()");
+	//System.out.println(super.getNome() + " " + cognome + " respira");
+	System.out.println("	" + this.getNome() + " " + cognome + " respira");
 }
 
 @Override
@@ -1370,32 +1382,37 @@ public void nasce()
 
 public void beve() 
 {
-	System.out.println(super.getNome() + " " + cognome + " beve");
+	System.out.println("--------------------------");
+	System.out.println("EssereUmano -> beve()");
+	System.out.println("	" + this.getNome() + " " + cognome + " beve");
 }
 @Override
 public void mangia() 
 {
-	System.out.println(super.getNome() + " " + cognome + " mangia con le posate");
+	System.out.println("--------------------------");
+	System.out.println("EssereUmano -> mangia()");
+	System.out.println("	" + this.getNome() + " " + cognome + " mangia con le posate");
 }
-@Override
-public void respira() 
-{
-	System.out.println(super.getNome() + " " + cognome + " respira");
-}
+
 
 @Override
 public void muore() 
 {
 	super.muore(); 
+	
+	System.out.println("--------------------------");
+	System.out.println("EssereUmano -> muore()");
 	EssereUmano.totaleEssereUmani--; // ogni volta che viene chiamato il metodo muore() di un oggetto della classe EssereUmano,
 	                                 //decrementiamo la variabile totaleEssereUmani di 1.
-	System.out.println("totale EssereUmani " + EssereUmano.totaleEssereUmani);
+	System.out.println("	totale EssereUmani " + EssereUmano.totaleEssereUmani);
 }
 @Override
 public void dorme()
 {
 	super.dorme(); 
-	System.out.println(super.getNome() + " " + cognome + " dorme nel suo letto, tra cuscini e lenzuola");
+	System.out.println("--------------------------");
+	System.out.println("EssereUmano -> dorme()");
+	System.out.println("	" + this.getNome() + " " + cognome + " dorme nel suo letto, tra cuscini e lenzuola");
 //	System.out.println(nome + " " + cognome + " dorme");
 }
 /*
@@ -1412,17 +1429,23 @@ public void dorme()
  */
 public void canta()
 {
-	System.out.println(super.getNome() + " " + cognome + " canta");
+	System.out.println("--------------------------");
+	System.out.println("EssereUmano -> canta()");
+	System.out.println("	" + this.getNome() + " " + cognome + " canta");
 }
 
 public void studia()
 {
-	System.out.println(super.getNome() + " " + cognome + " studia");
+	System.out.println("--------------------------");
+	System.out.println("EssereUmano -> studia()");
+	System.out.println("	" + this.getNome() + " " + cognome + " studia");
 }
 
 public void lavora()
 {
-	System.out.println(super.getNome() + " " + cognome + " lavora");
+	System.out.println("--------------------------");
+	System.out.println("EssereUmano -> lavora()");
+	System.out.println("	" + this.getNome() + " " + cognome + " lavora");
 }
 
 //1
@@ -1562,8 +1585,10 @@ public double moltiplica(double... ns)
 //2.
 public void abbraccia(Animale altro)
 {
+	System.out.println("--------------------------");
+	System.out.println("EssereUmano -> abbraccia()");
 	//System.out.println(super.getNome() + " " + cognome + " abbraccia " + altro.getNome());
-	System.out.println(this.getNome() + " " + cognome + " abbraccia " + altro.getNome());
+	System.out.println("	" + this.getNome() + " " + cognome + " abbraccia " + altro.getNome());
 }
 /* con la seconda versione del metodo abbraccia, stiamo dando la possibilità a un essere umano di abbracciare qualsiasi animale, 
  * non solo un altro essere umano o un gatto, ma anche un cane, un uccello, o qualsiasi altro animale che estende la classe Animale.
@@ -1585,35 +1610,44 @@ public void abbraccia(Animale altro)
 @Override
 public void vola() 
 {
+	System.out.println("--------------------------");
+	System.out.println("EssereUmano -> vola()");
 	//System.out.println(super.getNome() + " " + cognome + " vola con l'aereo");
-	System.out.println(this.getNome() + " " + cognome + " vola con l'aereo");	
+	System.out.println("	" + this.getNome() + " " + cognome + " vola con l'aereo");	
 }
 
 public void faIlCaffe()
 {
-	System.out.println(this.getNome() + " " + cognome + " fa il caffè");
+	System.out.println("--------------------------");
+	System.out.println("EssereUmano -> faIlCaffe()");
+	System.out.println("	" + this.getNome() + " " + cognome + " fa il caffè");
 }
 public void stampaDocumento()
 {
-	System.out.println(this.getNome() + " " + cognome + " stampa un documento");
+	System.out.println("--------------------------");
+	System.out.println("EssereUmano -> stampaDocumento()");
+	System.out.println("	" + this.getNome() + " " + cognome + " stampa un documento");
 }
 
 @Override
 public void stampa() 
 {
+	System.out.println("--------------------------");
+	System.out.println("EssereUmano -> stampa()");
 	super.stampa(); // stiamo chiamando il metodo stampa() della superclasse Animale, 
 	System.out.println("----------");
 //	System.out.println("Nome: " + nome);
-	System.out.println("Cognome: " + cognome);
+	System.out.println("	Cognome: " + cognome);
 //	System.out.println("Sesso: " + sesso);
 //	System.out.println("Anni: " + anni);
 //	System.out.println("Altezza: " + altezza);
 //	System.out.println("Peso: " + peso);
 //	System.out.println("Colore Occhi: " + coloreOcchi);
-	System.out.println("Colore Capelli: " + coloreCapelli);
-	System.out.println("Nazione di Nascita: " + nazioneDiNascita);
-	System.out.println("----------");
-    
+	System.out.println("	Colore Capelli: " + coloreCapelli);
+	System.out.println("	Nazione di Nascita: " + nazioneDiNascita);
+	System.out.println("	codiceFiscale: " + codiceFiscale);
+	System.out.println("	Comune di Nascita: " + comuneDiNascita);
+	
 	super.stampa();
 }
 	// stiamo richiamando il metodo stampa() della superclasse Animale, in modo da stampare anche le informazioni generali dell'animale,

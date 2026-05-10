@@ -39,17 +39,29 @@ marcoRossi.stampa();
 marcoRossi.setNome ("Marco");
 marcoRossi.setCognome ("Rossi");
 marcoRossi.setSesso (Sesso.MASCHIO);
-marcoRossi.setAnni ((byte)18);
+//marcoRossi.setAnni ((byte)18);
 marcoRossi.setAltezza (173f);
 marcoRossi.setPeso (70f);
 marcoRossi.setColoreOcchi (ColoreOcchi.AZZURRI);
 marcoRossi.setColoreCapelli (ColoreCapelli.CASTANI);
-marcoRossi.setNazioneDiNascita ("Italia");
+marcoRossi.setNazioneDiNascita (EssereUmano.Nazione.ITALIA);
+marcoRossi.setDataDiNascita(LocalDate.of(1991, Month.APRIL, 9));
+marcoRossi.setComuneDiNascita(EssereUmano.Comune.ROMA);
+marcoRossi.setCodiceFiscale();
 
 marcoRossi.stampa();
 marcoRossi.mangia();
 marcoRossi.lavora();
 marcoRossi.vola();
+
+
+System.out.println();
+System.out.println("1.1--------------------------");
+System.out.println();
+
+EssereUmano.Nazione.getInformazioni();
+marcoRossi.getNazioneDiNascita().getContinente();
+marcoRossi.getNazioneDiNascita().getEstensione();
 
 System.out.println();
 System.out.println("2--------------------------");
@@ -58,14 +70,16 @@ System.out.println();
 EssereUmano saraVerdi = new EssereUmano("Sara",
 		"Verdi",
 		Sesso.FEMMINA,
-		(byte) 48, // si fa il cast da int a byte, per evitare l'errore di compilazione.
+		//(byte) 48, // si fa il cast da int a byte, per evitare l'errore di compilazione.
 		1.71f,
 		-500_055f,
 		ColoreOcchi.CASTANI,
 		ColoreCapelli.BIONDI,
-		"Italia",
+		EssereUmano.Nazione.ITALIA,
 		LocalDate.of(1978, Month.AUGUST, 10),
-		"AAABBB111111111111");
+		EssereUmano.Comune.NAPOLI);
+
+saraVerdi.setCodiceFiscale();
 
 saraVerdi.stampa();
 
@@ -96,12 +110,12 @@ lucaBianchi.stampa();
 //lucaBianchi.coloreCapelli = ColoreCapelli.ROSSI;
 //lucaBianchi.nazioneDiNascita = "Svizzera";
 
-lucaBianchi.setAnni((byte)34);
+//lucaBianchi.setAnni((byte)34);
 lucaBianchi.setAltezza(180.5f);
 lucaBianchi.setPeso(70.8f);
 lucaBianchi.setColoreOcchi(ColoreOcchi.VERDI);
 lucaBianchi.setColoreCapelli(ColoreCapelli.ROSSI);
-lucaBianchi.setNazioneDiNascita("Svizzera");
+lucaBianchi.setNazioneDiNascita(EssereUmano.Nazione.SVIZZERA);
 lucaBianchi.stampa();
 
 System.out.println();
@@ -109,10 +123,10 @@ System.out.println("3.2--------------------------");
 System.out.println();
 
 lucaBianchi.setNome("123");
-lucaBianchi.setAnni((byte)-100);
+//lucaBianchi.setAnni((byte)-100);
 lucaBianchi.setAltezza(-10_000f);
 lucaBianchi.setPeso(-2_000f);
-lucaBianchi.setNazioneDiNascita("ciccio");
+lucaBianchi.setNazioneDiNascita(EssereUmano.Nazione.CILE);
 lucaBianchi.stampa();
 /*
  * notare come non ci siano controlli sui dati inseriti
@@ -232,7 +246,7 @@ miagolino.stampa();
 
 miagolino.setNome("Miagolino");
 miagolino.setSesso(Sesso.MASCHIO);
-miagolino.setAnni((byte) 2);
+//miagolino.setAnni((byte) 2);
 miagolino.setAltezza(30f);
 miagolino.setPeso(3f);
 miagolino.setColoreOcchi(ColoreOcchi.GRIGI);
@@ -242,7 +256,7 @@ miagolino.setRazzaGatto(RazzaGatto.BRITHISH_SHORTHAIR);
 miagolino.stampa();
 
 miagolino.setNome("1Miago?lino");
-miagolino.setAnni((byte)127);
+//miagolino.setAnni((byte)127);
 miagolino.setAltezza(2_000_000.5f);
 miagolino.setPeso(5_000_000_000.5f);
 miagolino.stampa();
@@ -253,7 +267,7 @@ System.out.println();
 System.out.println("4.1--------------------------");
 System.out.println();
 
-Gatto gattino = new Gatto("Gattino", Sesso.MASCHIO, (byte) 4);
+Gatto gattino = new Gatto("Gattino", Sesso.MASCHIO);
 //Gatto gattino = new Gatto("Ga@ttino", Sesso.MASCHIO, (byte) -14);
 //gattino.stampa();
 gattino.dorme();
@@ -550,27 +564,27 @@ System.out.println();
 System.out.println("7--------------------------");
 System.out.println();
 
-EssereUmano persona1 = new EssereUmano("Carlo", "Neri", Sesso.MASCHIO);
-persona1.setCodiceFiscale("CCCNNN80B22A662Z");
-
-EssereUmano persona2 = new EssereUmano("Carlo", "Neri", Sesso.MASCHIO);
-persona2.setCodiceFiscale("CCCNNN80B22A662Z");
-
-EssereUmano persona3 = new EssereUmano("Carlo", "Neri", Sesso.MASCHIO);
-persona3.setCodiceFiscale("CCCNNN80B22A662Z");
-
-//System.out.println(persona1.equals(persona1)); // proprietà riflessiva dell'equals, un oggetto è sempre uguale a se stesso.
+//EssereUmano persona1 = new EssereUmano("Carlo", "Neri", Sesso.MASCHIO);
+//persona1.setCodiceFiscale("CCCNNN80B22A662Z");
 //
+//EssereUmano persona2 = new EssereUmano("Carlo", "Neri", Sesso.MASCHIO);
+//persona2.setCodiceFiscale("CCCNNN80B22A662Z");
+//
+//EssereUmano persona3 = new EssereUmano("Carlo", "Neri", Sesso.MASCHIO);
+//persona3.setCodiceFiscale("CCCNNN80B22A662Z");
+//
+////System.out.println(persona1.equals(persona1)); // proprietà riflessiva dell'equals, un oggetto è sempre uguale a se stesso.
+////
 //System.out.println(persona1.equals(persona2)); // prorietà simmetrica dell'equals, se persona1 è uguale a persona2, allora persona2 è uguale a persona1.
 //System.out.println(persona2.equals(persona1)); // prorietà simmetrica dell'equals, se persona2 è uguale a persona1, allora persona1 è uguale a persona2.
 
-System.out.println(persona1.equals(persona2));// proprietà transitiva dell'equals, se persona1 è uguale a persona2 e persona2 è uguale a persona3, allora persona1 è uguale a persona3.
-System.out.println(persona2.equals(persona3));
-System.out.println(persona1.equals(persona3));
-
-System.out.println(persona1.hashCode());
-System.out.println(persona2.hashCode());
-System.out.println(persona2.hashCode());
+//System.out.println(persona1.equals(persona2));// proprietà transitiva dell'equals, se persona1 è uguale a persona2 e persona2 è uguale a persona3, allora persona1 è uguale a persona3.
+//System.out.println(persona2.equals(persona3));
+//System.out.println(persona1.equals(persona3));
+//
+//System.out.println(persona1.hashCode());
+//System.out.println(persona2.hashCode());
+//System.out.println(persona2.hashCode());
 
 //System.out.println();	
 //System.out.println("8--------------------------");
@@ -581,6 +595,29 @@ System.out.println(persona2.hashCode());
 //
 //Dipendente dipendente2 = new Dipendente();
 //dipendente2.faIlCaffe();
+
+System.out.println();	
+System.out.println("7.1--------------------------");
+System.out.println();
+
+EssereUmano persona1 = new EssereUmano("Carlo", "Neri", Sesso.MASCHIO, 170f, 60f, ColoreOcchi.CASTANI, ColoreCapelli.BIANCHI, EssereUmano.Nazione.ITALIA, LocalDate.of(1973, Month.APRIL, 10), EssereUmano.Comune.NAPOLI);
+persona1.setCodiceFiscale();
+
+EssereUmano persona2 = new EssereUmano("Carlo", "Neri", Sesso.MASCHIO, 170f, 60f, ColoreOcchi.CASTANI, ColoreCapelli.BIANCHI, EssereUmano.Nazione.ITALIA, LocalDate.of(1973, Month.APRIL, 10), EssereUmano.Comune.NAPOLI);
+persona2.setCodiceFiscale();
+
+EssereUmano persona3 = new EssereUmano("Carlo", "Neri", Sesso.MASCHIO, 170f, 60f, ColoreOcchi.CASTANI, ColoreCapelli.BIANCHI, EssereUmano.Nazione.ITALIA, LocalDate.of(1973, Month.APRIL, 10), EssereUmano.Comune.NAPOLI);
+persona3.setCodiceFiscale();
+
+System.out.println(persona1.equals(persona1));
+
+System.out.println(persona1.equals(persona2));// proprietà transitiva dell'equals, se persona1 è uguale a persona2 e persona2 è uguale a persona3, allora persona1 è uguale a persona3.
+System.out.println(persona2.equals(persona3));
+System.out.println(persona1.equals(persona3));
+
+System.out.println(persona1.hashCode());
+System.out.println(persona2.hashCode());
+System.out.println(persona2.hashCode());
 
 System.out.println();	
 System.out.println("9--------------------------");

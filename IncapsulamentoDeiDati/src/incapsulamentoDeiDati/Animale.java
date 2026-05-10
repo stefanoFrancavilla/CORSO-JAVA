@@ -1,5 +1,7 @@
 package incapsulamentoDeiDati;
 
+import java.time.LocalDate;
+
 public abstract class Animale extends EssereVivente {
 
 	/* con la parola chiave "abstract" stiamo dichiarando una classe astratta,

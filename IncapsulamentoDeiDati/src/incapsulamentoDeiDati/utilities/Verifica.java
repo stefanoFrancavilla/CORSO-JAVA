@@ -12,7 +12,7 @@ public final class Verifica {
 		for (int i = 0; i < caratteri.length(); i++) 
 		{
 			char carattereCorrente = caratteri.charAt(i);
-			System.out.println("carattereCorrente" +  carattereCorrente);
+			//System.out.println("carattereCorrente" +  carattereCorrente);
 			if (s.indexOf(caratteri.charAt(i)) != -1)
 			{
 				presente = true;

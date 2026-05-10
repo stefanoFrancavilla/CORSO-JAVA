@@ -1,5 +1,7 @@
 package incapsulamentoDeiDati;
 
+import java.time.LocalDate;
+
 import incapsulamentoDeiDati.utilities.Verifica;
 
 public abstract class Pianta extends EssereVivente {
@@ -11,6 +13,7 @@ public abstract class Pianta extends EssereVivente {
 	protected String nome;
 	protected Tipo_di_foglie tipo_di_foglie;
 	protected Tipo_di_frutto tipo_di_frutto;
+	private LocalDate dataDiNascita;
 	
 	
 	private static final String Caratteri_proibiti = "0123456789!@#$%^&*()_+-=|\\/?><.,;:'[]{}";
@@ -19,11 +22,12 @@ public abstract class Pianta extends EssereVivente {
 	}
 	
 	
-	public Pianta(String nome, byte anni, float altezza, float peso, Tipo_di_foglie tipo_di_foglie, Tipo_di_frutto tipo_di_frutto ) {
-		super(anni, altezza, peso);
+	public Pianta(String nome, float altezza, float peso, Tipo_di_foglie tipo_di_foglie, Tipo_di_frutto tipo_di_frutto, LocalDate dataDiNascita) {
+		super(altezza, peso);
 		this.setNome(nome);
 		this.tipo_di_foglie = tipo_di_foglie;
 		this.tipo_di_frutto = tipo_di_frutto;
+		this.dataDiNascita = dataDiNascita;
 			
 	}
 	
@@ -44,13 +48,13 @@ public abstract class Pianta extends EssereVivente {
 		
 	}
 	
-	public byte getAnni() {
-		return super.getAnni();
-	}
-	
-	public void setAnni() {
-		
-	}
+//	public byte getAnni() {
+//		return super.getAnni();
+//	}
+//	
+//	public void setAnni() {
+//		
+//	}
 	
 	public float getaltezza() {
 		return super.getAltezza();

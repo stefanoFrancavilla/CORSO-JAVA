@@ -1,4 +1,6 @@
 package incapsulamentoDeiDati;
+import java.time.LocalDate;
+
 import incapsulamentoDeiDati.utilities.Verifica;
 public final class Gatto extends Animale {
 	/*
@@ -38,8 +40,9 @@ public final class Gatto extends Animale {
 
 	//Costruttore.
 	public Gatto() {
-		this("ND", Sesso.SCONOSCIUTO, (byte) 0, 0f, 0f, ColoreOcchi.SCONOSCIUTO, ColorePeloGatto.SCONOSCIUTO, RazzaGatto.SCONOSCIUTO);
+		this("ND", Sesso.SCONOSCIUTO, 0f, 0f, ColoreOcchi.SCONOSCIUTO, ColorePeloGatto.SCONOSCIUTO, RazzaGatto.SCONOSCIUTO, LocalDate.now());
 		
+		System.out.println("--------------------------");
 		System.out.println("Gatto (0)"); // questo è il costruttore con 0 parametri
 	}
 	/*
@@ -53,12 +56,12 @@ public final class Gatto extends Animale {
 	 */
 	
 	public Gatto(String nome,
-			     Sesso sesso,
-			     byte anni)
+			     Sesso sesso
+			     )
 	{
-		this(nome, sesso, anni, 0f, 0f, ColoreOcchi.SCONOSCIUTO, ColorePeloGatto.SCONOSCIUTO, RazzaGatto.SCONOSCIUTO);
-		
-		System.out.println("Gatto (3)"); //questo è il costruttore con 3 parametri
+		this(nome, sesso, 0f, 0f, ColoreOcchi.SCONOSCIUTO, ColorePeloGatto.SCONOSCIUTO, RazzaGatto.SCONOSCIUTO, LocalDate.now());
+		System.out.println("--------------------------");
+		System.out.println("Gatto (2)"); //questo è il costruttore con 3 parametri
 		
 //		this.nome = nome;
 //		this.sesso = sesso;
@@ -67,14 +70,16 @@ public final class Gatto extends Animale {
 	
 	public Gatto(String nome,
 			     Sesso sesso,
-			     byte anni,
+			    // byte anni,
 			     float altezza,
 			     float peso,
 			     ColoreOcchi coloreOcchi,
 			     ColorePeloGatto colorePeloGatto,
-			     RazzaGatto razzaGatto)
+			     RazzaGatto razzaGatto,
+			     LocalDate dataDiNascita)
 	{
-		super(nome, sesso, anni, altezza, peso, coloreOcchi);
+		//super(nome, sesso, anni, altezza, peso, coloreOcchi);
+		super(nome, sesso, altezza, peso, coloreOcchi, dataDiNascita);
 		System.out.println("Gatto (8)"); //questo è il costruttore con 8 parametri
 		
 //		this.setNome(nome);
@@ -103,20 +108,23 @@ public final class Gatto extends Animale {
 		public void setNome(String nome) {
 			boolean nomeCorretto = true;
 			
+			System.out.println("--------------------------");
+			System.out.println("Gatto -> setNome()");
+			
 			if (Verifica.verificaCratteri("1234567890!?@", nome)) 
 			{
-				System.out.println("nome non consono"); 
+				System.out.println("	nome non consono"); 
 				nomeCorretto = false;
 			}
 			else if ( Verifica.verificaLunghezza(nome, 20))
 			{
-				System.out.println("nome troppo lungo");
+				System.out.println("	nome troppo lungo");
 				
 				nomeCorretto = false;
 			}
 			if(nomeCorretto == true) 
 			{
-				System.out.println("nome ok");
+				System.out.println("	nome ok");
 				super.setNome(nome);
 			}
 			else
@@ -124,7 +132,7 @@ public final class Gatto extends Animale {
 				String nomeCorrente = super.getNome();
 			if ( nomeCorrente == null)
 			{
-				System.out.println(nomeCorrente + " è null ");
+				System.out.println("	" + nomeCorrente + " è null ");
 				
 				super.setNome("ND");
 			}
@@ -132,7 +140,7 @@ public final class Gatto extends Animale {
 				
 				
 			{
-				System.out.println(nomeCorrente + " è un nome sensato .");
+				System.out.println("	" + nomeCorrente + " è un nome sensato .");
 			}
 		}	
 	}
@@ -314,61 +322,79 @@ public final class Gatto extends Animale {
 		@Override	
 		public void nasce()
 		{
+			System.out.println("--------------------------");
+			System.out.println("Gatto -> nasce()");
 			super.nasce();
 			Gatto.totaleGatti++;
-			System.out.println("totaleGatti:" + Gatto.totaleGatti);
+			System.out.println("	totaleGatti:" + Gatto.totaleGatti);
 		}
 		@Override
 	public void beve() 
 	{
-		System.out.println(super.getNome() + " beve");
+			System.out.println("--------------------------");
+			System.out.println("Gatto -> beve()");
+		System.out.println("	" + this.getNome() + " beve");
 	}
 		@Override
 	public void mangia() 
 	{
-		System.out.println(super.getNome() + " mangia nella ciotola");
+			System.out.println("--------------------------");
+			System.out.println("Gatto -> mangia()");
+		System.out.println("	" + this.getNome() + " mangia nella ciotola");
 	}
 		@Override
 	public void respira() 
 	{
-		System.out.println(super.getPeso() + " respira");
+			System.out.println("--------------------------");
+			System.out.println("Gatto -> respira()");
+		System.out.println("	" + this.getPeso() + " respira");
 	}
 		public void muore()
 		{
 			super.muore();
+			System.out.println("--------------------------");
+			System.out.println("Gatto -> muore()");
 			Gatto.totaleGatti--;
-			System.out.println("totaleGatti:" + Gatto.totaleGatti);
+			System.out.println("	totaleGatti:" + Gatto.totaleGatti);
 		}
 		@Override
 	public void dorme()
 	{
 			super.dorme();
-			System.out.println(super.getAltezza() + " dorme accovacciato con il musino rivolto verso l'alto");	
+			System.out.println("--------------------------");
+			System.out.println("Gatto -> dorme()");
+			System.out.println("	" + this.getAltezza() + " dorme accovacciato con il musino rivolto verso l'alto");	
 		//System.out.println(nome + " dorme");
 	}
 	
 	public void faLeFusa() 
 	{
-		System.out.println(super.getNome() + " fa le fusa");
+		System.out.println("--------------------------");
+		System.out.println("Gatto -> faLeFusa()");
+		System.out.println("	" + this.getNome() + " fa le fusa");
 	}
 	
 	public void impasta() 
 	{
-		System.out.println(super.getNome() + " impasta");
+		System.out.println("--------------------------");
+		System.out.println("Gatto -> impasta()");
+		System.out.println("	" + this.getNome() + " impasta");
 	}
        @Override
 	public void stampa() 
 	{
     	   super.stampa();
-		System.out.println("----------");
+    	   System.out.println("--------------------------");
+			System.out.println("Gatto -> stampa()");
+		
 //		System.out.println("Nome: " + nome);
 //		System.out.println("Sesso: " + sesso);
 //		System.out.println("Anni: " + anni);
 //		System.out.println("Altezza: " + altezza);
 //		System.out.println("Peso: " + peso);
 //		System.out.println("Colore Occhi: " + coloreOcchi);
-     	System.out.println("Colore Pelo: " + colorePeloGatto);
-		System.out.println("Razza: " + razzaGatto);
+     	System.out.println("	Colore Pelo: " + colorePeloGatto);
+		System.out.println("	Razza: " + razzaGatto);
 		
 	    
 	 }
