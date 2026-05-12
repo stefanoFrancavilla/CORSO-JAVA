@@ -60,8 +60,9 @@ System.out.println("1.1--------------------------");
 System.out.println();
 
 EssereUmano.Nazione.getInformazioni();
-marcoRossi.getNazioneDiNascita().getContinente();
-marcoRossi.getNazioneDiNascita().getEstensione();
+System.out.println(marcoRossi.getNazioneDiNascita().getContinente());
+System.out.println(marcoRossi.getNazioneDiNascita().getEstensione());
+
 
 System.out.println();
 System.out.println("2--------------------------");

@@ -348,7 +348,7 @@ public void stampa() {
 //}
 
 //4
-public class EssereUmano extends Animale implements IVolatile {
+public abstract class EssereUmano extends Animale implements IVolatile {
 	
 	/*
 	 * con la parola chiave extends, stiamo dichiarando che la classe EssereUmano
@@ -374,15 +374,15 @@ private String cognome;
 //private float peso;
 //private ColoreOcchi coloreOcchi;
 private ColoreCapelli coloreCapelli;
-private Nazione nazioneDiNascita;
+//private Nazione nazioneDiNascita;
 //private LocalDate dataDiNascita;  // con LocalDate possiamo gestire dei punti temporali, 
                                   //come ad esempio la data di nascita di un essere umano,
                                   //e possiamo fare dei calcoli con le date, come ad esempio calcolare l'età di un essere umano 
                                   //a partire dalla sua data di nascita.
 
 
-private Comune comuneDiNascita;
-private String codiceFiscale;  
+//private Comune comuneDiNascita;
+//private String codiceFiscale;  
 
 
 //Costanti.
@@ -445,20 +445,20 @@ private static int totaleEssereUmani = 0; // variabile statica per contare il nu
 // Costruttori
 
 
-public EssereUmano()
-{
-	//this("ND", "ND", Sesso.SCONOSCIUTO, (byte)0, 0f, 0f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, "ND", LocalDate.of(1900, Month.JANUARY, 1), "ND");
-	this("ND", "ND", Sesso.SCONOSCIUTO,0f, 0f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, Nazione.SCONOSCIUTO, LocalDate.now(), Comune.SCONOSCIUTO);
-	
-	/*
-	 * quando chiamiamo il costruttore senza parametri, il this richiama il costruttore con 9 parametri
-	 * e assegna dei valori di default alle variabili d'istanza.
-	 * in questo modo evitiamo di scrivere codice duplicato.
-	 * il this deve essere la prima istruzione del costruttore.
-	 */
-	System.out.println("--------------------------");
-	System.out.println("EssereUmano (0)"); // per vedere quale costruttore viene chiamato
-}
+//public EssereUmano()
+//{
+//	//this("ND", "ND", Sesso.SCONOSCIUTO, (byte)0, 0f, 0f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, "ND", LocalDate.of(1900, Month.JANUARY, 1), "ND");
+//	this("ND", "ND", Sesso.SCONOSCIUTO,0f, 0f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, Nazione.SCONOSCIUTO, LocalDate.now(), Comune.SCONOSCIUTO);
+//	
+//	/*
+//	 * quando chiamiamo il costruttore senza parametri, il this richiama il costruttore con 9 parametri
+//	 * e assegna dei valori di default alle variabili d'istanza.
+//	 * in questo modo evitiamo di scrivere codice duplicato.
+//	 * il this deve essere la prima istruzione del costruttore.
+//	 */
+//	System.out.println("--------------------------");
+//	System.out.println("EssereUmano (0)"); // per vedere quale costruttore viene chiamato
+//}
 
 public EssereUmano(String nome, 
 		String cognome,
@@ -466,8 +466,8 @@ public EssereUmano(String nome,
 {
 	//this(nome, cognome, sesso, (byte)0, 0f, 0f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, "ND", LocalDate.of(1900, Month.JANUARY, 1), "ND");
 	
-	this(nome, cognome, sesso, 0f, 0f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, Nazione.SCONOSCIUTO, LocalDate.now(), Comune.SCONOSCIUTO);
-	
+	//this(nome, cognome, sesso, 0f, 0f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, Nazione.SCONOSCIUTO, LocalDate.now(), Comune.SCONOSCIUTO);
+	this(nome, cognome, sesso, 0f, 0f, ColoreOcchi.SCONOSCIUTO, ColoreCapelli.SCONOSCIUTO, LocalDate.now());
 	/*
 	 * nel costruttore con 0 parametri, abbiamo assegnato dei valori di default alle variabili d'istanza,
 	 * mentre per il costruttore , con 3 parametri abbiamo assegnato a nome, cognome e sesso i valori dei parametri,
@@ -495,7 +495,6 @@ public EssereUmano(String nome,
 	 */
 }
 
-// 3
 public EssereUmano(String nome,
 		String cognome,
 		Sesso sesso,
@@ -504,76 +503,116 @@ public EssereUmano(String nome,
 		float peso,
 		ColoreOcchi coloreOcchi,
 		ColoreCapelli coloreCapelli,
-		Nazione nazioneDiNascita,
-		LocalDate dataDiNascita,
-		Comune comuneDiNascita
+		LocalDate dataDiNascita
+	
 		)
 
 {
-	//super(nome, sesso, anni, altezza, peso, coloreOcchi);
+	
 	super(nome, sesso, altezza, peso, coloreOcchi, dataDiNascita);
 	
 	System.out.println("--------------------------");
-	System.out.println("EssereUmano (10)");
+	System.out.println("EssereUmano (8)");
 	
-	// per vedere quale costruttore viene chiamato
-	//this.nome = nome; // uso la parola chiave this per distinguere la variabile d'istanza dal parametro
-	//this.setNome(nome); // invece di assegnare direttamente il valore del parametro nome alla variabile d'istanza nome, usiamo il metodo setter setNome(nome) per controllare il valore inserito.
-	//this.cognome = cognome; 
+
 	
 	this.setCognome(cognome);
 	
-	//this.sesso = sesso;
-	
-	//1
-//	this.anni = anni;
-//	this.altezza = altezza;
-//	this.peso = peso;
-	/*
-	 * usando this.altezza e this.peso, stiamo accedendo alle variabili d'istanza altezza e peso dell'oggetto corrente
-	 * quindi quando assegnamo il valore del parametro altezza alla variabile d'istanza altezza, 
-	 * stiamo modificando il valore della variabile d'istanza altezza dell'oggetto corrente.
-	 * ed il valore non viene controllato, quindi è possibile inserire valori non realistici per l'altezza e il peso di un essere umano.
-	 */
-	
-//
-	//this.setAnni(anni);
-	//this.setAltezza(altezza);
-	//this.setPeso(peso);
-	/*
-	 * invece usando stetAltezza(altezza) e setPeso(peso), 
-	 * stiamo chiamando i metodi setter che abbiamo definito per le variabili d'istanza altezza e peso
-	 * quindi il valore inserito dovrà passare attraverso i controlli che abbiamo inserito nei metodi setter,
-	 */
-	
-	//this.coloreOcchi = coloreOcchi;
+
 	this.coloreCapelli = coloreCapelli;
-	/*
-	 * sia per colore occhi che per colore capelli, non abbiamo inserito dei controlli nei metodi setter,
-	 * perchè i loro rispettivi valori vengono da una lista di enumerazioni già definita
-	 * di conseguenza non è possibile inserire valori non validi per queste variabili d'istanza,
-	 * allora va bene anche scriverli direttamente senza usare i metodi setter.
-	 */
-	this.nazioneDiNascita = nazioneDiNascita;
 	
-	//this.setDataDiNascita(dataDiNascita);
+	//this.nazioneDiNascita = nazioneDiNascita;
 	
-	this.comuneDiNascita = comuneDiNascita;
+
 	
-	//this.setCodiceFiscale(codiceFiscale);
+	//this.comuneDiNascita = comuneDiNascita;
 	
-	this.codiceFiscale = "ND"; // per evitare di inserire un codice fiscale non valido, assegniamo un valore di default "
+
 	
-	this.nasce(); // quando viene creato un oggetto della classe EssereUmano,
-	//viene chiamato il metodo nasce() che stampa a video "EssereUmano nasce".
-	//
-	// this si riferisce all'oggetto corrente
-	// viene usato per accedere alle variabili d'istanza e ai metodi dell'oggetto corrente
-	// si usa quando c'è ambiguità tra variabili d'istanza e parametri
-	// in questo caso i nomi sono uguali
-	// quindi per distinguere si usa this.
-	// questo è un'altro modo per scrivere i costruttori.
+	//this.codiceFiscale = "ND"; 
+	
+	this.nasce(); 
 }
+
+// 3
+//public EssereUmano(String nome,
+//		String cognome,
+//		Sesso sesso,
+//		//byte anni,
+//		float altezza,
+//		float peso,
+//		ColoreOcchi coloreOcchi,
+//		ColoreCapelli coloreCapelli,
+//		Nazione nazioneDiNascita,
+//		LocalDate dataDiNascita,
+//		Comune comuneDiNascita
+//		)
+//
+//{
+//	//super(nome, sesso, anni, altezza, peso, coloreOcchi);
+//	super(nome, sesso, altezza, peso, coloreOcchi, dataDiNascita);
+//	
+//	System.out.println("--------------------------");
+//	System.out.println("EssereUmano (10)");
+//	
+//	// per vedere quale costruttore viene chiamato
+//	//this.nome = nome; // uso la parola chiave this per distinguere la variabile d'istanza dal parametro
+//	//this.setNome(nome); // invece di assegnare direttamente il valore del parametro nome alla variabile d'istanza nome, usiamo il metodo setter setNome(nome) per controllare il valore inserito.
+//	//this.cognome = cognome; 
+//	
+//	this.setCognome(cognome);
+//	
+//	//this.sesso = sesso;
+//	
+//	//1
+////	this.anni = anni;
+////	this.altezza = altezza;
+////	this.peso = peso;
+//	/*
+//	 * usando this.altezza e this.peso, stiamo accedendo alle variabili d'istanza altezza e peso dell'oggetto corrente
+//	 * quindi quando assegnamo il valore del parametro altezza alla variabile d'istanza altezza, 
+//	 * stiamo modificando il valore della variabile d'istanza altezza dell'oggetto corrente.
+//	 * ed il valore non viene controllato, quindi è possibile inserire valori non realistici per l'altezza e il peso di un essere umano.
+//	 */
+//	
+////
+//	//this.setAnni(anni);
+//	//this.setAltezza(altezza);
+//	//this.setPeso(peso);
+//	/*
+//	 * invece usando stetAltezza(altezza) e setPeso(peso), 
+//	 * stiamo chiamando i metodi setter che abbiamo definito per le variabili d'istanza altezza e peso
+//	 * quindi il valore inserito dovrà passare attraverso i controlli che abbiamo inserito nei metodi setter,
+//	 */
+//	
+//	//this.coloreOcchi = coloreOcchi;
+//	this.coloreCapelli = coloreCapelli;
+//	/*
+//	 * sia per colore occhi che per colore capelli, non abbiamo inserito dei controlli nei metodi setter,
+//	 * perchè i loro rispettivi valori vengono da una lista di enumerazioni già definita
+//	 * di conseguenza non è possibile inserire valori non validi per queste variabili d'istanza,
+//	 * allora va bene anche scriverli direttamente senza usare i metodi setter.
+//	 */
+//	this.nazioneDiNascita = nazioneDiNascita;
+//	
+//	//this.setDataDiNascita(dataDiNascita);
+//	
+//	this.comuneDiNascita = comuneDiNascita;
+//	
+//	//this.setCodiceFiscale(codiceFiscale);
+//	
+//	this.codiceFiscale = "ND"; // per evitare di inserire un codice fiscale non valido, assegniamo un valore di default "
+//	
+//	this.nasce(); // quando viene creato un oggetto della classe EssereUmano,
+//	//viene chiamato il metodo nasce() che stampa a video "EssereUmano nasce".
+//	//
+//	// this si riferisce all'oggetto corrente
+//	// viene usato per accedere alle variabili d'istanza e ai metodi dell'oggetto corrente
+//	// si usa quando c'è ambiguità tra variabili d'istanza e parametri
+//	// in questo caso i nomi sono uguali
+//	// quindi per distinguere si usa this.
+//	// questo è un'altro modo per scrivere i costruttori.
+//}
 
 //Metodi getter e setter
 
@@ -658,7 +697,7 @@ public void setNome(String nome) {
 	}
 	else
 	{
-		String nomeCorrente = super.getNome(); 
+		String nomeCorrente = this.getNome(); 
 		//con super.getNome() stiamo chiamando il metodo getter getNome() della classe padre Animale
 		// per ottenere il valore corrente del nome dell'oggetto, e lo stiamo assegnando alla variabile locale nomeCorrente.
 
@@ -868,22 +907,22 @@ public void setColoreCapelli(ColoreCapelli coloreCapelli) {
 	this.coloreCapelli = coloreCapelli;
 }
 
-public Nazione getNazioneDiNascita() {
-	return nazioneDiNascita;
-}
-
-public void setNazioneDiNascita(Nazione nazioneDiNascita) {
-	this.nazioneDiNascita = nazioneDiNascita;
-}
-
-
-public Comune getComuneDiNascita() {
-	return comuneDiNascita;
-}
-
-public void setComuneDiNascita(Comune comuneDiNascita) {
-	this.comuneDiNascita = comuneDiNascita;
-}
+//public Nazione getNazioneDiNascita() {
+//	return nazioneDiNascita;
+//}
+//
+//public void setNazioneDiNascita(Nazione nazioneDiNascita) {
+//	this.nazioneDiNascita = nazioneDiNascita;
+//}
+//
+//
+//public Comune getComuneDiNascita() {
+//	return comuneDiNascita;
+//}
+//
+//public void setComuneDiNascita(Comune comuneDiNascita) {
+//	this.comuneDiNascita = comuneDiNascita;
+//}
 
 
 //public LocalDate getDataDiNascita() {
@@ -903,313 +942,313 @@ public String getCodiceFiscale() {
 //	this.codiceFiscale = codiceFiscale;
 //}
 
-public void setCodiceFiscale() {
-	System.out.println("--------------------------");
-	System.out.println("EssereUmano -> setCodiceFiscale()"); 
-	
-	if(this.getNazioneDiNascita() != Nazione.ITALIA) // se la nazione di nascita dell'oggetto è diversa da Italia, non è possibile definire il codice fiscale, perchè il codice fiscale è un codice identificativo italiano.
-	{
-		System.out.println("	Il codice fiscale vale per l'italia");
-	    return;	
-	}
-	if(getNome().equalsIgnoreCase("ND")) // se il nome dell'oggetto è "ND", significa che manca il nome, e quindi non è possibile definire il codice fiscale.
-	{
-		System.out.println("	Manca il nome e non è possibile definire il codice fiscale.");
-	    return;	
-	}
-	
-	if(getCognome().equalsIgnoreCase("ND"))
-	{
-		System.out.println("	Manca il cognome e non è possibile definire il codice fiscale.");
-	    return;	
-	}
-	
-	if(getSesso() == Sesso.SCONOSCIUTO)
-	{
-		System.out.println("	Manca il sesso e non è possibile definire il codice fiscale.");
-	    return;	
-	}
-	
-	int limiteAnno = LocalDate.now().getYear() - getDataDiNascita().getYear(); // con questo calcolo stiamo ottenendo l'età dell'oggetto a partire dalla sua data di nascita, e stiamo confrontando l'età con un limite di 18 anni, che è l'età minima per poter definire un codice fiscale.
-	System.out.println("	limiteAnno: " + limiteAnno);
-	
-	if(limiteAnno > EssereUmano.MAX_ANNI)
-	{
-		System.out.println("	Data di nascita non corretta e non è possibile definire il codice fiscale.");
-	    return;	
-	}
-	
-	if(getComuneDiNascita() == Comune.SCONOSCIUTO)
-	{
-		System.out.println("	Manca il comune di nascita non definito e non è possibile definire il codice fiscale.");
-	    return;	
-	}
-	//this.codiceFiscale = codiceFiscale;
-	this.codiceFiscale = buildCodiceFiscale();
-}
-
-private String buildCodiceFiscale() 
-
-/*
- * in questa funzione voglio creare una classe locale
- * che mi cosente di creare un'oggetto della classe CodiceFiscale, che mi consente di costruire un codice fiscale a partire dai dati dell'oggetto EssereUmano.
- */
-{
-	System.out.println("--------------------------");
-	System.out.println("EssereUmano -> buildCodiceFiscale()"); 
-	
-	class CodiceFiscale 
-	{
-		//variabile di istanza
-		private String codiceFiscale;
-		
-		//costruttore
-		CodiceFiscale()
-		{
-			codiceFiscale = getPorzioneCognome() +
-					getPorzioneNome() +
-			        getAnnoDiNascita() +
-			        getMeseDiNascita() + 
-			        getGiornoDiNascita() +
-			        getComune() +
-			        getCodiceDiControllo();
-			
-		}
-		
-		//metodi getter /setter
-		private String getCodiceFiscale()
-		{
-			return codiceFiscale;
-		}
-		
-		//metodi /funzioni
-		
-		private String getPorzioneCognome()
-		{
-			String cognome = getCognome();
-			String porzioneCognome = "";
-			String caratterePadding = "X"; // questo serve per riempire eventuali buchi. esempio se ho bisogno di tre caratter e il cognome è solo di due , aggiunge la X per completare
-			String vocali = "AEIOU";
-			
-			cognome = cognome.toUpperCase();
-			
-			if(cognome.length() == 1)
-			{
-				porzioneCognome = cognome + caratterePadding + caratterePadding;
-			}
-			else if (cognome.length() == 2)
-			{
-				porzioneCognome = cognome;
-				/*
-				 * se la Stringa vocali contiene il primo carattere di cognome, ( quindi è una vocale)
-				 * mentre nella seconda parte dell'if stiamo chiedendo che
-				 * se non è vero che (!) nella stringa vocali è contenuto il secondo carattere di cognome ( quindi è una consonante)
-				 */
-				if(vocali.contains(String.valueOf(cognome.charAt(0))) &&   //se è vero che il primo carattere del cognome è una vocale
-						!vocali.contains(String.valueOf(cognome.charAt(1)))) // e contemporaneamente il secondo carattere non è una vocale ma una consonate
-					//con String.valueOf non faccio altro che convertire un char in una stringa
-			     {
-					porzioneCognome  = String.valueOf(cognome.charAt(1)) +
-							           String.valueOf(cognome.charAt(0)); 
-					//in pratica stiamo invertendo le posizioni delle lettere, se prima avevamo A/C adesso abbiamo C/A
-					System.out.println("	porzioneCognome 2: " + porzioneCognome);
-			     }
-				porzioneCognome = porzioneCognome + caratterePadding;
-			}
-			else
-			{
-				/*
-				 * Esercizio: provare ad implementare il reale algoritmo per la costruzione del codice fiscale
-				 * http://it.wikipedia.org/wiki/Codice_Fiscale
-				 */
-				
-				//semplificazione
-				
-				porzioneCognome = cognome.substring(0, 3); // con questo comando stiamo prendendo solo i primi 3 caratteri della Stringa cognome
-				
-			}
-			System.out.println("	porzioneCognome: " + porzioneCognome);
-			
-			return porzioneCognome;
-		}
-		
-		private String getPorzioneNome()
-		{
-			String nome = getNome();
-			String porzioneNome = "";
-			String caratterePadding = "X"; // questo serve per riempire eventuali buchi. esempio se ho bisogno di tre caratter e il cognome è solo di due , aggiunge la X per completare
-			String vocali = "AEIOU";
-			
-			nome = nome.toUpperCase();
-			
-			if(nome.length() == 1)
-			{
-				porzioneNome = nome + caratterePadding + caratterePadding;
-			}
-			else if (nome.length() == 2)
-			{
-				porzioneNome = nome;
-				/*
-				 * se la Stringa vocali contiene il primo carattere di cognome, ( quindi è una vocale)
-				 * mentre nella seconda parte dell'if stiamo chiedendo che
-				 * se non è vero che (!) nella stringa vocali è contenuto il secondo carattere di cognome ( quindi è una consonante)
-				 */
-				if(vocali.contains(String.valueOf(nome.charAt(0))) &&   //se è vero che il primo carattere del cognome è una vocale
-						!vocali.contains(String.valueOf(nome.charAt(1)))) // e contemporaneamente il secondo carattere non è una vocale ma una consonate
-					//con String.valueOf non faccio altro che convertire un char in una stringa
-			     {
-					porzioneNome  = String.valueOf(nome.charAt(1)) +
-							           String.valueOf(nome.charAt(0)); 
-					//in pratica stiamo invertendo le posizioni delle lettere, se prima avevamo A/C adesso abbiamo C/A
-					System.out.println("	porzioneCognome 2: " + porzioneNome);
-			     }
-				porzioneNome = porzioneNome + caratterePadding;
-			}
-			else
-			{
-				/*
-				 * Esercizio: provare ad implementare il reale algoritmo per la costruzione del codice fiscale
-				 * http://it.wikipedia.org/wiki/Codice_Fiscale
-				 */
-				
-				//semplificazione
-				
-				porzioneNome = nome.substring(0, 3); // con questo comando stiamo prendendo solo i primi 3 caratteri della Stringa cognome
-				
-			}
-			System.out.println("	porzioneNome: " + porzioneNome);
-			
-			return porzioneNome;
-		}
-		
-		private String getAnnoDiNascita()
-		{
-			String annoDiNascita = String.valueOf(getDataDiNascita().getYear()).substring(2, 4); 
-			/*
-			 *  con String.valueOf stiamoconvetrendo la data di nascita in una stringa
-			 *  getDataDiNascita() ci restituisce la data di nascita
-			 *  getYear() ci restituisce solo l'anno di nascita
-			 *  subString (2, 4) ci permette di prendere solo gli ultimi 2 caratteri dell'anno di nascita
-			 *  ad esempio se l'anno di nascita è 1990, con subString(2, 4) prendiamo solo il 90,
-			 *  quindi tutta la riga di codice ci restituisce gli ultimi 2 caratteri dell'anno di nascita
-			 *  
-			 *  per far si che subString prenda solo le ultime 2 cifre bisogna mettere come indice
-			 *  l'ultimo indice deve essere 3 + 1, 
-			 *  perchè subString prende i caratteri dall'indice di inizio (incluso) all'indice di fine (escluso)
-			 *     
-			 */
-			
-			System.out.println("	annoDiNascita: " + annoDiNascita);
-			
-			return annoDiNascita;
-		}
-		private String getMeseDiNascita()
-		{
-			String meseDiNascita;
-			
-			enum CodiceMese
-			{
-				A, // Gennaio
-				B, // Febbraio
-				C, // Marzo
-				D, // Aprile
-				E, // Maggio
-				H, // Giugno
-				L, // Luglio
-				M, // Agosto
-				P, // Settembre
-				R, // Ottobre
-				S, // Novembre
-				T  // Dicembre
-			}
-			
-			CodiceMese codiceMese = switch(getDataDiNascita().getMonth())
-					{
-						case JANUARY -> CodiceMese.A;
-						case FEBRUARY -> CodiceMese.B;
-						case MARCH -> CodiceMese.C;
-						case APRIL -> CodiceMese.D;
-						case MAY -> CodiceMese.E;
-						case JUNE -> CodiceMese.H;
-						case JULY -> CodiceMese.L;
-						case AUGUST -> CodiceMese.M;
-						case SEPTEMBER -> CodiceMese.P;
-						case OCTOBER -> CodiceMese.R;
-						case NOVEMBER -> CodiceMese.S;
-						case DECEMBER -> CodiceMese.T;
-					};
-					
-					meseDiNascita = codiceMese.toString();
-					
-					System.out.println("	meseDiNascita: " + meseDiNascita);
-					
-					return meseDiNascita;
-					
-					/*
-					 * con questo switch stiamo associando ad ogni mese dell'anno un codice corrispondente,
-					 * questo ci permette di usare un unum per rappresentare i mesi dell'anno, 
-					 * e di associare ad ogni mese un codice corrispondente,
-					 */
-		}
-		
-		private String getGiornoDiNascita()
-		{
-			String giornoDiNascita;
-			int giorno = getDataDiNascita().getDayOfMonth();
-			
-			if(getSesso() == Sesso.FEMMINA)
-			
-				giorno = giorno + 40; // per le femmine al giorno di nascita si aggiunge 40, in modo da distinguere i codici fiscali maschili da quelli femminili.
-			if(giorno < 10)
-				giornoDiNascita = "0" + giorno; // se il giorno di nascita è minore di 10, aggiungiamo uno 0 davanti al numero del giorno, in modo da avere sempre due cifre per il giorno di nascita.
-			else
-				giornoDiNascita = String.valueOf(giorno); // altrimenti, se il giorno di nascita è maggiore o uguale a 10, lo convertiamo in una stringa e lo restituiamo così com'è.
-			System.out.println("	giornoDiNascita: " + giornoDiNascita);
-			return giornoDiNascita;
-		}
-	
-		private String getComune()
-		{
-			String comuneDiNascita;
-			
-			enum CodiceComune
-			{
-				H501, // Roma
-				F205, // Milano
-				L219, // Napoli
-				D969, // Genova
-				A662, // Bari
-				
-			}
-			CodiceComune codiceComune = switch(getComuneDiNascita())
-					{
-						case ROMA -> CodiceComune.H501;
-						case MILANO -> CodiceComune.F205;
-						case NAPOLI -> CodiceComune.L219;
-						case GENOVA -> CodiceComune.D969;
-						case BARI -> CodiceComune.A662;
-			            default -> throw new IllegalArgumentException("Unexpected value: " + getComuneDiNascita());
-						
-					};
-			           comuneDiNascita = String.valueOf(codiceComune);
-			           System.out.println("		comuneDiNascita: " + comuneDiNascita);
-			           return comuneDiNascita;
-		}
-		
-		private String getCodiceDiControllo()
-		{
-			String codiceDiControllo = String.valueOf(getNome().charAt(0)).toUpperCase(); //del nome della persona stiamo prendendo solo il primo carattere
-			System.out.println("	codiceDiControllo: " + codiceDiControllo);
-			return codiceDiControllo;
-		}
-	}
-	
-	CodiceFiscale codiceFiscale = new CodiceFiscale();  //creiamo un'oggetto della classe locale CodiceFiscale, che ci permette di costruire un codice fiscale a partire dai dati dell'oggetto EssereUmano.
-	
-	System.out.println("	codiceFiscale: " + codiceFiscale);
-	
-	return codiceFiscale.getCodiceFiscale(); // restituiamo il codice fiscale costruito dall'oggetto codiceFiscale, che è un'istanza della classe locale CodiceFiscale.
-}
+//public void setCodiceFiscale() {
+//	System.out.println("--------------------------");
+//	System.out.println("EssereUmano -> setCodiceFiscale()"); 
+//	
+//	if(this.getNazioneDiNascita() != Nazione.ITALIA) // se la nazione di nascita dell'oggetto è diversa da Italia, non è possibile definire il codice fiscale, perchè il codice fiscale è un codice identificativo italiano.
+//	{
+//		System.out.println("	Il codice fiscale vale per l'italia");
+//	    return;	
+//	}
+//	if(getNome().equalsIgnoreCase("ND")) // se il nome dell'oggetto è "ND", significa che manca il nome, e quindi non è possibile definire il codice fiscale.
+//	{
+//		System.out.println("	Manca il nome e non è possibile definire il codice fiscale.");
+//	    return;	
+//	}
+//	
+//	if(getCognome().equalsIgnoreCase("ND"))
+//	{
+//		System.out.println("	Manca il cognome e non è possibile definire il codice fiscale.");
+//	    return;	
+//	}
+//	
+//	if(getSesso() == Sesso.SCONOSCIUTO)
+//	{
+//		System.out.println("	Manca il sesso e non è possibile definire il codice fiscale.");
+//	    return;	
+//	}
+//	
+//	int limiteAnno = LocalDate.now().getYear() - getDataDiNascita().getYear(); // con questo calcolo stiamo ottenendo l'età dell'oggetto a partire dalla sua data di nascita, e stiamo confrontando l'età con un limite di 18 anni, che è l'età minima per poter definire un codice fiscale.
+//	System.out.println("	limiteAnno: " + limiteAnno);
+//	
+//	if(limiteAnno > EssereUmano.MAX_ANNI)
+//	{
+//		System.out.println("	Data di nascita non corretta e non è possibile definire il codice fiscale.");
+//	    return;	
+//	}
+//	
+//	if(getComuneDiNascita() == Comune.SCONOSCIUTO)
+//	{
+//		System.out.println("	Manca il comune di nascita non definito e non è possibile definire il codice fiscale.");
+//	    return;	
+//	}
+//	//this.codiceFiscale = codiceFiscale;
+//	this.codiceFiscale = buildCodiceFiscale();
+//}
+//
+//private String buildCodiceFiscale() 
+//
+///*
+// * in questa funzione voglio creare una classe locale
+// * che mi cosente di creare un'oggetto della classe CodiceFiscale, che mi consente di costruire un codice fiscale a partire dai dati dell'oggetto EssereUmano.
+// */
+//{
+//	System.out.println("--------------------------");
+//	System.out.println("EssereUmano -> buildCodiceFiscale()"); 
+//	
+//	class CodiceFiscale 
+//	{
+//		//variabile di istanza
+//		private String codiceFiscale;
+//		
+//		//costruttore
+//		CodiceFiscale()
+//		{
+//			codiceFiscale = getPorzioneCognome() +
+//					getPorzioneNome() +
+//			        getAnnoDiNascita() +
+//			        getMeseDiNascita() + 
+//			        getGiornoDiNascita() +
+//			        getComune() +
+//			        getCodiceDiControllo();
+//			
+//		}
+//		
+//		//metodi getter /setter
+//		private String getCodiceFiscale()
+//		{
+//			return codiceFiscale;
+//		}
+//		
+//		//metodi /funzioni
+//		
+//		private String getPorzioneCognome()
+//		{
+//			String cognome = getCognome();
+//			String porzioneCognome = "";
+//			String caratterePadding = "X"; // questo serve per riempire eventuali buchi. esempio se ho bisogno di tre caratter e il cognome è solo di due , aggiunge la X per completare
+//			String vocali = "AEIOU";
+//			
+//			cognome = cognome.toUpperCase();
+//			
+//			if(cognome.length() == 1)
+//			{
+//				porzioneCognome = cognome + caratterePadding + caratterePadding;
+//			}
+//			else if (cognome.length() == 2)
+//			{
+//				porzioneCognome = cognome;
+//				/*
+//				 * se la Stringa vocali contiene il primo carattere di cognome, ( quindi è una vocale)
+//				 * mentre nella seconda parte dell'if stiamo chiedendo che
+//				 * se non è vero che (!) nella stringa vocali è contenuto il secondo carattere di cognome ( quindi è una consonante)
+//				 */
+//				if(vocali.contains(String.valueOf(cognome.charAt(0))) &&   //se è vero che il primo carattere del cognome è una vocale
+//						!vocali.contains(String.valueOf(cognome.charAt(1)))) // e contemporaneamente il secondo carattere non è una vocale ma una consonate
+//					//con String.valueOf non faccio altro che convertire un char in una stringa
+//			     {
+//					porzioneCognome  = String.valueOf(cognome.charAt(1)) +
+//							           String.valueOf(cognome.charAt(0)); 
+//					//in pratica stiamo invertendo le posizioni delle lettere, se prima avevamo A/C adesso abbiamo C/A
+//					System.out.println("	porzioneCognome 2: " + porzioneCognome);
+//			     }
+//				porzioneCognome = porzioneCognome + caratterePadding;
+//			}
+//			else
+//			{
+//				/*
+//				 * Esercizio: provare ad implementare il reale algoritmo per la costruzione del codice fiscale
+//				 * http://it.wikipedia.org/wiki/Codice_Fiscale
+//				 */
+//				
+//				//semplificazione
+//				
+//				porzioneCognome = cognome.substring(0, 3); // con questo comando stiamo prendendo solo i primi 3 caratteri della Stringa cognome
+//				
+//			}
+//			System.out.println("	porzioneCognome: " + porzioneCognome);
+//			
+//			return porzioneCognome;
+//		}
+//		
+//		private String getPorzioneNome()
+//		{
+//			String nome = getNome();
+//			String porzioneNome = "";
+//			String caratterePadding = "X"; // questo serve per riempire eventuali buchi. esempio se ho bisogno di tre caratter e il cognome è solo di due , aggiunge la X per completare
+//			String vocali = "AEIOU";
+//			
+//			nome = nome.toUpperCase();
+//			
+//			if(nome.length() == 1)
+//			{
+//				porzioneNome = nome + caratterePadding + caratterePadding;
+//			}
+//			else if (nome.length() == 2)
+//			{
+//				porzioneNome = nome;
+//				/*
+//				 * se la Stringa vocali contiene il primo carattere di cognome, ( quindi è una vocale)
+//				 * mentre nella seconda parte dell'if stiamo chiedendo che
+//				 * se non è vero che (!) nella stringa vocali è contenuto il secondo carattere di cognome ( quindi è una consonante)
+//				 */
+//				if(vocali.contains(String.valueOf(nome.charAt(0))) &&   //se è vero che il primo carattere del cognome è una vocale
+//						!vocali.contains(String.valueOf(nome.charAt(1)))) // e contemporaneamente il secondo carattere non è una vocale ma una consonate
+//					//con String.valueOf non faccio altro che convertire un char in una stringa
+//			     {
+//					porzioneNome  = String.valueOf(nome.charAt(1)) +
+//							           String.valueOf(nome.charAt(0)); 
+//					//in pratica stiamo invertendo le posizioni delle lettere, se prima avevamo A/C adesso abbiamo C/A
+//					System.out.println("	porzioneCognome 2: " + porzioneNome);
+//			     }
+//				porzioneNome = porzioneNome + caratterePadding;
+//			}
+//			else
+//			{
+//				/*
+//				 * Esercizio: provare ad implementare il reale algoritmo per la costruzione del codice fiscale
+//				 * http://it.wikipedia.org/wiki/Codice_Fiscale
+//				 */
+//				
+//				//semplificazione
+//				
+//				porzioneNome = nome.substring(0, 3); // con questo comando stiamo prendendo solo i primi 3 caratteri della Stringa cognome
+//				
+//			}
+//			System.out.println("	porzioneNome: " + porzioneNome);
+//			
+//			return porzioneNome;
+//		}
+//		
+//		private String getAnnoDiNascita()
+//		{
+//			String annoDiNascita = String.valueOf(getDataDiNascita().getYear()).substring(2, 4); 
+//			/*
+//			 *  con String.valueOf stiamoconvetrendo la data di nascita in una stringa
+//			 *  getDataDiNascita() ci restituisce la data di nascita
+//			 *  getYear() ci restituisce solo l'anno di nascita
+//			 *  subString (2, 4) ci permette di prendere solo gli ultimi 2 caratteri dell'anno di nascita
+//			 *  ad esempio se l'anno di nascita è 1990, con subString(2, 4) prendiamo solo il 90,
+//			 *  quindi tutta la riga di codice ci restituisce gli ultimi 2 caratteri dell'anno di nascita
+//			 *  
+//			 *  per far si che subString prenda solo le ultime 2 cifre bisogna mettere come indice
+//			 *  l'ultimo indice deve essere 3 + 1, 
+//			 *  perchè subString prende i caratteri dall'indice di inizio (incluso) all'indice di fine (escluso)
+//			 *     
+//			 */
+//			
+//			System.out.println("	annoDiNascita: " + annoDiNascita);
+//			
+//			return annoDiNascita;
+//		}
+//		private String getMeseDiNascita()
+//		{
+//			String meseDiNascita;
+//			
+//			enum CodiceMese
+//			{
+//				A, // Gennaio
+//				B, // Febbraio
+//				C, // Marzo
+//				D, // Aprile
+//				E, // Maggio
+//				H, // Giugno
+//				L, // Luglio
+//				M, // Agosto
+//				P, // Settembre
+//				R, // Ottobre
+//				S, // Novembre
+//				T  // Dicembre
+//			}
+//			
+//			CodiceMese codiceMese = switch(getDataDiNascita().getMonth())
+//					{
+//						case JANUARY -> CodiceMese.A;
+//						case FEBRUARY -> CodiceMese.B;
+//						case MARCH -> CodiceMese.C;
+//						case APRIL -> CodiceMese.D;
+//						case MAY -> CodiceMese.E;
+//						case JUNE -> CodiceMese.H;
+//						case JULY -> CodiceMese.L;
+//						case AUGUST -> CodiceMese.M;
+//						case SEPTEMBER -> CodiceMese.P;
+//						case OCTOBER -> CodiceMese.R;
+//						case NOVEMBER -> CodiceMese.S;
+//						case DECEMBER -> CodiceMese.T;
+//					};
+//					
+//					meseDiNascita = codiceMese.toString();
+//					
+//					System.out.println("	meseDiNascita: " + meseDiNascita);
+//					
+//					return meseDiNascita;
+//					
+//					/*
+//					 * con questo switch stiamo associando ad ogni mese dell'anno un codice corrispondente,
+//					 * questo ci permette di usare un unum per rappresentare i mesi dell'anno, 
+//					 * e di associare ad ogni mese un codice corrispondente,
+//					 */
+//		}
+//		
+//		private String getGiornoDiNascita()
+//		{
+//			String giornoDiNascita;
+//			int giorno = getDataDiNascita().getDayOfMonth();
+//			
+//			if(getSesso() == Sesso.FEMMINA)
+//			
+//				giorno = giorno + 40; // per le femmine al giorno di nascita si aggiunge 40, in modo da distinguere i codici fiscali maschili da quelli femminili.
+//			if(giorno < 10)
+//				giornoDiNascita = "0" + giorno; // se il giorno di nascita è minore di 10, aggiungiamo uno 0 davanti al numero del giorno, in modo da avere sempre due cifre per il giorno di nascita.
+//			else
+//				giornoDiNascita = String.valueOf(giorno); // altrimenti, se il giorno di nascita è maggiore o uguale a 10, lo convertiamo in una stringa e lo restituiamo così com'è.
+//			System.out.println("	giornoDiNascita: " + giornoDiNascita);
+//			return giornoDiNascita;
+//		}
+//	
+//		private String getComune()
+//		{
+//			String comuneDiNascita;
+//			
+//			enum CodiceComune
+//			{
+//				H501, // Roma
+//				F205, // Milano
+//				L219, // Napoli
+//				D969, // Genova
+//				A662, // Bari
+//				
+//			}
+//			CodiceComune codiceComune = switch(getComuneDiNascita())
+//					{
+//						case ROMA -> CodiceComune.H501;
+//						case MILANO -> CodiceComune.F205;
+//						case NAPOLI -> CodiceComune.L219;
+//						case GENOVA -> CodiceComune.D969;
+//						case BARI -> CodiceComune.A662;
+//			            default -> throw new IllegalArgumentException("Unexpected value: " + getComuneDiNascita());
+//						
+//					};
+//			           comuneDiNascita = String.valueOf(codiceComune);
+//			           System.out.println("		comuneDiNascita: " + comuneDiNascita);
+//			           return comuneDiNascita;
+//		}
+//		
+//		private String getCodiceDiControllo()
+//		{
+//			String codiceDiControllo = String.valueOf(getNome().charAt(0)).toUpperCase(); //del nome della persona stiamo prendendo solo il primo carattere
+//			System.out.println("	codiceDiControllo: " + codiceDiControllo);
+//			return codiceDiControllo;
+//		}
+//	}
+//	
+//	CodiceFiscale codiceFiscale = new CodiceFiscale();  //creiamo un'oggetto della classe locale CodiceFiscale, che ci permette di costruire un codice fiscale a partire dai dati dell'oggetto EssereUmano.
+//	
+//	System.out.println("	codiceFiscale: " + codiceFiscale);
+//	
+//	return codiceFiscale.getCodiceFiscale(); // restituiamo il codice fiscale costruito dall'oggetto codiceFiscale, che è un'istanza della classe locale CodiceFiscale.
+//}
 
 //metodi getter per le costanti statiche
 @Override
@@ -1668,74 +1707,73 @@ public void stampa()
 	
 	//tipi interni.
 	
-	public enum Comune
-	{
-		ROMA,
-		MILANO,
-		NAPOLI,
-		GENOVA,
-		BARI,
-		SCONOSCIUTO
-	}
- 
-public enum Nazione 
-/*
- * con questa enumerazione stiamo definendo un insieme di costanti che rappresentano le nazioni di nascita degli esseri umani,
- * ogni nazione contiene una sotto informazione sul continente di appartenenza e sull'estensione territoriale,
- * in questo modo possiamo associare ad ogni nazione una serie di informazioni che possono essere utili per la costruzione del codice fiscale, o per altre funzionalità della classe EssereUmano.
- * abbiamo creato delle costanti per rappresentare le nazioni di nascita più comuni, e una costante SCONOSCIUTO per rappresentare una nazione di nascita non definita o sconosciuta.
- * poi abbiamo definito il costruttore che ha la funzione di inizializzare le variabili di istanza continente ed estensione per ogni costante della enumerazione Nazione,
- *  in modo da associare ad ogni nazione le informazioni sul continente di appartenenza e sull'estensione territoriale.
- *  facendo così possiamo accedere a queste informazioni in modo semplice e veloce, ad esempio quando costruiamo il codice fiscale o quando vogliamo stampare le informazioni dell'essere umano.
- *  
- *  è una classe a tutti gli effetti, tanto è vero che possiamo definire i metodi getter e anche altri metodi interni alla enumerazione Nazione,
- *   come ad esempio il metodo getInformazioni() che stampa a video le informazioni di tutte le nazioni presenti nella enumerazione.
- */
-{
-	ITALIA ("Europa", 301),
-	SVIZZERA ("Europa", 100),
-	BRASILE ("America del sud", 600),
-	CILE ("America del sud", 150),
-	INDIA ("Asia", 800),
-	SCONOSCIUTO ("Sconosciuto", 0);
-	
-	//variablili di istanza / costanti
-	private final String continente;
-	private final int estensione;
-	
-	
-	//costruttore
-	private Nazione(String continente, int estensione)  
-	{
-		this.continente = continente;
-		this.estensione = estensione;
-	}
-
-	//metodi getter
-	public String getContinente() {
-		return continente;
-	}
-
-	public int getEstensione() {
-		return estensione;
-	}
-	
-	//metodi /funzioni
-	public static void getInformazioni()
-	{
-		for(Nazione nazione : Nazione.values())
-		{
-			System.out.println(nazione + 
-					", appartiene al continente: " + 
-					nazione.getContinente() +
-					" ed è estesa: " +
-					nazione.getEstensione() + " km2");
-		}
-	}
-	
+//	public enum Comune
+//	{
+//		ROMA,
+//		MILANO,
+//		NAPOLI,
+//		GENOVA,
+//		BARI,
+//		SCONOSCIUTO
+//	}
+// 
+//public enum Nazione 
+///*
+// * con questa enumerazione stiamo definendo un insieme di costanti che rappresentano le nazioni di nascita degli esseri umani,
+// * ogni nazione contiene una sotto informazione sul continente di appartenenza e sull'estensione territoriale,
+// * in questo modo possiamo associare ad ogni nazione una serie di informazioni che possono essere utili per la costruzione del codice fiscale, o per altre funzionalità della classe EssereUmano.
+// * abbiamo creato delle costanti per rappresentare le nazioni di nascita più comuni, e una costante SCONOSCIUTO per rappresentare una nazione di nascita non definita o sconosciuta.
+// * poi abbiamo definito il costruttore che ha la funzione di inizializzare le variabili di istanza continente ed estensione per ogni costante della enumerazione Nazione,
+// *  in modo da associare ad ogni nazione le informazioni sul continente di appartenenza e sull'estensione territoriale.
+// *  facendo così possiamo accedere a queste informazioni in modo semplice e veloce, ad esempio quando costruiamo il codice fiscale o quando vogliamo stampare le informazioni dell'essere umano.
+// *  
+// *  è una classe a tutti gli effetti, tanto è vero che possiamo definire i metodi getter e anche altri metodi interni alla enumerazione Nazione,
+// *   come ad esempio il metodo getInformazioni() che stampa a video le informazioni di tutte le nazioni presenti nella enumerazione.
+// */
+//{
+//	ITALIA ("Europa", 301),
+//	SVIZZERA ("Europa", 100),
+//	BRASILE ("America del sud", 600),
+//	CILE ("America del sud", 150),
+//	INDIA ("Asia", 800),
+//	SCONOSCIUTO ("Sconosciuto", 0);
+//	
+//	//variablili di istanza / costanti
+//	private final String continente;
+//	private final int estensione;
+//	
+//	
+//	//costruttore
+//	private Nazione(String continente, int estensione)  
+//	{
+//		this.continente = continente;
+//		this.estensione = estensione;
+//	}
+//
+//	//metodi getter
+//	public String getContinente() {
+//		return continente;
+//	}
+//
+//	public int getEstensione() {
+//		return estensione;
+//	}
+//	
+//	//metodi /funzioni
+//	public static void getInformazioni()
+//	{
+//		for(Nazione nazione : Nazione.values())
+//		{
+//			System.out.println(nazione + 
+//					", appartiene al continente: " + 
+//					nazione.getContinente() +
+//					" ed è estesa: " +
+//					nazione.getEstensione() + " km2");
+//		}
+//	}
+//	
 	
 }
 
 
 
-}

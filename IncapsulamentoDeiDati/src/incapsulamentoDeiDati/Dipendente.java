@@ -18,7 +18,7 @@ public class Dipendente extends EssereUmano {
 	{
 		Stampante stampante = Stampante.getInstance();
 		
-		stampante.stampaDocumento();
+		stampante.StampaDocumento();
 	}
 /*
  * quindi quando un dipendente vuole stampare un documento, invece di creare una nuova istanza della stampante, 

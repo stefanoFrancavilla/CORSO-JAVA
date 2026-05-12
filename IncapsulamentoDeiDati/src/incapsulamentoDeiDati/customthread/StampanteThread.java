@@ -9,7 +9,7 @@ Stampante stampante;
 	public void run() 
 	{
 		stampante = Stampante.getInstance();
-		stampante.stampaDocumento();
+		stampante.StampaDocumento();
     }
 }
 
