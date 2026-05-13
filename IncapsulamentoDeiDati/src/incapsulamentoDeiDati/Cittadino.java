@@ -2,13 +2,47 @@ package incapsulamentoDeiDati;
 
 import java.time.LocalDate;
 
-import incapsulamentoDeiDati.EssereUmano.Nazione;
+
 
 public class Cittadino extends EssereUmano {
+	
+	//variabili di istanza
 	private Nazione nazioneDiNascita;
 	private Comune comuneDiNascita;
 	private String codiceFiscale; 
 	
+	/*
+	 * Esercizio:
+	 * basandovi sui codici e le soluzioni studiate insieme a lezione
+	 *  come modellereste le informazioni relative alla carta di identità?
+	 *  Usereste una classe esterna alla classe cittadino ? oppure annidata-statica?
+	 *  o interna? o locale?
+	 *  eventualmente fa le medesime considerazioni per la patente.
+	 */
+	//private ... cartaDiIdentità;
+	//private ... patente;
+	
+	//costruttori
+	
+	public Cittadino(String nome,
+			String cognome,
+			Sesso sesso,
+			float altezza,
+			float peso,
+			ColoreOcchi coloreOcchi,
+			ColoreCapelli coloreCapelli,
+			Nazione nazioneDiNascita,
+			LocalDate dataDiNascita,
+			Comune comuneDiNascita) 
+	{
+		super(nome, cognome, sesso, altezza, peso, coloreOcchi, coloreCapelli, dataDiNascita);
+		System.out.println("--------------------------");
+		System.out.println("Cittadino (10)");
+		
+		this.nazioneDiNascita = nazioneDiNascita;
+		this.comuneDiNascita = comuneDiNascita;
+		this.codiceFiscale = "ND";
+	}
 	
 	 //metodi getter/setter
      public Nazione getNazioneDiNascita() {
@@ -301,6 +335,85 @@ public class Cittadino extends EssereUmano {
     	return codiceFiscale.getCodiceFiscale(); 
     }
     
+ // sovrascrittura dei metodi equals() e hashCode();
+    @Override
+    public boolean equals(Object obj)
+    {
+    	if(this == obj) 
+    	{
+    		System.out.println("equals 1");
+    		return true;}
+    	
+    	if(!(obj instanceof EssereUmano)) 
+    	{
+    		System.out.println("equals 2");
+    		return false;}
+    	
+    	Cittadino cittadino = (Cittadino) obj; 
+    	
+    	if(cittadino.codiceFiscale.length() != this.codiceFiscale.length()) 
+    	{
+    		System.out.println("equals 3");
+    	
+    		return false;}
+    	
+    	boolean sonoUguali = cittadino.codiceFiscale.equals(this.codiceFiscale); 
+    	boolean nomiUguali = cittadino.getNome().equals(this.getNome());
+    	
+    	System.out.println("equals 4");
+    	return (sonoUguali && nomiUguali);
+    }
+
+ 
+//    public int hashCode() 
+//    {
+//    	int result = 17; 
+//    	result = 31 * result * this.codiceFiscale.hashCode();
+//
+//    	return result; 
+//    }
+    @Override
+    public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (( this.codiceFiscale == null) ? 0 :  this.codiceFiscale.hashCode());
+		result = prime * result + ((this.getNome() == null) ? 0 : this.getNome().hashCode());
+		return result;
+	}
+    //Metodi
+    public void stampa() {
+	System.out.println("--------------------------");
+	System.out.println("Cittadino -> stampa()");
+    System.out.println("	Nazione di Nascita: " + nazioneDiNascita);
+	System.out.println("	codiceFiscale: " + codiceFiscale);
+	System.out.println("	Comune di Nascita: " + comuneDiNascita);
+	
+	super.stampa();
+}
+    
+    public void interagisceConLaBurrocrazia()
+    {
+    	System.out.println("--------------------------");
+    	System.out.println("Cittadino -> interagisceConLaBurrocrazia()");
+    	
+    	Paziente cittadinoPaziente = new Paziente()
+    	{
+    	
+    		public void faUnBelRespiro() 
+			{
+				System.out.println("	" + getNome() + " fa un bel respiro prima di affrontare un problema burrocratico");
+			}
+    		
+    		public void portaPazienza()
+    		{
+    			System.out.println("	" + getNome() + " porta pazienza con scartoffie e cavilli burocratici");
+    		}
+    	};
+    	
+    	cittadinoPaziente.faUnBelRespiro();
+    	cittadinoPaziente.portaPazienza();
+    }
+    //tipi interni
 	public enum Comune
 	{
 		ROMA,
@@ -308,6 +421,7 @@ public class Cittadino extends EssereUmano {
 		NAPOLI,
 		GENOVA,
 		BARI,
+		TUPELO,
 		SCONOSCIUTO
 	}
 	public enum Nazione 
@@ -317,6 +431,7 @@ public class Cittadino extends EssereUmano {
 		BRASILE ("America del sud", 600),
 		CILE ("America del sud", 150),
 		INDIA ("Asia", 800),
+		MISSISSIPI_USA ("America del nord", 600),
 		SCONOSCIUTO ("Sconosciuto", 0);
 		
 		//variablili di istanza / costanti
@@ -354,4 +469,19 @@ public class Cittadino extends EssereUmano {
 		}
 		
 }
+	//tipi annidati
+	static interface Paziente
+	{
+		abstract void faUnBelRespiro();
+		abstract void portaPazienza();
+		
+	}
+	
+//	 interface Paziente
+//	{
+//		 void faUnBelRespiro();
+//		 void PortaPazienza();
+//		
+//	}
+	//anche se viene scritta in questo modo viene dichiarata di default astratta e statica
 }

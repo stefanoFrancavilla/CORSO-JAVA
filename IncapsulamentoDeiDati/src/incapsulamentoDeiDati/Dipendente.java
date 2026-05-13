@@ -1,9 +1,30 @@
 package incapsulamentoDeiDati;
 
+import java.time.LocalDate;
+
+import incapsulamentoDeiDati.Cittadino.Comune;
+import incapsulamentoDeiDati.Cittadino.Nazione;
 import incapsulamentoDeiDati.singletons.MacchinettaDelCaffe;
 import incapsulamentoDeiDati.singletons.Stampante;
 
-public class Dipendente extends EssereUmano {
+public class Dipendente extends Cittadino {
+	
+	public Dipendente(String nome,
+			String cognome,
+			Sesso sesso,
+			float altezza,
+			float peso,
+			ColoreOcchi coloreOcchi,
+			ColoreCapelli coloreCapelli,
+			Nazione nazioneDiNascita,
+			LocalDate dataDiNascita,
+			Comune comuneDiNascita) 
+	{
+		super(nome, cognome, sesso, altezza, peso, coloreOcchi, coloreCapelli,nazioneDiNascita, dataDiNascita,comuneDiNascita);
+		System.out.println("--------------------------");
+		System.out.println("Cittadino (10)");
+		
+	}
 
 	@Override
 	public void faIlCaffe()

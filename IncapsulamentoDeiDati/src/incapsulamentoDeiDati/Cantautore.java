@@ -1,5 +1,10 @@
 package incapsulamentoDeiDati;
 
+import java.time.LocalDate;
+
+import incapsulamentoDeiDati.Cittadino.Comune;
+import incapsulamentoDeiDati.Cittadino.Nazione;
+
 //1
 
 //public final class Cantautore extends Cantante {
@@ -206,27 +211,45 @@ public final class Cantautore extends Cantante {
 	
 	
 	//costruttore
-	
-
-	public Cantautore() {
-		this("ND","ND",Sesso.SCONOSCIUTO);
-		System.out.println("Cantautore(0)");
-	}
-	
-	public Cantautore(String nome, String cognome, Sesso sesso) {
-		super(nome, cognome, sesso);
-		
-		System.out.println("Cantautore(3)");	
-		
-//		this.setMaxCanzoniScritte(3);
-//		this.inizializzaTitoliCanzoniScritte();
-//		this.setContatoreCanzoniScritte((byte)0);
+	public Cantautore(String nome,
+			String cognome,
+			Sesso sesso,
+			float altezza,
+			float peso,
+			ColoreOcchi coloreOcchi,
+			ColoreCapelli coloreCapelli,
+			Nazione nazioneDiNascita,
+			LocalDate dataDiNascita,
+			Comune comuneDiNascita) 
+	{
+		super(nome, cognome, sesso, altezza, peso, coloreOcchi, coloreCapelli,nazioneDiNascita, dataDiNascita,comuneDiNascita);
+		System.out.println("--------------------------");
+		System.out.println("Cantante (10)");
 		
 		this.setMaxCanzoni(3);
 		this.inizializzaCanzoni();
 		this.setContatoreCanzoni((byte)0);
 	}
-	
+
+//	public Cantautore() {
+//		this("ND","ND",Sesso.SCONOSCIUTO);
+//		System.out.println("Cantautore(0)");
+//	}
+//	
+//	public Cantautore(String nome, String cognome, Sesso sesso) {
+//		super(nome, cognome, sesso);
+//		
+//		System.out.println("Cantautore(3)");	
+//		
+////		this.setMaxCanzoniScritte(3);
+////		this.inizializzaTitoliCanzoniScritte();
+////		this.setContatoreCanzoniScritte((byte)0);
+//		
+//		this.setMaxCanzoni(3);
+//		this.inizializzaCanzoni();
+//		this.setContatoreCanzoni((byte)0);
+//	}
+//	
 	//metodi getter/setter
 	
 	

@@ -14,52 +14,64 @@ public class Mondo {
 		System.out.println("1--------------------------");
 		System.out.println();
 		
-EssereUmano marcoRossi = new EssereUmano();
-/*
- * alla destra dell'operatore di assegnamento troviamo la parola chiave "new"
- * che serve per creare un nuovo oggetto della classe EssereUmano
- * seguita dalla chiamata al costruttore della classe EssereUmano
- * alla sinistra dell'operatore di assegnamento troviamo la variabile di riferimento
- * marcoRossi che punta all'oggetto appena creato in memoria.
- * si capisce che è una funzione poiché ha le parentesi tonde alla fine del nome.
- */
+//EssereUmano marcoRossi = new EssereUmano();
+///*
+// * alla destra dell'operatore di assegnamento troviamo la parola chiave "new"
+// * che serve per creare un nuovo oggetto della classe EssereUmano
+// * seguita dalla chiamata al costruttore della classe EssereUmano
+// * alla sinistra dell'operatore di assegnamento troviamo la variabile di riferimento
+// * marcoRossi che punta all'oggetto appena creato in memoria.
+// * si capisce che è una funzione poiché ha le parentesi tonde alla fine del nome.
+// */
+//
+//marcoRossi.stampa();
+//
+////marcoRossi.nome = "Marco";
+////marcoRossi.cognome = "Rossi";
+////marcoRossi.sesso = Sesso.MASCHIO; // si accede all'enum Sesso con la notazione punto.
+////marcoRossi.anni = 18;
+////marcoRossi.altezza = 1.73f;
+////marcoRossi.peso = 70f;
+////marcoRossi.coloreOccihi = ColoreOcchi.AZZURRI; // si accede all'enum ColoreOcchi con la notazione punto.
+////marcoRossi.coloreCapelli = ColoreCapelli.CASTANI; 
+////marcoRossi.nazioneDiNascita = "Italia";
+//
+//marcoRossi.setNome ("Marco");
+//marcoRossi.setCognome ("Rossi");
+//marcoRossi.setSesso (Sesso.MASCHIO);
+////marcoRossi.setAnni ((byte)18);
+//marcoRossi.setAltezza (173f);
+//marcoRossi.setPeso (70f);
+//marcoRossi.setColoreOcchi (ColoreOcchi.AZZURRI);
+//marcoRossi.setColoreCapelli (ColoreCapelli.CASTANI);
+//marcoRossi.setNazioneDiNascita (EssereUmano.Nazione.ITALIA);
+//marcoRossi.setDataDiNascita(LocalDate.of(1991, Month.APRIL, 9));
+//marcoRossi.setComuneDiNascita(EssereUmano.Comune.ROMA);
+//marcoRossi.setCodiceFiscale();
+//
+//marcoRossi.stampa();
+//marcoRossi.mangia();
+//marcoRossi.lavora();
+//marcoRossi.vola();
 
-marcoRossi.stampa();
+		
+		Cittadino marcoRossi = new Cittadino("Marco", "Rossi", Sesso.MASCHIO, 173f, 70f, ColoreOcchi.AZZURRI, ColoreCapelli.CASTANI,
+				Cittadino.Nazione.ITALIA, LocalDate.of(1991, Month.APRIL, 9), Cittadino.Comune.ROMA);
 
-//marcoRossi.nome = "Marco";
-//marcoRossi.cognome = "Rossi";
-//marcoRossi.sesso = Sesso.MASCHIO; // si accede all'enum Sesso con la notazione punto.
-//marcoRossi.anni = 18;
-//marcoRossi.altezza = 1.73f;
-//marcoRossi.peso = 70f;
-//marcoRossi.coloreOccihi = ColoreOcchi.AZZURRI; // si accede all'enum ColoreOcchi con la notazione punto.
-//marcoRossi.coloreCapelli = ColoreCapelli.CASTANI; 
-//marcoRossi.nazioneDiNascita = "Italia";
-
-marcoRossi.setNome ("Marco");
-marcoRossi.setCognome ("Rossi");
-marcoRossi.setSesso (Sesso.MASCHIO);
-//marcoRossi.setAnni ((byte)18);
-marcoRossi.setAltezza (173f);
-marcoRossi.setPeso (70f);
-marcoRossi.setColoreOcchi (ColoreOcchi.AZZURRI);
-marcoRossi.setColoreCapelli (ColoreCapelli.CASTANI);
-marcoRossi.setNazioneDiNascita (EssereUmano.Nazione.ITALIA);
-marcoRossi.setDataDiNascita(LocalDate.of(1991, Month.APRIL, 9));
-marcoRossi.setComuneDiNascita(EssereUmano.Comune.ROMA);
-marcoRossi.setCodiceFiscale();
-
-marcoRossi.stampa();
-marcoRossi.mangia();
-marcoRossi.lavora();
-marcoRossi.vola();
-
-
+		marcoRossi.setCodiceFiscale();
+		marcoRossi.stampa();
+		marcoRossi.mangia();
+		marcoRossi.lavora();
+		marcoRossi.vola();
+		marcoRossi.interagisceConLaBurrocrazia();
+		
+		
+		
 System.out.println();
 System.out.println("1.1--------------------------");
 System.out.println();
 
-EssereUmano.Nazione.getInformazioni();
+Cittadino.Nazione.getInformazioni();
 System.out.println(marcoRossi.getNazioneDiNascita().getContinente());
 System.out.println(marcoRossi.getNazioneDiNascita().getEstensione());
 
@@ -68,7 +80,7 @@ System.out.println();
 System.out.println("2--------------------------");
 System.out.println();
 
-EssereUmano saraVerdi = new EssereUmano("Sara",
+Cittadino saraVerdi = new Cittadino("Sara",
 		"Verdi",
 		Sesso.FEMMINA,
 		//(byte) 48, // si fa il cast da int a byte, per evitare l'errore di compilazione.
@@ -76,9 +88,9 @@ EssereUmano saraVerdi = new EssereUmano("Sara",
 		-500_055f,
 		ColoreOcchi.CASTANI,
 		ColoreCapelli.BIONDI,
-		EssereUmano.Nazione.ITALIA,
+		Cittadino.Nazione.ITALIA,
 		LocalDate.of(1978, Month.AUGUST, 10),
-		EssereUmano.Comune.NAPOLI);
+		Cittadino.Comune.NAPOLI);
 
 saraVerdi.setCodiceFiscale();
 
@@ -91,9 +103,16 @@ saraVerdi.lavora();
 System.out.println();
 System.out.println("3--------------------------");
 System.out.println();
-EssereUmano GiuliaNeri = new EssereUmano("Giulia",
+Cittadino GiuliaNeri = new Cittadino("Giulia",
 		"Neri",
-		Sesso.FEMMINA);
+		Sesso.FEMMINA,
+		175f,
+		65f,
+		ColoreOcchi.CASTANI,
+		ColoreCapelli.NERI,
+		Cittadino.Nazione.ITALIA,
+		LocalDate.of(202, Month.SEPTEMBER, 15),
+		Cittadino.Comune.GENOVA);
 
 GiuliaNeri.stampa();
 
@@ -101,7 +120,7 @@ System.out.println();
 System.out.println("3.1--------------------------");
 System.out.println();
 
-EssereUmano lucaBianchi = new EssereUmano("Luca", "Bianchi", Sesso.MASCHIO);
+Cittadino lucaBianchi = new Cittadino("Marco", "Rossi", Sesso.MASCHIO, 173f, 70f, ColoreOcchi.AZZURRI, ColoreCapelli.CASTANI,Cittadino.Nazione.ITALIA, LocalDate.of(1991, Month.APRIL, 9), Cittadino.Comune.ROMA);
 lucaBianchi.stampa();
 
 //lucaBianchi.anni = 34;
@@ -116,7 +135,7 @@ lucaBianchi.setAltezza(180.5f);
 lucaBianchi.setPeso(70.8f);
 lucaBianchi.setColoreOcchi(ColoreOcchi.VERDI);
 lucaBianchi.setColoreCapelli(ColoreCapelli.ROSSI);
-lucaBianchi.setNazioneDiNascita(EssereUmano.Nazione.SVIZZERA);
+lucaBianchi.setNazioneDiNascita(Cittadino.Nazione.SVIZZERA);
 lucaBianchi.stampa();
 
 System.out.println();
@@ -127,7 +146,7 @@ lucaBianchi.setNome("123");
 //lucaBianchi.setAnni((byte)-100);
 lucaBianchi.setAltezza(-10_000f);
 lucaBianchi.setPeso(-2_000f);
-lucaBianchi.setNazioneDiNascita(EssereUmano.Nazione.CILE);
+lucaBianchi.setNazioneDiNascita(Cittadino.Nazione.CILE);
 lucaBianchi.stampa();
 /*
  * notare come non ci siano controlli sui dati inseriti
@@ -158,7 +177,16 @@ System.out.println();
 System.out.println("3.3--------------------------");
 System.out.println();
 
-EssereUmano caterinaAzzurri = new EssereUmano();
+Cittadino caterinaAzzurri = new Cittadino("Caterina",
+		"Azzurri",
+		Sesso.FEMMINA,
+		173f,
+		60f,
+		ColoreOcchi.GRIGI,
+		ColoreCapelli.GRIGI,
+		Cittadino.Nazione.ITALIA,
+		LocalDate.of(1945, Month.SEPTEMBER, 25),
+		Cittadino.Comune.MILANO);
 caterinaAzzurri.stampa();
 
 caterinaAzzurri.setAltezza(1_000);
@@ -168,7 +196,8 @@ System.out.println();
 System.out.println("3.4--------------------------");
 System.out.println();
 
-EssereUmano fabioArancioni = new EssereUmano("Fa3bio", "Ararncioni", Sesso.MASCHIO);
+Cittadino fabioArancioni = new Cittadino("Fabio", "Arancioni", Sesso.MASCHIO, 190f, 80f, ColoreOcchi.AZZURRI, ColoreCapelli.BIONDI,Cittadino.Nazione.ITALIA, LocalDate.of(2000, Month.JUNE,23), Cittadino.Comune.ROMA);
+lucaBianchi.stampa();
 
 fabioArancioni.stampa();
 
@@ -184,7 +213,16 @@ System.out.println();
 System.out.println("3.5--------------------------");
 System.out.println();
 
-EssereUmano linaVioli = new EssereUmano();
+Cittadino linaVioli = new Cittadino("Lina",
+		"Violi",
+		Sesso.FEMMINA,
+		180f,
+		63f,
+		ColoreOcchi.CASTANI,
+		ColoreCapelli.GRIGI,
+		Cittadino.Nazione.ITALIA,
+		LocalDate.of(1952, Month.DECEMBER, 2),
+		Cittadino.Comune.BARI);
 
 //linaVioli.getCognome("Rossi");
 /*
@@ -299,7 +337,7 @@ System.out.println();
 System.out.println("5--------------------------");
 System.out.println();
 
-Cantautore vascoRossi = new Cantautore("Vasco", "Rossi", Sesso.MASCHIO);
+Cantautore vascoRossi = new Cantautore("Vasco", "Rossi", Sesso.MASCHIO, 180f, 70f, ColoreOcchi.AZZURRI, ColoreCapelli.BIANCHI, Cittadino.Nazione.ITALIA, LocalDate.of(1952, Month.FEBRUARY, 7), Cittadino.Comune.ROMA);
 
 vascoRossi.stampa();
 //vascoRossi.setTotaleConcerti(30);
@@ -357,7 +395,8 @@ vascoRossi.aggiungiConcerto(new Cantante.Concerto("Modena", LocalDate.of(2024, M
 vascoRossi.aggiungiConcerto(new Cantante.Concerto("Parma", LocalDate.of(2024, Month.JUNE, 23)));
 vascoRossi.stampaConcerti();
 
-Cantante elvisPresley = new Cantante("Elvis", "Presley", Sesso.MASCHIO);
+Cantante elvisPresley = new Cantante("Elvis", "Presley", Sesso.MASCHIO , 190f, 80f, ColoreOcchi.CASTANI, ColoreCapelli.NERI, Cittadino.Nazione.MISSISSIPI_USA, LocalDate.of(1935, Month.JANUARY, 8), Cittadino.Comune.TUPELO);
+
 elvisPresley.stampa();
 Cantante.Concerto concertolep = new Cantante.Concerto("New York", LocalDate.of(1970, Month.MARCH, 13));
 /*
@@ -381,12 +420,13 @@ System.out.println();
  * in questo caso abbiamo creato una variabile di riferimento di tipo Animale che punta ad un oggetto di tipo EssereUmano.
  * cioè abbiamo creato un oggetto di tipo EssereUmano e lo abbiamo assegnato ad una variabile di riferimento di tipo Animale.
  */
-//Animale animale1 = new EssereUmano();
-//
-//System.out.println("animale1: " + animale1);
-//
-//animale1.mangia();
-//animale1.dorme();
+Animale animale1 = new Cittadino("Paolo", "Neri", Sesso.MASCHIO , 170f, 78f, ColoreOcchi.CASTANI, ColoreCapelli.NERI, Cittadino.Nazione.SVIZZERA, LocalDate.of(1988, Month.JULY, 11), Cittadino.Comune.SCONOSCIUTO);
+
+
+System.out.println("animale1: " + animale1);
+
+animale1.mangia();
+animale1.dorme();
 //animale1.lavora();
 /*
  * se proviamo a chiamare il metodo lavora() sulla variabile di riferimento animale1, otteniamo un errore di compilazione,
@@ -601,13 +641,16 @@ System.out.println();
 System.out.println("7.1--------------------------");
 System.out.println();
 
-EssereUmano persona1 = new EssereUmano("Carlo", "Neri", Sesso.MASCHIO, 170f, 60f, ColoreOcchi.CASTANI, ColoreCapelli.BIANCHI, EssereUmano.Nazione.ITALIA, LocalDate.of(1973, Month.APRIL, 10), EssereUmano.Comune.NAPOLI);
+Cittadino persona1 = new Cittadino("Carlo", "Neri", Sesso.MASCHIO, 170f, 60f, ColoreOcchi.CASTANI,
+		ColoreCapelli.BIANCHI, Cittadino.Nazione.ITALIA, LocalDate.of(1973, Month.APRIL, 10), Cittadino.Comune.NAPOLI);
 persona1.setCodiceFiscale();
 
-EssereUmano persona2 = new EssereUmano("Carlo", "Neri", Sesso.MASCHIO, 170f, 60f, ColoreOcchi.CASTANI, ColoreCapelli.BIANCHI, EssereUmano.Nazione.ITALIA, LocalDate.of(1973, Month.APRIL, 10), EssereUmano.Comune.NAPOLI);
+Cittadino persona2 = new Cittadino("Carlo", "Neri", Sesso.MASCHIO, 170f, 60f, ColoreOcchi.CASTANI,
+		ColoreCapelli.BIANCHI, Cittadino.Nazione.ITALIA, LocalDate.of(1973, Month.APRIL, 10), Cittadino.Comune.NAPOLI);
 persona2.setCodiceFiscale();
 
-EssereUmano persona3 = new EssereUmano("Carlo", "Neri", Sesso.MASCHIO, 170f, 60f, ColoreOcchi.CASTANI, ColoreCapelli.BIANCHI, EssereUmano.Nazione.ITALIA, LocalDate.of(1973, Month.APRIL, 10), EssereUmano.Comune.NAPOLI);
+Cittadino persona3 = new Cittadino("Carlo", "Neri", Sesso.MASCHIO, 170f, 60f, ColoreOcchi.CASTANI,
+		ColoreCapelli.BIANCHI, Cittadino.Nazione.ITALIA, LocalDate.of(1973, Month.APRIL, 10), Cittadino.Comune.NAPOLI);
 persona3.setCodiceFiscale();
 
 System.out.println(persona1.equals(persona1));
@@ -619,6 +662,19 @@ System.out.println(persona1.equals(persona3));
 System.out.println(persona1.hashCode());
 System.out.println(persona2.hashCode());
 System.out.println(persona2.hashCode());
+
+System.out.println();	
+System.out.println("8--------------------------");
+System.out.println();
+
+Dipendente dipendente1 = new Dipendente("Massimo", "Gialli", Sesso.MASCHIO, 170f, 60f, ColoreOcchi.CASTANI,
+		ColoreCapelli.CASTANI, Cittadino.Nazione.ITALIA, LocalDate.of(1963, Month.APRIL, 15), Cittadino.Comune.NAPOLI);
+dipendente1.stampaDocumento();
+
+Dipendente dipendente2 = new Dipendente("Gisella", "Rosi", Sesso.FEMMINA, 185f, 80f, ColoreOcchi.CASTANI,
+		ColoreCapelli.CASTANI, Cittadino.Nazione.ITALIA, LocalDate.of(2001, Month.MARCH, 16), Cittadino.Comune.BARI);
+dipendente2.stampaDocumento();
+
 
 System.out.println();	
 System.out.println("9--------------------------");
@@ -666,19 +722,11 @@ System.out.println();
  *       poichè non c'è più bisogno di sincronizzare l'accesso al metodo getInstance(),
  *     */
 
+
+
+
 System.out.println();	
 System.out.println("10--------------------------");
-System.out.println();
-
-//Dipendente dipendente1 = new Dipendente();
-//dipendente1.stampaDocumento();
-//
-//Dipendente dipendente2 = new Dipendente();
-//dipendente2.stampaDocumento();
-
-
-System.out.println();	
-System.out.println("11--------------------------");
 System.out.println();
 
 for (int i = 0; i < 20; i++) 

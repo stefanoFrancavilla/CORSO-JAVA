@@ -2,7 +2,9 @@ package incapsulamentoDeiDati;
 
 import java.time.LocalDate;
 
-public sealed class Cantante extends EssereUmano permits Cantautore{
+
+
+public sealed class Cantante extends Cittadino permits Cantautore{
 /*
  * con la classe sealed,posso decidere quali classi possono estendere la classe Cantante,
  * a differenza di final , che non permette a nessuno di estenderla 
@@ -29,22 +31,43 @@ public sealed class Cantante extends EssereUmano permits Cantautore{
 	
 
 	//costruttore
-	public Cantante() {
-		
-		this("ND","ND",Sesso.SCONOSCIUTO);
-		System.out.println("Cantante(0)");
-	}
-	
-	public Cantante(String nome, String cognome, Sesso sesso)
+	public Cantante(String nome,
+			String cognome,
+			Sesso sesso,
+			float altezza,
+			float peso,
+			ColoreOcchi coloreOcchi,
+			ColoreCapelli coloreCapelli,
+			Nazione nazioneDiNascita,
+			LocalDate dataDiNascita,
+			Comune comuneDiNascita) 
 	{
-		super(nome, cognome, sesso);
-		System.out.println("Cantante(3)");
+		super(nome, cognome, sesso, altezza, peso, coloreOcchi, coloreCapelli,nazioneDiNascita, dataDiNascita,comuneDiNascita);
+		System.out.println("--------------------------");
+		System.out.println("Cantante (10)");
+		
 		this.setGenereMusicale(genereMusicale.MUSICA_LEGGERA);
 		//this.setTotaleConcerti(0);
 		this.setMaxConcerti(3);
 		this.inizzializzaConcerti();
 		this.setContatoreConcerti((byte)0);
 	}
+//	public Cantante() {
+//		
+//		this("ND","ND",Sesso.SCONOSCIUTO);
+//		System.out.println("Cantante(0)");
+//	}
+//	
+//	public Cantante(String nome, String cognome, Sesso sesso)
+//	{
+//		super(nome, cognome, sesso);
+//		System.out.println("Cantante(3)");
+//		this.setGenereMusicale(genereMusicale.MUSICA_LEGGERA);
+//		//this.setTotaleConcerti(0);
+//		this.setMaxConcerti(3);
+//		this.inizzializzaConcerti();
+//		this.setContatoreConcerti((byte)0);
+//	}
 	
 	public GenereMusicale getGenereMusicale() 
 	{

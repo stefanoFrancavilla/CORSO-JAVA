@@ -1,6 +1,7 @@
 package incapsulamentoDeiDati;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public abstract class Animale extends EssereVivente {
 
@@ -219,6 +220,5 @@ public abstract class Animale extends EssereVivente {
 		
 		super.stampa();
 	}
-	
 	
 }

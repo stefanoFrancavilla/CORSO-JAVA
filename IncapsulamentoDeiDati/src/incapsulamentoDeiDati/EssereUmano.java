@@ -933,10 +933,10 @@ public void setColoreCapelli(ColoreCapelli coloreCapelli) {
 //	this.dataDiNascita = dataDiNascita;
 //}
 
-public String getCodiceFiscale() {
-	
-	return codiceFiscale;
-}
+//public String getCodiceFiscale() {
+//	
+//	return codiceFiscale;
+//}
 
 //public void setCodiceFiscale(String codiceFiscale) {
 //	this.codiceFiscale = codiceFiscale;
@@ -1289,41 +1289,41 @@ public float getDefaultPeso() {
 }
 
 // sovrascrittura dei metodi equals() e hashCode();
-@Override
-public boolean equals(Object obj)
-{
-	if(this == obj) // se l'oggetto attuale è uguale all'oggetto obj (ovvero se sono lo stesso oggetto in memoria), allora restituiamo true, altrimenti restituiamo false.
-	{
-		System.out.println("equals 1");
-		return true;}
-	
-	if(!(obj instanceof EssereUmano)) // se l'oggetto obj non è un'istanza della classe EssereUmano, allora restituiamo false, altrimenti continuiamo con il controllo.
-	{
-		System.out.println("equals 2");
-		return false;}
-	
-	EssereUmano essereUmano = (EssereUmano) obj; // facciamo un cast dell'oggetto obj alla classe EssereUmano, in modo da poter accedere alle sue variabili d'istanza e ai suoi metodi.
-	
-	if(essereUmano.codiceFiscale.length() != this.codiceFiscale.length()) // se la lunghezza del codice fiscale dell'oggetto essereUmano è diversa dalla lunghezza del codice fiscale dell'oggetto attuale, allora restituiamo false, altrimenti continuiamo con il controllo.
-	{
-		System.out.println("equals 3");
-	
-		return false;}
-	
-	boolean sonoUguali = essereUmano.codiceFiscale.equals(this.codiceFiscale); // se il codice fiscale dell'oggetto essereUmano è uguale al codice fiscale dell'oggetto attuale, allora restituiamo true, altrimenti restituiamo false.
-	
-	System.out.println("equals 4");
-	return sonoUguali;
-}
-
-@Override
-public int hashCode() 
-{
-	int result = 17; // inizializziamo una variabile result con un valore qualsiasi, in questo caso 17.
-	result = 31 * result * this.codiceFiscale.hashCode(); // moltiplichiamo result per 31 (un numero primo) e per il valore hash del codice fiscale dell'oggetto attuale, in modo da ottenere un valore hash unico per ogni oggetto della classe EssereUmano.
-
-	return result; // restituiamo il valore hash calcolato.
-}
+//@Override
+//public boolean equals(Object obj)
+//{
+//	if(this == obj) // se l'oggetto attuale è uguale all'oggetto obj (ovvero se sono lo stesso oggetto in memoria), allora restituiamo true, altrimenti restituiamo false.
+//	{
+//		System.out.println("equals 1");
+//		return true;}
+//	
+//	if(!(obj instanceof EssereUmano)) // se l'oggetto obj non è un'istanza della classe EssereUmano, allora restituiamo false, altrimenti continuiamo con il controllo.
+//	{
+//		System.out.println("equals 2");
+//		return false;}
+//	
+//	EssereUmano essereUmano = (EssereUmano) obj; // facciamo un cast dell'oggetto obj alla classe EssereUmano, in modo da poter accedere alle sue variabili d'istanza e ai suoi metodi.
+//	
+//	if(essereUmano.codiceFiscale.length() != this.codiceFiscale.length()) // se la lunghezza del codice fiscale dell'oggetto essereUmano è diversa dalla lunghezza del codice fiscale dell'oggetto attuale, allora restituiamo false, altrimenti continuiamo con il controllo.
+//	{
+//		System.out.println("equals 3");
+//	
+//		return false;}
+//	
+//	boolean sonoUguali = essereUmano.codiceFiscale.equals(this.codiceFiscale); // se il codice fiscale dell'oggetto essereUmano è uguale al codice fiscale dell'oggetto attuale, allora restituiamo true, altrimenti restituiamo false.
+//	
+//	System.out.println("equals 4");
+//	return sonoUguali;
+//}
+//
+//@Override
+//public int hashCode() 
+//{
+//	int result = 17; // inizializziamo una variabile result con un valore qualsiasi, in questo caso 17.
+//	result = 31 * result * this.codiceFiscale.hashCode(); // moltiplichiamo result per 31 (un numero primo) e per il valore hash del codice fiscale dell'oggetto attuale, in modo da ottenere un valore hash unico per ogni oggetto della classe EssereUmano.
+//
+//	return result; // restituiamo il valore hash calcolato.
+//}
 /*
  * se due istanze Essereumano hanno lo stesso codice fiscale, allora sono considerate uguali, e quindi il metodo equals() restituisce true, altrimenti restituisce false.
  */
@@ -1683,12 +1683,12 @@ public void stampa()
 //	System.out.println("Peso: " + peso);
 //	System.out.println("Colore Occhi: " + coloreOcchi);
 	System.out.println("	Colore Capelli: " + coloreCapelli);
-	System.out.println("	Nazione di Nascita: " + nazioneDiNascita);
-	System.out.println("	codiceFiscale: " + codiceFiscale);
-	System.out.println("	Comune di Nascita: " + comuneDiNascita);
-	
-	super.stampa();
-}
+//	System.out.println("	Nazione di Nascita: " + nazioneDiNascita);
+//	System.out.println("	codiceFiscale: " + codiceFiscale);
+//	System.out.println("	Comune di Nascita: " + comuneDiNascita);
+//	
+//	super.stampa();
+//}
 	// stiamo richiamando il metodo stampa() della superclasse Animale, in modo da stampare anche le informazioni generali dell'animale,
 	//come ad esempio il nome, il sesso, l'età, l'altezza, il peso, e il colore degli occhi.
 	
@@ -1775,5 +1775,5 @@ public void stampa()
 	
 }
 
-
+}
 

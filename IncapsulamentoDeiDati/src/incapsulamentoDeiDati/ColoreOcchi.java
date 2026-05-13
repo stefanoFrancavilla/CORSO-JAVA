@@ -5,6 +5,7 @@ public enum ColoreOcchi {
 	AZZURRI,
 	VERDI,
 	GRIGI,
+	NERI,
 	SCONOSCIUTO
 	
 
