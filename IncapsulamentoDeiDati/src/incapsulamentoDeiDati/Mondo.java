@@ -65,6 +65,20 @@ public class Mondo {
 		marcoRossi.vola();
 		marcoRossi.interagisceConLaBurrocrazia();
 		
+		//System.out.println(marcoRossi.toString());  
+		System.out.println(marcoRossi);
+		
+		/*
+		 * in questo caso abbiamo chiamato il metodo to tring sull'oggettomarco rossi, esplicitando la chiamata al metodo to string
+		 * il to strig ci ridà in output il nome della classe che appartiene l'oggetto, ed il suo hashcode
+		 * 
+		 * anche se non esplicitiamo il metodo to string , l'output rimane uguale , poichè da default il metodo viene chiamto
+		 * quindi quando proviamo a stampare un'oggeto con System.out.println, il metodo to string viene chiamato automaticamente
+		 *  per convertire l'oggetto in una stringa da stampare.
+		 *  
+		 *  una volta che abbiamo formattato il metodo to string nella classe cittadino l'output cambia e ci mostra tutte le informazioni 
+		 *  inerenti all'oggetto chiamato
+		 */
 		
 		
 System.out.println();

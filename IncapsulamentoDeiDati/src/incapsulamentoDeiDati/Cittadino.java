@@ -380,10 +380,65 @@ public class Cittadino extends EssereUmano {
 		result = prime * result + ((this.getNome() == null) ? 0 : this.getNome().hashCode());
 		return result;
 	}
+    
+    //qui stiamo riscrivendo il metodo toString della classe Oject in modo da restituire un'altro output al posto della classe + hashcode
+    
+    @Override
+    public String toString()
+    {
+    	System.out.println(super.toString());
+    	
+    	return """
+    			Cittadino -> toString()
+    				Nome: %s
+    				Cognome: %s
+    				Sesso: %s
+    				Altezza: %.2f
+    				Peso: %.2f
+    				Colore Occhi: %s
+    				Colore Capelli: %s
+    				Data di Nascita: %s
+    				Nazione di Nascita: %s
+    				Comune di Nascita: %s
+    				Codice Fiscale: %s
+    			"""
+    			.formatted(getNome(),
+						getCognome(),
+						getSesso(),
+						getAltezza(),
+						getPeso(),
+						getColoreOcchi(),
+						getColoreCapelli(),
+						getDataDiNascita(),
+						getNazioneDiNascita(),
+						getComuneDiNascita(),
+						codiceFiscale);
+    }
+    /*
+     * scrivendo la stringa in questo modo stiamo sfruttando il fatto che la classe String in Java è dotata di un metodo chiamato formatted() 
+     * che consente di formattare una stringa sostituendo i segnaposto con i valori specificati.
+     * i segnaposto sono rappresentati da %s per le stringhe, %d per i numeri interi, %f per i numeri in virgola mobile, e così via.
+     * 
+     * quindi una volta che abbiamo definito la stringa ed inserito i segnaposti,
+     *  possiamo chiamare il metodo formatted() passando i valori che vogliamo inserire al posto dei segnaposto.
+     *  
+     *  in parole semplic sostituisce i segnaposti con i relativi valori e restituisce la stringa formattata.
+     *  
+     *  con la riga di codice aggiunta super.toString() stiamo chiamando il metodo toString() della classe genitore (EssereUmano) 
+     *  e stampando il suo output prima di restituire la stringa formattata specifica della classe Cittadino.
+     *  
+     *  quindi con super.toString abbiamo l'output del metodo toString() della classe EssereUmano, 
+     *  mentre con la stringa formattata restituiamo l'output specifico della classe Cittadino.
+     * 
+     */
+    
+    
     //Metodi
+    @Override
     public void stampa() {
 	System.out.println("--------------------------");
 	System.out.println("Cittadino -> stampa()");
+	
     System.out.println("	Nazione di Nascita: " + nazioneDiNascita);
 	System.out.println("	codiceFiscale: " + codiceFiscale);
 	System.out.println("	Comune di Nascita: " + comuneDiNascita);
