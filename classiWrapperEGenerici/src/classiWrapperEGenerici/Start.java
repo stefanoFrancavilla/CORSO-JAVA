@@ -1,5 +1,7 @@
 package classiWrapperEGenerici;
 
+import classiWrapperEGenerici.generici.Scatoletta;
+
 public class Start {
 
 	public static void main(String[] args) {
@@ -340,8 +342,261 @@ public class Start {
 			  *  quindi il valore di Integer.toUnsignedLong(n7) sarà 2147483648,
 			  */
 			
-			
+			  System.out.println();
+				System.out.println("7.3--------------------------");
+				System.out.println();
 		 
+				int n8 = 5_500_000;
+				String s0 = Integer.toUnsignedString(n8, 10); 
+			
+				System.out.println("	s0: " + s0);
+				
+				String s1 = Integer.toUnsignedString(n8, 2); 
+				System.out.println("	s1: " + s1);
+				
+				String s2 = Integer.toUnsignedString(n8, 16); 
+				System.out.println("	s2: " + s2);
+				
+				String s3 = Integer.toUnsignedString(n8, 8); 
+				System.out.println("	s3: " + s3);
+				/*
+				 * con questo metodo della classe Integer, possiamo convertire un intero in una stringa rappresentata in una base specifica,
+				 * nel primo caso stiamo convertendo l'intero nel sistema decimale
+				 * nel secondo nel sistema binario
+				 * nel terzo nel sistema esadecimale
+				 * nel quarto caso nel sistema ottale
+				 * il primo parametro del codice Integer.toUnsignedString() è l'intero che vogliamo convertire,
+				 *  mentre il secondo parametro è la base in cui vogliamo rappresentare l'intero,
+				 */
+				
+				 System.out.println();
+					System.out.println("7.4--------------------------");
+					System.out.println();
+					
+					Integer nTest = null;
+					
+					try
+					{
+						int nTest1 = nTest;
+					}
+					catch(NullPointerException e)
+					{
+						System.out.println("	e.getMessage(): " + e.getMessage());
+					}
+					/*
+					 * nonostante nTest1 sia di tipo int, stiamo cercando di assegnare ad esso il valore di nTest, che è un oggetto Integer,
+					 * normalmente questo non sarebbe possibile, poiché non è possibile assegnare un oggetto Integer ad una variabile di tipo int,
+					 * ma con il try-catch, stiamo gestendo l'eccezione di tipo NullPointerException
+					 *  che si verifica quando si cerca di unboxare un oggetto null,
+					 *  quindi non avremo un errore di runtime, ma otterremo un'eccezione di tipo NullPointerException,
+					 *   che viene catturata dal blocco catch,
+					 */
+					
+					
+					 System.out.println();
+						System.out.println("7.5--------------------------");
+						System.out.println();
+						
+						Short sTest = Short.valueOf((short) 10);
+						nTest = Integer.valueOf(10);
+						
+						System.out.println("	nTest.equals(sTest): " + nTest.equals(sTest));
+						
+						/*
+						 * in questo caso stiamo utilizzando il metodo equals() della classe Integer per confrontare un oggetto Integer
+						 *  con un oggetto Short,
+						 *  poiché nTest è un oggetto Integer e sTest è un oggetto Short, il metodo equals() restituirà false,
+						 *  
+						 *  quindi con il metodo equals() possiamo confrontare due oggetti di classi wrapper diverse, 
+						 *  ma poiché sono di classi diverse, il confronto restituirà false,
+						 */
+						System.out.println("	sTest.equals(nTest): " + sTest.equals(nTest));
+						
+						Integer nTest2 = Integer.valueOf(255);
+						Integer nTest3 = Integer.valueOf(255);
+						System.out.println("	nTest2.equals(nTest3): " + nTest2.equals(nTest3));
+						System.out.println("	nTest2 == nTest3 : " + (nTest2 == nTest3));
+						
+						/*
+						 * questa volta stiamo confrontando due oggetti Integer che incapsulano lo stesso valore,
+						 *  quindi il metodo equals() restituirà true,
+						 *  
+						 *  con il comando == stiamo confrontando non il valore degli oggetti , ma i loro rispettivi reference, 
+						 *  quindi in questo caso nTest2 e nTest3 sono due oggetti diversi, quindi il confronto restituisce false,
+						 */
+						
+						System.out.println("	sTest.equals(10): " + sTest.equals(10));
+						
+						/*
+						 * naturalmente anche comparando con equals un oggetto Short con un intero, il confronto restituirà false,
+						 *  poiché sTest è un oggetto Short e 10 è un intero primitivo,
+						 */
+						
+						System.out.println("	sTest.equals((short)10): " + sTest.equals((short)10));
+						
+						/*
+						 * una volta effettuato il cast dell'intero 10 in un short, il confronto restituirà true,
+						 *  poiché sTest è un oggetto Short che incapsula il valore 10 che è lo stesso valore del short 10,
+						 */
+						
+						System.out.println("	nTest.hashCode() : " + nTest.hashCode());
+						System.out.println("	sTest.hashCode() : " + sTest.hashCode());
+						
+						
+						/*
+						 * il metodo hashCode() della classe Short e della classe Integer restituisce un valore hash code per l'oggetto,
+						 *  in questo caso il valore hash code di sTest sarà 10,
+						 *   poiché il metodo hashCode() della classe Short restituisce il valore del short incapsulato,
+						 */
+						
+						    System.out.println();
+							System.out.println("8--------------------------");
+							System.out.println();
+							
+							Scatoletta scatoletta = new Scatoletta();
+							
+							scatoletta.setContenuto(Long.valueOf(1_000_000_000));
+							
+							//Integer contenuto = scatoletta.getContenuto();
+							/*
+							 * se proviamo a assegnare il valore restituito dal metodo getContenuto() della classe Scatoletta
+							 *  ad una variabile di tipo Integer, otterremo un errore di compilazione,
+							 *  poichè il metodo getContenuto() restituisce un oggetto di tipo Object,
+							 *   e non è possibile assegnare un oggetto di tipo Object ad una variabile di tipo Integer,
+							 */
+							
+							
+							
+							/*
+							 * se provassimo ad insereire un cast per aggirare l'errore di compilazione, otterremmo un errore di runtime,
+							 * poichè il metodo getContenuto() restituisce un oggetto di tipo Object che in realtà è un oggetto di tipo Long,
+							 */
+							
+							try
+							{
+								Integer contenuto = (Integer) scatoletta.getContenuto();
+							}
+							catch(ClassCastException e)
+							{
+								System.out.println("	e.getMessage(): " + e.getMessage());
+							}
+							
+							/*
+							 * con il blocco try-catch, stiamo gestendo l'eccezione di tipo ClassCastException 
+							 * che si verifica quando si cerca di effettuare un cast non valido,
+							 * quindi non avremo un errore di runtime, ma otterremo un'eccezione di tipo ClassCastException,
+							 *  che viene catturata dal blocco catch,
+							 *  
+							 */
+							
+							scatoletta.setContenuto(Integer.valueOf(100_000_000));
+							//Integer contenuto2 = scatoletta.getContenuto();
+							Integer contenuto2 = (Integer) scatoletta.getContenuto();
+							System.out.println("	contenuto2: " + contenuto2);
+							
+							/*
+							 * anche in questo caso, se proviamo ad assegnare il valore restituito dal metodo getContenuto() della classe Scatoletta
+							 * ad una variabile di tipo Integer, otterremo un errore di compilazione,
+							 * 
+							 * se invece provassimo ad inserire un cast per aggirare l'errore di compilazione, otterremmo un errore di runtime,
+							 * poichè il metodo getContenuto() restituisce un oggetto di tipo Object che in realtà è un oggetto di tipo Integer,
+							 * con il blocco try-catch, stiamo gestendo l'eccezione di tipo ClassCastException
+							 * che si verifica quando si cerca di effettuare un cast non valido,
+							 * quindi non avremo un errore di runtime, ma otterremo un'eccezione di tipo ClassCastException,
+							 * poiché in questo caso il metodo getContenuto() restituisce un oggetto di tipo Object 
+							 * che in realtà è un oggetto di tipo Integer,
+							 */
+							
+							//String contenuto3 = scatoletta.getContenuto();
+							//String contenuto3 =(String)scatoletta.getContenuto();
+							
+							/*
+							 * anche questa istruzone ci da errore di compilazione,
+							 *  poiché il metodo getContenuto() restituisce un oggetto di tipo Object,
+							 */
+							
+							try 
+							{
+								String contenuto3 =(String)scatoletta.getContenuto();
+							}
+							catch(ClassCastException e)
+							{
+								System.out.println("	e.getMessage(): " + e.getMessage());
+							}
+							
+							scatoletta.setContenuto("Ciao, come va?");
+							String contenuto4 = (String) scatoletta.getContenuto();
+							
+							System.out.println("	contenuto4: " + contenuto4);
+					
+							
+							System.out.println();
+							System.out.println("8.1------------------------");
+							System.out.println();
+							
+							Object contenuto5 = scatoletta.getContenuto();
+							if (contenuto5 instanceof Long)
+							{
+								Long nLong = (Long)contenuto5;
+								System.out.println("	nLong: " + nLong);
+							}	
+							else if (contenuto5 instanceof Integer)
+							{
+								Integer nInteger = (Integer)contenuto5;
+								System.out.println("	nInteger: " + nInteger);
+							}
+							else if (contenuto5 instanceof String)
+							{
+								String stringa = (String)contenuto5;
+								System.out.println("	s: " + stringa);
+							}
+							
+							/*
+							 * con questo if stiamo verificando se il valore restituito dal metodo getContenuto() della classe Scatoletta 
+							 * è un oggetto di tipo Long,
+							 * con il codice instanceof stiamo verificando se l'oggetto contenuto5 è un'istanza della classe Long,
+							 * 
+							 * usando questo if possimao evitare di ottenere un'eccezione di tipo ClassCastException, 
+							 * poiché stiamo verificando se l'oggetto è effettivamente un oggetto di tipo Long prima di effettuare il cast,
+							 * 
+							 * altrimenti se l'oggetto non è di tipo Long, stiamo verificando se è di tipo Integer, e così via,
+							 * 
+							 * invece con l'ultimo if stiamo verificando se l'oggetto è di tipo String,
+							 * in questo modo possiamo gestire in modo appropriato il valore restituito dal metodo getContenuto()
+							 *  della classe Scatoletta,
+							 */
+	
+							
+							System.out.println();
+							System.out.println("8.2------------------------");
+							System.out.println();
+				
+				if(contenuto5 instanceof Long nLong)
+				{		
+					System.out.println("	nLong: " + nLong);
+				}	
+				else if(contenuto5 instanceof Integer nInteger)
+				{
+					System.out.println("	nInteger: " + nInteger);
+				}
+				else if(contenuto5 instanceof String stringa)
+				{
+					System.out.println("	s: " + stringa);
+				}	
+	/*
+	 * con il pattern matching per instanceof, possiamo dichiarare una nuova variabile all'interno del blocco if,
+	 * così facendo compattiamo il codice, poiché non è più necessario dichiarare una variabile all'esterno del blocco
+	 *  if e poi assegnarle il valore del cast,
+	 *  
+	 *  con l'if chiediamo se è il contenuto 5  un'istanza di un long?
+	 *  se è vero che è un'istanza di un long allora dichiariamo una nuova variabile nLong di tipo Long e le assegnamo il valore di contenuto5,
+	 */
+				
+				
+					
+				
+							
+							
 	}
 
 }
