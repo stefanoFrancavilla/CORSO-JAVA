@@ -1,6 +1,7 @@
 package classiWrapperEGenerici;
 
 import classiWrapperEGenerici.generici.Scatoletta;
+import classiWrapperEGenerici.generici.ScatolettaGenerica;
 
 public class Start {
 
@@ -592,11 +593,89 @@ public class Start {
 	 *  se è vero che è un'istanza di un long allora dichiariamo una nuova variabile nLong di tipo Long e le assegnamo il valore di contenuto5,
 	 */
 				
-				
+				System.out.println();
+				System.out.println("8.3------------------------");
+				System.out.println();	
 					
+				ScatolettaGenerica<Long> scatolettaGenerica = new ScatolettaGenerica<Long>();
+				//scatolettaGenerica.setContenuto(Integer.valueOf(1));		//no
+			    //  scatolettaGenerica.setContenuto(1);		//no
+				//scatolettaGenerica.setContenuto(Character.valueOf('c'));		//no
+				scatolettaGenerica.setContenuto(Long.valueOf(1));		//si
+				scatolettaGenerica.setContenuto(1L);		//si   ( autoboxing )
+				Long contenutoGenerico = scatolettaGenerica.getContenuto();
+				System.out.println("	contenutoGenerico: " + contenutoGenerico);
+				//ScatolettaGenerica<long> scatolettaGenerica2 = new ScatolettaGenerica<long>(); //no
 				
-							
-							
+				
+				ScatolettaGenerica<String> scatolettaGenerica2 = new ScatolettaGenerica<String>();
+				//scatolettaGenerica2.setContenuto(Integer.valueOf(1));		//no
+			    //  scatolettaGenerica2.setContenuto(1);		//no
+				// scatolettaGenerica2.setContenuto(Long.valueOf(1)); // no
+				// scatolettaGenerica2.setContenuto(Character.valueOf('c'));
+				scatolettaGenerica2.setContenuto("Ciccio");		//si
+				String contenutoGenerico2 = scatolettaGenerica2.getContenuto();
+				System.out.println("	contenutoGenerico2: " + contenutoGenerico2);
+				
+				ScatolettaGenerica<Character> scatolettaGenerica3 = new ScatolettaGenerica<Character>();
+				//scatolettaGenerica3.setContenuto(Character.valueOf((char) 97));		//si
+				//scatolettaGenerica3.setContenuto(97);		//no 
+				//scatolettaGenerica3.setContenuto((char)97);		//si 
+				scatolettaGenerica3.setContenuto((char)127);		//si
+				Character contenutoGenerico3 = scatolettaGenerica3.getContenuto();
+				System.out.println("	contenutoGenerico3: " + contenutoGenerico3);
+				
+				ScatolettaGenerica<Character> scatolettaGenerica4 = new ScatolettaGenerica<Character>();
+				scatolettaGenerica4.setContenuto((char)127);		//si
+				Character contenutoGenerico4 = scatolettaGenerica4.getContenuto();
+				System.out.println("	contenutoGenerico4: " + contenutoGenerico4);
+				
+				System.out.println("	contenutoGenerico3 == contenutoGenerico4 " + (contenutoGenerico3 == contenutoGenerico4) ); //true
+				
+				scatolettaGenerica3.setContenuto((char)161);		
+			    contenutoGenerico3 = scatolettaGenerica3.getContenuto();
+				System.out.println("	contenutoGenerico3: " + contenutoGenerico3);
+				
+				scatolettaGenerica4.setContenuto((char)161);		
+			    contenutoGenerico4 = scatolettaGenerica4.getContenuto();
+				System.out.println("	contenutoGenerico4: " + contenutoGenerico4);	
+				
+				System.out.println("	contenutoGenerico3 == contenutoGenerico4 " + (contenutoGenerico3 == contenutoGenerico4) ); // false
+				
+				/*
+				 * il false deriva dal fatto che il valore 161 non è compreso tra -128 e 127, quindi la JVM non utilizza il meccanismo di caching per i valori compresi tra -128 e 127,
+				 */
+				
+				System.out.println();
+				System.out.println("8.3.1------------------------");
+				System.out.println();	
+				
+				ScatolettaGenerica<Object> scatolettaGenerica5 = new ScatolettaGenerica<Object>();
+				scatolettaGenerica5.setContenuto(Long.valueOf(1_000_000_000));		
+				//Integer contenutoGenerico5 = scatolettaGenerica5.getContenuto();
+				
+				try
+				{
+					Integer contenutoGenerico5 = (Integer) scatolettaGenerica5.getContenuto();
+				}
+				catch(ClassCastException e)
+				{
+					System.out.println("	e.getMessage(): " + e.getMessage());
+				}
+				
+				// si attiva il corrispettivo raw type, poiché non è possibile assegnare un oggetto di tipo Object ad una variabile di tipo Integer, quindi otteniamo un errore di compilazione,
+				ScatolettaGenerica scatolettaGenerica6 = new ScatolettaGenerica();  // raw type
+				scatolettaGenerica6.setContenuto(Long.valueOf(1_000_000_000));
+				//Integer contenutoGenerico6 = scatolettaGenerica6.getContenuto();
+				
+				try
+				{
+					Integer contenutoGenerico6 = (Integer) scatolettaGenerica6.getContenuto();
+				}
+				catch(ClassCastException e)
+				{
+					System.out.println("	e.getMessage(): " + e.getMessage());
+				}
 	}
 
 }
