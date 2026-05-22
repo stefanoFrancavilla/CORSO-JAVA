@@ -204,9 +204,50 @@ chiuda con un messaggio nel finally, ad esempio Fine programma.
 			
 			double prezzoIniziale = scanner.nextDouble();
 			
+			if (prezzoIniziale < 0)
+			{
+				System.out.println("	Il prezzo non può essere negativo");
 			
+			}
+			else
+			{
+			
+			System.out.println("	Inserisci percentuale di sconto");
+			
+			double percentuale = scanner.nextDouble();
+			
+			if ((percentuale < 0) || (percentuale > 100)) 
+			{
+				System.out.println("	La percentuale deve essere compresa nel range da 0 - 100");
+			}
+			else if (percentuale == 100)
+			{
+				System.out.println("	Il prodotto scontato del 100% è gratis");
+			}
+			else
+			{
+				double sconto =  (percentuale / 100) * prezzoIniziale;
+				double prezzoFinale = prezzoIniziale - sconto;
+				
+				System.out.println("	Prezzo iniziale: " + prezzoIniziale);
+				System.out.println("	Percentuale di sconto: " + percentuale);
+				System.out.println("	Prezzo Finale: " + prezzoFinale);
+			}
+			
+			}
 			
 		}
+		catch(InputMismatchException e)
+		{
+			System.out.println("	Errore: Inserire solo numeri");
+		}
+		
+		finally
+		{
+			System.out.println("	Fine programma");
+			scanner.close();
+		}
+		
 		
 		
 	}
