@@ -72,14 +72,43 @@ Non usare più scanner diversi: uno solo per tutto il programma.
 					
 				case 2:
 					System.out.println("	Inserire la cifra da depositare");
-					double importo = scanner.nextDouble();
-					importoValido(importo);
+					double importoDeposito = scanner.nextDouble();
+					if (importoValido(importoDeposito) == true)
+					{
+					
+					 saldo = deposito(importoDeposito, saldo);
+					}
+					else
+					{
+						System.out.println("	Il deposito non è avvenuto");
+					}
+					break;
+					
+				case 3:
+					System.out.println("	Inserire la cifra da prelevare");
+					double importoPrelievo = scanner.nextDouble();
+					if ( importoValido(importoPrelievo) == true)
+					{
+					
+					saldo = prelievo(importoPrelievo, saldo);
+
+					}
+					else
+					{
+						System.out.println("	Il deposito non è avvenuto");
+					}
+					break;
+					
+				case 4:
+					System.out.println("Uscita dal programma");
+					run = false;
+					break;
 				}
 				    
 			}
 			catch(InputMismatchException e )
 			{
-				System.out.println("	Errore: immetti il numero corrispondente alla scelta");
+				System.out.println("	Errore: sono consentiti solo numeri");
 				scanner.nextLine();
 			}
 			
@@ -92,29 +121,21 @@ Non usare più scanner diversi: uno solo per tutto il programma.
 		
 	}
 	
-	public static double importoValido( double importo)
+	public static boolean importoValido( double importo)
 	{
-		while (true)
-		{
-			try
-			{
-		
-			
+			boolean valido = true;
 			if(importo > 0)
 			{
-				return importo;
+				
+				return valido;
 			}
 			else
 			{
 				System.out.println("	L'importo inserito deve essere superiore a zero");
+			    
+			    return false;
 			}
-			}
-			catch(InputMismatchException e )
-			{
-				System.out.println("	Errore: inserisci solo cifre");
-				continue;
-			}
-		}
+			
 	}
 	
 	public static double deposito(double importo , double saldo)
