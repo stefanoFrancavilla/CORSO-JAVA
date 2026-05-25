@@ -1,5 +1,8 @@
 package classiWrapperEGenerici;
 
+import java.util.ArrayList;
+
+import classiWrapperEGenerici.generici.Coppia;
 import classiWrapperEGenerici.generici.Scatoletta;
 import classiWrapperEGenerici.generici.ScatolettaGenerica;
 
@@ -676,6 +679,326 @@ public class Start {
 				{
 					System.out.println("	e.getMessage(): " + e.getMessage());
 				}
+				
+				ScatolettaGenerica scatolettaGenerica7 = new ScatolettaGenerica();  
+				scatolettaGenerica7.setContenuto(Integer.valueOf(100_000_000));
+				
+				Integer contenutoGenerico7 = (Integer) scatolettaGenerica7.getContenuto();
+				System.out.println("	contenutoGenerico7: " + contenutoGenerico7);
+				
+				System.out.println();
+				System.out.println("8.3.2------------------------");
+				System.out.println();	
+				
+				Scatoletta scatoletta1 = new Scatoletta();
+				scatoletta1.setContenuto(Integer.valueOf(100_000_000));
+				
+				Scatoletta scatoletta2 = new Scatoletta();
+				scatoletta2.setContenuto(Integer.valueOf(1_000_000));
+				
+				Scatoletta scatoletta3 = new Scatoletta();
+				scatoletta3.setContenuto(Short.valueOf((short)1_000));
+				
+				
+				Scatoletta [] scatolette = new Scatoletta[3];
+				scatolette[0] = scatoletta1;
+				scatolette[1] = scatoletta2;
+				scatolette[2] = scatoletta3;
+				
+				/*
+				 * in questo caso ciclando i 3 oggetti abbiamo un errore di runtime
+				 * quindi i primi due oggetti restituiscono un oggetto di tipo Integer, mentre il terzo oggetto restituisce un oggetto di tipo Short,
+				 * quindi quando cerchiamo di effettuare un cast da Object a Integer per il terzo oggetto, otteniamo un'eccezione di tipo ClassCastException,
+				 * ma una volta che eseguiamo , ci ritroviamo l'errore di run time
+				 * 
+				 * per ovviare a questo problema dobbiamo utilizzare un blocco try catch all'interno del ciclo for, 
+				 * in modo da gestire l'eccezione di tipo ClassCastException che si verifica quando si cerca di effettuare un cast non valido,
+				 * 
+				 */
+				for(int i = 0; i < scatolette.length; i++)
+				{
+					try
+					{
+					Integer scatolettaCorrente = (Integer) scatolette[i].getContenuto();
+					System.out.println("	scatolettaCorrente: " + scatolettaCorrente);
+					}
+					catch(ClassCastException e)
+					{
+						e.printStackTrace(); //ritorna il messaggio di errore e lo stack trace dell'eccezione
+					}
+				}
+				
+				/*
+				 * usando questo sistema ci accorgiamo che non è tipe safety utilizzare un array di oggetti di tipo Scatoletta,
+				 *  poiché non possiamo garantire che tutti gli oggetti restituiti dal metodo getContenuto() siano dello stesso tipo,
+				 */
+				
+				ScatolettaGenerica<Integer> scatolettaGenerica8 = new ScatolettaGenerica<Integer>();
+				scatolettaGenerica8.setContenuto(Integer.valueOf(100_000_000));
+				
+				ScatolettaGenerica<Integer> scatolettaGenerica9 = new ScatolettaGenerica<Integer>();
+				scatolettaGenerica9.setContenuto(Integer.valueOf(1_000_000));
+				
+				ScatolettaGenerica<Integer> scatolettaGenerica10 = new ScatolettaGenerica<Integer>();
+				//scatolettaGenerica10.setContenuto(Short.valueOf((short)1_000));
+				scatolettaGenerica10.setContenuto(Integer.valueOf((short)1_000));
+			
+//				ScatolettaGenerica<Integer> [] scatoletteGeneriche = new ScatolettaGenerica<Integer>[3];
+//				ScatolettaGenerica[0] = scatolettaGenerica8;
+//				ScatolettaGenerica[1] = scatolettaGenerica9;
+//				ScatolettaGenerica[2] = scatolettaGenerica10;
+				
+				
+				ArrayList<ScatolettaGenerica<Integer>> scatoletteGeneriche = new ArrayList<ScatolettaGenerica<Integer>>();
+				scatoletteGeneriche.add(scatolettaGenerica8);
+				scatoletteGeneriche.add(scatolettaGenerica9);
+				scatoletteGeneriche.add(scatolettaGenerica10);
+				
+				for(int i = 0; i < scatoletteGeneriche.size(); i++)
+				{
+					ScatolettaGenerica<Integer> scatolettaGenericaCorrente = scatoletteGeneriche.get(i);
+					Integer contenutoGenericoCorrente = scatolettaGenericaCorrente.getContenuto();
+					System.out.println("	contenutoGenericoCorrente: " + contenutoGenericoCorrente);
+				}
+				
+				System.out.println();
+				System.out.println("8.4------------------------");
+				System.out.println();	
+				/*
+				 * nel primo caso abbiamo specificato che si trattava di una coppia di Stringhe
+				 * quindi possiamo inserire solo Stringhe all'interno della coppia, 
+				 * e quando andiamo a stampare la coppia, vedremo che contiene due Stringhe,
+				 */
+				Coppia<String> fidanzati = new Coppia<String>("Luca", "Elena");
+				System.out.println("	fidanzati: " + fidanzati);
+				
+				/*
+				 * nel secondo caso abbiamo specificato che si trattava di una coppia di Float,
+				 * quindi possiamo inserire solo Float all'interno della coppia,
+				 */
+				Coppia<Float> punto = new Coppia<Float>(34.5f, 3f);
+				System.out.println("	punto: " + punto);
+				
+				/*
+				 * nel terzo caso abbiamo specificato che si trattava di una coppia di Object,
+				 * quindi possiamo inserire qualsiasi tipo di oggetto all'interno della coppia,
+				 * in questo caso abbiamo inserito una Stringa e un intero, ma avremmo potuto inserire qualsiasi altro tipo di oggetto,
+				 * con la coppia di Object, non abbiamo alcuna garanzia sul tipo di oggetto che stiamo inserendo all'interno della coppia,
+				 * 
+				 * in pratica annullo la potenza dei generici
+				 */
+				Coppia<Object> coppiaObject = new Coppia<Object>("Luca", 2);
+				System.out.println("	coppiaObject: " + coppiaObject);
+				
+				/*
+				 * anche in questo caso, se provassimo ad inserire una coppia di Object, 
+				 * potremmo inserire qualsiasi tipo di oggetto all'interno della coppia,
+				 * in questo caso abbiamo inserito una Stringa e un carattere,
+				 *  ma avremmo potuto inserire qualsiasi altro tipo di oggetto,
+				 *  
+				 *  questo è un esempio di come non utilizzare i generici, 
+				 *  poiché non abbiamo alcuna garanzia sul tipo di oggetto che stiamo inserendo all'interno della coppia,
+				 */
+			
+				Coppia coppiaObject2 = new Coppia("Elena", 'p');
+				System.out.println("	coppiaObject2: " + coppiaObject2);
+				
+				
+				/*
+				 * con la porzione di codice che segue, stiamo verificando il tipo di oggetto che abbiamo inserito all'interno della coppia di Object,
+				 * in questo caso abbiamo inserito una Stringa e un intero, quindi il primo membro della coppia è una Stringa e il secondo membro è un intero,
+				 * questo ci viene dato dalla porzione di codice che segue,
+				 *  in cui stiamo chiamando il metodo getClass() sui membri della coppia, 
+				 *  che ci restituisce il tipo di oggetto che abbiamo inserito all'interno della coppia,
+				 */
+				System.out.println("	coppiaObject.getPrimoMembro().getClass: " + coppiaObject.getPrimoMembro().getClass());
+				System.out.println("	coppiaObject.getSecondoMembro().getClass: " + coppiaObject.getSecondoMembro().getClass());
+				
+				System.out.println();
+				System.out.println("9------------------------");
+				System.out.println();	
+				
+				/*
+				 * le arrayList sono una classe che implementa l'interfaccia List, e che utilizza un array per memorizzare gli elementi della lista,
+				 * in questo caso stiamo creando una nuova arrayList di interi,
+				 * quello che non si potrebbe fare è creare una arrayList di tipi primitivi,
+				 *  come ad esempio int, poiché le arrayList possono contenere solo oggetti,
+				 *  quindi se volessimo usare un'arrayList di interi dobbiamo per forza utilizzare la classe wrapper Integer,
+				 *   che ci permette di incapsulare un intero all'interno di un oggetto,
+				 * 
+				 * possiamo però , grazie all' autoboxing , inserire direttamente un intero all'interno dell'arrayList,
+				 *  poiché la JVM si occuperà di convertire automaticamente l'intero in un oggetto Integer,
+				 *  senza stare a specificare che l'oggetto è di tipo integer, 
+				 *  ma semplicemente inserendo un intero, la JVM si occuperà di fare l'autoboxing e di convertire l'intero in un oggetto Integer,
+				 */
+				ArrayList<Integer> integers = new ArrayList<Integer>();
+				integers.add(Integer.valueOf(1_000_000_000));
+				integers.add(1); // autoboxing
+				//integers.add(Short.valueOf((short) 1000)); // no
+				//integers.add(0.12345); // no
+				//integers.add(Character.valueOf('c')); // no
+				
+				Integer int0 = integers.get(0);
+				Integer int1 = integers.get(1);
+				
+				/*
+				 * con il metodo get() della classe ArrayList, stiamo ottenendo gli elementi della lista, che sono di tipo Integer,
+				 * quindi int0 e int1 sono di tipo Integer, e possiamo chiamare il metodo getClass() su di essi per verificare il loro tipo,
+				 */
+				System.out.println("	int0.getClass: " + int0.getClass());
+				System.out.println("	int1.getClass: " + int1.getClass());
+				
+				/*
+				 * qui stiamo assegnando il valore restituito dal metodo get() della classe ArrayList a due variabili di tipo Integer,
+				 * quindi int2 e int3 sono di tipo Integer, e possiamo chiamare il metodo getClass() su di essi per verificare il loro tipo,
+				 */
+				int int2 = integers.get(0); // unboxing
+				int int3 = integers.get(1); // unboxing
+				
+				System.out.println("	int2 + int3 " + int2 + int3);
+				
+				System.out.println("------------------------");
+				
+				/*
+				 * con numbers stiamo chiamando la superclasse Number, che è la superclasse di tutte le classi wrapper che rappresentano i tipi numerici,
+				 * quindi con numbers possiamo creare una lista di oggetti di tipo Number,
+				 *  che possono essere di qualsiasi classe wrapper che rappresenta un tipo numerico,
+				 *  
+				 *  quindi possiamo inserire all'interno della lista di numbers, 
+				 *  oggetti di tipo Integer, Float, Double, Short, Byte, Long, poiché tutte queste classi wrapper sono sottoclassi della classe Number,
+				 */
+				ArrayList<Number> numbers = new ArrayList<Number>();
+				
+				numbers.add(Integer.valueOf(1_000_000_000));
+				numbers.add(1); // autoboxing
+				numbers.add(Short.valueOf((short) 1000));
+				numbers.add(0.12345);
+				//integers.add(Character.valueOf('c')); // no
+				
+				Number int4 = numbers.get(0);
+				Number int5 = numbers.get(1);
+				Number int6 = numbers.get(2);
+				Number int7 = numbers.get(3);
+				
+				
+				System.out.println("	int4.getClass: " + int4.getClass());
+				System.out.println("	int4: " + int4);//autoboxing
+				
+				System.out.println("	int5.getClass: " + int5.getClass());
+				System.out.println("	int5: " + int5);//autoboxing
+				
+				System.out.println("	int6.getClass: " + int6.getClass());
+				System.out.println("	int6: " + int6);//autoboxing
+				
+				System.out.println("	int7.getClass: " + int7.getClass());
+				System.out.println("	int7: " + int7);//autoboxing
+				
+				
+				int int8 = (Integer) numbers.get(0);
+				int int9 = (Integer) numbers.get(1);
+				short int10 = (Short) numbers.get(2);
+				double int11 = (Double) numbers.get(3);
+				
+				System.out.println("	int8: " + int8);
+				System.out.println("	int9: " + int9);
+				System.out.println("	int10: " + int10);
+				System.out.println("	int11: " + int11);
+				
+				
+				System.out.println("------------------------");
+				
+				/*
+				 * con numbers2 stiamo creando una lista di oggetti di tipo Object, che è la superclasse di tutte le classi in Java,
+				 * quindi con numbers2 possiamo inserire all'interno della lista di numbers2,
+				 * oggetti di qualsiasi tipo, come ad esempio
+				 *  Integer, Short, Double, Character, String, poiché tutte queste classi sono sottoclassi della classe Object,
+				 */
+                ArrayList<Object> numbers2 = new ArrayList<>();
+				
+                numbers2.add(Integer.valueOf(1_000_000_000));
+                numbers2.add(1); // autoboxing
+                numbers2.add(Short.valueOf((short) 1000));
+                numbers2.add(0.12345);
+                numbers2.add(Character.valueOf('c')); 
+                
+                for(int i = 0; i < numbers2.size(); i++)
+				{
+					Object obj = numbers2.get(i);
+					
+					System.out.println("	obj.getClass: " + obj.getClass());
+					System.out.println("	obj: " + obj);
+				
+				/*
+				 * con questi if stiamo verificando il tipo di oggetto che abbiamo inserito all'interno della lista di numbers2,
+				 * poiché abbiamo inserito oggetti di tipo Integer, Short, Double, Character, 
+				 * quindi stiamo verificando se l'oggetto è di tipo Integer, Short, Double o Character,
+				 * 
+				 * questo potrebbe essere utile quando abbiamo una lista di oggetti di tipo Object,
+				 *  e vogliamo gestire in modo appropriato gli oggetti in base al loro tipo,
+				 */
+				if(obj instanceof Integer nInteger)
+				{
+					System.out.println("	nInteger: " + nInteger);
+				}
+				else if(obj instanceof Short nShort)
+				{
+					System.out.println("	nShort: " + nShort);
+				}
+				else if(obj instanceof Double nDouble)
+				{
+					System.out.println("	nDouble: " + nDouble);
+				}
+				else if(obj instanceof Character nCharacter)
+				{
+					System.out.println("	nCharacter: " + nCharacter);
+				}
+			}
+                
+                System.out.println();
+				System.out.println("9.1------------------------");
+				System.out.println();	
+				
+				/*
+				 * prima di java5 non avevamo i generici, quindi non potevamo specificare il tipo di oggetto che volevamo inserire all'interno della lista,
+				 * quindi non avevamo alcuna garanzia sul tipo di oggetto che stavamo inserendo all'interno della lista,
+				 */
+				//prima di java 5
+				ArrayList nList2 = new ArrayList();
+				//nList2.add(2.17F); no prima di java 5
+				//nList2.add(3.14); no prima di java 5
+				//nList2.add(100); // no prima di java 5
+				
+				nList2.add(new Float(2.17F)); // questa era il modo di passare un'informazione numerica prima di java5
+				nList2.add(new Double(3.14)); // questa era il modo di passare un'informazione numerica prima di java5
+				nList2.add(new Integer(100)); // questa era il modo di passare un'informazione numerica prima di java5
+				//nList2.add("aaa"); // questa era il modo di passare una stringa prima di java5
+				/*
+				 * prima di java 5 non essendoci i generici potevamo passare qualsiasi tipo di oggetto all'interno della lista,
+				 */
+				Float floatItem1 = (Float) nList2.get(0);
+				/*
+				 * con questo float abbiamo un'errore poiche il metodo get() della classe ArrayList restituisce un oggetto di tipo Object, 
+				 * e non è possibile assegnare un oggetto di tipo Object ad una variabile di tipo Float,
+				 * 
+				 * per ovviare a questo problema bisognava effettuare un cast da object a float
+				 */
+				Double doubleItem = (Double) nList2.get(1);
+				Integer intItem = (Integer) nList2.get(2);
+				/*
+				 * con questo codice avevamo in console solo il reference dell'oggetto, e non il valore dell'oggetto,
+				 *  poiché il metodo toString() della classe Object restituisce il nome della classe seguito dal simbolo @ e dal valore hash code dell'oggetto,
+				 */
+				
+				float floatItem1p = floatItem1.floatValue(); // unboxing
+				//per recuperare il valore numerico da  un oggetto dovevamo chiamare il metodo floatValue() della classe Float,
+				//che ci restituisce il valore numerico del float incapsulato all'interno dell'oggetto Float
+				
+				double doubleItemp = doubleItem.doubleValue(); // unboxing
+				int intItemp = intItem.intValue(); // unboxing
+				
+				System.out.println("	floatItem1p: " + floatItem1p);
+				System.out.println("	doubleItemp: " + doubleItemp);
+				System.out.println("	intItemp: " + intItemp);
 	}
 
 }

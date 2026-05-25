@@ -37,5 +37,34 @@ public class ScatolettaGenerica <T> {
 	 *   in poche parole è una super classe che può contenere qualsiasi tipo di dato, 
 	 *   e il tipo di dato specifico sarà determinato al momento dell'istanza della classe.
 	 */
+	
+	
+	//Type erasure
+	/*
+	 * public class ScatolettaGenerica {
+	 * 
+	 *variabili di istanza
+	 * private Object contenuto;
+	 * 
+	 * costruttori
+	 * public ScatolettaGenerica()
+	 * {
+	 * * }
+	 * 
+	 * metodi getter e setter
+	 * 
+	 * public Object getContenuto() {
+	 * return contenuto;
+	 * }
+	 * 
+	 * public void setContenuto(Object contenuto) {
+	 * this.contenuto = contenuto;
+	 *  }
+	 * }
+	 * 
+	 * con queta classe, il tipo di dato del contenuto della scatoletta è un Object, che è la superclasse di tutti i tipi di dato in Java.
+	 * * quindi, possiamo creare scatoletta di qualsiasi tipo di dato, ma quando recuperiamo il contenuto della scatoletta, dobbiamo fare un cast esplicito al tipo di dato specifico che vogliamo utilizzare.
+	 * 
+	 */
 
 }

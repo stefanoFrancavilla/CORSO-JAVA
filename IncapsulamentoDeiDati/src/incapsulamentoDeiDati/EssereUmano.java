@@ -1509,6 +1509,19 @@ System.out.println("somma varargs");
  * con la dicitura di final stiamo escludendo la possibilità di modificare il loro valore in futuro all'interno del metodo,
  */
 
+@SafeVarargs
+public final <T> T estraeNelMezzo(T... ns)
+{
+	System.out.println("--------------------------");
+	System.out.println("EssereUmano -> estraeNelMezzo(T... ns)");
+	
+	return Calcolo.<T>estraeNelMezzo(ns);
+}
+
+/*
+ * con la dicitura final del metodo estraeNelMezzo stiamo escludendo la possibilità di sovrascrivere questo metodo in una classe figlia di EssereUmano,
+ *  e con la dicitura @SafeVarargs stiamo escludendo la possibilità di generare un warning di compilazione quando usiamo il metodo varargs con tipi generici.
+ */
 //1
 public int moltiplica (final int a , final int b) 
 {

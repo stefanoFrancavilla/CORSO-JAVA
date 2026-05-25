@@ -284,6 +284,43 @@ System.out.println(linaVioli.somma(new double[] {10, 38, 2.0, 10F}));
 //linaVioli.setNome("Linaabcdefghilmno_linaabcdefghilmno");
 
 linaVioli.stampa();
+/*
+ * nel primo caso non abbiamo specificato il tipo generico, quindi di conseguenza possiamo inserire al suo interno qualsiasi tipo di dato, 
+ * come ad esempio stringhe, numeri, ecc.
+ * poichè di defaul viene chiamato il tipo generico Object, che è la superclasse di tutti gli oggetti in Java,
+ *  quindi possiamo inserire al suo interno qualsiasi tipo di dato,
+ * 
+ * con il generico number invece abbiamo specificato che il tipo generico deve essere un numero, quindi possiamo inserire al suo interno solo numeri,
+ *  come ad esempio interi, float, double, ecc.
+ *  
+ *  stessa cosa quando abbiamo specificato il generico String, abbiamo specificato che il tipo generico deve essere una stringa, 
+ *  quindi possiamo inserire al suo interno solo stringhe,
+ */
+
+
+
+
+//System.out.println(linaVioli.estraeNelMezzo("Cicco", 10, 'c', 2, 45));
+//System.out.println(linaVioli.<Numbers>estraeNelMezzo("Cicco", 8.5, 1.4F, 10_000_000_000L, 1)); //No
+System.out.println(linaVioli.<Number>estraeNelMezzo(8.5, 1.4F, 10_000_000_000L, 1));//qui stiamo usando il generico number per gestire una lista numerica
+//System.out.println(linaVioli.<String>estraeNelMezzo(8.5, 1.4F, 10_000_000_000L, 1)); //no
+System.out.println(linaVioli.<String>estraeNelMezzo("Cicco", "Luca", "java", "A", "Addio"));
+
+String mezzo1 = linaVioli.estraeNelMezzo("Cicco", "Luca", "java", "A", "Addio");
+System.out.println("mezzo1: " + mezzo1);
+
+
+/*
+ * nel primo caso di mezzo lo abbiamo dichiarato come double ma al suo interno abbiamo inserito anche un float, un long e un int,
+ *  quindi il compilatore non sa come gestire questi tipi di dati diversi tra loro, di conseguenza ci da errore di compilazione
+ *  
+ *  nel caso di mezzo2 invece ad ogni cifra abbiamo specificato che si trattasse di un double , aggiungendo un D alla fine di ogni numero,
+ *   in questo modo il compilatore sa che tutti i numeri sono dello stesso tipo e riesce a gestirli correttamente,
+ * 
+ */
+//double mezzo = linaVioli.estraeNelMezzo(8.5, 1.4F, 10_000_000_000L, 1);
+double mezzo2 = linaVioli.estraeNelMezzo(8.5D, 1.4D, 10_000_000_000D, 1D);
+System.out.println("mezzo2: " + mezzo2);
 
 System.out.println(linaVioli.somma(10, 38));
 linaVioli.siNutre();
