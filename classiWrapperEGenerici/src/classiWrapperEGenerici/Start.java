@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import classiWrapperEGenerici.generici.Coppia;
 import classiWrapperEGenerici.generici.Differenza;
+import classiWrapperEGenerici.generici.IntervalloDiTempo;
 import classiWrapperEGenerici.generici.Scatoletta;
 import classiWrapperEGenerici.generici.ScatolettaGenerica;
 
@@ -1036,7 +1037,21 @@ public class Start {
 //					System.out.println("	 intervalloTemporale.getInizio(): " + intervalloTemporale.getInizio());
 //					System.out.println("	 intervalloTemporale.getFine(): " + intervalloTemporale.getFine());
 					
+					 System.out.println();
+						System.out.println("11------------------------");
+						System.out.println();	
+						/*
+						 * in questo caso al primo membro stiamo passando al primo membro un'ogetto local date che rappresenta un momento successivo al secondo membro
+						 * 
+						 */
+						IntervalloDiTempo intervalloDiTempo = new IntervalloDiTempo(LocalDate.of(2024, Month.APRIL, 26), LocalDate.of(2024, Month.APRIL, 24));	
+						
+						Coppia<LocalDate> coppia = intervalloDiTempo;
 					
+						coppia.setSecondoMembro(LocalDate.of(2024, Month.APRIL, 26));
+						
+						System.out.println("	coppia.getPrimoMembro(): " + coppia.getPrimoMembro());
+						System.out.println("	coppia.getSecondoMembro(): " + coppia.getSecondoMembro());
 	}
 
 }
