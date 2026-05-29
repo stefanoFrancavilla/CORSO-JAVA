@@ -322,6 +322,26 @@ System.out.println("mezzo1: " + mezzo1);
 double mezzo2 = linaVioli.estraeNelMezzo(8.5D, 1.4D, 10_000_000_000D, 1D);
 System.out.println("mezzo2: " + mezzo2);
 
+
+/*
+ * con il try catch stiamo gestendo l'eccezione di tipo NullPointerException che potrebbe essere lanciata dal metodo estraeNelMezzo()
+ *  nel caso in cui non ci siano elementi nella lista di argomenti,
+ *  in questo caso il metodo nel try non ha argomenti, quindi la lista di argomenti è vuota, e quindi il metodo estraeNelMezzo()
+ *   potrebbe lanciare un'eccezione di tipo NullPointerException,
+ */
+
+try
+{
+	double mezzo3 = linaVioli.estraeNelMezzo();
+}
+catch(NullPointerException e)
+{
+	e.printStackTrace();
+}
+
+double minore1 = linaVioli.estraeNelMezzo(8.5D, 1.4D, 10_000_000_000D, 1D);
+System.out.println("minore1: " + minore1);
+
 System.out.println(linaVioli.somma(10, 38));
 linaVioli.siNutre();
 linaVioli.dorme();

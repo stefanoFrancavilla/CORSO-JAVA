@@ -1,5 +1,7 @@
 package incapsulamentoDeiDati.utilities;
 
+import java.io.Serializable;
+
 public final class Calcolo {
 	
 	// con il costrutto final stiamo dich8iarando che la classe Calcolo non è estendibile.
@@ -80,6 +82,101 @@ public final class Calcolo {
 		 *   senza dover scrivere un metodo specifico per ogni tipo di dato che vogliamo utilizzare.
 		 *   poiche bisogna immaginare al posto della T un qualsiasi tipo di dato, ad esempio Integer, String, Double, ecc.
 		 */
+	}
+	
+	//@SafeVarargs
+	//public static <T extends Comparable<T> & Serializable> T estraeIlMinore(T...ns)
+	
+     @SafeVarargs
+	public static <T extends Comparable<T>> T estraeIlMinore(T... ns)
+	{
+	
+		System.out.println("--------------------------");
+		System.out.println("Calcolo -> estraeIlMinore(T... ns)");
+		
+		if(ns == null)
+			return null;
+		
+		if(ns.length == 0)
+			return null;
+		
+		T minore = ns[0];
+		T corrente = null;
+		for(int i = 1; i < ns.length; i++)
+		{
+			 corrente = ns[i];
+			 
+			 //0 se i 2 oggetti sono equivalenti
+			 //- quandol'oggetto attuale è minore dell'oggetto in input
+			 //+ quando l'oggetto attuale è maggiore dell'oggetto in input
+			
+			if(minore.compareTo(corrente) > 0)
+				minore = corrente;
+		}
+		
+		return minore;
+		
+		/*
+		 * Comparable
+		 * cobn la dicitura di codice <T extends Comparable<T>> stiamo dichiarando un parametro di tipo generico T che deve implementare l'interfaccia Comparable<T>.
+		 * solo se il tipo generico T che implementa l'interfaccia Comparable<T> è possibile utilizzare il metodo compareTo()
+		 *  per confrontare gli oggetti di tipo T e determinare quale è il minore.
+		 *  se dovessimo usare un tipo generico T che non implementa l'interfaccia Comparable<T>, il compilatore genererebbe un errore,
+		 *  ecco spiegato l'aggiunta dell'extends Comparable<T> per garantire che il metodo estraeIlMinore 
+		 *  possa essere utilizzato solo con tipi di dato che implementano l'interfaccia Comparable<T>.
+		 *  
+		 *  la dicitura extends in questo caso ha un significato diverso rispetto a quando viene utilizzata con le classi,
+		 *   in questo caso stiamo dichiarando un vincolo sul tipo generico T,
+		 *   
+		 *   cioè : il generico dichiarato al posto di T, è un sottotipo di Comparable<T>, o in altre parole, T deve implementare l'interfaccia Comparable<T>.
+		 *   cio che sta a destra di extends deve essere un tipo che può essere assegnato a T, e in questo caso è Comparable<T>.
+		 */
+		
+		/*
+		 * Serializable
+		 * con la dicitura <T extends Comparable<T> & Serializable> stiamo dichiarando un parametro di tipo generico T che deve implementare sia 
+		 * l'interfaccia Comparable<T> che l'interfaccia Serializable.
+		 * l'aggiunta dell'interfaccia Serializable come vincolo per il tipo generico T, indica che il metodo estraeIlMinore 
+		 * può essere utilizzato solo con tipi di dato che implementano sia l'interfaccia Comparable<T> che l'interfaccia Serializable.
+		 * quindi stiamo aggiungento un'ulteriore restrizione sul tipo generico T, che deve implementare entrambe le interfacce
+		 *  per poter essere utilizzato con il metodo estraeIlMinore.
+		 *  
+		 *  con serializable stiamo indicando che il tipo generico T deve essere serializzabile,
+		 *   cioè deve essere in grado di essere convertito in un formato che può essere salvato su disco o trasmesso attraverso una rete.
+		 *   in parole semplici, stiamo dicendo che il tipo generico T deve essere in grado di essere salvato e recuperato in modo efficiente,
+		 *   e che deve essere compatibile con le operazioni di serializzazione e deserializzazione.
+		 */
+		
+		
+		//raw type ottenuto con la type erasure (operata dal compilatore).
+		
+	/*	public static Comparable estraeIlMinore(Comparable... ns)
+		{
+			System.out.println("--------------------------");
+			System.out.println("Calcolo -> estraeIlMinore(Comparable... ns)");
+			
+			if(ns == null)
+				return null;
+			
+			if(ns.length == 0)
+				return null;
+			
+			Comparable minore = ns[0];
+			Comparable corrente = null;
+			for(int i = 1; i < ns.length; i++)
+			{
+				 corrente = ns[i];
+				 
+				 //0 se i 2 oggetti sono equivalenti
+				 //- quandol'oggetto attuale è minore dell'oggetto in input
+				 //+ quando l'oggetto attuale è maggiore dell'oggetto in input
+				
+				if(minore.compareTo(corrente) > 0)
+					minore = corrente;
+			}
+			
+			return minore;
+		}*/
 	}
 }
 	

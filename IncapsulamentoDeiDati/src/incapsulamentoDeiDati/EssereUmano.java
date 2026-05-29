@@ -1,4 +1,5 @@
 package incapsulamentoDeiDati;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Month;
 
@@ -1521,6 +1522,27 @@ public final <T> T estraeNelMezzo(T... ns)
 /*
  * con la dicitura final del metodo estraeNelMezzo stiamo escludendo la possibilità di sovrascrivere questo metodo in una classe figlia di EssereUmano,
  *  e con la dicitura @SafeVarargs stiamo escludendo la possibilità di generare un warning di compilazione quando usiamo il metodo varargs con tipi generici.
+ */
+//@SafeVarargs
+//public final <T extends Comparable<T> & Serializable> T estraeIlMinore(T...ns)
+
+
+@SafeVarargs
+public final <T extends Comparable<T>> T estraeIlMinore(T... ns)
+{
+	System.out.println("--------------------------");
+	System.out.println("EssereUmano -> estraeIlMinore(T... ns)");
+	
+	return Calcolo.<T>estraeIlMinore(ns);
+}
+
+/*
+ * con la porzione di codice <T extends Comparable<T>> stiamo specificando che il tipo generico T deve essere un sottotipo di Comparable<T>,
+ * questo ci permette di usare il metodo compareTo() per confrontare gli elementi dell'array ns e trovare il minore tra di essi.
+ * con la dicitura final del metodo estraeIlMinore stiamo escludendo la possibilità di sovrascrivere questo metodo in una classe figlia di EssereUmano,
+ * e con la dicitura @SafeVarargs stiamo escludendo la possibilità di generare un warning di compilazione quando usiamo il metodo varargs con tipi generici.
+ * in questo modo stiamo dando all'essere umano la capacità di estrarre il minore tra un numero indefinito di elementi di un tipo generico T,
+ *  che deve essere un sottotipo di Comparable<T>.
  */
 //1
 public int moltiplica (final int a , final int b) 

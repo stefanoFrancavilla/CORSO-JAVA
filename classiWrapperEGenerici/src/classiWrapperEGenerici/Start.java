@@ -1,8 +1,11 @@
 package classiWrapperEGenerici;
 
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 
 import classiWrapperEGenerici.generici.Coppia;
+import classiWrapperEGenerici.generici.Differenza;
 import classiWrapperEGenerici.generici.Scatoletta;
 import classiWrapperEGenerici.generici.ScatolettaGenerica;
 
@@ -999,6 +1002,41 @@ public class Start {
 				System.out.println("	floatItem1p: " + floatItem1p);
 				System.out.println("	doubleItemp: " + doubleItemp);
 				System.out.println("	intItemp: " + intItemp);
+				
+				
+		         System.out.println();
+					System.out.println("10------------------------");
+					System.out.println();	
+					
+					Differenza<String> intervalloAlfabetico = new Differenza<String>("z", "a");
+					System.out.println("	 intervalloAlfabetico.getInizio(): " + intervalloAlfabetico.getInizio());
+					System.out.println("	 intervalloAlfabetico.getFine(): " + intervalloAlfabetico.getFine());
+					
+//					Differenza<Number> intervalloN = new Differenza<>(10, 0);
+//					System.out.println("	 intervalloN.getInizio(): " + intervalloN.getInizio());
+//					System.out.println("	 intervalloN.getFine(): " + intervalloN.getFine());
+					
+					/*
+					 * in questo caso non va bene Number, perchè si è vero che extends Serializeble ma non è vero che Number implementa l'interfaccia Comparable, 
+					 * quindi non possiamo utilizzare il metodo compareTo() per confrontare i valori di tipo Number,
+					 * di conseguenza otteniamo un errore di compilazione, poiché il metodo compareTo()
+					 *  è utilizzato all'interno del costruttore della classe Differenza,
+					 */
+					
+					Differenza<Integer> intervalloI = new Differenza<>(10, 0);
+					System.out.println("	 intervalloI.getInizio(): " + intervalloI.getInizio());
+					System.out.println("	 intervalloI.getFine(): " + intervalloI.getFine());
+					
+					/*
+					 * con Integer invece non abbiamo alcun problema, poiché Integer implementa l'interfaccia Comparable,e Serializable, 
+					 * quindi possiamo utilizzare il metodo compareTo() per confrontare i valori di tipo Integer,
+					 */
+					
+//					Differenza<LocalDate> intervalloTemporale = new Differenza<>(LocalDate.of(2025, Month.APRIL, 11), LocalDate.now());
+//					System.out.println("	 intervalloTemporale.getInizio(): " + intervalloTemporale.getInizio());
+//					System.out.println("	 intervalloTemporale.getFine(): " + intervalloTemporale.getFine());
+					
+					
 	}
 
 }
