@@ -12,6 +12,27 @@ public class Start {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
+		/*
+		 * Iterable
+└── Collection
+    ├── List
+    │   ├── ArrayList
+    │   ├── LinkedList
+    │   └── Vector
+    │       └── Stack
+    │
+    ├── Set
+    │   ├── HashSet
+    │   ├── LinkedHashSet
+    │   └── TreeSet
+    │
+    └── Queue
+        ├── PriorityQueue
+        └── Deque
+            ├── ArrayDeque
+            └── LinkedList
+		 */
 
 		/*
 		 * le collezioni sono strutture dati che permettono di memorizzare e gestire insiemi di elementi.
