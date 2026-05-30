@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.PriorityQueue;
 
 
@@ -69,10 +70,14 @@ public class Start {
 		 * 
 		 * con la dicitura hashSet l'output non sarà ordinato e non conterrà duplicati.
 		 */
+		List<String> listaDiLuoghi = new ArrayList<>(); // l'interfaccia list è un tipo di collezione che rappresenta una sequenza ordinata di elementi,
+		//in cui ogni elemento ha una posizione specifica (indice) e può essere duplicato.
+		
+		
 		//Collection<String> listaDiLuoghi = new ArrayList<>();
 		//Collection<String> listaDiLuoghi = new PriorityQueue<>();
-		//Collection<String> listaDiLuoghi = new LinkedList<>();
-		Collection<String> listaDiLuoghi = new HashSet<>();
+		//List<String> listaDiLuoghi = new LinkedList<>();
+		//Collection<String> listaDiLuoghi = new HashSet<>();
 		
 		listaDiLuoghi.add("Aosta");
 		listaDiLuoghi.add("Bari");
@@ -86,6 +91,25 @@ public class Start {
 		listaDiLuoghi.remove("Domodossola");
 		System.out.println("	Lista di luoghi: " + listaDiLuoghi);
 		System.out.println("	Domodossola è nella lista di luoghi? " + listaDiLuoghi.contains("Domodossola"));
+		
+		listaDiLuoghi.add("Bologna");
+		listaDiLuoghi.add(1, "L'Aquila"); // mettiamo all'indice 1 (seconda posizione) la città di L'Aquila, spostando di conseguenza le altre città a destra.
+	//	listaDiLuoghi.sort(null); // ordina la lista in ordine naturale (alfabetico per le stringhe)
+		//questa funzione sort non è disponibile per tutte le collezioni, ad esempio non è disponibile per hashSet, in quanto non è ordinato, o set in generale o collezioni che non mantengono un ordine specifico.
+		System.out.println("	Lista di luoghi: " + listaDiLuoghi);
+		
+		System.out.println("	listaDiLuoghi.get(2): " + listaDiLuoghi.get(2)); // restituisce l'elemento all'indice 2 (terza posizione) della lista
+		/*
+		 * l'arrayList funziona come una lista dinamica
+		 * dove o(1) inserisce il nuovo elemento alla fine della lista
+		 * o(n) inserisce un elemento in una posizione specifica, in quanto è necessario spostare gli elementi successivi per fare spazio al nuovo elemento.
+		 * e infine con 0(1)* rimuove un elemento specifico, in quanto è necessario cercare l'elemento da rimuovere e spostare gli elementi successivi per colmare il vuoto lasciato dall'elemento rimosso.
+		 * 
+		 */
+		
+		listaDiLuoghi.set(1, "Taranto"); // sostituisce l'elemento all'indice 2 (seconda posizione) 
+		System.out.println("	Lista di luoghi: " + listaDiLuoghi);
+		
 		
 		
 	}
