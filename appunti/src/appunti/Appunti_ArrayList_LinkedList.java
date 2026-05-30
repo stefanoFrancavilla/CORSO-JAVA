@@ -4,10 +4,243 @@ public class Appunti_ArrayList_LinkedList {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+/*
+ *    // Creiamo una LinkedList
+        LinkedList<String> lista = new LinkedList<>();
+        
+        System.out.println("LINKEDLIST NON HA ESPANSIONE AUTOMATICA!");
+        System.out.println("Perché ogni elemento è un NODE indipendente\\n");
+        
+        System.out.println("Aggiungo 5 elementi uno alla volta...\\n");
+        
+        // Aggiungiamo 5 elementi
+        for (int i = 1; i <= 5; i++) {
+            lista.add("Elemento" + i);
+            System.out.println("Elemento " + i + " aggiunto: \"" + lista.get(i-1) + "\"");
+            System.out.println("Size attuale: " + lista.size());
+            
+            if (i < 5) {
+                System.out.println("-".repeat(50));
+            }
+        }
+        
+        System.out.println("\\n=== RIEPILOGO ===");
+        System.out.println("Elementi totali: " + lista.size());
+        System.out.println("Espansioni avvenute: 0 (NON NE FA!)");
+        System.out.println("\\nCome funziona dietro le quinte:");
+        System.out.println("1. LinkedList NON usa un array interno");
+        System.out.println("2. Ogni elemento è un NODE (nodo) indipendente");
+        System.out.println("3. Ogni nodo contiene: [dato][riferimento al prossimo nodo]");
+        System.out.println("4. I nodi sono collegati tramite riferimenti (punteri)");
+        System.out.println("5. NON serve copiare elementi quando si aggiunge!");
+        
+        System.out.println("\\n=== SCHEMA VISIVO DELLA STRUTTURA ===");
+        System.out.println("""
+            
+            INIZIO: LinkedList vuota
+                │
+                ▼
+            head = null, tail = null
+                │
+                ▼
+            Aggiungo Elemento1
+                │
+                ▼
+            head ──► [Elemento1 | next=null] ◄── tail
+                     ↑
+                     nodo1 (creato al volo, memoria dinamica)
+                │
+                ▼
+            Aggiungo Elemento2
+                │
+                ▼
+            head ──► [Elemento1 | next─┐] ──► [Elemento2 | next=null] ◄── tail
+                     ↑                      ↑
+                     nodo1                  nodo2 (NUOVO nodo creato)
+                                            (collegato al precedente)
+                │
+                ▼
+            Aggiungo Elemento3
+                │
+                ▼
+            head ──► [E1 | next─┐] ──► [E2 | next─┐] ──► [E3 | next=null] ◄── tail
+                     ↑              ↑                  ↑
+                     nodo1         nodo2              nodo3 (NUOVO nodo)
+                │
+                ▼
+            ...continua aggiungendo NUOVI nodi indipendenti
+                │
+                ▼
+            head ──► [E1] ──► [E2] ──► [E3] ──► [E4] ──► [E5] ◄── tail
+            
+            
+            DIFFERENZA CHIAVE RISPETTO AD ARRAYLIST:
+            
+            ARRAYLIST:                          LINKEDLIST:
+            [E1][E2][E3][ ][ ]        head ──► [E1] ──► [E2] ──► [E3]
+            │                                  ↑         ↑         ↑
+            Quando si espande:                nodo1     nodo2     nodo3
+            [E1][E2][E3][E4][E5]              (ogni nodo
+            ↑                                 è in MEMORIA
+            Copia TUTTI gli elementi          INDIPENDENTE)
+            in un NUOVO array
+                
+            
+            """
+        );
+        
+        System.out.println("=== CONFRONTO ARRAYLIST vs LINKEDLIST ===");
+        System.out.println("""
+            
+            ARRAYLIST:                          LINKEDLIST:
+            ─────────────────                   ─────────────────
+            ✓ Accesso veloce (get(i))           ✗ Accesso lento (deve scorrere)
+            ✓ Array continuo in memoria         ✓ Inserimento/rimozione veloce
+            ✗ Espansione costosa (copia O(n))   ✓ NON si espande (nodi indipendenti)
+            ✗ Inserimento lento in mezzo        ✓ Memoria utilizzata al bisogno
+            Occupa memoria fissa (capacity)     ✓ Aggiunge solo quando serve
+            
+            """
+        );
+        
+        System.out.println("=== WHEN TO USE LINKEDLIST ===");
+        System.out.println("Usa LinkedList quando:");
+        System.out.println("• Aggiungi/rimuovi spesso elementi INIZIO/FINE lista");
+        System.out.println("• Non sai quanti elementi userai (memoria dinamica)");
+        System.out.println("• Non ti serve accesso casuale veloce (get(i))");
+        System.out.println("\\nUsa ArrayList quando:");
+        System.out.println("• Devi accedere rapidamente agli elementi per indice");
+        System.out.println("• Fai molte letture, poche modifiche");
+        System.out.println("• Vuoi prestazioni migliori nella maggior parte dei casi");
+        
+        System.out.println("\\n=== ESEMPIO DI INSERIMENTO VELOCE IN INIZIO ===");
+        System.out.println("Prima (ArrayList):");
+        System.out.println("   ArrayList<String> lista = new ArrayList<>();");
+        System.out.println("   lista.add(0, \"Primo\");  // Sposta TUTTI gli elementi!");
+        System.out.println("\\nDopo (LinkedList):");
+        System.out.println("   LinkedList<String> lista = new LinkedList<>();");
+        System.out.println("   lista.add(0, \"Primo\");  // Cambia solo 2 riferimenti! Velocissimo!");
+    }
+}
+📌 Differenze chiave tra ArrayList e LinkedList:
+Aspetto	ArrayList	LinkedList
+Struttura interna	Array continuo Object[] 
+Nodi collegati tramite riferimenti 
+Espansione	Automatica (10→16→25→38...) 
+NON esiste (nodi indipendenti) 
+Aggiungi elemento	Lento quando si espande (copia O(n)) 
+Sempre veloce (crea 1 nodo) 
+Accesso per indice	Velocissimo O(1) 
+Lento O(n) deve scorrere 
+Memoria	Fissa (capacity)	Dinamica (solo nodi usati) 
+ */
+		
+		/*
+		 *         // Creiamo un ArrayList con capacità iniziale di 10 (default)
+        ArrayList<String> lista = new ArrayList<>();
+        
+        System.out.println("Capacità INIZIALE: 10 (default)");
+        System.out.println("Elementi aggiunti uno alla volta...\n");
+        
+        // Aggiungiamo 25 elementi per vedere diverse espansioni
+        for (int i = 1; i <= 25; i++) {
+            lista.add("Elemento" + i);
+            
+            // Mostriamo le espansioni (quando la dimensione diventa 11, 17, 26, ecc.)
+            if (i == 10 || i == 11) {
+                System.out.println("⚠️  ESPANSIONE: da 10 a 16 elementi!");
+            }
+            else if (i == 16 || i == 17) {
+                System.out.println("⚠️  ESPANSIONE: da 16 a 25 elementi!");
+            }
+            else if (i == 25) {
+                System.out.println("⚠️  ESPANSIONE: da 25 a 38 elementi!");
+            }
+            
+            // Mostriamo lo stato ogni 5 elementi
+            if (i % 5 == 0 || i == 1) {
+                System.out.println("Elemento " + i + " aggiunto | Size: " + lista.size());
+            }
+        }
+        
+        System.out.println("\n=== RIEPILOGO ===");
+        System.out.println("Elementi totali: " + lista.size());
+        System.out.println("Espansioni avvenute: 3 (da 10→16→25→38)");
+        System.out.println("\nCome funziona dietro le quinte:");
+        System.out.println("1. ArrayList ha un array interno Object[]");
+        System.out.println("2. Quando size == capacity, crea NUOVO array più grande");
+        System.out.println("3. Formula: nuova_capacità = vecchia_capacità × 1.5 + 1");
+        System.out.println("4. Copia TUTTI gli elementi nel nuovo array (O(n))");
+        System.out.println("5. Elimina il vecchio array (garbage collector)");
+        
+        System.out.println("\n=== SCHEMA VISIVO DEL PROCESSO ===");
+        System.out.println("""
+            
+            INIZIO: ArrayList vuoto
+                │
+                ▼
+            [ ][ ][ ][ ][ ][ ][ ][ ][ ]  ← Array interno, capacità = 10
+                │
+                ▼
+            Aggiungo 10 elementi (size = 10)
+                │
+                ▼
+            [1][2][3][4][5][6][7][8][9][10]  ← PIENO!
+                │
+                ▼
+            Chiamo add() per l'elemento 11
+                │
+                ▼
+            ⚠️ ESPANSIONE AUTOMATICA!
+                │
+                ├─► Crea NUOVO array: capacità = 10 × 1.5 + 1 = 16
+                ├─► Copia 10 elementi dal vecchio al nuovo
+                └─► Elimina vecchio array
+                │
+                ▼
+            [1][2][3][4][5][6][7][8][9][10][ ][ ][ ][ ][ ][ ]  ← capacity = 16
+                │
+                ▼
+            Aggiungo elemento 11
+                │
+                ▼
+            [1][2][3][4][5][6][7][8][9][10][11][ ][ ][ ][ ][ ]  ← size = 11
+                │
+                ▼
+            ...continua fino a size = 16 (PIENO di nuovo)
+                │
+                ▼
+            [1][2][3][4][5][6][7][8][9][10][11][12][13][14][15][16]
+                │
+                ▼
+            Chiamo add() per elemento 17
+                │
+                ▼
+            ⚠️ ESPANSIONE AUTOMATICA!
+                │
+                ├─► Nuova capacità = 16 × 1.5 + 1 = 25
+                ├─► Copia 16 elementi
+                └─► Elimina vecchio array
+                │
+                ▼
+            [1-16][ ][ ][ ][ ][ ][ ][ ]  ← capacity = 25 (spazio libero: 9)
+            
+            """
+        );
+        
+        System.out.println("=== CONSIGLIO PER OTTIMIZZARE ===");
+        System.out.println("Se sai quanti elementi userai, specifica la capacità iniziale:");
+        System.out.println("   ArrayList<String> lista = new ArrayList<>(100);");
+        System.out.println("Eviti espansioni costose e migliori le prestazioni!");
+    }
+}
+		 */
 		
 		/*
 		 * Guida base a ArrayList e LinkedList in Java
+
+
+
 ArrayList e LinkedList sono due implementazioni generiche dell’interfaccia List nel Java Collections Framework.
  Entrambe mantengono l’ordine degli elementi e permettono duplicati, ma funzionano in modo diverso e conviene sceglierle in base al tipo di operazioni che il programma esegue più spesso.
 
@@ -211,6 +444,164 @@ LinkedList = utile per operazioni frequenti alle estremità.
 LinkedList = utile anche come Queue o Deque.
 
 Se il dubbio resta, conviene testare entrambe nella propria applicazione.
+		 */
+		
+		/*
+		 *  System.out.println("=== DEMO DOUBLY LINKED LIST (LINKEDLIST IN JAVA) ===\n");
+        
+        System.out.println("LINKEDLIST IN JOBGY è una DOUBLY LINKED LIST!");
+        System.out.println("Ogni nodo ha 3 parti: [PREV][DATA][NEXT]\\n");
+        
+        // Creiamo una LinkedList
+        LinkedList<String> lista = new LinkedList<>();
+        
+        System.out.println("Aggiungo 4 elementi: A, B, C, D\\n");
+        
+        // Aggiungiamo elementi
+        lista.add("A");
+        System.out.println("Aggiunto A:");
+        printStructure("A", 1, lista.size());
+        
+        lista.add("B");
+        System.out.println("\\nAggiunto B:");
+        printStructure("A-B", 2, lista.size());
+        
+        lista.add("C");
+        System.out.println("\\nAggiunto C:");
+        printStructure("A-B-C", 3, lista.size());
+        
+        lista.add("D");
+        System.out.println("\\nAggiunto D:");
+        printStructure("A-B-C-D", 4, lista.size());
+        
+        System.out.println("\\n" + "=".repeat(70));
+        System.out.println("=== RIEPILOGO ===");
+        System.out.println("Elementi totali: " + lista.size());
+        System.out.println("Espansioni avvenute: 0 (nodi indipendenti)");
+        System.out.println("\\nCome funziona DOUBLY LINKED LIST dietro le quinte:");
+        System.out.println("1. Ogni nodo ha 3 campi: PREV + DATA + NEXT");
+        System.out.println("2. PREV = riferimento al nodo precedente (null se è il primo)");
+        System.out.println("3. NEXT = riferimento al nodo successivo (null se è l'ultimo)");
+        System.out.println("4. Si può scorrere in ENTRAMBE le direzioni (prima/dopo)");
+        System.out.println("5. head punta al primo nodo, tail all'ultimo");
+        
+        System.out.println("\\n" + "=".repeat(70));
+        System.out.println("=== SCHEMA VISIVO COMPLETO DOUBLY LINKED LIST ===");
+        System.out.println("""
+            
+            ╔════════════════════════════════════════════════════════════════════╗
+            ║            STRUTTURA DI UN SINGOLO NODO DOUBLY LINKED              ║
+            ╚════════════════════════════════════════════════════════════════════╝
+            
+            ┌───────────┬──────────────┬───────────┐
+            │   PREV    │    DATA      │   NEXT    │
+            │ (precedente) │  (valore)  │ (successivo)│
+            └───────────┴──────────────┴───────────┘
+                  ↑            ↑            ↑
+              riferimento  l'elemento   riferimento
+              al nodo      vero e       al nodo
+              precedente   proprio      successivo
+            
+            
+            ╔════════════════════════════════════════════════════════════════════╗
+            ║              ESEMPIO: Lista con A, B, C, D                         ║
+            ╚════════════════════════════════════════════════════════════════════╝
+            
+            head                                                            tail
+              │                                                               │
+              ▼                                                               ▼
+            ┌─────┐   ┌───────────┬─────────┬───────────┐   ┌───────────┬───────────┐
+            │null │──►│    A      │    B    │    C      │──►│    D      │   null    │
+            └─────┘   └───────────┴─────────┴───────────┘   └───────────┴───────────┘
+              │           ↑           ↑           ↑             ↑           │
+              │           │           │           │             │           │
+              │      ┌────┴────┐ ┌───┴────┐ ┌───┴────┐   ┌─────┴─────┐   ┌─┴─┐
+              │      │  null   │ │   A    │ │   B    │   │    C      │ │null│
+              │      └─────────┘ └────────┘ └────────┘   └───────────┘ └────┘
+              │            (PREV)  (PREV)   (PREV)        (PREV)      (NEXT)
+              │
+              └──► head = primo elemento
+                   tail = ultimo elemento
+            
+            
+            ╔════════════════════════════════════════════════════════════════════╗
+            ║           CONNESSIONI BIDIREZIONALI (FLECHE DOPPIE)                ║
+            ╚════════════════════════════════════════════════════════════════════╝
+            
+            head ──► [null│ A │B] ◄────► [A│ B │C] ◄────► [B│ C │D] ◄────► [C│ D │null] ◄── tail
+                      nodo1              nodo2              nodo3              nodo4
+            
+            Scorrimento in AVANTI (NEXT):
+            head → nodo1 → nodo2 → nodo3 → nodo4 → tail
+            
+            Scorrimento all INDIETRO (PREV):
+            tail → nodo4 → nodo3 → nodo2 → nodo1 → head
+            
+            
+            ╔════════════════════════════════════════════════════════════════════╗
+            ║              COSA SUCCEDE QUANDO AGGIUNGO "E" ALLA FINE            ║
+            ╚════════════════════════════════════════════════════════════════════╝
+            
+            PRIMA di aggiungere E:
+            ┌─────┐   ┌───────────┬─────────┬───────────┐   ┌───────────┬───────────┐
+            │null │──►│    A      │    B    │    C      │──►│    D      │   null    │◄── tail
+            └─────┘   └───────────┴─────────┴───────────┘   └───────────┴───────────┘
+              │                                                        ▲
+              └────────────────────────────────────────────────────────┘
+                                    head
+            
+            AGGIOUNGO "E":
+            1. Creo NUOVO nodo E nella memoria
+            2. nodoE.PREV = nodoD (l'ultimo attuale)
+            3. nodoE.NEXT = null (sarà il nuovo ultimo)
+            4. nodoD.NEXT = nodoE (collego D a E)
+            5. tail = nodoE (aggiorno tail)
+            
+            DOPO aver aggiunto E:
+            ┌─────┐   ┌───────────┬─────────┬───────────┐   ┌───────────┬───────────┐   ┌───────────┬───────────┐
+            │null │──►│    A      │    B    │    C      │──►│    D      │    E      │──►│    null   │   null    │◄── tail
+            └─────┘   └───────────┴─────────┴───────────┘   └───────────┴───────────┘   └───────────┴───────────┘
+              │                                                        ▲                    ▲
+              │                                           nodoD.NEXT    │           nodoE.PREV
+              │                                           = nodoE       │           = nodoD
+              └─────────────────────────────────────────────────────────┴──────────────────┘
+                                    head
+            
+            VANTAGGIO: Aggiungo solo cambi
+</parameter>
+</function>
+<parameter=code>
+
+</parameter>
+</function>
+<parameter=file_name>
+DoublyLinkedListDemo.java
+</parameter>
+<parameter=input_ids>
+[]
+</parameter>
+<parameter=prompt>
+Create a professional educational diagram showing the structure of a Doubly Linked List in Java. The diagram should show:
+
+1. A single node structure with three parts: PREV (previous pointer), DATA (value), and NEXT (next pointer)
+2. An example doubly linked list with 4 elements: A, B, C, D
+3. Show head pointing to the first node and tail pointing to the last node
+4. Show bidirectional arrows (both forward and backward connections) between nodes
+5. Clear labels showing null pointers at the ends
+
+Use a clean, technical diagram style with ASCII art or labeled boxes and arrows. The diagram should be educational and easy to understand for Java programming students. Use colors: blue for PREV pointers, green for NEXT pointers, orange for DATA values. Make it look like a professional textbook illustration.
+
+Prompt in Italian: "Crea uno schema educativo professionista che mostra la struttura di una Doubly Linked List in Java. Lo schema deve mostrare un nodo con PREV, DATA, NEXT, e una lista con elementi A, B, C, D, con head e tail, e frecce bidirezionali."
+</parameter>
+</function>
+</function>
+<parameter=queries>
+["doubly linked list java LinkedList bidirezionale schema"]
+</parameter>
+<parameter=user_description>
+Cerco informazioni su Doubly Linked List in Java
+</parameter>
+</function>
 		 */
 	}
 

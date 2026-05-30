@@ -33,7 +33,108 @@ public class Start {
             ├── ArrayDeque
             └── LinkedList
 		 */
-
+		
+		/*
+		 *         // Creiamo un ArrayList con capacità iniziale di 10 (default)
+        ArrayList<String> lista = new ArrayList<>();
+        
+        System.out.println("Capacità INIZIALE: 10 (default)");
+        System.out.println("Elementi aggiunti uno alla volta...\n");
+        
+        // Aggiungiamo 25 elementi per vedere diverse espansioni
+        for (int i = 1; i <= 25; i++) {
+            lista.add("Elemento" + i);
+            
+            // Mostriamo le espansioni (quando la dimensione diventa 11, 17, 26, ecc.)
+            if (i == 10 || i == 11) {
+                System.out.println("⚠️  ESPANSIONE: da 10 a 16 elementi!");
+            }
+            else if (i == 16 || i == 17) {
+                System.out.println("⚠️  ESPANSIONE: da 16 a 25 elementi!");
+            }
+            else if (i == 25) {
+                System.out.println("⚠️  ESPANSIONE: da 25 a 38 elementi!");
+            }
+            
+            // Mostriamo lo stato ogni 5 elementi
+            if (i % 5 == 0 || i == 1) {
+                System.out.println("Elemento " + i + " aggiunto | Size: " + lista.size());
+            }
+        }
+        
+        System.out.println("\n=== RIEPILOGO ===");
+        System.out.println("Elementi totali: " + lista.size());
+        System.out.println("Espansioni avvenute: 3 (da 10→16→25→38)");
+        System.out.println("\nCome funziona dietro le quinte:");
+        System.out.println("1. ArrayList ha un array interno Object[]");
+        System.out.println("2. Quando size == capacity, crea NUOVO array più grande");
+        System.out.println("3. Formula: nuova_capacità = vecchia_capacità × 1.5 + 1");
+        System.out.println("4. Copia TUTTI gli elementi nel nuovo array (O(n))");
+        System.out.println("5. Elimina il vecchio array (garbage collector)");
+        
+        System.out.println("\n=== SCHEMA VISIVO DEL PROCESSO ===");
+        System.out.println("""
+            
+            INIZIO: ArrayList vuoto
+                │
+                ▼
+            [ ][ ][ ][ ][ ][ ][ ][ ][ ]  ← Array interno, capacità = 10
+                │
+                ▼
+            Aggiungo 10 elementi (size = 10)
+                │
+                ▼
+            [1][2][3][4][5][6][7][8][9][10]  ← PIENO!
+                │
+                ▼
+            Chiamo add() per l'elemento 11
+                │
+                ▼
+            ⚠️ ESPANSIONE AUTOMATICA!
+                │
+                ├─► Crea NUOVO array: capacità = 10 × 1.5 + 1 = 16
+                ├─► Copia 10 elementi dal vecchio al nuovo
+                └─► Elimina vecchio array
+                │
+                ▼
+            [1][2][3][4][5][6][7][8][9][10][ ][ ][ ][ ][ ][ ]  ← capacity = 16
+                │
+                ▼
+            Aggiungo elemento 11
+                │
+                ▼
+            [1][2][3][4][5][6][7][8][9][10][11][ ][ ][ ][ ][ ]  ← size = 11
+                │
+                ▼
+            ...continua fino a size = 16 (PIENO di nuovo)
+                │
+                ▼
+            [1][2][3][4][5][6][7][8][9][10][11][12][13][14][15][16]
+                │
+                ▼
+            Chiamo add() per elemento 17
+                │
+                ▼
+            ⚠️ ESPANSIONE AUTOMATICA!
+                │
+                ├─► Nuova capacità = 16 × 1.5 + 1 = 25
+                ├─► Copia 16 elementi
+                └─► Elimina vecchio array
+                │
+                ▼
+            [1-16][ ][ ][ ][ ][ ][ ][ ]  ← capacity = 25 (spazio libero: 9)
+            
+            """
+        );
+        
+        System.out.println("=== CONSIGLIO PER OTTIMIZZARE ===");
+        System.out.println("Se sai quanti elementi userai, specifica la capacità iniziale:");
+        System.out.println("   ArrayList<String> lista = new ArrayList<>(100);");
+        System.out.println("Eviti espansioni costose e migliori le prestazioni!");
+    }
+}
+		 */
+		
 		/*
 		 * le collezioni sono strutture dati che permettono di memorizzare e gestire insiemi di elementi.
 		 * 
@@ -98,7 +199,7 @@ public class Start {
 		//Collection<String> listaDiLuoghi = new ArrayList<>();
 		//Collection<String> listaDiLuoghi = new PriorityQueue<>();
 		//List<String> listaDiLuoghi = new LinkedList<>();
-		//Collection<String> listaDiLuoghi = new HashSet<>();
+		//Set<String> listaDiLuoghi = new HashSet<>();
 		
 		listaDiLuoghi.add("Aosta");
 		listaDiLuoghi.add("Bari");

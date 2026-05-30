@@ -1,6 +1,9 @@
 package incapsulamentoDeiDati;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 
@@ -24,7 +27,8 @@ public sealed class Cantante extends Cittadino permits Cantautore{
 	//variabili d'istanza
 	private GenereMusicale genereMusicale;
 	//private int totaleConcerti;
-	private Concerto[] concerti;
+	//private Concerto[] concerti;
+	private List<Concerto> concertiLista;
 	private byte contatoreConcerti;
 	private int maxConcerti;
 	
@@ -48,7 +52,7 @@ public sealed class Cantante extends Cittadino permits Cantautore{
 		
 		this.setGenereMusicale(genereMusicale.MUSICA_LEGGERA);
 		//this.setTotaleConcerti(0);
-		this.setMaxConcerti(3);
+		this.setMaxConcerti(20);
 		this.inizzializzaConcerti();
 		this.setContatoreConcerti((byte)0);
 	}
@@ -116,9 +120,16 @@ public sealed class Cantante extends Cittadino permits Cantautore{
 	
 	private void inizzializzaConcerti()
 	{
-		concerti = new Concerto[maxConcerti];
+		//concerti = new Concerto[maxConcerti];
+		concertiLista = new ArrayList<Concerto>(maxConcerti);
 	}
-	public void aggiungiConcerto(Concerto concerto) // metodo per aggiugnere un concerto all'array concerti
+	
+	public void aggiungiConcerto(Concerto concerto)
+	{
+		concertiLista.add(concerto);
+	}
+	
+	/*public void aggiungiConcerto(Concerto concerto) // metodo per aggiugnere un concerto all'array concerti
 	{
 		if(contatoreConcerti < concerti.length) // se il contatore dei concerti è minore della lunghezza dell'array concerti, allora posso aggiungere il concerto all'array concerti
 		{
@@ -147,7 +158,7 @@ public sealed class Cantante extends Cittadino permits Cantautore{
 			System.out.println("Espando l'array");
 		}
 		
-	}
+	}*/
 	
 	/*
 	 * lo scopo di questo metodo aggiungiConcerto  è quello di aggiungere un concerto all'array concerti,
@@ -160,14 +171,19 @@ public sealed class Cantante extends Cittadino permits Cantautore{
 	 *    in questo modo possiamo aggiungere un numero illimitato di concerti all'array concerti, senza doverci preoccupare di superare la lunghezza dell'array concerti.
 	 *    
 	 */
-	
+	/*
 	private void aggiungiConcertoInner(Concerto concerto)
 	{
 		concerti[contatoreConcerti] = concerto;
 		contatoreConcerti++;
 		
-	}
+	}*/
 	
+	public void stampaConcerti()
+	{
+		System.out.println("	concertiLista:" + concertiLista);
+	}
+	/*
 	public void stampaConcerti()
 	{
 		for(int i = 0; i < concerti.length; i++)
@@ -183,9 +199,11 @@ public sealed class Cantante extends Cittadino permits Cantautore{
 			}
 		}
 	}
-	
+	*/
 	//Classi annidate statiche
 	
+
+
 	public static class Concerto
 	{
 		//variabili d'istanza
@@ -221,6 +239,11 @@ public sealed class Cantante extends Cittadino permits Cantautore{
 		public void setData(LocalDate data) 
 		{
 			this.data = data;
+		}
+		
+		@Override
+		public String toString() {
+			return "Concerto [luogo=" + luogo + ", data=" + data + "]";
 		}
 		
 	
