@@ -3,6 +3,7 @@ package incapsulamentoDeiDati;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -121,7 +122,8 @@ public sealed class Cantante extends Cittadino permits Cantautore{
 	private void inizzializzaConcerti()
 	{
 		//concerti = new Concerto[maxConcerti];
-		concertiLista = new ArrayList<Concerto>(maxConcerti);
+		//concertiLista = new ArrayList<Concerto>(maxConcerti);
+		concertiLista = new LinkedList<Concerto>();
 	}
 	
 	public void aggiungiConcerto(Concerto concerto)

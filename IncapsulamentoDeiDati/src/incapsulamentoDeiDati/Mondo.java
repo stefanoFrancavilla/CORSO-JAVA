@@ -448,8 +448,8 @@ vascoRossi.aggiungiCanzone(vascoRossi.new Canzone("C'è chi dice no", "ddd eee f
 vascoRossi.aggiungiCanzone(vascoRossi.new Canzone("Liberi liberi", "ggg hhh iii"));
 vascoRossi.aggiungiCanzone(vascoRossi.new Canzone("Brava Giulia", "jjj kkk lll"));
 vascoRossi.stampaCanzoni();
-
-
+vascoRossi.ordinaCanzoniPerTitolo();
+vascoRossi.stampaCanzoni();
 
 
 Cantante.Concerto concerto1 = new Cantante.Concerto("Milano", LocalDate.of(2024, Month.MARCH, 3));

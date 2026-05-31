@@ -568,40 +568,13 @@ Se il dubbio resta, conviene testare entrambe nella propria applicazione.
                                     head
             
             VANTAGGIO: Aggiungo solo cambi
-</parameter>
-</function>
-<parameter=code>
 
-</parameter>
-</function>
-<parameter=file_name>
-DoublyLinkedListDemo.java
-</parameter>
-<parameter=input_ids>
-[]
-</parameter>
-<parameter=prompt>
-Create a professional educational diagram showing the structure of a Doubly Linked List in Java. The diagram should show:
-
-1. A single node structure with three parts: PREV (previous pointer), DATA (value), and NEXT (next pointer)
-2. An example doubly linked list with 4 elements: A, B, C, D
-3. Show head pointing to the first node and tail pointing to the last node
-4. Show bidirectional arrows (both forward and backward connections) between nodes
-5. Clear labels showing null pointers at the ends
-
-Use a clean, technical diagram style with ASCII art or labeled boxes and arrows. The diagram should be educational and easy to understand for Java programming students. Use colors: blue for PREV pointers, green for NEXT pointers, orange for DATA values. Make it look like a professional textbook illustration.
-
-Prompt in Italian: "Crea uno schema educativo professionista che mostra la struttura di una Doubly Linked List in Java. Lo schema deve mostrare un nodo con PREV, DATA, NEXT, e una lista con elementi A, B, C, D, con head e tail, e frecce bidirezionali."
-</parameter>
-</function>
-</function>
-<parameter=queries>
-["doubly linked list java LinkedList bidirezionale schema"]
-</parameter>
-<parameter=user_description>
-Cerco informazioni su Doubly Linked List in Java
-</parameter>
-</function>
+		 */
+		
+		/*
+		 * conclusioni: se vogliamo più performance nell'inserimento di un'elemento sceglieremo LinkedList
+		 * se invece vogliamo più performance nella lettura o ricerca di un elemento sceglieremo ArrayList, perché LinkedList deve scorrere tutta la lista per trovare l'elemento, 
+		 * mentre ArrayList accede direttamente all'elemento tramite indice.
 		 */
 	}
 

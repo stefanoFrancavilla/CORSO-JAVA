@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.PriorityQueue;
+import java.util.Queue;
 
 
 public class Start {
@@ -232,8 +233,31 @@ public class Start {
 		listaDiLuoghi.set(1, "Taranto"); // sostituisce l'elemento all'indice 2 (seconda posizione) 
 		System.out.println("	Lista di luoghi: " + listaDiLuoghi);
 		
+		System.out.println();
+		System.out.println("2--------------------------");
+		System.out.println();
+		
+		Queue<Auto> caselloAutostradale = new LinkedList<Auto>();
+		//Queue<Auto> caselloAutostradale = new ArrayList<Auto>();
 		
 		
+		caselloAutostradale.add(new Auto("Volvo", "AAA", "Grigio")); //O(1) per LL o(1)* per AD
+		caselloAutostradale.add(new Auto("Mercedes", "BBB", "Grigio"));
+		caselloAutostradale.add(new Auto("BMW", "CCC", "Grigio"));
+		caselloAutostradale.offer(new Auto("Alfa Romeo", "DDD", "Grigio"));//O(1) per LL o(1)* per AD
+		caselloAutostradale.offer(new Auto("Ferrari", "EEE", "Grigio"));
+		
+		System.out.println(	"	caselloAutostradale" + caselloAutostradale);
+		
+		System.out.println(	"	L'auto al casello passa" + caselloAutostradale.remove);
+		
+		System.out.println(	"	L'auto attualmente al casello" + caselloAutostradale.element);
+
+		System.out.println(	"	L'auto al casello passa" + caselloAutostradale.poll);
+
+		System.out.println(	"	L'auto attualmente al casello" + caselloAutostradale.peek);
+		
+		System.out.println(	"	caselloAutostradale" + caselloAutostradale);
 	}
 
 }

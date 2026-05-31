@@ -1,6 +1,8 @@
 package incapsulamentoDeiDati;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import incapsulamentoDeiDati.Cittadino.Comune;
 import incapsulamentoDeiDati.Cittadino.Nazione;
@@ -195,6 +197,7 @@ public final class Cantautore extends Cantante {
 //	private byte contatoreCanzoniScritte;
 //	private int maxCanzoniScritte;
 	private Canzone[] canzoni;
+	private List<Canzone> canzoniLista;
 	private byte contatoreCanzoni;
 	private int maxCanzoni;
 	
@@ -226,7 +229,7 @@ public final class Cantautore extends Cantante {
 		System.out.println("--------------------------");
 		System.out.println("Cantante (10)");
 		
-		this.setMaxCanzoni(3);
+		this.setMaxCanzoni(20);
 		this.inizializzaCanzoni();
 		this.setContatoreCanzoni((byte)0);
 	}
@@ -290,10 +293,22 @@ public final class Cantautore extends Cantante {
 //	//metodi
 	
 	private void inizializzaCanzoni() {
-		canzoni = new Canzone[maxCanzoni];
+		//canzoni = new Canzone[maxCanzoni];
+		canzoniLista = new ArrayList<Canzone>(maxCanzoni);
 	}
 	
-	public void aggiungiCanzone(Canzone canzone)
+	public void aggiungiCanzone (Canzone canzone)
+	{
+		canzoniLista.add(canzone);
+	}
+	
+	public void ordinaCanzoniPerTitolo()
+	{
+		canzoniLista.sort(null);// con il null induciamo a usare l'ordinamento scelto nella funzione compareTo di canzoni
+		
+		
+	}
+	/*public void aggiungiCanzone(Canzone canzone)
 	{
 		if(contatoreCanzoni < maxCanzoni)
 		{
@@ -329,13 +344,23 @@ public final class Cantautore extends Cantante {
 		}
 	}
 	
+
 	private void aggiungiCanzoneInner(Canzone canzone)
 	{
 		canzoni[contatoreCanzoni] = canzone;
 		contatoreCanzoni++;
-	}
+	}*/
 	
 	public void stampaCanzoni()
+	{
+		System.out.println("------------------------------------------");
+		System.out.println("Cantautore -> stampaCanzoni()");
+		
+		System.out.println("	canzoniLista: " + canzoniLista);
+	}
+		
+	
+	/*public void stampaCanzoni()
 	{
 		for(int i = 0; i < canzoni.length; i++)
 		{
@@ -350,7 +375,7 @@ public final class Cantautore extends Cantante {
 				break;
 			}
 		}
-	}
+	}/*
 		
 	
 	
@@ -432,7 +457,7 @@ public final class Cantautore extends Cantante {
 	/*
 	 * in questo caso con questa classe intendiamo le canzoni scritte dal cantautore,
 	 */
-	public class Canzone
+	public class Canzone implements Comparable<Canzone>
 	{
 		//variabili di istanza
 		
@@ -470,7 +495,21 @@ public final class Cantautore extends Cantante {
 			this.testo = testo;
 		}
 
+		@Override
+		public String toString() {
+			return "Canzone [titolo=" + titolo + "]";
+		}
+		@Override
+		public int compareTo(Canzone o) {
+			return this.titolo.compareTo(o.getTitolo());
+		}
 		
+		/*
+		 * una volta implementata l'interfaccia compareble , bisogna ridefinire la funzione compareTo , in base al nostro criterio di ordinamento
+		 * in questo caso voglio che mi ritorni l'oggetto canzone per a quale sto chiamando compareTo
+		 * e comfrontarlo con il titolo della canzone referenziata dal parametro o
+		 * 
+		 */
 		//metodi
 		
 		public void stampa()
@@ -499,6 +538,9 @@ public final class Cantautore extends Cantante {
 			System.out.println("this.Tipo: " + this.tipo);
 			System.out.println(" Cantautore.this.tipo: " + Cantautore.this.tipo);
 		}
+
+
+		
 		
 		
 		
