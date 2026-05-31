@@ -1,5 +1,7 @@
 package collezioni;
 
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -249,15 +251,90 @@ public class Start {
 		
 		System.out.println(	"	caselloAutostradale" + caselloAutostradale);
 		
-		System.out.println(	"	L'auto al casello passa" + caselloAutostradale.remove);
+		System.out.println(	"	L'auto al casello passa" + caselloAutostradale.remove());// rimuove il primo elemento dalla testa , se vuoto restituisce errore( più stringente)
 		
-		System.out.println(	"	L'auto attualmente al casello" + caselloAutostradale.element);
+		System.out.println(	"	L'auto attualmente al casello" + caselloAutostradale.element());// con element ci dice l'elemento che si trova in testa, cioè il prossimo ad uscire dalla coda ,se vuoto restituisce errore( più stringente)
 
-		System.out.println(	"	L'auto al casello passa" + caselloAutostradale.poll);
+		System.out.println(	"	L'auto al casello passa" + caselloAutostradale.poll());// rimuove il primo elemento dalla testa, se vuoto restituisce null( più sicuro)
 
-		System.out.println(	"	L'auto attualmente al casello" + caselloAutostradale.peek);
+		System.out.println(	"	L'auto attualmente al casello" + caselloAutostradale.peek());//con element ci dice l'elemento che si trova in testa, cioè il prossimo ad uscire dalla coda ,se vuoto restituisce null( più stringente)
 		
 		System.out.println(	"	caselloAutostradale" + caselloAutostradale);
+		
+		
+		System.out.println();
+		System.out.println("3--------------------------");
+		System.out.println();
+		
+		Queue<Integer> ns = new PriorityQueue<>();
+		/*
+		 * con questo esercizio stiamo creando una coda
+		 * con la dicitura Queue<Integre> stiamo creando una coda di integer
+		 * ns è la nostra variabile
+		 * e con new priorityQueue<> stiamo dicendo essenzialmente che la coda sarà gestita da PriorityQueue, qquindi utilizzando il suo ragionamento sulla gestione della coda.
+		 */
+		ns.offer(3);
+		ns.offer(5);
+		ns.offer(9);
+		ns.offer(12);
+		ns.offer(6);
+		ns.offer(10);
+		//ns.offer(4);
+		
+		System.out.println("	ns: " + ns);
+		
+		ns.offer(4);
+		
+		System.out.println("	ns: " + ns);
+		/*
+		 * il sistema per capire la ramificazione della coda del priority Queueè:
+		 * in output abbiamo ns: [3, 5, 9, 12, 6, 10]
+		 * immaginiamo che l'indice 0 è riferito al primo numero(3)
+		 * per capire la ramificazione del primo numero bisogna fare (2 * i + 1)
+		 * cioè ha come indice 0 , quindi il calcolo sarà (2 * 0 + 1)
+		 * con indice 1 troviamo il 5 ( prima ramificazione del 3 nodo di destra)
+		 * 
+		 * per capire la seconda ramificazione bisogna usare la formula (2 * i + 2)
+		 * cioè partendo sempre dal 3 dobbiamo usare il calcolo  (2 * 0 + 2)
+		 * e in questo caso troviamo il 9 ( seconda ramificazione della testa, 3 nodo di sinistra)
+		 * 
+		 * ora per capire la ramificazione del 5 bisogna usare la stessa formula precedente
+		 * (2 * i + 1), che in questo secondo caso sarà (2 * 1 + 1) dove la i sta per l'indice del 5
+		 * troviamo il numero 12 che sarà la ramificazione di sinistra del 5
+		 * per trovare la seconda ramificazione del 5 , cioè quella di destra useremo la formula (2 * i + 2)
+		 * in questo caso sara (2 * 1 + 2) e ci darà 12 come ramificazione di destra.
+		 * 
+		 */
+		
+		System.out.println("	ns.peek: " + ns.peek());
+		System.out.println("	ns: " + ns);
+		System.out.println("	ns.poll: " + ns.poll());
+		System.out.println("	ns: " + ns);
+		
+		
+		System.out.println();
+		System.out.println("3.1--------------------------");
+		System.out.println();
+		
+		Yogurt yogurt1 = new Yogurt (1, LocalDate.of(2023, Month.MAY, 1));
+		Yogurt yogurt2 = new Yogurt (2, LocalDate.of(2023, Month.MARCH, 1));
+		Yogurt yogurt3 = new Yogurt (3, LocalDate.of(2023, Month.APRIL, 1));
+		Yogurt yogurt4 = new Yogurt (4, LocalDate.of(2023, Month.JANUARY, 1));
+		Yogurt yogurt5 = new Yogurt (5, LocalDate.of(2023, Month.DECEMBER, 1));
+		
+		Queue<Yogurt> yogurts = new PriorityQueue<>();
+		yogurts.offer(yogurt1);
+		yogurts.offer(yogurt2);
+		yogurts.offer(yogurt3);
+		yogurts.offer(yogurt4);
+		yogurts.offer(yogurt5);
+		
+		System.out.println("	yogurts: " + yogurts);
+		System.out.println("	in scadenza: " + yogurts.poll());
+		System.out.println("	yogurts: " + yogurts);
+		
+		
+		
 	}
 
 }
