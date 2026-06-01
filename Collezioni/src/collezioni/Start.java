@@ -2,6 +2,7 @@ package collezioni;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -239,8 +240,8 @@ public class Start {
 		System.out.println("2--------------------------");
 		System.out.println();
 		
-		Queue<Auto> caselloAutostradale = new LinkedList<Auto>();
-		//Queue<Auto> caselloAutostradale = new ArrayList<Auto>();
+		//Queue<Auto> caselloAutostradale = new LinkedList<Auto>();
+		Queue<Auto> caselloAutostradale = new ArrayDeque<Auto>();
 		
 		
 		caselloAutostradale.add(new Auto("Volvo", "AAA", "Grigio")); //O(1) per LL o(1)* per AD
@@ -313,7 +314,7 @@ public class Start {
 		
 		
 		System.out.println();
-		System.out.println("3.1--------------------------");
+		System.out.println("3.2--------------------------");
 		System.out.println();
 		
 		Yogurt yogurt1 = new Yogurt (1, LocalDate.of(2023, Month.MAY, 1));
@@ -333,7 +334,17 @@ public class Start {
 		System.out.println("	in scadenza: " + yogurts.poll());
 		System.out.println("	yogurts: " + yogurts);
 		
+		System.out.println();
+		System.out.println("3.1--------------------------");
+		System.out.println();
 		
+		Frigo frigo = new Frigo();
+		
+		System.out.println("	in scadenza: " + frigo.getExpiringYogurt());
+		System.out.println("	in scadenza: " + frigo.getExpiringYogurt());
+		System.out.println("	in scadenza: " + frigo.getExpiringYogurt());
+		System.out.println("	in scadenza: " + frigo.getExpiringYogurt());
+		System.out.println("	in scadenza: " + frigo.getExpiringYogurt());
 		
 	}
 

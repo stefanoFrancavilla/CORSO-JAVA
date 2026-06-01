@@ -2,6 +2,11 @@ package collezioni;
 
 import java.time.LocalDate;
 
+/*
+ * in questa classe yogurt abbiamo implementato la classe Comparable, in modo da poter ordinare gli yogurt in base alla data di scadenza
+ * abbiamo implementato il metodo compareTo, che confronta la data di scadenza di due yogurt 
+ * e restituisce un intero che indica se la data di scadenza del primo yogurt è precedente, uguale o successiva a quella del secondo yogurt
+ */
 public class Yogurt implements Comparable<Yogurt>{
 	
 	//variabili di istanza
