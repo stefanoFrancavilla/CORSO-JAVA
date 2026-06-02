@@ -5,6 +5,7 @@ import java.time.Month;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Deque;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -252,13 +253,13 @@ public class Start {
 		
 		System.out.println(	"	caselloAutostradale" + caselloAutostradale);
 		
-		System.out.println(	"	L'auto al casello passa" + caselloAutostradale.remove());// rimuove il primo elemento dalla testa , se vuoto restituisce errore( più stringente)
+		System.out.println(	"	L'auto al casello passa" + caselloAutostradale.remove());//o(1) per LL, o(1) AD _ rimuove il primo elemento dalla testa , se vuoto restituisce errore( più stringente)
 		
-		System.out.println(	"	L'auto attualmente al casello" + caselloAutostradale.element());// con element ci dice l'elemento che si trova in testa, cioè il prossimo ad uscire dalla coda ,se vuoto restituisce errore( più stringente)
+		System.out.println(	"	L'auto attualmente al casello" + caselloAutostradale.element());//o(1) per LL, o(1) AD _ con element ci dice l'elemento che si trova in testa, cioè il prossimo ad uscire dalla coda ,se vuoto restituisce errore( più stringente)
 
-		System.out.println(	"	L'auto al casello passa" + caselloAutostradale.poll());// rimuove il primo elemento dalla testa, se vuoto restituisce null( più sicuro)
+		System.out.println(	"	L'auto al casello passa" + caselloAutostradale.poll());//o(1) per LL, o(1) AD _ rimuove il primo elemento dalla testa, se vuoto restituisce null( più sicuro)
 
-		System.out.println(	"	L'auto attualmente al casello" + caselloAutostradale.peek());//con element ci dice l'elemento che si trova in testa, cioè il prossimo ad uscire dalla coda ,se vuoto restituisce null( più stringente)
+		System.out.println(	"	L'auto attualmente al casello" + caselloAutostradale.peek());//o(1) per LL, o(1) AD _con element ci dice l'elemento che si trova in testa, cioè il prossimo ad uscire dalla coda ,se vuoto restituisce null( più stringente)
 		
 		System.out.println(	"	caselloAutostradale" + caselloAutostradale);
 		
@@ -335,7 +336,7 @@ public class Start {
 		System.out.println("	yogurts: " + yogurts);
 		
 		System.out.println();
-		System.out.println("3.1--------------------------");
+		System.out.println("3.3--------------------------");
 		System.out.println();
 		
 		Frigo frigo = new Frigo();
@@ -346,6 +347,23 @@ public class Start {
 		System.out.println("	in scadenza: " + frigo.getExpiringYogurt());
 		System.out.println("	in scadenza: " + frigo.getExpiringYogurt());
 		
+		System.out.println();
+		System.out.println("3.4--------------------------");
+		System.out.println();
+		
+		Deque<Integer> mazzoDiCarte = new ArrayDeque<>();
+		//Deque<Integer> mazzoDiCarte = new LinkedList<>();
+		
+		mazzoDiCarte.push(5);
+		mazzoDiCarte.push(1);
+		mazzoDiCarte.push(3);
+		mazzoDiCarte.push(9);
+		mazzoDiCarte.push(7);
+		
+		System.out.println("	la catra in cima alla pila è: " + mazzoDiCarte.peekFirst());
+		System.out.println("	la carta appena rimossa dalla pila è: " + mazzoDiCarte.pop());
+		System.out.println("	la carta appena rimossa dalla pila è: " + mazzoDiCarte.pop());
+		System.out.println("	la catra in cima alla pila è: " + mazzoDiCarte.peekFirst());
 	}
 
 }
