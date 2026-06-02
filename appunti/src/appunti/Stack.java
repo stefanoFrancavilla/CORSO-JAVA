@@ -1,14 +1,15 @@
 package appunti;
-import java.util.Stack;
+
 import java.util.ArrayDeque;
 import java.util.Deque;
 public class Stack {
+	public static void main(String[] args) {
 
 	
 		// TODO Auto-generated method stub
-		Ecco il contenuto completo per lo Stack pronto per essere copiato e incollato nella tua classe di appunti su Eclipse:
+	//	Ecco il contenuto completo per lo Stack pronto per essere copiato e incollato nella tua classe di appunti su Eclipse:
 
-			java
+		//	java
 			/**
 			 * =============================================================================
 			 *                        LO STACK IN JAVA - APPUNTI COMPLETI
@@ -147,113 +148,113 @@ public class Stack {
 
 			
 			    
-			    public static void main(String[] args) {
-			        
-			        // ========== ESEMPIO 1: Stack con classe Stack (deprecated) ==========
-			        Stack<String> stackClassico = new Stack<>();
-			        
-			        stackClassico.push("Primo");    // Push sulla cima
-			        stackClassico.push("Secondo");
-			        stackClassico.push("Terzo");
-			        
-			        System.out.println("Stack classico: " + stackClassico);  
-			        // Output: [Primo, Secondo, Terzo] (Terzo è in cima)
-			        
-			        String top = stackClassico.pop();  // Rimuove dalla cima
-			        System.out.println("Popped: " + top);  // Output: Terzo
-			        System.out.println("Stack dopo pop: " + stackClassico);  // [Primo, Secondo]
-			        
-			        String peek = stackClassico.peek();  // Legge senza rimuovere
-			        System.out.println("Peek: " + peek);  // Output: Secondo
-			        System.out.println("Stack dopo peek: " + stackClassico);  // [Primo, Secondo] (non modificato)
-			        
-			        int posizione = stackClassico.search("Primo");  // Cerca elemento
-			        System.out.println("Posizione di 'Primo': " + posizione);  // Output: 2 (1-based)
-			        
-			        
-			        // ========== ESEMPIO 2: Stack con ArrayDeque (RACCOMANDATO) ==========
-			        Deque<String> stackConsigliato = new ArrayDeque<>();
-			        
-			        stackConsigliato.push("A");    // Push
-			        stackConsigliato.push("B");
-			        stackConsigliato.push("C");
-			        
-			        System.out.println("\nStack con ArrayDeque: " + stackConsigliato);  
-			        // Output: [C, B, A] (C è in cima)
-			        
-			        String topArrayDeque = stackConsigliato.pop();  // Pop
-			        System.out.println("Popped: " + topArrayDeque);  // Output: C
-			        System.out.println("Stack dopo pop: " + stackConsigliato);  // [B, A]
-			        
-			        String peekArrayDeque = stackConsigliato.peek();  // Peek
-			        System.out.println("Peek: " + peekArrayDeque);  // Output: B
-			        System.out.println("Stack dopo peek: " + stackConsigliato);  // [B, A] (non modificato)
-			        
-			        
-			        // ========== ESEMPIO 3: Stack per validazione parentesi ==========
-			        String espressione = "((()))";
-			        boolean valida = isValidParentheses(espressione);
-			        System.out.println("\nEspressione: " + espressione);
-			        System.out.println("Valida: " + valida);  // Output: true
-			        
-			        String espressione2 = "(()";
-			        boolean valida2 = isValidParentheses(espressione2);
-			        System.out.println("\nEspressione: " + espressione2);
-			        System.out.println("Valida: " + valida2);  // Output: false
-			        
-			        
-			        // ========== ESEMPIO 4: Stack per undo/redo ==========
-			        ArrayDeque<String> undoStack = new ArrayDeque<>();
-			        
-			        undoStack.push("Cancella testo");
-			        undoStack.push("Scrivi testo");
-			        undoStack.push("Copia testo");
-			        
-			        System.out.println("\nUndo Stack: " + undoStack);  // [Copia testo, Scrivi testo, Cancella testo]
-			        
-			        System.out.println("Azioni da undo:");
-			        while (!undoStack.isEmpty()) {
-			            System.out.println("  Undo: " + undoStack.pop());
-			        }
-			        // Output:
-			        //   Undo: Copia testo
-			        //   Undo: Scrivi testo
-			        //   Undo: Cancella testo
-			        
-			        
-			        // ========== ESEMPIO 5: Stack per percorso inverso ==========
-			        ArrayDeque<String> percorso = new ArrayDeque<>();
-			        percorso.push("Casa");
-			        percorso.push("Stazione");
-			        percorso.push("Ufficio");
-			        
-			        System.out.println("\nPercorso inverso (tornando indietro):");
-			        while (!percorso.isEmpty()) {
-			            System.out.println("  " + percorso.pop());
-			        }
-			        // Output:
-			        //   Ufficio
-			        //   Stazione
-			        //   Casa
-			    }
 			    
-			    // Metodo per validare parentesi usando stack
-			    public static boolean isValidParentheses(String espressione) {
-			        Deque<Character> stack = new ArrayDeque<>();
 			        
-			        for (char c : espressione.toCharArray()) {
-			            if (c == '(') {
-			                stack.push(c);  // PUSH per parentesi aperta
-			            } else if (c == ')') {
-			                if (stack.isEmpty()) {
-			                    return false;  // Parentesi chiusa senza apertura
-			                }
-			                stack.pop();  // POP per parentesi chiusa
-			            }
-			        }
-			        
-			        return stack.isEmpty();  // true se tutte le parentesi sono bilanciate
-			    
+//			        // ========== ESEMPIO 1: Stack con classe Stack (deprecated) ==========
+//			        Stack<String> stackClassico = new Stack<>();
+//			        
+//			        stackClassico.push("Primo");    // Push sulla cima
+//			        stackClassico.push("Secondo");
+//			        stackClassico.push("Terzo");
+//			        
+//			        System.out.println("Stack classico: " + stackClassico);  
+//			        // Output: [Primo, Secondo, Terzo] (Terzo è in cima)
+//			        
+//			        String top = stackClassico.pop();  // Rimuove dalla cima
+//			        System.out.println("Popped: " + top);  // Output: Terzo
+//			        System.out.println("Stack dopo pop: " + stackClassico);  // [Primo, Secondo]
+//			        
+//			        String peek = stackClassico.peek();  // Legge senza rimuovere
+//			        System.out.println("Peek: " + peek);  // Output: Secondo
+//			        System.out.println("Stack dopo peek: " + stackClassico);  // [Primo, Secondo] (non modificato)
+//			        
+//			        int posizione = stackClassico.search("Primo");  // Cerca elemento
+//			        System.out.println("Posizione di 'Primo': " + posizione);  // Output: 2 (1-based)
+//			        
+//			        
+//			        // ========== ESEMPIO 2: Stack con ArrayDeque (RACCOMANDATO) ==========
+//			        Deque<String> stackConsigliato = new ArrayDeque<>();
+//			        
+//			        stackConsigliato.push("A");    // Push
+//			        stackConsigliato.push("B");
+//			        stackConsigliato.push("C");
+//			        
+//			        System.out.println("\nStack con ArrayDeque: " + stackConsigliato);  
+//			        // Output: [C, B, A] (C è in cima)
+//			        
+//			        String topArrayDeque = stackConsigliato.pop();  // Pop
+//			        System.out.println("Popped: " + topArrayDeque);  // Output: C
+//			        System.out.println("Stack dopo pop: " + stackConsigliato);  // [B, A]
+//			        
+//			        String peekArrayDeque = stackConsigliato.peek();  // Peek
+//			        System.out.println("Peek: " + peekArrayDeque);  // Output: B
+//			        System.out.println("Stack dopo peek: " + stackConsigliato);  // [B, A] (non modificato)
+//			        
+//			        
+//			        // ========== ESEMPIO 3: Stack per validazione parentesi ==========
+//			        String espressione = "((()))";
+//			        boolean valida = isValidParentheses(espressione);
+//			        System.out.println("\nEspressione: " + espressione);
+//			        System.out.println("Valida: " + valida);  // Output: true
+//			        
+//			        String espressione2 = "(()";
+//			        boolean valida2 = isValidParentheses(espressione2);
+//			        System.out.println("\nEspressione: " + espressione2);
+//			        System.out.println("Valida: " + valida2);  // Output: false
+//			        
+//			        
+//			        // ========== ESEMPIO 4: Stack per undo/redo ==========
+//			        ArrayDeque<String> undoStack = new ArrayDeque<>();
+//			        
+//			        undoStack.push("Cancella testo");
+//			        undoStack.push("Scrivi testo");
+//			        undoStack.push("Copia testo");
+//			        
+//			        System.out.println("\nUndo Stack: " + undoStack);  // [Copia testo, Scrivi testo, Cancella testo]
+//			        
+//			        System.out.println("Azioni da undo:");
+//			        while (!undoStack.isEmpty()) {
+//			            System.out.println("  Undo: " + undoStack.pop());
+//			        }
+//			        // Output:
+//			        //   Undo: Copia testo
+//			        //   Undo: Scrivi testo
+//			        //   Undo: Cancella testo
+//			        
+//			        
+//			        // ========== ESEMPIO 5: Stack per percorso inverso ==========
+//			        ArrayDeque<String> percorso = new ArrayDeque<>();
+//			        percorso.push("Casa");
+//			        percorso.push("Stazione");
+//			        percorso.push("Ufficio");
+//			        
+//			        System.out.println("\nPercorso inverso (tornando indietro):");
+//			        while (!percorso.isEmpty()) {
+//			            System.out.println("  " + percorso.pop());
+//			        }
+//			        // Output:
+//			        //   Ufficio
+//			        //   Stazione
+//			        //   Casa
+//			    }
+//			    
+//			    // Metodo per validare parentesi usando stack
+//			    public static boolean isValidParentheses(String espressione) {
+//			        Deque<Character> stack = new ArrayDeque<>();
+//			        
+//			        for (char c : espressione.toCharArray()) {
+//			            if (c == '(') {
+//			                stack.push(c);  // PUSH per parentesi aperta
+//			            } else if (c == ')') {
+//			                if (stack.isEmpty()) {
+//			                    return false;  // Parentesi chiusa senza apertura
+//			                }
+//			                stack.pop();  // POP per parentesi chiusa
+//			            }
+//			        }
+//			        
+//			        return stack.isEmpty();  // true se tutte le parentesi sono bilanciate
+//			    
 			
 
 			/**
@@ -340,3 +341,4 @@ public class Stack {
 	}
 
 }
+
