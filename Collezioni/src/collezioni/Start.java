@@ -429,8 +429,8 @@ public class Start {
 			System.out.println("libro: " + libro.getTitolo());
 		}
 		System.out.println("	libri: " + libri);
-		libriSet.remove("Il Signore degli Anelli"); // o(1) per HashMap, o(n) per TreeMap
-		System.out.println("	libri2: " + libri);
+	//	libriSet.remove("Il Signore degli Anelli"); // o(1) per HashMap
+	//	System.out.println("	libri2: " + libri);
 		
 		Set<Map.Entry<String, Libro>> libriEntries = libri.entrySet();
 		for(Map.Entry<String, Libro> entry : libriEntries) {
@@ -441,6 +441,63 @@ public class Start {
 		}
 		
 		System.out.println("	libriEntries " + libriEntries);
+		
+		//libriEntries.removeIf(entry -> entry.grtKey().equals(ilSignoreDegliAnelli));
+		//System.out.println("	libriEntries " + libriEntries);
+		//System.out.println("	libri: " + libri);
+		
+		Collection<Libro> libriCollection = libri.values();
+		System.out.println("	libriCollection: " + libriCollection);
+		
+		List<Libro> libriLista = new ArrayList<>(libriCollection);
+		System.out.println("	libriLista: " + libriLista);
+		
+		libriCollection.remove(libriLista.get(0));
+		System.out.println("	libriLista: " + libriLista);
+		System.out.println("	libri: " + libri);
+		System.out.println("	libriCollection: " + libriCollection);
+		//libriCollection.remove("Il Signore degli Anelli");
+		//System.out.println("	libriCollection: " + libriCollection);
+		//System.out.println("	libriLista: " + libriLista);
+		
+		libri.forEach((key, libro) -> {
+			System.out.println("key: " + key + " libro: " + libro.getTitolo());
+		});
+		
+		System.out.println();
+		System.out.println("5.0--------------------------");
+		System.out.println();
+		/*
+		 * il bitwise AND è un'operazione che confronta i bit di due numeri e restituisce un nuovo numero in cui ogni bit è impostato a 1 solo se entrambi i bit corrispondenti nei numeri originali sono 1,
+		 *  altrimenti è impostato a 0.
+		 *  
+		 *  cioè in parole semplici, il bitwise AND prende due numeri binari e confronta ogni bit, restituendo un nuovo numero binario in cui ogni bit è 1 
+		 *  solo se entrambi i bit corrispondenti nei numeri originali sono 1, altrimenti è 0.
+		 */
+		//https://en.wiipedia.org/wiki/Bitwise_operation
+		// n hash     hash  n     (n -1)   & hash
+		// 4 0   0 % 4 = 0   0 & 3 =	 000 & 011 = 000 = 0
+		System.out.println("0 & 3: " + (0 & 3));
+		// 4 2  2 % 4 = 2   2 & 3 = 	 010 & 011 = 010 = 2
+		System.out.println("2 & 3: " + (2 & 3));
+		// 4 3  3 % 4 = 3   3 & 3 =		 011 & 011 = 011 = 3
+		System.out.println("3 & 3: " + (3 & 3));
+		// 4 4  4 % 4 = 0   4 & 3 =		 100 & 011 = 000 = 0
+		System.out.println("4 & 3: " + (4 & 3));
+		// 4 5  5 % 4 = 1   5 & 3 =	 	 101 & 011 = 001 = 1
+		System.out.println("5 & 3: " + (5 & 3));
+		
+		System.out.println("---------------------------------------------------------------------------------------");
+		
+		int n_1 = 0b0000_0000_0000_0000_0000_0000_0001_1111; // (n - 1) = 31
+		int h = 0b0000_0000_0001_0000_0000_000_0001; // h = 65.537
+		System.out.println("n_1 & h:" + (n_1 & h)); // 0b0000_0000_0000_0000_0000_0000_000_0001 -> 1
+		
+		int hShift16 = h >>> 16; // 0b0000_0000_0000_0000_0000_0000_0000_0001 -> 1
+		System.out.println("hShift16: " + Integer.toBinaryString(hShift16));
+		//h                      0000_0000_0000_0001_0000_0000_0000_0001 ^
+		//hShift16               0000_0000_0000_0000_0000_0000_0000_0001 
+		
 	}
 
 }
