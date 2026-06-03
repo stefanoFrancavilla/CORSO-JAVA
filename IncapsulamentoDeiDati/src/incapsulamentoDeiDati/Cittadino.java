@@ -359,9 +359,12 @@ public class Cittadino extends EssereUmano {
     	
     	boolean sonoUguali = cittadino.codiceFiscale.equals(this.codiceFiscale); 
     	boolean nomiUguali = cittadino.getNome().equals(this.getNome());
+    	boolean cognomiUguali = cittadino.getCognome().equals(this.getCognome());
     	
     	System.out.println("equals 4");
-    	return (sonoUguali && nomiUguali);
+    	//return sonoUguali;
+    	//return (sonoUguali && nomiUguali);
+    	return (sonoUguali && nomiUguali && cognomiUguali);
     }
 
  
@@ -378,6 +381,7 @@ public class Cittadino extends EssereUmano {
 		int result = 1;
 		result = prime * result + (( this.codiceFiscale == null) ? 0 :  this.codiceFiscale.hashCode());
 		result = prime * result + ((this.getNome() == null) ? 0 : this.getNome().hashCode());
+		result = prime * result + ((this.getCognome() == null) ? 0 : this.getCognome().hashCode());
 		return result;
 	}
     

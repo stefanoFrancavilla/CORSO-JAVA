@@ -6,11 +6,14 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Deque;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.Set;
 
 
 public class Start {
@@ -364,6 +367,80 @@ public class Start {
 		System.out.println("	la carta appena rimossa dalla pila è: " + mazzoDiCarte.pop());
 		System.out.println("	la carta appena rimossa dalla pila è: " + mazzoDiCarte.pop());
 		System.out.println("	la catra in cima alla pila è: " + mazzoDiCarte.peekFirst());
+		
+		System.out.println();
+		System.out.println("4--------------------------");
+		System.out.println();
+		
+		
+		/*
+		 * con la dicitura Map<String, Libro> stiamo creando una mappa in cui le chiavi sono di tipo String e i valori sono di tipo Libro.
+		 * la variabile libri è una mappa che associa i titoli dei libri (String) agli oggetti Libro corrispondenti.
+		 * con new HashMap<> stiamo creando un'istanza concreta di una mappa basata su una tabella hash, che implementa l'interfaccia Map.
+		 */
+		Map<String, Libro> libri = new HashMap<>();
+		
+		Libro ilSignoreDegliAnelli = new Libro("Il Signore degli Anelli", "Top", 50f, "1234567890");
+		Libro ilCperTutti = new Libro("Il C per Tutti", "yeah", 30f, "234567890");
+		
+		/*
+		 * libri.put significa che stiamo inserendo un elemento nella mappa libri, dove la chiave è il titolo del libro (ilSignoreDegliAnelli.getTitolo())
+		 *  e il valore è l'oggetto Libro stesso (ilSignoreDegliAnelli).
+		 *  con put stiamo associando la chiave al valore corrispondente nella mappa, 
+		 *  in modo che possiamo successivamente recuperare il libro utilizzando il suo titolo come chiave.
+		 */
+		
+		libri.put(ilSignoreDegliAnelli.getTitolo(), ilSignoreDegliAnelli);
+		libri.put(ilCperTutti.getTitolo(), ilCperTutti);
+		
+		System.out.println("	libri è: " + libri);
+		
+		Libro libroPreso = libri.get("Il Signore degli Anelli");
+		System.out.println("	Il libro preso è: " + libroPreso);
+		
+		libroPreso = libri.get("UU Il Signore degli Anelli");
+		System.out.println("	Il libro preso è: " + libroPreso);
+		
+		Libro copia  = new Libro("Il Signore degli Anelli", "Copia Top", 50f, "1234567890");
+		libri.put(copia.getTitolo(), copia);
+		System.out.println(libri.get("Il Signore degli Anelli").getSinossi());
+		
+		Libro libroNull = new Libro("Il nulla ci sovrasta", "NULLA", 50f, "non c'è");
+		libri.put(null,  libroNull);
+		System.out.println(libri.get(null).getSinossi());
+		
+		libri.remove(null);
+		System.out.println(libri.get(null));
+		
+		if (libri.containsKey("Il Signore degli Anelli")) {   //o(1)
+			System.out.println("ci sono");
+		} 
+		if (libri.containsValue(copia)) {   //o(n)
+			System.out.println("ci sono 2");
+		}
+		
+		System.out.println();
+		System.out.println("4.1--------------------------");
+		System.out.println();
+		
+		Set<String> libriSet = libri.keySet();
+		for (String key : libriSet) {
+			Libro libro = libri.get(key);
+			System.out.println("libro: " + libro.getTitolo());
+		}
+		System.out.println("	libri: " + libri);
+		libriSet.remove("Il Signore degli Anelli"); // o(1) per HashMap, o(n) per TreeMap
+		System.out.println("	libri2: " + libri);
+		
+		Set<Map.Entry<String, Libro>> libriEntries = libri.entrySet();
+		for(Map.Entry<String, Libro> entry : libriEntries) {
+			String key = entry.getKey();
+			Libro libro = entry.getValue();
+			System.out.println("key: " + key);
+			System.out.println("libro: " + libro);
+		}
+		
+		System.out.println("	libriEntries " + libriEntries);
 	}
 
 }
