@@ -471,13 +471,16 @@ public class Start {
 		 * il bitwise AND è un'operazione che confronta i bit di due numeri e restituisce un nuovo numero in cui ogni bit è impostato a 1 solo se entrambi i bit corrispondenti nei numeri originali sono 1,
 		 *  altrimenti è impostato a 0.
 		 *  
-		 *  cioè in parole semplici, il bitwise AND prende due numeri binari e confronta ogni bit, restituendo un nuovo numero binario in cui ogni bit è 1 
+		 *  cioè in parole semplici, il bitwise AND prende due numeri binari e confronta ogni bit, 
+		 *  restituendo un nuovo numero binario in cui ogni bit è 1 
 		 *  solo se entrambi i bit corrispondenti nei numeri originali sono 1, altrimenti è 0.
 		 */
 		//https://en.wiipedia.org/wiki/Bitwise_operation
 		// n hash     hash  n     (n -1)   & hash
 		// 4 0   0 % 4 = 0   0 & 3 =	 000 & 011 = 000 = 0
 		System.out.println("0 & 3: " + (0 & 3));
+		// 4 1  1 % 4 = 1   1 & 3 = 	 001 & 011 = 001 = 1
+		System.out.println("1 & 3: " + (1 & 3));
 		// 4 2  2 % 4 = 2   2 & 3 = 	 010 & 011 = 010 = 2
 		System.out.println("2 & 3: " + (2 & 3));
 		// 4 3  3 % 4 = 3   3 & 3 =		 011 & 011 = 011 = 3
@@ -488,16 +491,112 @@ public class Start {
 		System.out.println("5 & 3: " + (5 & 3));
 		
 		System.out.println("---------------------------------------------------------------------------------------");
-		
+		/*
+		 * con lo xor esclusivo stiamo confrontando i bit di due numeri 
+		 * e restituisce un nuovo numero in cui ogni bit è impostato a 1 solo se i bit corrispondenti nei numeri originali
+		 *  sono diversi (uno è 1 e l'altro è 0), altrimenti è impostato a 0.
+		 */
 		int n_1 = 0b0000_0000_0000_0000_0000_0000_0001_1111; // (n - 1) = 31
 		int h = 0b0000_0000_0001_0000_0000_000_0001; // h = 65.537
 		System.out.println("n_1 & h:" + (n_1 & h)); // 0b0000_0000_0000_0000_0000_0000_000_0001 -> 1
 		
 		int hShift16 = h >>> 16; // 0b0000_0000_0000_0000_0000_0000_0000_0001 -> 1
 		System.out.println("hShift16: " + Integer.toBinaryString(hShift16));
-		//h                      0000_0000_0000_0001_0000_0000_0000_0001 ^
-		//hShift16               0000_0000_0000_0000_0000_0000_0000_0001 
+		//h                      0000_0000_0000_0001_0000_0000_0000_0001 ^    //valore originale di h
+		//hShift16               0000_0000_0000_0000_0000_0000_0000_0001      //valore di h shiftato di 16
 		
+		//hXorHShift16 		     0000_0000_0000_0000_0000_0000_0000_0000 &    //risultato dello xor tra h e hShift16
+		//n - 1					 0000_0000_0000_0000_0000_0000_0001_1111      //valore di n - 1
+		//n_1 & hXorHShift16	 0000_0000_0000_0000_0000_0000_0000_0000      //risultato del bitwise AND tra n - 1 e hXorHShift16
+		
+		int hXorHShift16 = h ^ hShift16; // 0b0000_0000_0000_0000_0000_0000_0000_0000 
+		System.out.println("hXorHShift16: " + Integer.toBinaryString(hXorHShift16));
+		System.out.println("n_1 & hXorHShift16: " + (n_1 & hXorHShift16)); // 0b0000_0000_0000_0000_0000_0000_0000_0000 -> 0
+		
+		System.out.println("---------------------------------------------------------------------------------------");
+		
+		n_1 = 0b0000_0000_0000_0000_0000_0000_0001_1111; // (n - 1) = 31
+		h = 0b0000_0000_0000_0010_0000_0000_0000_0001; // h = 131.073
+		System.out.println("n_1 & h:" + (n_1 & h)); // 0b0000_0000_0000_0000_0000_0000_0000_0001 -> 1
+		
+		hShift16 = h >>> 16; // 0b0000_0000_0000_0000_0000_0000_0000_0010 
+		System.out.println("hShift16: " + Integer.toBinaryString(hShift16));
+		//h					  0000_0000_0000_0010_0000_0000_0000_0001 ^
+		//hShift16			  0000_0000_0000_0000_0000_0000_0000_0010
+		
+		//hXorHShift16		  0000_0000_0000_0010_0000_0000_0000_0011 &
+		//n - 1				  0000_0000_0000_0000_0000_0000_0001_1111
+		//n_1 & hXorHShift16  0000_0000_0000_0000_0000_0000_0000_0011 
+		
+		hXorHShift16 = h ^ hShift16; // 0b0000_0000_0000_0010_0000_0000_0000_0011
+		System.out.println("hXorHShift16: " + Integer.toBinaryString(hXorHShift16));
+		System.out.println("n_1 & hXorHShift16: " + (n_1 & hXorHShift16)); // 0b0000_0000_0000_0000_0000_0000_0000_0011 -> 3
+		
+		System.out.println("---------------------------------------------------------------------------------------");
+		
+		n_1 = 0b0000_0000_0000_0000_0000_0000_0001_1111; // (n - 1) = 31
+		h = 0b0000_0000_0000_0011_0000_0000_0000_0001; // h = 196.609
+		System.out.println("n_1 & h:" + (n_1 & h)); // 0b0000_0000_0000_0000_0000_0000_0000_0001 -> 1
+		
+		hShift16 = h >>> 16; // 0b0000_0000_0000_0000_0000_0000_0000_0010
+		System.out.println("hShift16: " + Integer.toBinaryString(hShift16));
+		//h					  0000_0000_0000_0011_0000_0000_0000_0001 ^
+		//hShift16			  0000_0000_0000_0000_0000_0000_0000_0011
+		//hXorHShift16		  0000_0000_0000_0011_0000_0000_0000_0010 &
+		//n - 1				  0000_0000_0000_0000_0000_0000_0001_1111
+		//n_1 & h             0000_0000_0000_0000_0000_0000_0000_0010
+		hXorHShift16 = h ^ hShift16; // 0b0000_0000_0000_0010_0000_0000_0000_0011
+		System.out.println("hXorHShift16: " + Integer.toBinaryString(hXorHShift16));
+		System.out.println("n_1 & hXorHShift16: " + (n_1 & hXorHShift16)); // 0b0000_0000_0000_0000_0000_0000_0000_0010 -> 2
+		
+		System.out.println();
+		System.out.println("6.0--------------------------");
+		System.out.println();
+		/*
+		 * gli insiemi non prevedono duplicati e non mantengono un ordine specifico degli elementi,
+		 */
+		//Operazioni sugli insiemi
+		Set<String> nomi1 = new HashSet<>();
+		nomi1.add("Luca");
+		nomi1.add("Massimo");
+		nomi1.add("Carlo");
+		
+		Set<String> nomi2 = new HashSet<>();
+		nomi2.add("Luca");
+		nomi2.add("Lucia");
+		nomi2.add("Sara");
+		
+		Set<String> intersezioneDiNomi = new HashSet<>(nomi1);
+		intersezioneDiNomi.retainAll(nomi2); // o(n) per HashSet
+		System.out.println("	Intersezione di nomi: " + intersezioneDiNomi);
+		/*
+		 * con la porzione di codice retainAll stiamo creando un nuovo insieme chiamato intersezioneDiNomi, che inizialmente contiene tutti gli elementi di nomi1.
+		 * poi, con il metodo retainAll(nomi2), stiamo modificando intersezioneDiNomi in modo che contenga solo gli elementi che sono presenti sia in nomi1 che in nomi2,
+		 * in parole semplici ci mostra solo gli elementi in comuni tra i due insiemi, in questo caso sarà solo "Luca"
+		 */
+		Set<String> unioneDiNomi = new HashSet<>(nomi1);
+		unioneDiNomi.addAll(nomi2); // o(n) per HashSet
+		System.out.println("	Unione di nomi: " + unioneDiNomi);
+		/*
+		 * qui invece abbiamo usato il metodo addAll(nomi2) per creare un nuovo insieme chiamato unioneDiNomi, che inizialmente contiene tutti gli elementi di nomi1.
+		 * poi, con addAll(nomi2), stiamo modificando unioneDiNomi in modo che contenga tutti gli elementi di nomi1 e tutti gli elementi di nomi2,
+		 * in parole semplici ci mostra tutti gli elementi presenti in almeno uno dei due insiemi, in questo caso sarà "Luca", "Massimo", "Carlo", "Lucia" e "Sara"
+		 * dove luca anche se presente in entrambi gli insiemi, viene inserito solo una volta nell'unione, in quanto gli insiemi non prevedono duplicati.
+		 */
+		Set<String> differenzaDiNomi = new HashSet<>(nomi1);
+		differenzaDiNomi.removeAll(nomi2); // o(n) per HashSet
+		System.out.println("	Differenza di nomi: " + differenzaDiNomi);
+		
+		/*
+		 * con removeAll(nomi2) stiamo creando un nuovo insieme chiamato differenzaDiNomi, che inizialmente contiene tutti gli elementi di nomi1.
+		 * poi, con removeAll(nomi2), stiamo modificando differenzaDiNomi in modo che contenga solo gli elementi che sono presenti in nomi1 ma non in nomi2,
+		 * in parole semplici ci mostra solo gli elementi che sono presenti in nomi1 ma non in nomi2, in questo caso sarà "Massimo" e "Carlo"
+		 * dove "Luca" non è presente in differenzaDiNomi, in quanto è presente in entrambi gli insiemi, e gli insiemi non prevedono duplicati.
+		 */
+		
+		Set<String> differenzaDiNomi2 = new HashSet<>(nomi2);
+		differenzaDiNomi2.removeAll(nomi1); // o(n) per HashSet
+		System.out.println("	Differenza di nomi 2: " + differenzaDiNomi2);
 	}
 
 }

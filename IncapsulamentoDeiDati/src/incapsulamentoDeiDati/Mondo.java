@@ -1,6 +1,10 @@
 package incapsulamentoDeiDati;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+import java.util.regex.Pattern;
 
 import incapsulamentoDeiDati.customthread.MacchinettaDelCaffeThread;
 import incapsulamentoDeiDati.customthread.StampanteThread;
@@ -797,7 +801,7 @@ System.out.println();
 
 
 System.out.println();	
-System.out.println("10--------------------------");
+System.out.println("11--------------------------");
 System.out.println();
 
 for (int i = 0; i < 20; i++) 
@@ -806,5 +810,227 @@ for (int i = 0; i < 20; i++)
 	stampanteThread.start();
 }
 
+
+// Classi annidate e anonime
+System.out.println();	
+System.out.println("12--------------------------");
+System.out.println();
+
+Dipendente dipendente3 = new Dipendente("Paola", "Marroncini", Sesso.FEMMINA, 160f, 70f, ColoreOcchi.AZZURRI,
+		ColoreCapelli.GRIGI, Cittadino.Nazione.ITALIA, LocalDate.of(2003, Month.APRIL, 19), Cittadino.Comune.GENOVA); 
+
+Dipendente dipendente4 = new Dipendente("Caterina", "Verdi", Sesso.FEMMINA, 162f, 75f, ColoreOcchi.VERDI,
+		ColoreCapelli.BIONDI, Cittadino.Nazione.ITALIA, LocalDate.of(1950, Month.MAY, 10), Cittadino.Comune.ROMA);
+
+Azienda miaAzienda = new Azienda("miaAzienda");
+
+miaAzienda.assume(dipendente1);
+miaAzienda.assume(dipendente2);
+miaAzienda.assume(dipendente3);
+miaAzienda.assume(dipendente4);
+
+System.out.println("-----------------------------------------------------------------------");
+//System.out.println(miaAzienda.getDipendenti());
+
+//12.1
+List<Dipendente> natiDopoIl2000 = miaAzienda.selezionaDipendenti(new Azienda.SelezioneDipendente() {
+	
+	@Override
+	public boolean seleziona(Dipendente dipendente) {
+		// TODO Auto-generated method stub
+		return dipendente.getDataDiNascita().isAfter(LocalDate.of(2000, Month.DECEMBER, 31));
 	}
+});
+System.out.println("natiDopoIl2000: + " + natiDopoIl2000);
+
+System.out.println("-----------------------------------------------------------------------");
+
+//12.2
+List<Dipendente> natiDopoIl2000Lambda = miaAzienda.selezionaDipendenti(
+		dipendente -> dipendente.getDataDiNascita().isAfter(LocalDate.of(2000, Month.DECEMBER, 31))
+);
+System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------");
+System.out.println("	natiDopoIl2000Lambda: " + natiDopoIl2000Lambda);
+
+System.out.println("-------------------------------------------------------------");
+
+//12.2.1.
+List<Dipendente> conNomeCheInizialeLamba = miaAzienda.selezionaDipendenti(dipendente -> {
+	
+	Pattern INITIAL_PATTERN = Pattern.compile("[mnop]", Pattern.CASE_INSENSITIVE);
+	
+	return INITIAL_PATTERN.matcher(String.valueOf(dipendente.getNome().charAt(0))).matches();
+	
+});
+System.out.println("	conNomeCheInizialeLamba: " + conNomeCheInizialeLamba);
+
+System.out.println("-------------------------------------------------------------");
+		
+
+/*
+ * Esercizio: definire la corrispondente implementazione con una classe anonima
+ * del codice definito a seguire con un'espressione lambda.
+ */
+List<Dipendente> maschiLambda = miaAzienda.selezionaDipendenti(
+		dipendente -> dipendente.getSesso() == Sesso.MASCHIO
+);
+System.out.println("	maschiLambda: " + maschiLambda);
+
+System.out.println("-------------------------------------------------------------");
+
+
+List<Dipendente> paola = miaAzienda.getDipendentiPerNome("Paola");
+System.out.println("	paola: " + paola);
+
+System.out.println("-------------------------------------------------------------");
+
+List<Dipendente> castani = miaAzienda.getDipendentiPerColoreCapelli(ColoreCapelli.CASTANI);
+System.out.println("	castani: " + castani);
+
+
+
+//REFERENCE A METODI.
+List<Dipendente> maschiRM = miaAzienda.selezionaDipendenti(miaAzienda::getDipendentiMaschi);
+System.out.println("	maschiRM: " + maschiRM);
+
+System.out.println("-------------------------------------------------------------");
+
+
+List<Dipendente> femmineRM = miaAzienda.selezionaDipendenti(Azienda::getDipendentiFemmine);
+System.out.println("	femmineRM: " + femmineRM);
+
+System.out.println("-------------------------------------------------------------");
+
+
+List<Dipendente> capelliCastaniRM = miaAzienda.selezionaDipendenti(miaAzienda::getDipendentiConCapelliCastani);
+System.out.println("	capelliCastaniRM: " + capelliCastaniRM);
+
+System.out.println("-------------------------------------------------------------");
+
+
+
+//https://docs.oracle.com/javase/8/docs/api/java/util/function/package-summary.html
+
+//INTERFACCIA FUNZIONALE PREDICATE.
+List<Dipendente> maschiRMP = miaAzienda.selezionaDipendentiPredicate(miaAzienda::getDipendentiMaschi);
+System.out.println("	maschiRMP: " + maschiRMP);
+
+System.out.println("-------------------------------------------------------------");
+
+
+List<Dipendente> femmineRMP = miaAzienda.selezionaDipendentiPredicate(Azienda::getDipendentiFemmine);
+System.out.println("	femmineRMP: " + femmineRMP);
+
+System.out.println("-------------------------------------------------------------");
+
+
+List<Dipendente> capelliCastaniRMP = miaAzienda.selezionaDipendentiPredicate(miaAzienda::getDipendentiConCapelliCastani);
+System.out.println("	capelliCastaniRMP: " + capelliCastaniRMP);
+
+System.out.println("-------------------------------------------------------------");
+
+
+List<Dipendente> maschiOver50 = miaAzienda.selezionaDipendentiPredicate(((Predicate<Dipendente>)(miaAzienda::getDipendentiMaschi)).and(Azienda::getDipendentiOver50));
+System.out.println("	maschiOver50: " + maschiOver50);
+
+System.out.println("-------------------------------------------------------------");
+
+
+Predicate<Dipendente> dm = miaAzienda::getDipendentiMaschi;
+//Predicate<Dipendente> dm = dipendente -> miaAzienda.getDipendentiMaschi(dipendente);
+//Predicate<Dipendente> dm = dipendente -> dipendente.getSesso() == Sesso.MASCHIO;
+Predicate<Dipendente> o50 = Azienda::getDipendentiOver50;
+
+List<Dipendente> maschiOver50_2 = miaAzienda.selezionaDipendentiPredicate(dm.and(o50));
+System.out.println("	maschiOver50_2: " + maschiOver50_2);
+
+System.out.println("-------------------------------------------------------------");
+
+
+List<Dipendente> femmineOver50 = miaAzienda.selezionaDipendentiPredicate(((Predicate<Dipendente>)(Azienda::getDipendentiFemmine)).and(Azienda::getDipendentiOver50));
+System.out.println("	femmineOver50: " + femmineOver50);
+
+System.out.println("-------------------------------------------------------------");
+
+
+Predicate<Dipendente> df = Azienda::getDipendentiFemmine;
+List<Dipendente> femmineOver50_2 = miaAzienda.selezionaDipendentiPredicate(df.and(o50));
+System.out.println("	femmineOver50_2: " + femmineOver50_2);
+
+System.out.println("-------------------------------------------------------------");
+
+
+
+//INTERFACCIA FUNZIONALE CONSUMER.
+//dipendente1.setStipendio(1500);
+//dipendente2.setStipendio(1300);
+
+//miaAzienda.selezionaDipendentiConsumer(dipendente -> dipendente.setStipendio(dipendente.getStipendio() * 2));
+//miaAzienda.selezionaDipendentiConsumer(miaAzienda::raddoppiaStipendio);
+
+System.out.println("-------------------------------------------------------------");
+
+//miaAzienda.eseguiDipendentiConsumer(((Consumer<Dipendente>)miaAzienda::ottieniPromozione).andThen(miaAzienda::raddoppiaStipendio));
+//miaAzienda.getDipendenti().forEach(dipendente -> System.out.println(dipendente));
+
+
+System.out.println("-------------------------------------------------------------");
+
+Consumer<Dipendente> ot = miaAzienda::ottieniPromozione;
+Consumer<Dipendente> ob = miaAzienda::ottieniBonus;
+Consumer<Dipendente> rs = miaAzienda::raddoppiaStipendio;
+
+//miaAzienda.eseguiDipendentiConsumer(ot.andThen(rs));
+miaAzienda.eseguiDipendentiConsumer(ot.andThen(ob).andThen(rs));
+miaAzienda.getDipendenti().forEach(System.out::println);
+
+
+
+//INTERFACCIA FUNZIONALE SUPPLIER.
+Azienda.BonusSupplier bs = miaAzienda.new BonusSupplier();
+int bonus = bs.get();
+System.out.println("	bonus: " + bonus);
+
+
+
+//INTERFACCIA FUNZIONALE FUNCTION.
+//Represents a function that accepts one argument and produces a result.
+//@FunctionalInterface
+//public interface Function<T,R>
+//{
+//	R apply(T t);
+//}
+
+//Represents a function that accepts two arguments and produces a result.
+//@FunctionalInterface
+//public interface BiFunction<T,U,R>
+//{
+//	R apply(T t, U u)
+//}
+
+//Represents an operation on a single operand that produces a result of the same type as its operand.
+//@FunctionalInterface
+//public interface UnaryOperator<T> extends Function<T,T>
+//{
+//	//Eredita da Function: T apply(T t);
+//}
+
+//Represents an operation upon two operands of the same type, producing a result of the same type as the operands.
+//@FunctionalInterface
+//public interface BinaryOperator<T> extends BiFunction<T,T,T>
+//{
+//	//Eredita da BiFunction: T apply(T t, T u)
+//}
+
+
+//Represents a function that produces a double-valued result.
+//@FunctionalInterface
+//public interface ToDoubleFunction<T>
+//{
+//    double applyAsDouble(T value);
+//}*/
+
+ }
+
 }
+
