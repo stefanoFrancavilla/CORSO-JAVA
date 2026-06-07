@@ -63,18 +63,28 @@ versione da svolgere da solo con tracce passo-passo,
 oppure in un quiz di verifica.
 
  */
+		Notifica email = new Email("ste@live.it", "ciao buongiorno");
 		
-		SMS sms = new SMS();
-		sms.invia();
+		Notifica sms = new SMS("+41792565123", " ci vediamo domani");
 		
-		Email email = new Email();
-		email.invia();
+		Notifica smsPromo = new SMSPromozionale("41792565123", "Offerta", "PROMO50" );
 		
-		Push push = new Push();
-		push.invia();
+		Notifica push = new Push("device-123", "Notifica push importante");
 		
-		SMSPromozionale smsPromozionale = new SMSPromozionale();
-		smsPromozionale.invia();
+		GestoreNotifiche gestore = new GestoreNotifiche();
+		
+		gestore.gestisci(email);
+		
+		gestore.gestisci(push);
+		
+		gestore.gestisci(sms);
+		
+		gestore.gestisci(smsPromo);
+		
+		System.out.println(email.toString());
+		
+	
+		
 	}
 
 }
