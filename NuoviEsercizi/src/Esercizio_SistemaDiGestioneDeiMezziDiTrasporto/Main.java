@@ -222,7 +222,7 @@ Nel main prova il polimorfismo:
 MezzoTrasporto mezzo = new MotoSportiva(...);
 gestore.aggiungiMezzo(mezzo);
 
-        +------------------+
+                            +------------------+
                             | <<interface>>    |
                             |   Utilizzabile   |
                             +------------------+
@@ -235,8 +235,8 @@ gestore.aggiungiMezzo(mezzo);
                      | <<sealed interface>>         |
                      |      MezzoTrasporto          |
                      +------------------------------+
-                     | permits:                    |
-                     | Auto, Moto, Bicicletta      |
+                     | permits:                     |
+                     | Auto, Moto, Bicicletta       |
                      +------------------------------+
                                      ▲
                 _____________________|_____________________
@@ -252,7 +252,7 @@ gestore.aggiungiMezzo(mezzo);
 |                   <<abstract>> Veicolo                        |
 +---------------------------------------------------------------+
 | - modello : String                                            |
-| - anno : int                                                   |
+| - anno : int                                                  |
 +---------------------------------------------------------------+
 | + getModello() : String                                       |
 | + getAnno() : int                                             |
