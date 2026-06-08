@@ -1,5 +1,5 @@
 package Esercizi_sealed_NonSealed_Final_2;
 
-public interface MetodoDiPagamento extends Processabile implements CartaDiCredito, Bonifico, Criptovaluta {
+public sealed interface MetodoDiPagamento extends Processabile permits CartaDiCredito, Bonifico, Criptovaluta {
 
 }
