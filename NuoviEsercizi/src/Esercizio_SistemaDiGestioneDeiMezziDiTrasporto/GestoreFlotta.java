@@ -18,6 +18,7 @@ public class GestoreFlotta {
 	
 	
 	
+	
 	private List<MezzoTrasporto> mezzi = new ArrayList<MezzoTrasporto>();
 	
 	//costruttore
@@ -27,12 +28,52 @@ public class GestoreFlotta {
 		this.mezzi = mezzi;
 	}
 	
+	// metodi getter setter
 	
+	public int getAuto() {
+		return auto;
+	}
+
+	public void setAuto(int auto) {
+		this.auto = auto;
+	}
+
+	public int getMoto() {
+		return moto;
+	}
+
+	public void setMoto(int moto) {
+		this.moto = moto;
+	}
+
+	public int getMotoSportive() {
+		return motoSportive;
+	}
+
+	public void setMotoSportive(int motoSportive) {
+		this.motoSportive = motoSportive;
+	}
+
+	public int getBiciclette() {
+		return biciclette;
+	}
+
+	public void setBiciclette(int biciclette) {
+		this.biciclette = biciclette;
+	}
+
+	public List<MezzoTrasporto> getMezzi() {
+		return mezzi;
+	}
+
+	public void setMezzi(List<MezzoTrasporto> mezzi) {
+		this.mezzi = mezzi;
+	}
 	//metodo
 	
 	
 	
-	public void aggiungiMezzo ( MezzoTrasporto mezzo, List<MezzoTrasporto> mezzi)
+	public  void aggiungiMezzo ( MezzoTrasporto mezzo, List<MezzoTrasporto> mezzi)
 	{
 		if (mezzo instanceof Auto)
 		{
@@ -57,6 +98,8 @@ public class GestoreFlotta {
 		mezzi.add(mezzo);
 	}
 	
+	
+
 	public void stampaStatistiche()
 	{
 		System.out.println("Auto: " + auto);
@@ -105,5 +148,29 @@ public class GestoreFlotta {
 		costoTotale = costoAuto + costoMoto + costoMotoSportiva + costobicicletta;
 		
 		return costoTotale;
+	}
+	
+	public void stampaDettagli(List<MezzoTrasporto> mezzi) {
+	    String info = "";
+
+	    for (MezzoTrasporto mezzo : mezzi) {
+	        if (mezzo instanceof Auto) {
+	            info += mezzo.toString() + "\n";
+	        }
+	        
+	        if (mezzo instanceof Moto) {
+	            info += mezzo.toString() + "\n";
+	        }
+	        
+	        if (mezzo instanceof MotoSportiva) {
+	            info += mezzo.toString() + "\n";
+	        }
+	        
+	        if (mezzo instanceof Bicicletta) {
+	            info += mezzo.toString() + "\n";
+	        }
+	    }
+
+	    System.out.println(info);
 	}
 }

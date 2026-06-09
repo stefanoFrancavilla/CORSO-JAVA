@@ -1,5 +1,8 @@
 package Esercizio_SistemaDiGestioneDeiMezziDiTrasporto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -300,7 +303,39 @@ gestore.aggiungiMezzo(mezzo);
 		
 		MezzoTrasporto ferrari = new Auto ("Ferrari", 2000, 3);
 	
+		MezzoTrasporto bmw = new Auto("BMW", 2020, 5);
+		
+		MezzoTrasporto si = new Moto("SI", 1990, "50cc");
+		
+		MezzoTrasporto ducati = new MotoSportiva("Ducati", 2016, "1000cc");
+		
+		MezzoTrasporto bmx = new Bicicletta("BMX", 1990, "No elettrica");
+		
+		MezzoTrasporto tesla = new Bicicletta("Tesla", 2025, "elettrica");
 	  
+		List<MezzoTrasporto> mezzi = new ArrayList<MezzoTrasporto>();
+		
+		GestoreFlotta gestore = new GestoreFlotta(mezzi);
+	
+		gestore.aggiungiMezzo(ferrari, mezzi );
+		gestore.aggiungiMezzo(bmw, mezzi);
+		gestore.aggiungiMezzo(si, mezzi);
+		gestore.aggiungiMezzo(ducati, mezzi);
+		gestore.aggiungiMezzo(bmx, mezzi);
+		gestore.aggiungiMezzo(tesla, mezzi);
+		
+		gestore.stampaStatistiche();
+		System.out.println("--------------------------------------");
+		
+		gestore.calcoloCostoTotale(mezzi);
+		
+		System.out.println("--------------------------------------");
+		
+		gestore.utilizzaTutti(mezzi);
+		
+		System.out.println("--------------------------------------");
+		
+		gestore.stampaDettagli(mezzi);
 	}
 
 }

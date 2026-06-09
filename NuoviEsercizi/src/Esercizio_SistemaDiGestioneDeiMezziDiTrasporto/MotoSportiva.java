@@ -7,8 +7,8 @@ public class MotoSportiva extends Moto {
 	
 	
 	//costruttore
-	public MotoSportiva(String modello, int anno, String cilindata) {
-		super(modello, anno, cilindata);
+	public MotoSportiva(String modello, int anno, String cilindrata) {
+		super(modello, anno, cilindrata);
 		contatoreMotoSportiva++;
 	}
     //metodi getter
@@ -28,6 +28,10 @@ public class MotoSportiva extends Moto {
 	public double costoUtilizzo() {
 		// TODO Auto-generated method stub
 		return 30;
+	}
+	@Override
+	public String toString() {
+		return "Modello: " + this.getModello() + " anno: " + this.getAnno() + " cilindrata";
 	}
 
 	

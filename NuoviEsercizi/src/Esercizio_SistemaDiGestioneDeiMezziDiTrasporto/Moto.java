@@ -9,7 +9,7 @@ public non-sealed class Moto extends Veicolo implements MezzoTrasporto {
 	// costruttore
 	
 	
-	public Moto(String modello, int anno, String cilindata) {
+	public Moto(String modello, int anno, String cilindrata) {
 		super(modello, anno);
 		this.cilindrata = cilindrata;
 		

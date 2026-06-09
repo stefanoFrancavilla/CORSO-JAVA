@@ -22,6 +22,10 @@ public final class Bicicletta extends Veicolo implements MezzoTrasporto {
 	}
 	
 	
+	public String getElettrica() {
+		return elettrica;
+	}
+
 	//metodi
 	@Override
 	public void utilizza() {
@@ -33,6 +37,11 @@ public final class Bicicletta extends Veicolo implements MezzoTrasporto {
 	public double costoUtilizzo() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public String toString() {
+		return "Modello: " + this.getModello() + " anno: " + this.getAnno() + " elettrica: " + this.getElettrica();
 	}
 
 
