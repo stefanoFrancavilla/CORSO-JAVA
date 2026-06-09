@@ -297,6 +297,10 @@ gestore.aggiungiMezzo(mezzo);
 
 
  */
+		
+		MezzoTrasporto ferrari = new Auto ("Ferrari", 2000, 3);
+	
+	  
 	}
 
 }
