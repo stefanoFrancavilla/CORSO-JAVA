@@ -1,5 +1,8 @@
 package Esercizio_Sistema_di_gestione_di_uno_zoo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -320,6 +323,39 @@ void mangia();
 
 Ogni animale mangia qualcosa di diverso.
 		 */
-	}
+		
+		List<Animale> animali = new ArrayList<Animale>();
+		
+		Animale simba = new Leone("Simba", 10);
+		Animale leo = new Leone ("Leo", 5);
+		Animale george = new Scimmia("George", 3);
+		Animale Einstein = new ScimmiaGeniale("Einstein", 7);
+		Animale riki = new Aquila("Riki", 1);
+		Animale becco = new Aquila("Becco", 2);
+		
+		
+		GestoreZoo tuttiGliAnimali = new GestoreZoo(animali);
+		tuttiGliAnimali.aggiungi(leo);
+		tuttiGliAnimali.aggiungi(becco);
+		tuttiGliAnimali.aggiungi(riki);
+		tuttiGliAnimali.aggiungi(Einstein);
+		tuttiGliAnimali.aggiungi(george);
+		tuttiGliAnimali.aggiungi(simba);
+		
+		System.out.println("--------------------------------");
+		
+		tuttiGliAnimali.costoTotale();
+        System.out.println("--------------------------------");
+		
+		tuttiGliAnimali.faiAgireTutti();
+		
+        System.out.println("--------------------------------");
+		
+		tuttiGliAnimali.nutriTutti();
+		
+        System.out.println("--------------------------------");
+		
+		tuttiGliAnimali.stampaAnimali();;
+	}	
 
 }
