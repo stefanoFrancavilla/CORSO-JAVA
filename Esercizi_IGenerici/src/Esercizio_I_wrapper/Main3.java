@@ -1,5 +1,7 @@
 package Esercizio_I_wrapper;
 
+import java.util.Random;
+
 public class Main3 {
 
 	public static void main(String[] args) {
@@ -34,8 +36,19 @@ public class Main3 {
 		        Short wrapperShort = Short.parseShort(numero);
 		        short shortPrimitivo = wrapperShort;
 		        
+		       
+		      
 		        int mille = 1000;
+		        Integer wrapperMille = mille;
+		        long longMille= wrapperMille.longValue();
+		        float floatMille = wrapperMille.floatValue();
+		        short shortMille = wrapperMille.shortValue();
+		        
 		
+		        double conversione = 3.9;
+		        Double conversioneDouble = conversione;
+		        int conversioneInt = conversioneDouble.intValue();
+		        
 		        
 		        // PARTE C: Validazione di valori
 		        // 9. Usare Integer.MAX_VALUE e Integer.MIN_VALUE
@@ -43,10 +56,16 @@ public class Main3 {
 		        // 11. Usare Double.isInfinite() per verificare infinito
 		        // 12. Creare funzione isOutsideRange(int valore, int min, int max)
 		        
+		        Double infinito = 1.0/0.0;
+		        
 		        // PARTE D: Parsing di diversi formati
 		        // 13. Usare Integer.parseInt("FF", 16) per parsing hex
 		        // 14. Usare Integer.parseInt("1010", 2) per parsing binary
 		        // 15. Usare Long.parseLong per numeri grandi
+		        
+		        String grande = "9876543210";
+		        long valoreLong = Long.parseLong(grande);
+		        
 		        
 		        // PARTE E: Formato e rappresentazione
 		        // 16. Usare Integer.toBinaryString(10)
@@ -58,6 +77,12 @@ public class Main3 {
 		        // 20. Usare Random.nextInt(100) e convertirlo in Integer
 		        // 21. Usare Integer.sum(10, 20) (metodo novo in Java 8+)
 		        // 22. Usare Integer.multiply(5, 6) se disponibile
+		        
+		      
+		        Random random = new Random();
+		        Integer numeroRandom = Integer.valueOf(random.nextInt(100));
+		        
+		        
 		        
 		        System.out.println("=== Esercizio 3 Risultati ===");
 		        
@@ -76,9 +101,55 @@ public class Main3 {
 		       // System.out.println("Risultato della conversione della String " + numero + " in un byte è: " + bytePrimitivo);
 		        //il suo risultato sarà un'errore poichè il numero 255 è superiore al range del byte
 		        System.out.println("Risultato della conversione della String " + numero + " in uno short è: " + shortPrimitivo);
+		        System.out.println("-------------------------------------");
+		        
+		        System.out.println("da int a long: " + longMille);
+		        System.out.println("da int a float: " + floatMille);
+		        System.out.println("da int a short: " + shortMille);
+		        
+		        System.out.println("-------------------------------------");
+		        
+		        System.out.println("da double a int: " + conversioneInt);
+		        //arrotonda per difetto la cifra double.
+		        
+		        System.out.println("--------------Parte c-----------------------");
+		        System.out.println("il valore di Integer.MAX_VALUE è: " + Integer.MAX_VALUE );
+		        System.out.println("il valore di Integer.MIN_VALUE è: " + Integer.MIN_VALUE );
+		        System.out.println("-------------------------------------");
+		        
+		        System.out.println("Double massimo: " + Double.MAX_VALUE);
+		        System.out.println("Double minimo positivo: " + Double.MIN_VALUE);
+		        System.out.println("Infinito positivo: " + Double.POSITIVE_INFINITY);
+		        System.out.println("-------------------------------------");
+		        
+		        System.out.println("Double.isInfinite(): " + Double.isInfinite(infinito));
+		        System.out.println("-------------------------------------");
+		        System.out.println("funzione isOutsideRange: " + isOutsideRange(42, 10, 50)); // true
+		        System.out.println("-------------------------------------");
+		        
+		        System.out.println("--------------Parte d-----------------------");
+		        System.out.println(" Integer.parseInt(\"FF\", 16)  " +  Integer.parseInt("FF", 16));
+		        System.out.println(" Integer.parseInt(\"1010\", 2)  " +  Integer.parseInt("1010", 2));
+		        System.out.println("-------------------------------------");
+		        
+		        System.out.println("Long.parseLong: " + valoreLong);
+		        
+		        System.out.println("--------------Parte e-----------------------");
+		        System.out.println(" Integer.toBinaryString(10): " + Integer.toBinaryString(10));
+		        System.out.println(" Integer.toHexString(255): " + Integer.toHexString(255));
+		        System.out.println(" Integer.toOctalString(64): " + Integer.toOctalString(64));
+		        System.out.println(" Integer.toString(123, 16): " + Integer.toString(123, 16));
+
+		        System.out.println("--------------Parte f-----------------------");
+		        System.out.println(" numero random : " + numeroRandom);
+		        System.out.println("-------------------------------------");
+		        
+		        System.out.println(Integer.sum(5, 6)); 
+		        System.out.println("-------------------------------------");
+		        System.out.println("Integer.multiply(5, 6) , purtroppo non disponibile");
 		        
 		        
-		        
+
 		    }
 		    
 		    // Aggiungi le tue funzioni di helper qui
@@ -96,6 +167,11 @@ public class Main3 {
 		    
 		    public static boolean isOutsideRange(int valore, int min, int max) {
 		        // Implementa qui
+		    	if (valore >= min && valore <= max)
+		    	{
+		    		return true;
+		    	}
+		    	
 		        return false;
 	}
 
