@@ -155,20 +155,36 @@ in base agli oggetti che si inseriscono.
 		
 		
 		/*
-		 * array.length vs ArrayList.size(),
+*Qual è la differenza tra array.length e ArrayList.size()?
+*la differenza principale ' che array.length è una proprietà.
+*mentre ArrayList.size() è un metodo.
+*
+*array.length ci mostra la capacita dell'array.
+*mentre con ArrayList.size() vediamo gli oggetti correnti contenuti nell' ArrayList
+*
 
-bounds checking,
+Spiega cosa significa bounds checking in Java.
 
-indice fuori bounds,
+è il controllo che effettua java prima entrare in un'Array o lista.
+controlla se si trova nei limiti dell'array
+se non nei limiti genera un'errore
 
-array 2D,
+Se hai int[] arr = new int[5];, quali indici sono validi?
 
-ArrayList add/remove.
+gli indici validi per l'array che mi hai citao sono: 0 1 2 3 4
+
+Scrivi un esempio di codice con un array 2D 2x3 e stampa l’elemento in riga 1, colonna 2.
+	int[][] arrayDoppio = {{1, 2, 3}, {4, 5, 6}};
+		System.out.println(arrayDoppio[1][2]);
+
+Scrivi il codice per aggiungere "Ana", "Bob" e "Carlo" in un ArrayList<String> e poi rimuovere il secondo elemento.
+		*
 		 */
 		//8.
 		int[] array = {1, 2, 3, 4, 5};
 		System.out.println(array[2]);
 		
+	
 		//10.
 		
 		int[] array2 = {1, 3, 5, 7, 9};
