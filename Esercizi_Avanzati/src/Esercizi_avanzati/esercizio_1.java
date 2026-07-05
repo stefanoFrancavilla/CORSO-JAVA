@@ -3,10 +3,12 @@ package Esercizi_avanzati;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.DoubleUnaryOperator;
 import java.util.function.Function;
 import java.util.function.IntBinaryOperator;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 public class esercizio_1 {
 
@@ -211,7 +213,16 @@ Puoi usare una lambda per implementare un metodo che retourna qualcosa? Spiega c
 		}
 		System.out.println(nomiLunghi);
 		
+		System.out.println("----------------------------------------");
 		
+		Consumer<String> stampa = s -> System.out.println(s.toUpperCase());
+		stampa.accept("ciao");
+		
+		
+		System.out.println("----------------------------------------");
+		
+		Supplier<Integer> n = () -> 100;
+		System.out.println(n.get());
 	}
 	public static int opera(IntBinaryOperator a , int x , int y)
 	{ 
