@@ -834,7 +834,11 @@ System.out.println("------------------------------------------------------------
 
 //12.1
 List<Dipendente> natiDopoIl2000 = miaAzienda.selezionaDipendenti(new Azienda.SelezioneDipendente() {
-	
+	/*per creare un'oggetto che imoplementi selezione dipendente, lo dobbiamo creare con new Azienda.SelezioneDipendente(),
+	 * poichè è un'interfaccia interna alla classe Azienda , quindi per creare un oggetto che implementi quell'interfaccia,
+	 *  dobbiamo specificare il nome della classe esterna (Azienda) e il nome dell'interfaccia interna (SelezioneDipendente) separati da un punto.
+	*
+	*/
 	@Override
 	public boolean seleziona(Dipendente dipendente) {
 		// TODO Auto-generated method stub
@@ -845,6 +849,30 @@ System.out.println("natiDopoIl2000: + " + natiDopoIl2000);
 
 System.out.println("-----------------------------------------------------------------------");
 
+//12.1.1.
+		List<Dipendente> conNomeCheIniziale = miaAzienda.selezionaDipendenti(new Azienda.SelezioneDipendente() {
+			
+			Pattern INITIAL_PATTERN = Pattern.compile("[mnop]", Pattern.CASE_INSENSITIVE);
+			
+			boolean isInitialChar(String charcter) {
+				
+				System.out.println("	charcter: " + charcter);
+				
+			    return INITIAL_PATTERN.matcher(charcter).matches();
+			}
+			
+			@Override
+			public boolean seleziona(Dipendente dipendente) {
+				
+				System.out.println("	this: " + this);
+				
+				// TODO Auto-generated method stub
+				return isInitialChar(String.valueOf(dipendente.getNome().charAt(0)));
+			}
+		});
+		System.out.println("	conNomeCheIniziale: " + conNomeCheIniziale);
+		
+		System.out.println("-------------------------------------------------------------");
 //12.2
 List<Dipendente> natiDopoIl2000Lambda = miaAzienda.selezionaDipendenti(
 		dipendente -> dipendente.getDataDiNascita().isAfter(LocalDate.of(2000, Month.DECEMBER, 31))

@@ -249,6 +249,10 @@ public class Azienda {
 	{
 		abstract boolean seleziona(Dipendente dipendente);
 	}
+	/*
+	 * la sintassi è la seguente :Selezione dipendente ha un'unico metodo astratto che:
+	 * l'inteficatore è seleziona , che prende un parametro di tipo dipendente e restituisce un booleano.
+	 */
 	
 	//public interface Supplier<T> {
 	//	T get()
