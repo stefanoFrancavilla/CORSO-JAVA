@@ -38,8 +38,7 @@ public class sercizi_riepilogo_collection {
 		nomi.add("Luca");
 		nomi.add("Marco");
 		
-		boolean aggiunto = nomi.add("Marco");
-		System.out.println(aggiunto);
+		
 	}
 }
 
