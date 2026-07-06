@@ -1,6 +1,8 @@
 package Esercizi_avanzati;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class sercizi_riepilogo_collection {
 	public static void main(String[] args) {
@@ -29,6 +31,15 @@ public class sercizi_riepilogo_collection {
 		System.out.println(frutti.size());
 		
 		
+		Set<String> nomi = new HashSet<>();
+		
+		nomi.add("Marco");
+		nomi.add("Anna");
+		nomi.add("Luca");
+		nomi.add("Marco");
+		
+		boolean aggiunto = nomi.add("Marco");
+		System.out.println(aggiunto);
 	}
 }
 
