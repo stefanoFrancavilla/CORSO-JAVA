@@ -1,8 +1,14 @@
 package streamapi;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Start {
@@ -186,6 +192,88 @@ public class Start {
 		 * 
 		 * quindi con Optional stiamo gestendo il caso in cui la variabile velocitaMassima sia null, evitando così un eventuale NullPointerException.
 		 */
+		
+		System.out.println();
+		System.out.println("7--------------------------");
+		System.out.println();
+		
+		double prezzoMinimoRenoult = automobili.stream() 
+			    .filter(auto -> "renault".equalsIgnoreCase(auto.getCasaProduttrice())) 
+			    .mapToDouble(auto -> auto.getPrezzo()) 
+			    .min() 
+			  // .getAsDouble();
+			    .orElse(0); // se non ci sono auto renault, allora assegna il valore 0D alla variabile prezzoMinimoRenoult
+		
+		System.out.println("prezzoMinimoRenoult: " + prezzoMinimoRenoult);
+		
+		System.out.println();
+		System.out.println("8--------------------------");
+		System.out.println();
+		
+		Comparator<Auto> confrontaAutoPerMarcaEModello =
+				Comparator.comparing((Auto auto) -> auto.getCasaProduttrice()) //compara le auto per casa produttrice
+				.thenComparing(auto -> auto.getModello()) //compara le auto per modello
+				.thenComparing(auto -> auto.getPrezzo()); //compara le auto per prezzo
+		
+		automobili.stream()
+		.sorted(confrontaAutoPerMarcaEModello) // ordina le auto in base al comparatore confrontaAutoPerMarcaEModello
+		.forEach(auto -> System.out.println(auto)); // stampa le auto ordinate
+		
+		System.out.println();
+		System.out.println("9--------------------------");
+		System.out.println();
+		
+		List<String> names = new ArrayList<>();
+		names.add("Andrea");
+		names.add("Mariangela");
+		names.add("Marco");
+		names.add("Giulia");
+		names.add("Veronica");
+		names.add("Monica");
+		names.add("Monica");
+		
+		Stream<String> namesString = names.stream();
+		
+		Stream<String> mNamesString = namesString.filter(new Predicate<String>() {
+
+			@Override
+			public boolean test(String t) {
+				// TODO Auto-generated method stub
+				return t.toLowerCase().startsWith("m");
+			}
+			
+		});
+		
+		//mNamesString.forEach(name -> System.out.println("name: " + name));
+		
+		Stream<Integer> namesLengthts =  mNamesString.map(new Function <String, Integer>() {
+
+			@Override
+			public Integer apply(String t) {
+				// TODO Auto-generated method stub
+				return t.length();
+			}
+			
+		});
+		
+		//namesLengthts.forEach(len -> System.out.println("len: " + len));
+		
+		System.out.println();
+		System.out.println("10--------------------------");
+		System.out.println();
+		
+		List<Integer> namesLengthtsList = namesLengthts.collect(Collectors.toList());
+		System.out.println("namesLengthtsList instanceof ArrayList: " + (namesLengthtsList instanceof ArrayList));
+		/*
+		 * qui stiamo usando il metodo collect() per raccogliere gli elementi dello stream namesLengthts
+		 *  in una lista di interi.
+		 */
+		System.out.println("namesLengthtsList: " + namesLengthtsList);
+		
+		
+		
+		
+		
 		
 		
 		
