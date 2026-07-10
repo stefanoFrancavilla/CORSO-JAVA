@@ -5,7 +5,9 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -246,6 +248,11 @@ public class Start {
 		
 		//mNamesString.forEach(name -> System.out.println("name: " + name));
 		
+		/*
+		 * qui abbiamo usato .map() per trasformare gli elementi dello stream mNamesString in un nuovo stream di interi che rappresentano le lunghezze dei nomi.
+		 * usando una Function<String, Integer> che prende una stringa e restituisce la sua lunghezza.
+		 * con il metodo apply() della Function, stiamo implementando la logica per calcolare la lunghezza di ciascun nome.
+		 */
 		Stream<Integer> namesLengthts =  mNamesString.map(new Function <String, Integer>() {
 
 			@Override
@@ -262,18 +269,107 @@ public class Start {
 		System.out.println("10--------------------------");
 		System.out.println();
 		
-		List<Integer> namesLengthtsList = namesLengthts.collect(Collectors.toList());
+		//Inserimento in una nuova lista (dall'implementazione attuale, sembrerebbe un'ArrayList)
+		/*List<Integer> namesLengthtsList = namesLengthts.collect(Collectors.toList());
 		System.out.println("namesLengthtsList instanceof ArrayList: " + (namesLengthtsList instanceof ArrayList));
 		/*
 		 * qui stiamo usando il metodo collect() per raccogliere gli elementi dello stream namesLengthts
 		 *  in una lista di interi.
+		 *
+		System.out.println("namesLengthtsList: " + namesLengthtsList);*/
+		
+		System.out.println();
+		System.out.println("11--------------------------");
+		System.out.println();
+		
+		//Inserimento in un nuovo Set (dall'implementazione attuale, sembrerebbe un HashSet)
+		
+		/*
+		 * qui invece stiamo usando il metodo collect() per raccogliere gli elementi dello stream namesLengthts
+		 * in un set di interi.
+		 * namesLength.collect(Collectors.toSet()) restituisce un Set contenente gli elementi dello stream namesLengthts.
+		 * quindi in uscita avremo un Set di interi che rappresentano le lunghezze dei nomi che iniziano con la lettera "M".
 		 */
-		System.out.println("namesLengthtsList: " + namesLengthtsList);
+		Set<Integer> namesLengthtsSet = namesLengthts.collect(Collectors.toSet());
+		
+		System.out.println("namesLengthtsSet instanceof HashSet: " + (namesLengthtsSet instanceof HashSet));
+		System.out.println("namesLengthtsSet: " + namesLengthtsSet);
+		
+		System.out.println();
+		System.out.println("12--------------------------");
+		System.out.println();
 		
 		
+		/*
+		 * qui abbiamo creato una mappa con chiave di tipo String e valore di tipo List<Auto>.
+		 * automobili.stream() crea uno stream di oggetti Auto a partire dalla collezione automobili.
+		 * .collect serve per raccogliere gli elementi dello stream in una struttura dati.
+		 * Collector.groupingBy serve per raggruppare gli elementi dello stream in base a una chiave.
+		 * ed infine Auto::getColore è un riferimento al metodo getColore() della classe Auto, che restituisce il colore dell'auto.
+		 */
+		Map<String, List<Auto>> autoColoriMap = automobili.stream()
+				.collect(Collectors.groupingBy(Auto::getColore));
 		
+	//	autoColoriMap.forEach((s, l) -> System.out.println(s + " " + l));
+		System.out.println("---------------------------------------------------------------------------------");
+	//	System.out.println(autoColoriMap.get("Rosso"));
 		
+		/*
+		 * con il ciclo for stiamo iterando sulla mappa autoColoriMap e stampando le auto raggruppate per colore.
+		 * questo lo deduciamo dall'uso del metodo entrySet() che restituisce un set di coppie chiave-valore della mappa.
+		 * cioè ogni coppia chiave-valore rappresenta un colore e la lista di auto di quel colore.
+		 */
 		
+		for(Map.Entry<String, List<Auto>> nodoCorrente: autoColoriMap.entrySet())
+		{
+			nodoCorrente.getValue().forEach(auto -> System.out.println(auto));
+			System.out.println("---------------------------------------------------------------------------------");
+		}
+		
+		System.out.println();
+		System.out.println("13--------------------------");
+		System.out.println();
+		
+		Map<String, Map<String, List<Auto>>> autoPerColoriPerCasaProdruttrice =
+				automobili.stream()
+				.collect(Collectors.groupingBy(Auto::getColore, Collectors.groupingBy(Auto::getCasaProduttrice)));
+		
+		/*
+		 * qui stiamo creando una mappa annidata che raggruppa le auto prima per colore e poi per casa produttrice.
+		 * quindi la chiave della mappa esterna è il colore dell'auto, 
+		 * mentre la chiave della mappa interna è la casa produttrice dell'auto.
+		 * il valore che ottengo è una lista di auto che hanno lo stesso colore e la stessa casa produttrice.
+		 */
+		
+		autoPerColoriPerCasaProdruttrice.forEach((s, l) -> System.out.println(s + " " + l));
+		
+		System.out.println("---------------------------------------------------------------------------------");
+		
+		for(Map.Entry<String, Map<String, List<Auto>>> nodoCorrenteEsterno: autoPerColoriPerCasaProdruttrice.entrySet())
+		{
+			System.out.println("colore: " + nodoCorrenteEsterno.getKey());
+			
+			for(Map.Entry<String, List<Auto>> nodoCorrenteInterno: nodoCorrenteEsterno.getValue().entrySet())
+			{
+				System.out.println("		casa produttrice: " + nodoCorrenteInterno.getKey());
+				nodoCorrenteInterno.getValue().forEach(auto -> System.out.println("		" + auto));
+				System.out.println("---------------------------------------------------------------------------------");
+			}
+		}
+		
+		System.out.println();
+		System.out.println("14--------------------------");
+		System.out.println();
+		
+//		Map<Double, List<String>> autoModelliInBaseAiPrezzi = 
+//				automobili.stream()
+//				.collect(Collectors.groupingBy(Auto::getPrezzo, Collectors.mapping(Auto::getModello, Collectors.toList())));
+		
+		Map<Double, Set<String>> autoModelliInBaseAiPrezzi = 
+				automobili.stream()
+				.collect(Collectors.groupingBy(Auto::getPrezzo, Collectors.mapping(Auto::getModello, Collectors.toSet())));
+		
+		System.out.println("autoModelliInBaseAiPrezzi: " + autoModelliInBaseAiPrezzi);
 		
 		
 		
