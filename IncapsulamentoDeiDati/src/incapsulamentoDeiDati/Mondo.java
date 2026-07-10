@@ -1,10 +1,17 @@
 package incapsulamentoDeiDati;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import incapsulamentoDeiDati.customthread.MacchinettaDelCaffeThread;
 import incapsulamentoDeiDati.customthread.StampanteThread;
@@ -1058,6 +1065,161 @@ System.out.println("	bonus: " + bonus);
 //    double applyAsDouble(T value);
 //}*/
 
+
+//Esercitazioni sugli stream
+
+
+//ESERCITAZIONI SUGLI STREAM.
+Set<Dipendente> insiemeDiDipendenti = new HashSet<>();
+
+Dipendente dipendenteStream1 = new Dipendente("Arturo", "Azzurri", Sesso.MASCHIO,
+		172F, 71F, ColoreOcchi.VERDI, ColoreCapelli.BIONDI, Cittadino.Nazione.ITALIA,
+		LocalDate.of(1970, Month.MAY, 10), Cittadino.Comune.ROMA);
+dipendenteStream1.setStipendio(2000);
+dipendenteStream1.setLivello(7);
+
+Dipendente dipendenteStream2 = new Dipendente("Angelo", "Blu", Sesso.MASCHIO,
+		190F, 80F, ColoreOcchi.AZZURRI, ColoreCapelli.NERI, Cittadino.Nazione.ITALIA,
+		LocalDate.of(1983, Month.APRIL, 7), Cittadino.Comune.BARI);
+dipendenteStream2.setStipendio(1600);
+dipendenteStream2.setLivello(6);
+
+Dipendente dipendenteStream3 = new Dipendente("Annarita", "Azzurri", Sesso.FEMMINA,
+		170F, 60F, ColoreOcchi.CASTANI, ColoreCapelli.CASTANI, Cittadino.Nazione.ITALIA,
+		LocalDate.of(2000, Month.NOVEMBER, 23), Cittadino.Comune.ROMA);
+dipendenteStream3.setStipendio(2300);
+dipendenteStream3.setLivello(8);
+
+Dipendente dipendenteStream4 = new Dipendente("Caterina", "Violi", Sesso.FEMMINA,
+		183F, 75F, ColoreOcchi.CASTANI, ColoreCapelli.CASTANI, Cittadino.Nazione.ITALIA,
+		LocalDate.of(1991, Month.FEBRUARY, 2), Cittadino.Comune.NAPOLI);
+dipendenteStream4.setStipendio(1500);
+dipendenteStream4.setLivello(7);
+
+Dipendente dipendenteStream5 = new Dipendente("Barbara", "Rosi", Sesso.FEMMINA,
+		172F, 61F, ColoreOcchi.VERDI, ColoreCapelli.ROSSI, Cittadino.Nazione.ITALIA,
+		LocalDate.of(1989, Month.NOVEMBER, 2), Cittadino.Comune.NAPOLI);
+dipendenteStream5.setStipendio(1500);
+dipendenteStream5.setLivello(6);
+
+Dipendente dipendenteStream6 = new Dipendente("Carlo", "Rossi", Sesso.MASCHIO,
+		190F, 88F, ColoreOcchi.VERDI, ColoreCapelli.NERI, Cittadino.Nazione.ITALIA,
+		LocalDate.of(1987, Month.JANUARY, 1), Cittadino.Comune.GENOVA);
+dipendenteStream6.setStipendio(1900);
+dipendenteStream6.setLivello(7);
+
+insiemeDiDipendenti.add(dipendenteStream1);
+insiemeDiDipendenti.add(dipendenteStream2);
+insiemeDiDipendenti.add(dipendenteStream3);
+insiemeDiDipendenti.add(dipendenteStream4);
+insiemeDiDipendenti.add(dipendenteStream5);
+insiemeDiDipendenti.add(dipendenteStream6);
+
+System.out.println("Stream 1 -------------------------------------------------------------");
+
+//Estrarre tutti i dipendenti che si chiamano Carlo.
+insiemeDiDipendenti.stream()
+.filter(dipendente -> "carlo".equalsIgnoreCase(dipendente.getNome()))
+.forEach(dipendente -> System.out.println(dipendente));
+
+System.out.println("Stream 2 -------------------------------------------------------------");
+
+//Altezza media dei dipendenti maschi.
+double altezzaMediaDeiDipendentiMaschi = insiemeDiDipendenti.stream()
+.filter(dipendente -> dipendente.getSesso() == Sesso.MASCHIO)
+.mapToDouble(dipendente -> dipendente.getAltezza())
+.average()
+.getAsDouble();
+
+System.out.println("altezzaMediaDeiDipendentiMaschi: " + altezzaMediaDeiDipendentiMaschi);
+
+System.out.println("Stream 3 -------------------------------------------------------------");
+
+//L'altezza minima dei dipendenti maschi.
+double altezzaMinimaDeiDipendentiMaschi = insiemeDiDipendenti.stream()
+.filter(dipendente -> dipendente.getSesso() == Sesso.MASCHIO)
+.mapToDouble(dipendente -> dipendente.getAltezza())
+.min()
+.getAsDouble();
+
+System.out.println("altezzaMinimaDeiDipendentiMaschi: " + altezzaMinimaDeiDipendentiMaschi);
+
+System.out.println("Stream 4 -------------------------------------------------------------");
+
+//L'altezza maggiore dei dipendenti maschi.
+double altezzaMaggioreDeiDipendentiMaschi = insiemeDiDipendenti.stream()
+.filter(dipendente -> dipendente.getSesso() == Sesso.MASCHIO)
+.mapToDouble(dipendente -> dipendente.getAltezza())
+.max()
+.getAsDouble();
+
+System.out.println("altezzaMaggioreDeiDipendentiMaschi: " + altezzaMaggioreDeiDipendentiMaschi);
+
+System.out.println("Stream 5 -------------------------------------------------------------");
+
+//Gestire un ordinamento di dipendenti in primis per stipendio e come secondo criterio per livello.
+Comparator<Dipendente> confrontaPerStipendioELivello =
+		Comparator.comparing((Dipendente dipendente) -> dipendente.getStipendio())
+		.thenComparing(dipendente -> dipendente.getLivello());
+
+insiemeDiDipendenti.stream()
+.sorted(confrontaPerStipendioELivello)
+.forEach(dipendente -> System.out.println(dipendente));
+
+System.out.println("Stream 6 -------------------------------------------------------------");
+
+//Ottenere una lista o un insieme contennti le lunghezze dei nomi dei dipendenti che iniziano con la "A".
+Stream<Dipendente> stream = insiemeDiDipendenti.stream();
+
+Stream<Dipendente> namesStream = stream.filter(new Predicate<Dipendente>() {
+	
+	@Override
+	public boolean test(Dipendente dipendente)
+	{
+		return dipendente.getNome().toLowerCase().startsWith("a");
+	}
+});
+
+//namesStream.forEach(dipendente -> System.out.println(dipendente));
+
+Stream<Integer> lengthsStream = namesStream.map(new Function<Dipendente, Integer>() {
+
+	@Override
+	public Integer apply(Dipendente dipendente) {
+		// TODO Auto-generated method stub
+		return dipendente.getNome().length();
+	}
+});
+
+//lengthsStream.forEach(dipendente -> System.out.println(dipendente));
+
+System.out.println("Stream 6.1 -------------------------------------------------------------");
+
+//List<Integer> lengthsNames = lengthsStream.collect(Collectors.toList());
+//System.out.println("lengthsNames: " + lengthsNames);
+
+System.out.println("Stream 6.2 -------------------------------------------------------------");
+
+Set<Integer> lengthsNames = lengthsStream.collect(Collectors.toSet());
+System.out.println("lengthsNames: " + lengthsNames);
+
+System.out.println("Stream 7 -------------------------------------------------------------");
+
+//Dipendenti donna di altezza compresa tra i 170cm e 180cm.
+insiemeDiDipendenti.stream()
+.filter(dipendente -> (dipendente.getSesso() == Sesso.FEMMINA
+	&& dipendente.getAltezza() >= 170F
+	&& dipendente.getAltezza() <= 180F))
+.forEach(dipendente -> System.out.println(dipendente));
+
+System.out.println("Stream 8 -------------------------------------------------------------");
+
+//Raggruppare i dipendenti per colore degli occhi.
+Map<ColoreOcchi, List<Dipendente>> dipendentiColoreOcchiMap =
+		insiemeDiDipendenti.stream()
+		.collect(Collectors.groupingBy(Dipendente::getColoreOcchi));
+
+dipendentiColoreOcchiMap.forEach((s, l) -> System.out.println(s + " " + l));
  }
 
 }

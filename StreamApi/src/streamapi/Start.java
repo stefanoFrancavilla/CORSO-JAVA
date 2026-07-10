@@ -371,6 +371,21 @@ public class Start {
 		
 		System.out.println("autoModelliInBaseAiPrezzi: " + autoModelliInBaseAiPrezzi);
 		
+		System.out.println();
+		System.out.println("15--------------------------");
+		System.out.println();
+		
+		Map<String, Double> autoSommaPrezzoPerCasaProduttrice = 
+				automobili.stream()
+				.collect(Collectors.groupingBy(Auto::getCasaProduttrice, Collectors.summingDouble(Auto::getPrezzo)));
+		
+		System.out.println("autoSommaPrezzoPerCasaProduttrice: " + autoSommaPrezzoPerCasaProduttrice);
+		
+		/*
+		 * con questo codice stiamo creando una mappa che raggruppa le auto per casa produttrice e calcola la somma dei prezzi delle auto per ciascuna casa produttrice.
+		 * cioè per ogni casa produttrice, otteniamo la somma dei prezzi di tutte le auto di quella casa produttrice.
+		 * questo grazie alla porzione di codice Collectors.summingDouble(Auto::getPrezzo) che calcola la somma dei prezzi delle auto per ciascuna casa produttrice.
+		 */
 		
 		
 		
