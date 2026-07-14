@@ -1,5 +1,9 @@
 package Studio_stream;
 
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
+
 public class Main2 {
 
 	public static void main(String[] args) {
@@ -373,6 +377,331 @@ Questa operazione è intermedia o terminale?
 
 Deve diventare automatico.
  */
+		
+
+List<Persona> persone = List.of(
+    new Persona("Marco", 25, "IT", 2500),
+    new Persona("Luca", 17, "HR", 1200),
+    new Persona("Anna", 32, "IT", 3200),
+    new Persona("Sara", 28, "Marketing", 2700),
+    new Persona("Paolo", 45, "IT", 4100),
+    new Persona("Giulia", 19, "HR", 1800),
+    new Persona("Marco", 25, "IT", 2500),
+    new Persona("Elena", 37, "Marketing", 3500),
+    new Persona("Davide", 22, "IT", 2100),
+    new Persona("Francesca", 29, "HR", 2600)
+);
+
+//Blocco 1
+//Esercizio 1
+
+persone.stream()
+.filter(p -> p.getEta() >= 18)
+.forEach(System.out::println);
+
+System.out.println("-----------------------------------------");
+//Esercizio 2
+
+persone.stream()
+.filter(p -> p.getReparto().equalsIgnoreCase("IT"))
+.forEach(System.out::println);
+
+System.out.println("-----------------------------------------");
+
+//Esercizio 3
+
+persone.stream()
+.filter(p -> p.getReparto().equalsIgnoreCase("IT"))
+.filter(p -> p.getStipendio() > 3000)
+.forEach(System.out::println);
+
+System.out.println("-----------------------------------------");
+//Esercizio 4
+
+String repartoEscluso = "HR";
+
+persone.stream()
+.filter(p -> !repartoEscluso.equalsIgnoreCase(p.getReparto()))
+.forEach(System.out::println);
+System.out.println("-----------------------------------------");
+
+//Esercizio 5
+
+persone.stream()
+.filter(p -> p.getReparto().equalsIgnoreCase("Marketing"))
+.filter(p -> p.getEta() >= 18)
+.forEach(System.out::println);
+
+System.out.println("-----------------------------------------");
+
+//BLOCCO 2
+//Esercizio 6
+
+persone.stream()
+.map(Persona::getNome)
+.forEach(nome -> System.out.println(nome));
+System.out.println("-----------------------------------------");
+
+//Esercizio 7
+
+persone.stream()
+.map(Persona::getStipendio)
+.forEach(stipendio -> System.out.println(stipendio));
+System.out.println("-----------------------------------------");
+
+//Esercizio 8
+
+persone.stream()
+.map(Persona::getReparto)
+.toList();
+System.out.println("-----------------------------------------");
+//Esercizio 9
+
+persone.stream()
+.forEach(p -> System.out.println(p.getNome() + " - " + p.getEta()));
+System.out.println("-----------------------------------------");
+//BLOCCO 3
+//Esercizio 10
+
+persone.stream()
+.distinct()
+.forEach(p -> System.out.println(p.getNome()));
+System.out.println("-----------------------------------------");
+
+//Esercizio 11
+persone.stream()
+.map(Persona::getReparto)
+.distinct()
+.forEach(reparto -> System.out.println(reparto));
+
+System.out.println("-----------------------------------------");
+
+//BLOCCO 4
+//Esercizio 12
+persone.stream()
+.map(Persona::getNome)
+.sorted()
+.forEach(nome -> System.out.println(nome));
+
+System.out.println("-----------------------------------------");
+
+//Esercizio 13
+
+persone.stream()
+.map(Persona::getEta)
+.sorted()
+.forEach(eta -> System.out.println(eta));
+System.out.println("-----------------------------------------");
+
+//Esercizio 14
+persone.stream()
+.sorted(Comparator.comparingInt(Persona::getEta).reversed())
+.forEach(p -> System.out.println( p.getEta()));
+System.out.println("-----------------------------------------");
+//Esercizio 15
+
+persone.stream()
+.map(Persona::getStipendio)
+.sorted()
+.forEach(stipendio -> System.out.println(stipendio));
+System.out.println("-----------------------------------------");
+
+ //Esercizio 16
+persone.stream()
+.sorted(Comparator.comparing(Persona::getReparto).thenComparing(Persona::getNome))
+.forEach(p -> System.out.println(p.getReparto() + " " + p.getNome()));
+System.out.println("-----------------------------------------");
+
+//Blocco 5
+// Esercizio 17
+
+persone.stream()
+.limit(3)
+.forEach(System.out::println);
+System.out.println("-----------------------------------------");
+// Esercizio 18
+
+persone.stream()
+.skip(5)
+.forEach(System.out::println);
+System.out.println("-----------------------------------------");
+
+//Esercizio 19
+
+persone.stream()
+.sorted(Comparator.comparing(Persona::getEta).reversed())
+.limit(3)
+.forEach(p -> System.out.println(p.getEta()));
+System.out.println("-----------------------------------------");
+
+//Esercizio 20
+
+persone.stream()
+.sorted(Comparator.comparing(Persona::getNome))
+.skip(4)
+.forEach(System.out::println);
+System.out.println("-----------------------------------------");
+
+
+//Blocco 6
+//Esercizio 21
+
+long personeCheLavoranoInIt =
+persone.stream()
+.filter(p -> "IT".equals(p.getReparto()))
+.count();
+
+System.out.println(personeCheLavoranoInIt);
+System.out.println("-----------------------------------------");
+
+//Esercizio 22
+
+long numeroMaggiorenni = 
+persone.stream()
+.filter(p-> p.getEta() >= 18)
+.count();
+System.out.println(numeroMaggiorenni);
+System.out.println("-----------------------------------------");
+
+//Esercizio 23
+
+long numeroPersoneCon3000Euro = 
+persone.stream()
+.filter(p -> p.getStipendio() >= 3000)
+.count();
+System.out.println(numeroPersoneCon3000Euro);
+System.out.println("-----------------------------------------");
+
+//BLOCCO 7
+//Esercizio 24
+
+boolean esisteMinorenne =
+persone.stream()
+.anyMatch(p -> p.getEta() < 18);
+System.out.println(esisteMinorenne);
+System.out.println("-----------------------------------------");
+
+//Esercizio 25
+
+boolean tuttiMaggiorenni = 
+persone.stream()
+.allMatch(p -> p.getEta() >= 18);
+System.out.println(tuttiMaggiorenni);
+System.out.println("-----------------------------------------");
+//Esercizio 26
+
+boolean nessunoLavoranoInAmministrazione = 
+persone.stream()
+.noneMatch(p -> "Amministrazione".equals(p.getReparto()));
+System.out.println(nessunoLavoranoInAmministrazione);
+System.out.println("-----------------------------------------");
+
+// Esercizio 27
+
+
+boolean esistePiu5000 = 
+persone.stream()
+.allMatch(p -> p.getStipendio() > 5000);
+System.out.println(esistePiu5000);
+System.out.println("-----------------------------------------");
+
+
+//BLOCCO 8
+//Esercizio 28
+
+Optional<Persona> primoDipendenteIT = 
+persone.stream()
+.filter(p -> "IT".equals(p.getReparto()))
+.findFirst();
+System.out.println(primoDipendenteIT);
+System.out.println("-----------------------------------------");
+
+//Esercizio 29
+Optional<Persona> primoMaggiorenne =
+persone.stream()
+.filter(p -> p.getEta() >= 18)
+.findFirst();
+
+System.out.println(primoMaggiorenne);
+System.out.println("-----------------------------------------");
+
+//Esercizio 30
+
+Optional<Persona> primoAlmeno3000 =
+
+persone.stream()
+.filter(p -> p.getStipendio() >= 3000)
+.findFirst();
+System.out.println(primoAlmeno3000);
+System.out.println("-----------------------------------------");
+
+//BLOCCO 9
+//Esercizio 31
+
+Optional<Persona> primopiuAnziano =
+persone.stream()
+.max(Comparator.comparing(Persona::getEta));
+System.out.println(primopiuAnziano);
+System.out.println("-----------------------------------------");
+
+
+//Esercizio 32
+
+Optional<Persona> piuGiovane =
+persone.stream()
+.min(Comparator.comparing(Persona::getEta));
+System.out.println(piuGiovane);
+System.out.println("-----------------------------------------");
+
+
+//Esercizio 33
+
+int stipendioMassimo =
+persone.stream()
+.map(Persona::getStipendio)
+.max(Integer::compareTo)
+.orElse(0);
+
+System.out.println(stipendioMassimo);
+System.out.println("-----------------------------------------");
+
+//Esercizio 34
+
+Optional<Persona> nomePiuPiccolo =
+persone.stream()
+.min(Comparator.comparing(Persona::getNome));
+System.out.println(nomePiuPiccolo);
+System.out.println("-----------------------------------------");
+
+//Blocco 10
+
+//Esercizio 35
+
+int sommaStipendi = 
+persone.stream()
+.map(Persona::getStipendio)
+.reduce(0, Integer::sum);
+System.out.println(sommaStipendi);
+System.out.println("-----------------------------------------");
+
+//Esercizio 36
+
+int sommaEta = 
+persone.stream()
+.map(Persona::getEta)
+.reduce(0, Integer::sum);
+System.out.println(sommaEta);
+System.out.println("-----------------------------------------");
+
+//Esercizio 37
+
+
+
+
+
+
+
+
 	}
 
 }
