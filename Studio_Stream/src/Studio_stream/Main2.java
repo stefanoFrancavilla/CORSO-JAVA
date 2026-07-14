@@ -2,7 +2,9 @@ package Studio_stream;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class Main2 {
 
@@ -695,8 +697,197 @@ System.out.println("-----------------------------------------");
 
 //Esercizio 37
 
+String tuttiNomi = 
+persone.stream()
+.map(Persona::getNome)
+.reduce("", (a, b) -> a + " " + b);
+System.out.println(tuttiNomi);
+System.out.println("-----------------------------------------");
+
+// Esercizio 38
+
+int stipendioTotale = 
+persone.stream()
+.filter(p -> "IT".equals(p.getReparto()))
+.map(Persona::getStipendio)
+.reduce(0, (a, b) -> a + b);
+System.out.println(stipendioTotale);
+System.out.println("-----------------------------------------");
+
+//BLOCCO 11
+//Esercizio 39
+
+persone.stream()
+.filter(p -> p.getEta() >= 18)
+.map(Persona::getNome)
+.distinct()
+.sorted()
+.toList()
+.forEach(System.out::println);
+System.out.println("-----------------------------------------");
+
+//Esercizio 40
+
+persone.stream()
+.filter(p -> "IT".equals(p.getReparto()))
+.filter(p -> p.getStipendio() > 2500)
+.map(Persona::getNome)
+.sorted()
+.limit(2)
+.toList()
+.forEach(System.out::println);
+System.out.println("-----------------------------------------");
+
+//Esercizio 41
+
+persone.stream()
+.sorted(Comparator.comparing(Persona::getStipendio).reversed())
+.map(Persona::getNome)
+.forEach(nome -> System.out.println(nome));
+System.out.println("-----------------------------------------");
 
 
+//Esercizio 42
+
+persone.stream()
+.sorted(Comparator.comparing(Persona::getEta))
+.skip(2)
+.limit(3)
+.forEach(System.out::println);
+System.out.println("-----------------------------------------");
+
+
+//Esercizio 43
+
+persone.stream()
+.map(Persona::getReparto)
+.distinct()
+.sorted()
+.forEach(System.out::println);
+System.out.println("-----------------------------------------");
+
+//Esercizio 44
+
+int sommaStipendiAlti =
+persone.stream()
+.sorted(Comparator.comparing(Persona::getStipendio).reversed())
+.limit(5)
+.map(Persona::getStipendio)
+.reduce(0, (a, b) -> a + b);
+
+System.out.println(sommaStipendiAlti);
+System.out.println("-----------------------------------------");
+
+
+//Blocco 12
+//Esercizio 45
+
+//non ho capito la traccia
+
+//Esercizio 46
+
+
+Optional<Persona> stipendioMassimoMigliorato =
+persone.stream()
+.max(Comparator.comparing(Persona::getStipendio));
+System.out.println(stipendioMassimoMigliorato);
+System.out.println("-----------------------------------------");
+
+//Esercizio 47
+
+//int sommaStipendiAlti =
+//persone.stream()
+//.sorted(Comparator.comparing(Persona::getStipendio).reversed())  //impostiamo un'ordina dal più alto al più basso
+//.limit(5) // ne prendo solo i primi 5
+//.map(Persona::getStipendio)  // da un'oggetto persona recuperiamo il valore dello stipendio
+//.reduce(0, (a, b) -> a + b); // sommiamo tutti gli stipendi filtrati
+
+
+
+/*
+ * Map<String, List<Persona>> gruppi =
+persone.stream()
+       .collect(Collectors.groupingBy(Persona::getReparto));
+       
+       
+       
+       Map<String, List<String>> risultato =
+persone.stream()
+       .collect(
+           Collectors.groupingBy(
+               Persona::getReparto,
+               Collectors.mapping(
+                   Persona::getNome,
+                   Collectors.toList()
+               )
+           )
+       );
+
+Sembra tanto codice.
+
+Ma se lo leggiamo in italiano:
+
+Prendi le persone
+
+↓
+
+Raggruppale per reparto
+
+↓
+
+Dentro ogni reparto
+estrai il nome
+
+↓
+
+Raccogli quei nomi in una lista
+ */
+
+
+//Esercizio map
+
+Map<String, List<Integer>> gruppo =
+
+persone.stream()
+.collect(
+		Collectors.groupingBy(Persona::getReparto,
+				Collectors.mapping(
+						Persona::getEta,
+						Collectors.toList())));
+System.out.println(gruppo);
+System.out.println("-----------------------------------------");
+
+Map<String, Long> personePerGruppo = 
+
+persone.stream()
+.collect(Collectors.groupingBy(Persona::getReparto,
+		Collectors.counting()));
+
+System.out.println(personePerGruppo);
+System.out.println("-----------------------------------------");
+
+Map<String, Integer> sommaStipendiPerReparto =
+persone.stream()
+.collect(Collectors.groupingBy(Persona::getReparto,
+		Collectors.summingInt(Persona::getStipendio)));
+System.out.println(sommaStipendiPerReparto);
+System.out.println("-----------------------------------------");
+
+Map<String, Double> etaMediaGruppi = 
+persone.stream()
+.collect(Collectors.groupingBy(Persona::getReparto,
+		Collectors.averagingDouble(Persona::getEta)));
+System.out.println(etaMediaGruppi);
+System.out.println("-----------------------------------------");
+
+
+Map<String, String> gruppoString = 
+persone.stream()
+.collect(Collectors.groupingBy(Persona::getReparto,
+		Collectors.mapping(Persona::getNome,
+		Collectors.joining(", "))));
+System.out.println(gruppoString);
+System.out.println("-----------------------------------------");
 
 
 
