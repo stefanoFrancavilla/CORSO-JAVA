@@ -298,7 +298,53 @@ Questo esercizio misura il ragionamento, non la memoria.
 				//Esercizio 4
 				
 		
+				Map<String, String> esercizio4 =
+					    persone.stream()
+					    .collect(Collectors.groupingBy(
+					        Persona::getReparto,
+					        Collectors.collectingAndThen(
+					            Collectors.maxBy(Comparator.comparingInt(Persona::getEta)),
+					            opt -> opt.map(Persona::getNome).orElse(null)
+					        )
+					    ));
 				
+				System.out.println(esercizio4);
+				System.out.println("-----------------------------------------"); //aiutato
+				
+				//Esercizio 5
+				
+				Map<String, String> esercizio5 =
+					    persone.stream()
+					    .sorted(Comparator.comparing(Persona::getNome))  
+					    .collect(Collectors.groupingBy(
+					        Persona::getReparto,
+					        Collectors.mapping(
+					            Persona::getNome,                
+					            Collectors.joining(", ")         
+					        )
+					    ));
+				System.out.println(esercizio5);
+				System.out.println("-----------------------------------------"); // aiutato
+				
+				
+				//Esercizio 6
+				
+				boolean esisteRepartoTuttiSopra2000 =
+					    persone.stream()
+					    .collect(Collectors.groupingBy(
+					        Persona::getReparto,
+					        Collectors.toList()
+					    ))
+					    .values()
+					    .stream()
+					    .anyMatch(
+					        gruppo -> gruppo.stream()
+					            .allMatch(p -> p.getStipendio() > 2000)
+					    );
+				System.out.println(esisteRepartoTuttiSopra2000);
+				System.out.println("-----------------------------------------"); // aiutato
+				
+			
 				
 				
 				
