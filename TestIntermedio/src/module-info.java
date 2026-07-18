@@ -4,5 +4,5 @@
 /**
  * 
  */
-module inputOutput {
+module TestIntermedio {
 }
