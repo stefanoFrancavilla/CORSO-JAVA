@@ -108,30 +108,41 @@ public class StartSwing {
 		jframe.setVisible(true);
 	}
 	
-	private static String loadRemoteJsonData(String path) throws IOException
-	{
-		String jsonData = null;
-		
-		URL url = new URL(path);
-		HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-		httpURLConnection.setRequestMethod("GET");
-		
-		try(BufferedReader reader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream())))
-		{
-			String line;
-			StringBuilder stringBuilder = new StringBuilder();
-			
-			while((line = reader.readLine()) != null)
-			{
-				stringBuilder.append(line);
-				
-				//System.out.println("line: " + line);
-			}
-			
-			jsonData = stringBuilder.toString();
-		}
-		
-		return jsonData;
+	private static String loadRemoteJsonData(String path) throws IOException {
+	    URL url = new URL(path);
+	    HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
+	    httpURLConnection.setRequestMethod("GET");
+	    httpURLConnection.setRequestProperty("x-api-key", "LA_TUA_API_KEY");
+	    httpURLConnection.setRequestProperty("Accept", "application/json");
+	    // Se necessario:
+	    // httpURLConnection.setRequestProperty("X-Reqres-Env", "prod");
+
+	    int statusCode = httpURLConnection.getResponseCode();
+
+	    BufferedReader reader;
+	    if (statusCode >= 200 && statusCode < 300) {
+	        reader = new BufferedReader(
+	                new InputStreamReader(httpURLConnection.getInputStream()));
+	    } else {
+	        reader = new BufferedReader(
+	                new InputStreamReader(httpURLConnection.getErrorStream()));
+	    }
+
+	    try (reader) {
+	        String line;
+	        StringBuilder stringBuilder = new StringBuilder();
+
+	        while ((line = reader.readLine()) != null) {
+	            stringBuilder.append(line);
+	        }
+
+	        if (statusCode >= 200 && statusCode < 300) {
+	            return stringBuilder.toString();
+	        } else {
+	            throw new IOException("HTTP " + statusCode + ": " + stringBuilder);
+	        }
+	    }
 	}
 	
 	private static List<Persona2> getPeopleFromJsonData(String jsonData)
