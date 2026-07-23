@@ -1,5 +1,6 @@
 package GestioneBiblioteca;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Biblioteca {
@@ -9,15 +10,11 @@ public class Biblioteca {
 	private List<Utente> utenti;
 	
 	//costruttore
+	
 	public Biblioteca()
 	{
-		
-	}
-	
-	public Biblioteca(List<Libro> libri, List<Utente> utenti) {
-		super();
-		this.libri = libri;
-		this.utenti = utenti;
+	    libri = new ArrayList<>();
+	    utenti = new ArrayList<>();
 	}
 
 	//metodi getter/setter
@@ -47,29 +44,47 @@ public class Biblioteca {
 	
 	public Libro rimuoviLibro(String isbn)
 	{
-		Libro libroDaEliminare = null;
-		for(int i = 0; i < libri.size(); i ++)
-		{
-			if(libri.get(i).getIsbn().equals(isbn) == true)
-			{
-				libroDaEliminare = libri.get(i);
-			}
-		}
-		return libroDaEliminare;
+	    for(int i = 0; i < libri.size(); i++)
+	    {
+	        if(libri.get(i).getIsbn().equals(isbn))
+	        {
+	            return libri.remove(i);
+	        }
+	    }
+
+	    return null;
 	}
-	
-	public Boolean cercaLibroPerTitolo(String titolo)
+	public Libro cercaLibroPerTitolo(String titolo)
 	{
-		boolean trovato = false;
+		Libro libroDaCercare = null;
 		for(int i = 0;i < libri.size(); i++)
 		{
-			if (libri.get(i).getTitolo().equals(titolo) == true)
+			
+			if (libri.get(i).getTitolo().equalsIgnoreCase(titolo) )
 			{
-				trovato = true;
+				
+				if (libri.get(i).isDisponibile() == true)
+				{
+					libroDaCercare = libri.get(i);
+				}
+				
 			}
 		}
 		
-		return trovato;
+		return libroDaCercare;
+		
+	}
+	public Libro cercaLibroPerIsbn(String isbn)
+	{
+	    for(Libro libro : libri)
+	    {
+	        if(libro.getIsbn().equals(isbn))
+	        {
+	            return libro;
+	        }
+	    }
+
+	    return null;
 	}
 	
 	public void aggiungiUtente(Utente utente)
@@ -79,8 +94,86 @@ public class Biblioteca {
 	
 	public void prestaLibro(String isbn, String id)
 	{
-		
+	    for(int i = 0; i < libri.size(); i++)
+	    {
+	        if(libri.get(i).getIsbn().equals(isbn)
+	                && libri.get(i).isDisponibile())
+	        {
+	            for(int j = 0; j < utenti.size(); j++)
+	            {
+	                if(utenti.get(j).getId().equals(id))
+	                {
+	                    libri.get(i).setDisponibile(false);
+	                    utenti.get(j).prendiInPrestito(libri.get(i));
+	                    return;
+	                }
+	            }
+	        }
+	    }
 	}
 	
+	public void restituisciLibro(String isbn, String id)
+	{
+	    for(int i = 0; i < libri.size(); i++)
+	    {
+	        if(libri.get(i).getIsbn().equals(isbn))
+	        {
+	            for(int j = 0; j < utenti.size(); j++)
+	            {
+	                if(utenti.get(j).getId().equals(id))
+	                {
+	                    libri.get(i).setDisponibile(true);
+	                    utenti.get(j).restituisciLibro(libri.get(i));
+	                    return;
+	                }
+	            }
+	        }
+	    }
+	}
+	
+	public void stampaLibri()
+	{
+		System.out.println("--------Libri biblioteca------------");
+		for(Libro libro : libri)
+		{
+			System.out.println(libro.toString());
+		}
+	}
+	
+	public void stampaUtenti()
+	{
+		System.out.println("--------Lista Utenti Biblioteca------------");
+		for(Utente utente : utenti)
+		{
+			System.out.println(utente.toString());
+		}
+	}
+	
+	
+	public boolean accediMenuUtente(String id)
+	{
+		boolean accedi = false;
+		for(int i = 0;i < utenti.size(); i++)
+		{
+			if (utenti.get(i).getId().equalsIgnoreCase(id))
+			{
+				accedi = true;
+			}
+		}
+		return accedi;
+	}
+	
+	public Utente controlloUtenteTramiteId (String id)
+	{
+		Utente utenteTrovato = null;
+		for(int i = 0;i < utenti.size(); i++)
+		{
+			if (utenti.get(i).getId().equalsIgnoreCase(id))
+			{
+				utenteTrovato = utenti.get(i);
+			}
+		}
+		return utenteTrovato;
+	}
 	
 }

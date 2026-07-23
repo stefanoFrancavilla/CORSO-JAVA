@@ -6,11 +6,11 @@ public class Utente {
 
 	//variabili di istanza
 	private String nome;
-	private int id;
+	private String id;
 	private List<Libro> libriPresi;
 	
 	//costruttore
-	public Utente(String nome, int id, List<Libro> libriPresi) {
+	public Utente(String nome, String id, List<Libro> libriPresi) {
 		this.nome = nome;
 		this.id = id;
 		this.libriPresi = libriPresi;
@@ -27,11 +27,11 @@ public class Utente {
 		this.nome = nome;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -69,7 +69,21 @@ public class Utente {
 		}
 	}
 	
-	
+	public void stampaLibriPresi()
+	{
+		if(libriPresi.isEmpty())
+		{
+			System.out.println("La lista dei libri presi è vuota");
+		}
+		else
+		{
+			for(Libro libro : libriPresi)
+			{
+				System.out.println(libro.toString());
+			}
+			
+		}
+	}
 	
 	
 	
