@@ -1,8 +1,9 @@
-package Gestione_di_un_videoNoleggio;
+package Sistema_di_gestione_ordini;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Ordine {
 
@@ -18,15 +19,14 @@ public class Ordine {
 	//-------------------------------------------------------------------------------------------
 	//costruttore
 	
-	public Ordine(String idOrdine, Cliente cliente, List<Prodotto> prodotti, double totale, boolean completato,
-			LocalDateTime data) {
+	public Ordine(String idOrdine, Cliente cliente) {
 		
 		this.idOrdine = idOrdine;
 		this.cliente = cliente;
-		this.prodotti = prodotti;
-		this.totale = totale;
-		this.completato = completato;
-		this.data = data;
+		this.prodotti = new ArrayList<>();
+		this.totale = 0;
+		this.completato = false;
+		this.data = LocalDateTime.now();
 	}
 	//-------------------------------------------------------------------------------------------
 	//metodi getter setter
@@ -58,9 +58,6 @@ public class Ordine {
 		return totale;
 	}
 
-	public void setTotale(double totale) {
-		this.totale = totale;
-	}
 
 	public boolean isCompletato() {
 		return completato;
@@ -86,7 +83,6 @@ public class Ordine {
 		return "Ordine: \n "
 				+ "idOrdine=" + idOrdine + ", \n"
 				+ " cliente=" + cliente + ", \n"
-				+ "prodotti=" + prodotti + ", \n"
 				+ " totale=" + totale + ",\n"
 				+ " completato=" + completato + ", \n"
 				+ " data=" + data + ".";
@@ -94,7 +90,7 @@ public class Ordine {
 	
 	//-------------------------------------------------------------------------------------------
 	
-	public double calcolaOrdine (List<Prodotto> prodotti)
+	public double calcolaOrdine ()
 	{
 		double totale = 0;
 		
@@ -112,6 +108,63 @@ public class Ordine {
 		
 		return totale;
 	}
+	
+	public double calcolaTotale()
+	{
+		double totale = 0;
+		
+		for(Prodotto p : prodotti){
+		    totale += p.getPrezzo();
+		}
+		
+		return totale;
+	}
+	
+	//-------------------------------------------------------------------------------------------
+
+	public void aggiungiProdotto(Prodotto prodotto)
+	{
+		prodotti.add(prodotto);
+		calcolaTotale();
+		
+	}
+	
+	//-------------------------------------------------------------------------------------------
+
+	public void rimuoviProdotto(Prodotto prodotto)
+	{
+		prodotti.remove(prodotto);
+		calcolaTotale();
+	}
+	
+	//-------------------------------------------------------------------------------------------
+
+	public boolean completaOrdine()
+	{
+		return true;
+	}
+	
+	//-------------------------------------------------------------------------------------------
+	@Override
+	public int hashCode() {
+		return Objects.hash(idOrdine);
+	}
+	
+	//-------------------------------------------------------------------------------------------
+	
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Ordine other = (Ordine) obj;
+		return Objects.equals(idOrdine, other.idOrdine);
+	}
+	
 	
 	
 

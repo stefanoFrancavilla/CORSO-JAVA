@@ -1,4 +1,4 @@
-package Gestione_di_un_videoNoleggio;
+package Sistema_di_gestione_ordini;
 
 public enum Categoria {
 

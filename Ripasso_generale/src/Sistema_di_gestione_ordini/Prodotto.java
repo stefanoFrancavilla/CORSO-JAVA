@@ -1,4 +1,4 @@
-package Gestione_di_un_videoNoleggio;
+package Sistema_di_gestione_ordini;
 
 import java.util.Objects;
 
@@ -55,6 +55,7 @@ public class Prodotto {
 	}
 
 	public void setPrezzo(double prezzo) {
+		if(prezzo >= 0)
 		this.prezzo = prezzo;
 	}
 
@@ -63,6 +64,8 @@ public class Prodotto {
 	}
 
 	public void setQuantitaMagazzino(int quantitaMagazzino) {
+		
+		if(quantitaMagazzino >= 0)
 		this.quantitaMagazzino = quantitaMagazzino;
 	}
 

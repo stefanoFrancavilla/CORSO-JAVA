@@ -1,7 +1,8 @@
-package Gestione_di_un_videoNoleggio;
+package Sistema_di_gestione_ordini;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Cliente {
 
@@ -14,12 +15,12 @@ public class Cliente {
 	
 	//-------------------------------------------------------------------------------------------
 	//costruttore
-	public Cliente(String id, String nome, String email, List<Ordine> ordini) {
+	public Cliente(String id, String nome, String email) {
 		
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
-		this.ordini = ordini;
+		this.ordini = new ArrayList<>();
 	}
 
 	//-------------------------------------------------------------------------------------------
@@ -58,6 +59,50 @@ public class Cliente {
 	//-------------------------------------------------------------------------------------------
 	//metodi
 
+	
+	
+	//-------------------------------------------------------------------------------------------
+	public void aggiungiOrdine (Ordine ordine)
+	{
+		ordini.add(ordine);
+		
+
+	}
+	//-------------------------------------------------------------------------------------------
+//	public void stampaOrdini ()
+//	{
+//		if (ordini.isEmpty())
+//		{
+//			System.out.println("Lista degli ordini vuota");
+//		}
+//		else
+//		{
+//			System.out.println("-------------- Lista degli ordini -------------------");
+//			for (Ordine ordine : ordini)
+//			{
+//				System.out.println(ordine.toString());
+//			}
+//		}
+//	}
+	//-------------------------------------------------------------------------------------------
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cliente other = (Cliente) obj;
+		return Objects.equals(id, other.id);
+	}
+	
 	@Override
 	public String toString() {
 		return "Cliente  \n"
@@ -66,38 +111,6 @@ public class Cliente {
 				+ " email =" + email + ", \n"
 				+ " ordini =" + ordini + ".";
 	}
-	
-	//-------------------------------------------------------------------------------------------
-	public void aggiungiOrdine (Ordine ordine)
-	{
-		ordini.add(ordine);
-		System.out.println("Ordine aggiunto");
-		System.out.println();
-		System.out.println("------------------------------");
-		System.out.println();
-	}
-	//-------------------------------------------------------------------------------------------
-	public void stampaOrdini ()
-	{
-		if (ordini.isEmpty())
-		{
-			System.out.println("Non ci sono ordini");
-		}
-		else
-		{
-			System.out.println("-------------- Lista degli ordini -------------------");
-			for (Ordine ordine : ordini)
-			{
-				System.out.println(ordine.toString());
-			}
-			System.out.println();
-			System.out.println("------------------------------");
-			System.out.println();
-		}
-	}
-	//-------------------------------------------------------------------------------------------
-	
-	
 	
 	
 
