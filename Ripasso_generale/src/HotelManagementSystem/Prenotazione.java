@@ -1,12 +1,12 @@
 package HotelManagementSystem;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 public class Prenotazione {
 
-	//variabili di istanza
-	
+	// Variabili di istanza
 	private String codice;
 	private Cliente cliente;
 	private Camera camera;
@@ -14,22 +14,39 @@ public class Prenotazione {
 	private LocalDate checkOut;
 	private StatoPrenotazione statoPrenotazione;
 	
-	//costruttore 
+	// Costruttore 
 	public Prenotazione(String codice, Cliente cliente, Camera camera, LocalDate checkIn, LocalDate checkOut) {
+		setCodice(codice);
+		setCliente(cliente);
+		setCamera(camera);
 		
-		this.codice = codice;
-		this.cliente = cliente;
-		this.camera = camera;
+		// Impostiamo prima entrambe le date con controllo incrociato
+		validaDate(checkIn, checkOut);
 		this.checkIn = checkIn;
 		this.checkOut = checkOut;
+		
 		this.statoPrenotazione = StatoPrenotazione.CREATA;
 	}
 
+	// Helper di validazione per le date
+	private void validaDate(LocalDate checkIn, LocalDate checkOut) {
+		if (checkIn == null || checkOut == null) {
+			throw new IllegalArgumentException("Le date di check-in e check-out non possono essere null");
+		}
+		if (!checkOut.isAfter(checkIn)) {
+			throw new IllegalArgumentException("La data di check-out deve essere successiva alla data di check-in");
+		}
+	}
+
+	// Metodi getter e setter
 	public String getCodice() {
 		return codice;
 	}
 
 	public void setCodice(String codice) {
+		if (codice == null || codice.isBlank()) {
+			throw new IllegalArgumentException("Il codice della prenotazione non può essere null o vuoto");
+		}
 		this.codice = codice;
 	}
 
@@ -38,6 +55,9 @@ public class Prenotazione {
 	}
 
 	public void setCliente(Cliente cliente) {
+		if (cliente == null) {
+			throw new IllegalArgumentException("Il cliente non può essere null");
+		}
 		this.cliente = cliente;
 	}
 
@@ -46,6 +66,9 @@ public class Prenotazione {
 	}
 
 	public void setCamera(Camera camera) {
+		if (camera == null) {
+			throw new IllegalArgumentException("La camera non può essere null");
+		}
 		this.camera = camera;
 	}
 
@@ -54,6 +77,7 @@ public class Prenotazione {
 	}
 
 	public void setCheckIn(LocalDate checkIn) {
+		validaDate(checkIn, this.checkOut != null ? this.checkOut : checkIn.plusDays(1));
 		this.checkIn = checkIn;
 	}
 
@@ -62,6 +86,7 @@ public class Prenotazione {
 	}
 
 	public void setCheckOut(LocalDate checkOut) {
+		validaDate(this.checkIn != null ? this.checkIn : checkOut.minusDays(1), checkOut);
 		this.checkOut = checkOut;
 	}
 
@@ -70,11 +95,22 @@ public class Prenotazione {
 	}
 
 	public void setStatoPrenotazione(StatoPrenotazione statoPrenotazione) {
+		if (statoPrenotazione == null) {
+			throw new IllegalArgumentException("Lo stato della prenotazione non può essere null");
+		}
 		this.statoPrenotazione = statoPrenotazione;
 	}
 
-	//metodi
-	
+	// Metodi di utilità
+	public long getNottiSoggiorno() {
+		return ChronoUnit.DAYS.between(checkIn, checkOut);
+	}
+
+	public double getCostoTotale() {
+		return getNottiSoggiorno() * camera.getPrezzoNotte();
+	}
+
+	// Metodi override
 	@Override
 	public int hashCode() {
 		return Objects.hash(codice);
@@ -94,18 +130,14 @@ public class Prenotazione {
 
 	@Override
 	public String toString() {
-		return "Prenotazione \n"
-				+ "codice = " + codice + ", \n"
-						+ " cliente = " + cliente + ", \n"
-								+ " camera = " + camera + ", \n"
-										+ " checkIn = " + checkIn + ", \n"
-												+ " checkOut = " + checkOut + ", \n"
-					                                	+ " statoPrenotazione=" + statoPrenotazione + ".";
+		return "Prenotazione:\n"
+				+ "  Codice: " + codice + "\n"
+				+ "  Cliente: " + cliente.getNome() + " " + cliente.getCognome() + "\n"
+				+ "  Camera N°: " + camera.getNumero() + "\n"
+				+ "  Check-In: " + checkIn + "\n"
+				+ "  Check-Out: " + checkOut + "\n"
+				+ "  Notti: " + getNottiSoggiorno() + "\n"
+				+ "  Costo Totale: " + getCostoTotale() + " €\n"
+				+ "  Stato: " + statoPrenotazione;
 	}
-	
-	
-	
-	
-	
-	
 }

@@ -4,29 +4,29 @@ import java.util.Objects;
 
 public class Camera {
 
-	//variabili di istanza
-	
+	// Variabili di istanza
 	private int numero;
 	private TipoCamera tipoCamera;
 	private double prezzoNotte;
 	private boolean isDisponibile;
 	
-	//costruttore
-	public Camera(int numero, TipoCamera tipoCamera, double prezzoNotte) {
-		
-		this.numero = numero;
-		this.tipoCamera = tipoCamera;
-		this.prezzoNotte = prezzoNotte;
-		this.isDisponibile = true;
+	
+	// Costruttore
+	public Camera(int numero, TipoCamera tipoCamera) {
+		setNumero(numero);
+		setTipoCamera(tipoCamera);
+		this.isDisponibile = true; 
 	}
 
-	//metodi getter/setter
-	
+	// Metodi getter e setter
 	public int getNumero() {
 		return numero;
 	}
 
 	public void setNumero(int numero) {
+		if (numero <= 0) {
+			throw new IllegalArgumentException("Il numero della camera deve essere maggiore di 0");
+		}
 		this.numero = numero;
 	}
 
@@ -35,14 +35,22 @@ public class Camera {
 	}
 
 	public void setTipoCamera(TipoCamera tipoCamera) {
-		this.tipoCamera = tipoCamera;
-	}
+        if (tipoCamera == null) {
+            throw new IllegalArgumentException("Il tipo di camera non può essere null");
+        }
+        this.tipoCamera = tipoCamera;
+        this.prezzoNotte = tipoCamera.getPrezzoBase();
+    }
 
 	public double getPrezzoNotte() {
 		return prezzoNotte;
 	}
 
 	public void setPrezzoNotte(double prezzoNotte) {
+		if (prezzoNotte <= 0) {
+			throw new IllegalArgumentException("Il prezzo per notte deve essere maggiore di 0");
+		}
+		
 		this.prezzoNotte = prezzoNotte;
 	}
 
@@ -54,6 +62,7 @@ public class Camera {
 		this.isDisponibile = isDisponibile;
 	}
 
+	// Metodi override
 	@Override
 	public int hashCode() {
 		return Objects.hash(numero);
@@ -73,20 +82,10 @@ public class Camera {
 
 	@Override
 	public String toString() {
-		return "Camera \n"
-				+ "numero = " + numero + ", \n"
-						+ " tipoCamera = " + tipoCamera + ", \n"
-								+ " prezzoNotte = " + prezzoNotte+ ", \n"
-										+ "isDisponibile = " + isDisponibile + ".";
+		return "Camera:\n"
+				+ "  Numero: " + numero + "\n"
+				+ "  Tipo: " + tipoCamera + "\n"
+				+ "  Prezzo/Notte: " + prezzoNotte + " €\n"
+				+ "  Disponibile: " + (isDisponibile ? "Sì" : "No");
 	}
-	
-	public boolean Disponibile()
-	{
-		boolean disponibile = true;
-		
-		return disponibile;
-	}
-	
-	
-	
 }

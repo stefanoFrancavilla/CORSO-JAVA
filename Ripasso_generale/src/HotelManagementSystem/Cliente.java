@@ -13,18 +13,24 @@ public class Cliente {
 	//costruttore
 	public Cliente(String id, String nome, String cognome, String email) {
 		
-		this.id = id;
-		this.nome = nome;
-		this.cognome = cognome;
-		this.email = email;
+		
+		setId(id);
+		setNome(nome);
+		setCognome(cognome);
+		setEmail(email);
 	}
 
 	//metodi getter/setter
 	public String getId() {
 		return id;
 	}
-
+	
 	public void setId(String id) {
+		
+		if(id == null || id.isBlank()) {
+			throw new IllegalArgumentException("ID non valido"); 
+		}
+		
 		this.id = id;
 	}
 
@@ -33,6 +39,11 @@ public class Cliente {
 	}
 
 	public void setNome(String nome) {
+		
+		if(nome == null || nome.isBlank()) {
+			throw new IllegalArgumentException("Nome non valido"); 
+		}
+		
 		this.nome = nome;
 	}
 
@@ -41,14 +52,26 @@ public class Cliente {
 	}
 
 	public void setCognome(String cognome) {
+		
+		if(cognome == null || cognome.isBlank()) {
+			throw new IllegalArgumentException("Cognome non valido"); 
+		}
+		
 		this.cognome = cognome;
 	}
 
 	public String getEmail() {
+		
 		return email;
 	}
 
+	
+
 	public void setEmail(String email) {
+		if (email == null || !email.contains("@"))
+		{
+			throw new IllegalArgumentException("Email non valido"); 
+		}
 		this.email = email;
 	}
 
