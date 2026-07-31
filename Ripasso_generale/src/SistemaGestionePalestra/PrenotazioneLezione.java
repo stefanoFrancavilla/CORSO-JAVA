@@ -10,14 +10,32 @@ public class PrenotazioneLezione {
 	private Membro membro;
 	private Corso corso;
 	private LocalDate data;
+	private TipoAbbonamento tipoAbbonamento;
+	private LocalDate dataScadenza;
 	
-	
-	public PrenotazioneLezione(String codicePrenotazione, Membro membro, Corso corso) {
+	public PrenotazioneLezione(String codicePrenotazione, Membro membro, Corso corso, TipoAbbonamento tipoAbbonamento ) {
 		
 		setCodicePrenotazione(codicePrenotazione);
 		setMembro(membro);
 		setCorso(corso);
+		setTipoAbbonamento(tipoAbbonamento);
+		
 		this.data = LocalDate.now();
+		this.dataScadenza = data.plusMonths(tipoAbbonamento.getDurataInMesi());
+		
+	}
+
+
+	
+
+
+	public LocalDate getDataScadenza() {
+		return dataScadenza;
+	}
+
+
+	public void setDataScadenza(LocalDate dataScadenza) {
+		this.dataScadenza = dataScadenza;
 	}
 
 
@@ -49,6 +67,15 @@ public class PrenotazioneLezione {
 	}
 
 
+	public TipoAbbonamento getTipoAbbonamento() {
+		return tipoAbbonamento;
+	}
+
+
+	public void setTipoAbbonamento(TipoAbbonamento tipoAbbonamento) {
+		this.tipoAbbonamento = tipoAbbonamento;
+	}
+	
 	public String getCodicePrenotazione() {
 		return codicePrenotazione;
 	}
