@@ -118,7 +118,20 @@ public class Palestra {
 	
 	public void inserisciPrenotazione ( PrenotazioneLezione prenotazione)
 	{
-		if()
+		if(prenotazione == null)
+		{
+			throw new IllegalArgumentException("Non è possibile effettuare la prenotazione");
+		}
+		
+		for(PrenotazioneLezione prenotazioneCorrente : prenotazioni)
+		{
+			if(prenotazioneCorrente.getCodicePrenotazione().equals(prenotazione.getCodicePrenotazione()))
+			{
+				System.out.println("Prenotazione presente nel sistema");
+				return;
+			}
+		}
+		if(pr)
 	}
 	
 	

@@ -17,7 +17,8 @@ public class Corso {
 		setCodice(codice);
 		setNomeCorso(nomeCorso);
 		setCapienzaMassima(capienzaMassima);
-		this.postiOccupati = postiOccupati;
+		this.postiOccupati = 0;
+		
 	}
 
 
@@ -71,6 +72,7 @@ public class Corso {
 
 
 	public void setPostiOccupati(int postiOccupati) {
+		
 		this.postiOccupati = postiOccupati;
 	}
 
