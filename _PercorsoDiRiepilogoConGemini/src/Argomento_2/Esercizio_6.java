@@ -20,29 +20,25 @@ Ripeti questo confronto per tutti gli elementi con un ciclo esterno.
 
 Stampa l'array dati ormai ordinato alla fine.
 		 */
-		
+
 		int[] dati = {5, 2, 8, 1, 9};
 		
-		for (int i = 0; i < dati.length -1  ; i++)
-		{
-			
-			
-			
-			for (int j = 0; j < dati.length -1 - i ; j++)
-			{
-			      if (dati[j] > dati[j + 1]) {
-
-	                    int temp = dati[j];
-	                    dati[j] = dati[j + 1];
-	                    dati[j + 1] = temp;
-	                }
+		for (int i = 0; i < dati.length - 1; i++) {
+			for (int j = 0; j < dati.length - 1 - i; j++) {
+				if (dati[j] > dati[j + 1]) {
+					int temp = dati[j];
+					dati[j] = dati[j + 1];
+					dati[j + 1] = temp;
+				}
 			}
 		}
+		System.out.print("Array ordinato: ");
 		
-		for(int n: dati)
-		{
-			System.out.println(n);
+		for (int i = 0; i < dati.length; i++) {
+			System.out.print(dati[i] + " ");
 		}
+	
+	
 	}
 
 }
