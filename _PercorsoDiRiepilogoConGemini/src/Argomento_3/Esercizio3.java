@@ -25,6 +25,12 @@ Un metodo promuovi(String nuovoRuolo, double aumentoStipendio) che aggiorna il r
 Nel main, crea un dipendente, calcola e stampa lo stipendio netto, poi promuovilo e ricalcola il nuovo stipendio netto.
 		 */
 		
+		Dipendente dipendente1 = new Dipendente("Mario Rossi", "Impiegato", 1400);
+		
+		System.out.println("Stipendio netto: " + dipendente1.calcolaStipendioNetto());
+		
+		dipendente1.promuovi("Responsabile", 300);
+		System.out.println("Nuovo stipendio netto: " + dipendente1.calcolaStipendioNetto());
 		
 	}
 
