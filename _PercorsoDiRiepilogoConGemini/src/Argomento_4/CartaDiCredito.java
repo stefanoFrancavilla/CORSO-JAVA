@@ -54,8 +54,16 @@ public class CartaDiCredito extends MetodoPagamento {
 
 	@Override
 	public void eseguiPagamento(double importo) {
-		// TODO Auto-generated method stub
-
+		if ((saldoSpeso + importo) <= limiteMassimo)
+		{
+			saldoSpeso += importo;
+			System.out.println("Operazione riuscita.");
+		}
+		else
+		{
+			System.out.println("Limite massimo superato");
+			System.out.println("Operazione fallita");
+		}
 	}
 
 }

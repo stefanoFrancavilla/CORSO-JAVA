@@ -23,6 +23,17 @@ che invoca il pagamento e stampa se la transazione è riuscita o fallita.
 Nel main, testa la cassa passando sia una carta sia un conto Paypal.
 		 */
 		
+		Cassa cassa = new Cassa();
+		
+		CartaDiCredito carta = new CartaDiCredito("Mario Rossi", 1000);
+		
+		ContoPaypal paypal = new ContoPaypal("Luca Bianchi", 500);
+		
+		cassa.processaTransazione(carta, 200); // Operazione riuscita
+		cassa.processaTransazione(carta, 900); // Operazione fallita
+		
+		cassa.processaTransazione(paypal, 300); // Operazione riuscita
+		cassa.processaTransazione(paypal, 300); // Operazione fallita
 		
 	}
 
