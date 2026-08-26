@@ -91,7 +91,13 @@ centro.processaSpedizione(espresso, 5.0);  // Riuscita: costa 22.5
 centro.processaSpedizione(espresso, 3.0);  // Potrebbe fallire: budget rimasto 7.5
 		 */
 		
-		
+		MetodoSpedizione standard = new CorriereStandar("Stefano", 20.0);
+		MetodoSpedizione espresso = new CorriereEspresso("Marco", 30.0, 4.5);
+		CentroSpedizioni centro = new CentroSpedizioni();
+		centro.processaSpedizione(standard, 10.0); 
+		centro.processaSpedizione(standard, 15.0); 
+		centro.processaSpedizione(espresso, 5.0);  
+		centro.processaSpedizione(espresso, 3.0);  
 	}
 
 }

@@ -7,6 +7,7 @@ public abstract class MetodoSpedizione {
 	public MetodoSpedizione(String destinatario) {
 		this.destinatario = destinatario;
 	}
-	
+
+
 	public abstract boolean inviaPacco(double peso);
 }
