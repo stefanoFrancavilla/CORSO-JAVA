@@ -17,6 +17,13 @@ SmsNotificatore (stampa "Invio SMS al numero [destinatario]: [testo]").
 
 Nel main, crea un'istanza di ciascun notificatore e testa l'invio dei messaggi.
 		 */
+		
+		Notificatore emailNotificatore = new EmailNotificatore();
+		Notificatore smsNotificatore = new SmsNotificatore();
+		
+		emailNotificatore.inviaMessaggio("Mario Rossi", "Ciao Mario, come stai?");
+		smsNotificatore.inviaMessaggio("1234567890", "Ciao, questo è un messaggio SMS!");
+		
 	}
 
 }

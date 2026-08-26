@@ -16,6 +16,15 @@ Crea una classe Smartphone che implementa entrambe le interfacce e gestisce lo s
 
 Nel main, mostra come uno Smartphone possa soddisfare entrambi i contratti.
 		 */
+		
+		Smartphone mioSmartphone = new Smartphone();
+		
+		mioSmartphone.ricarica(50);
+		mioSmartphone.connettiWifi("ReteCasa");
+		mioSmartphone.disconnettiWifi();
+		mioSmartphone.ricarica(20);
+		
+		
 	}
 
 }
