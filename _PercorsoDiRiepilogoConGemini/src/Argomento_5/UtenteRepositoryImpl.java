@@ -1,19 +1,42 @@
 package Argomento_5;
 
 public class UtenteRepositoryImpl implements UtenteRepository {
-
-	String[] emails = new String[10];
+	
+	private String[] emailArray = new String[10];
+	private String[] passwordArray = new String[10];
+	private int posizione = 0;
 	
 	@Override
 	public void salva(String email, String password) {
-		// TODO Auto-generated method stub
-
+	
+		if(posizione >= emailArray.length)
+		{
+			System.out.println("Errore memoria piena");
+			return;
+		}
+		else
+		{
+			emailArray[posizione] = email;
+			passwordArray[posizione] = password;
+			
+			posizione ++;
+		}
+		
+		
 	}
-
 	@Override
 	public boolean esistePerEmail(String email) {
-		// TODO Auto-generated method stub
+
+		for(int i = 0;i < posizione; i++)
+		{
+			if(emailArray[i].equals(email))
+			{
+				return true;
+			}
+		}
 		return false;
 	}
 
+	
+	
 }

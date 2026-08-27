@@ -27,6 +27,17 @@ Se non esiste, chiama salva sul repository e stampa "Registrazione completata pe
 
 Nel main, configura il repository, passalo al service e tenta registrazioni valide e duplicate.
 		 */
+		
+		UtenteRepository utenteRepository = new UtenteRepositoryImpl();
+		
+		AuthService authService = new AuthService(utenteRepository);
+		
+		authService.registraUtente("romeo@gmail", "P01");
+		authService.registraUtente("aldo@gmail", "P02");
+		authService.registraUtente("marco@gmail", "P03");
+		
+		authService.registraUtente("romeo@gmail", "P01");
+
 	}
 
 }
