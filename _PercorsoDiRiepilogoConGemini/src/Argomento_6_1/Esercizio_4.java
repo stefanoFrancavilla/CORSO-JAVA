@@ -20,18 +20,8 @@ stampa solo gli studenti promossi secondo quel criterio.
 
 Obiettivo: unire Map, cicli e condizioni in un esercizio un po’ più avanzato.
 
-Ordine consigliato
-Ti consiglio di farli così:
 
-esercizio 1
-
-esercizio 3
-
-esercizio 2
-
-esercizio 4
-
-Così passi da un filtro semplice su lista, poi a una struttura più ricca con Map.
 		 */
+
 	}
 }

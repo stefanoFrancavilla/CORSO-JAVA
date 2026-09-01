@@ -28,6 +28,24 @@ almeno 3 voti per ciascuno.
 
 Obiettivo: imparare a gestire mappe con liste come valori.
 		 */
+		
+		RegistroStudenti registro = new RegistroStudenti();
+		registro.aggiungiVoto("Stefano", 10);
+		registro.aggiungiVoto("Stefano", 8);
+		registro.aggiungiVoto("Stefano", 7);
+		registro.aggiungiVoto("Stefano", 3);
+		registro.aggiungiVoto("Stefano", 5);
+		
+		registro.aggiungiVoto("Marco", 6);
+		registro.aggiungiVoto("Marco", 7.5);
+		registro.aggiungiVoto("Marco", 8);
+		
+		registro.aggiungiVoto("Sara", 5);
+		registro.aggiungiVoto("Sara", 7.5);
+		registro.aggiungiVoto("Sara", 10);
+		
+		registro.stampaStudenti();
+		
 	}
 
 }
