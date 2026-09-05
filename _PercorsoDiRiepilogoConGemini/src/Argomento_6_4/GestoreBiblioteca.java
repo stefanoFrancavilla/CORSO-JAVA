@@ -47,6 +47,7 @@ public class GestoreBiblioteca {
 		
 		if (listaLibri == null || listaLibri.isEmpty())
 		{
+			System.out.println("La lista è vuota");
 			return 0;
 		}
 		
@@ -57,7 +58,7 @@ public class GestoreBiblioteca {
 			totalePagine += libro.getPagine();
 		
 		}
-		
+		System.out.println("Il numero di pagine prestate sono: " + totalePagine);
 		return totalePagine;
 	}
 	
@@ -65,8 +66,14 @@ public class GestoreBiblioteca {
 	{
 		List<Libro> libriNonRestituiti = prestiti.get(utente);
 		
+		if (libriNonRestituiti == null || libriNonRestituiti.isEmpty())
+		{
+			System.out.println("La lista è vuota");
+			return 0;
+		}
 		int totaleLibri = libriNonRestituiti.size();
 		
+		System.out.println("Il totale dei libri non restituiti sono: " + totaleLibri);
 		return totaleLibri;
 	}
 	
@@ -74,7 +81,7 @@ public class GestoreBiblioteca {
 	{
 		for(String nomeUtente : prestiti.keySet())
 		{
-			System.out.println("NomeUtente : " + nomeUtente );
+			System.out.println("Nome utente : " + nomeUtente );
 			System.out.println("Lista dei libri");
 			System.out.println(prestiti.get(nomeUtente).toString());
 			System.out.println("-------------------");
@@ -98,9 +105,45 @@ public class GestoreBiblioteca {
 			}
 			utenteConPiuLibri = nome;
 		}
-		
+		System.out.println("Lutente con più libri è: " + utenteConPiuLibri );
 		return utenteConPiuLibri;
 	}
 	
+	public boolean esisteUtente(String nome)
+	{
+		if(prestiti.containsKey(nome))
+		{
+			System.out.println("L'utente " + nome + " è presente nella lista");
+			return true;	
+		}
+		
+		    System.out.println("L'utente " + nome + " non è presente nella lista");
+		return false;
+	}
+	
+	public void stampaLibriDiAutore(String utente, String autore)
+	{
+		
+		
+		
+		if(esisteUtente(utente))
+		{
+			List<Libro> libriStessoAutore = new ArrayList<>();
+		    
+			List<Libro> listaDiLibriUtente = prestiti.get(utente);
+			
+			for (Libro libro : listaDiLibriUtente)
+			{
+				if(libro.getAutore().equals(autore))
+				{
+					libriStessoAutore.add(libro);
+				}
+			}
+			
+			System.out.println(libriStessoAutore.toString());
+		   
+		}
+		
+	}
 	
 }

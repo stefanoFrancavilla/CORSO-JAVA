@@ -222,9 +222,39 @@ controllare lo stato restituito;
 aggiornare o calcolare il risultato richiesto.
 	 */
 	
+	Libro laCasaDeiSogni = new Libro("La casa dei sogni", "Richard", 590);
+	Libro Segnali = new Libro("Segnali", "Richard", 480);
+	Libro Amori = new Libro("Amori", "Fred",  370);
 	
+	Libro LaSuaColpa = new Libro("La sua colpa", "Michael", 210);
+	Libro LaVerita = new Libro("La verità", "Richard", 342);
+	Libro c = new Libro("Ricordi lontani", "Anna", 180);
 	
+	Libro VitaDaCani = new Libro("Vita da cani", "Fred", 421);
+	Libro IlFutuo = new Libro("Il futuro", "Paul", 265);
+	Libro Romanzo = new Libro("Romanzo", "Anna", 251);
 	
+	GestoreBiblioteca prestiti = new GestoreBiblioteca();
+	
+	prestiti.aggiungiPrestito("Luca", laCasaDeiSogni);
+	prestiti.aggiungiPrestito("Luca", Segnali);
+	prestiti.aggiungiPrestito("Luca", Amori);
+	
+	prestiti.aggiungiPrestito("Vito", LaSuaColpa);
+	prestiti.aggiungiPrestito("Vito", LaVerita);
+	prestiti.aggiungiPrestito("Vito", LaVerita);
+	
+	prestiti.aggiungiPrestito("Maria", VitaDaCani);
+	prestiti.aggiungiPrestito("Maria", IlFutuo);
+	prestiti.aggiungiPrestito("Maria", Romanzo);
+	
+	prestiti.calcolaPaginePrestate("Luca");
+	prestiti.contaLibriNonRestituiti("Luca");
+	prestiti.esisteUtente("Luca");
+	prestiti.trovaUtenteConPiuLibri();
+	prestiti.stampaLibriDiAutore("Luca", "Richard");
+	prestiti.restituisciLibro("Luca" , "Segnali");
+	prestiti.stampaPrestiti();
 	
  }
 }
