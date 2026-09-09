@@ -16,32 +16,26 @@ public class GestoreFilm {
 	}
 	
 	
-	public void aggiungiFilm (Film filmDaAggiungere)
-	{
-		if(filmDaAggiungere == null)
-		{
-			System.out.println("Errore il film è uguale a null");
-		}
-		else
-		{
-			
-	    for(Film filmCorrente : film)
-	    {
-	    	if(filmCorrente.getTitolo().equals(filmDaAggiungere.getTitolo()))
-	    			{
-	    	         	System.out.println("Il film è già presente nella lista");
-	    			}
-	    	else
-	    	{
-	    		film.add(filmDaAggiungere);
-	         	System.out.println("Film aggiunto correttamente");
-	         	return;
-	    	}
-	    	
-	      }
-		}
-		
-	}
+	public void aggiungiFilm(Film filmDaAggiungere) {
+        if (filmDaAggiungere == null || filmDaAggiungere.getTitolo() == null) {
+            System.out.println("Errore: il film o il suo titolo non possono essere null");
+            return;
+        }
+
+        for (Film filmCorrente : film) {
+            if (filmCorrente.getTitolo() != null && 
+                filmCorrente.getTitolo().equalsIgnoreCase(filmDaAggiungere.getTitolo())) {
+                System.out.println("Il film è già presente nella lista");
+                return;
+            }
+        }
+
+        film.add(filmDaAggiungere);
+        System.out.println("Film aggiunto correttamente");
+      
+    }
+	
+	
 	
 	public Film cercaFilm( String titolo)
 	{
@@ -61,9 +55,9 @@ public class GestoreFilm {
 					return  filmDaCercare;
 				}
 			}
-			return filmDaCercare;
-		}
 		
+		}
+		return filmDaCercare;
 	}
 	
 	public void segnaComeFilmVisto(String titolo)
@@ -90,8 +84,9 @@ public class GestoreFilm {
 			{
 				durata += filmCorrente.getDurata();
 			}
-			return durata;
+			
 		}
+		return durata;
 	}
 	
 	public Film trovaFilmPiuLungo()
@@ -113,8 +108,9 @@ public class GestoreFilm {
 					durataFilm = filmCorrente.getDurata();
 				}
 			}
-			return filmPiuLungo;
+			
 		}
+		return filmPiuLungo;
 	}
 	
 	public Film trovaFilmPiuCorto()
@@ -148,8 +144,9 @@ public class GestoreFilm {
 				}
 				
 			}
-			return filmPiuCorto;
+			
 		}
+		return filmPiuCorto;
 	}
 	
 	public int contaFilmVisti()
@@ -171,8 +168,9 @@ public class GestoreFilm {
 				}
 			}
 			
-			return counter;
+			
 		}
+		return counter;
 	}
 	
 	public void stampaFilm()

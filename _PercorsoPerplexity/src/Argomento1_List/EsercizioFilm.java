@@ -263,7 +263,9 @@ logica più vicina a progetti reali.
 		film.segnaComeFilmVisto(titoloInesistente);
 		film.segnaComeFilmVisto(filmVisto);
 		
-		
+		System.out.println("Numero di film visti: " + film.contaFilmVisti());
+		film.stampaFilmVisti();
+		film.stampaFilmNonVisti();
 	}
 
 }
