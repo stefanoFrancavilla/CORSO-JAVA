@@ -39,14 +39,15 @@ public class GestoreFilm {
 	
 	public Film cercaFilm( String titolo)
 	{
-		Film filmDaCercare = null;
+		
 		if(film == null || film.isEmpty())
 		{
 			System.out.println("La lista è vuota");
-			return filmDaCercare;
+			return null;
 		}
 		else
 		{
+			Film filmDaCercare = null;
 			for(Film filmCorrente : film)
 			{
 				if(filmCorrente.getTitolo().equals(titolo))
@@ -55,9 +56,9 @@ public class GestoreFilm {
 					return  filmDaCercare;
 				}
 			}
-		
+			return filmDaCercare;
 		}
-		return filmDaCercare;
+		
 	}
 	
 	public void segnaComeFilmVisto(String titolo)
@@ -115,51 +116,55 @@ public class GestoreFilm {
 	
 	public Film trovaFilmPiuCorto()
 	{
-		Film filmPiuCorto = null;
+	
 		
-		int durataFilm = film.get(0).getDurata();
+		
 		
 		if(film == null || film.isEmpty())
 		{
 			System.out.println("La lista è vuota");
-			return filmPiuCorto;
+			return null;
 		}
 		else
 		{
+			int durataFilm = film.get(0).getDurata();
+			Film filmPiuCorto = film.get(0);
 			if (film.size() == 1)
 			{
-				filmPiuCorto = film.get(0);
+				return filmPiuCorto;
 			}
 			else
 			{
 				for(int i = 1;i < film.size();i++)
 				{
 					Film filmCorrente = film.get(i);
-					int durataCorrente = film.get(0).getDurata();
+					int durataCorrente = film.get(i).getDurata();
 					
 					if(durataCorrente < durataFilm)
 					{
 						filmPiuCorto = filmCorrente;
+						durataFilm = durataCorrente;
 					}
 				}
 				
 			}
-			
+			return filmPiuCorto;
 		}
-		return filmPiuCorto;
+		
 	}
 	
 	public int contaFilmVisti()
 	{
-		int counter = 0;
+		
 		
 		if(film == null || film.isEmpty())
 		{
 			System.out.println("La lista è vuota");
-			return counter;
+			return 0;
 		}
 		else
 		{
+			int counter = 0;
 			for( Film filmCorrente : film)
 			{
 				if(filmCorrente.isVisto() == true)
@@ -167,10 +172,10 @@ public class GestoreFilm {
 					counter ++;
 				}
 			}
-			
+			return counter;
 			
 		}
-		return counter;
+		
 	}
 	
 	public void stampaFilm()
@@ -239,7 +244,7 @@ public class GestoreFilm {
 			ArrayList<Film> filmNonVisti = new ArrayList<>();
 			for (Film filmCorrente : film)
 			{
-				if (filmCorrente.isVisto() == true)
+				if (filmCorrente.isVisto() == false)
 				{
 					filmNonVisti.add(filmCorrente);
 				}
