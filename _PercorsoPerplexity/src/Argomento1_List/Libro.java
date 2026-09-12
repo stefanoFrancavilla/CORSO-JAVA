@@ -56,7 +56,7 @@ public class Libro {
 	 }
 
 	 public void setAnnoPubblicazione(int annoPubblicazione) {
-		 if (annoPubblicazione < 0)
+		 if (annoPubblicazione <= 0)
 		 {
 			 System.out.println("Errore l'anno di publicazione deve essere maggiore di 0");
 		 }
@@ -72,7 +72,7 @@ public class Libro {
 	 }
 
 	 public void setCopieDisponibile(int copieDisponibile) {
-		 if(copieDisponibili <= 0 && copieDisponibili > 10)
+		 if(copieDisponibili < 0 || copieDisponibili > 10)
 		 {
 			 System.out.println("Errore numero di copie non corretto, deve essere compreso tra 0 e 10");
 		 }
@@ -94,7 +94,7 @@ public class Libro {
 	 
 	 public void restituisciCopia()
 	 {
-		 if(copieDisponibili > 10)
+		 if(copieDisponibili >= 10)
 		 {
 			 System.out.println("Raggiunto il limite massimo di copie che si possono ritirare");
 		 }

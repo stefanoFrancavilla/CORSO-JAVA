@@ -253,6 +253,49 @@ gestione di null e indici non validi;
 
 logica più vicina a progetti reali.
 		 */
+		
+		Libro libro1 = new Libro("Il Signore degli Anelli", "J.R.R. Tolkien", 1954, 5);
+		Libro libro2 = new Libro("Lo Hobbit", "J.R.R. Tolkien", 1937, 3);
+		Libro libro3 = new Libro("1984", "George Orwell", 1949, 0);
+		Libro libro4 = new Libro("Il Grande Gatsby", "F. Scott Fitzgerald", 1925, 7);
+		Libro libro5 = new Libro("Il Nome della Rosa", "Umberto Eco", 1980, 4);
+		Libro libro6 = new Libro("Il Piccolo Principe", "Antoine de Saint-Exupéry", 1943, 1);
+		
+		GestoreLibri gestore = new GestoreLibri();
+		gestore.aggiungiLibro(libro1);
+		gestore.aggiungiLibro(libro2);
+		gestore.aggiungiLibro(libro3);
+		gestore.aggiungiLibro(libro4);
+		gestore.aggiungiLibro(libro5);
+		gestore.aggiungiLibro(libro6);
+		
+		gestore.stampaTuttiLibri();
+		System.out.println(gestore.cercaLibroPerTitolo("Il Signore degli Anelli"));
+		System.out.println(gestore.cercaLibroPerTitolo("Titolo inesistente"));
+		System.out.println(gestore.cercaLibroPerAutore("J.R.R. Tolkien"));
+		System.out.println(gestore.cercaLibroPerIndice(0));
+		System.out.println(gestore.cercaLibroPerIndice(100));
+		gestore.rimuoviLibroPerTitolo("Il Piccolo Principe");
+		gestore.rimuoviLibroPerTitolo("Titolo inesistente");
+		gestore.rimuoviLibroPerIndice(1);
+		gestore.rimuoviLibroPerIndice(100);
+		gestore.aggiornaCopie("Il Nome della Rosa", 5);
+		gestore.aggiornaCopie("Il Grande Gatsby", 5);
+		gestore.stampaLibriDisponibili();
+		gestore.stampaLibriEsauriti();
+		gestore.stampaTuttiLibri();
+		
+		gestore.prestaLibro("Il Signore degli Anelli");
+		gestore.restituisciLibro("1984");
+		
+		gestore.stampaTuttiLibri();
+		
+		GestoreLibri gestore2 = new GestoreLibri();
+		gestore2.stampaTuttiLibri();
+		gestore2.cercaLibroPerTitolo("Il Signore degli Anelli");
+		gestore2.rimuoviLibroPerTitolo("Il Signore degli Anelli");
+		
+		
 	}
 
 }

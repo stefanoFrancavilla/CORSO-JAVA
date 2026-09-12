@@ -10,7 +10,7 @@ public class GestoreLibri {
 	
 	public void aggiungiLibro(Libro libro)
 	{
-		if (controlloLibro(libro))
+		if (!controlloLibro(libro))
 		{
 			System.out.println("Il libro che si vuole aggiungere è uguale a null");
 			return;
@@ -20,7 +20,7 @@ public class GestoreLibri {
 			boolean libroPresente = false;
 			for (Libro libroCorrente : libri)
 			{
-				if(libroCorrente.getTitolo().equals(libro))
+				if(libroCorrente.getTitolo().equals(libro.getTitolo()))
 				{
 					System.out.println("Il libro esiste già");
 					libroPresente = true;
@@ -96,7 +96,7 @@ public class GestoreLibri {
 			System.out.println("Lista libri è vuota");
 			return null;
 		}
-		else if(indice < 0 || indice > libri.size())
+		else if(indice < 0 || indice >= libri.size())
 		{
 			System.out.println("Errore, inserire un'indice valido");
 			return null;
@@ -124,6 +124,10 @@ public class GestoreLibri {
 			System.out.println("Libro eliminato con successo");
 			libri.remove(libroDaEliminare);
 		}
+		else
+		{
+			System.out.println("Errore, libro non trovato");
+		}
 	}
 	
 	public void rimuoviLibroPerIndice ( int indice)
@@ -133,6 +137,10 @@ public class GestoreLibri {
 		{
 			System.out.println("Libro all'indice: " + indice + " eliminato con successo");
 			libri.remove(libroDaEliminare);
+		}
+		else
+		{
+			System.out.println("Errore, libro non trovato");
 		}
 	}
 	
@@ -161,11 +169,13 @@ public class GestoreLibri {
 			else
 			{
 				libroDaAggiornare.setCopieDisponibile(copieTotali);
+				System.out.println("Copie aggiornate con successo. Attualmente ci sono: " 
+				+ libroDaAggiornare.getCopieDisponibile() + " di copie");
 			}
 		}
 	}
 	
-	public void stampaTuttiiLibri()
+	public void stampaTuttiLibri()
 	{
 		if(controlloListaIfVuota( libri))
 		{
@@ -255,7 +265,35 @@ public class GestoreLibri {
 		}
 	}
 
+	public void prestaLibro(String titolo)
+	{
+		Libro libroDaPrestare = cercaLibroPerTitolo(titolo);
+		if(libroDaPrestare == null)
+		{
+			System.out.println("Errore, libro non trovato");
+			return;
+		}
+		else
+		{
+			libroDaPrestare.prestaCopia();
+			System.out.println("Libro prestato con successo");
+		}
+	}
 	
+	public void restituisciLibro(String titolo)
+	{
+		Libro libroDaRestituire = cercaLibroPerTitolo(titolo);
+		if(libroDaRestituire == null)
+		{
+			System.out.println("Errore, libro non trovato");
+			return;
+		}
+		else
+		{
+			libroDaRestituire.restituisciCopia();
+			System.out.println("Libro restituito con successo");
+		}
+	}
 	
 	
 	
