@@ -9,12 +9,7 @@ public class GestoreSquadra {
 	
 	public void aggiungiGiocatore(Giocatore giocatore)
 	{
-		if(controlloLista(giocatori))
-		{
-			System.out.println("La lista è vuota");
-			return;
-		}
-		else if (controlloGiocatore(giocatore))
+		if (controlloGiocatore(giocatore))
 		{
 			System.out.println("Il giocatore non è valido");
 			return;
@@ -62,6 +57,7 @@ public class GestoreSquadra {
 				if(giocatori.get(i).getNome().equals(nome))
 			    {
 					giocatoreDaCercare = giocatori.get(i);
+					break;
 				}
 			}
 			
@@ -105,7 +101,7 @@ public class GestoreSquadra {
 		}
 	}
 	
-	public Giocatore cercaGiocatorePerNumeroDiMaglia(int numeroMaglia)
+	public Giocatore cercaGiocatorePerNumeroMaglia(int numeroMaglia)
 	{
 		if(controlloLista(giocatori))
 		{
@@ -154,14 +150,8 @@ public class GestoreSquadra {
 		}
 		else
 		{
-			Giocatore giocatoredaTrovare = null;
-			for(int i = 0; i < giocatori.size(); i++)
-			{
-				if(i == indice)
-				{
-					giocatoredaTrovare = giocatori.get(i);
-				}
-			}
+			Giocatore giocatoredaTrovare = giocatori.get(indice);
+			
 			System.out.println("I giocatore all'indice " + indice + " è:");
 			return giocatoredaTrovare;
 		}
@@ -241,10 +231,75 @@ public class GestoreSquadra {
 			System.out.println("Il ruolo inserito non è valido");
 		   
 		}
+		else
+		{
+			List<Giocatore> giocatoriPerRuolo = cercaGiocatorePerRuolo(ruolo);
+			if(giocatoriPerRuolo == null || giocatoriPerRuolo.isEmpty())
+			{
+				System.out.println("Non ci sono giocatori con questo ruolo");
+			}
+			else
+			{
+				System.out.println("-----------Lista di tutti i giocatori per ruolo-------------");
+				for(Giocatore giocatoreCorrente : giocatoriPerRuolo)
+				{
+					System.out.println(giocatoreCorrente.toString());
+				}
+				System.out.println("--------------------------------------------------");
+			}	
+		}
 	}
 	
+	public void stampaCapocannoniere()
+	{
+		if(controlloLista(giocatori))
+		{
+			System.out.println("La lista è vuota");
+			return;
+		}
+		else
+		{
+			Giocatore capocannoniere = giocatori.get(0);
+			for(Giocatore giocatoreCorrente : giocatori)
+			{
+				if(giocatoreCorrente.getGolSegnati() > capocannoniere.getGolSegnati())
+				{
+					capocannoniere = giocatoreCorrente;
+				}
+			}
+			System.out.println("Il capocannoniere è: " + capocannoniere.toString());
+		}
+	}
 	
-	
+	//extra
+	public double stampaMediaGolPerRuolo(String ruolo)
+	{
+		if (ruolo == null || ruolo.isEmpty())
+		{
+			System.out.println("Il ruolo inserito non è valido");
+			return 0;
+		}
+		else
+		{
+			List<Giocatore> giocatoriPerRuolo = cercaGiocatorePerRuolo(ruolo);
+			if(giocatoriPerRuolo == null || giocatoriPerRuolo.isEmpty())
+			{
+				System.out.println("Non ci sono giocatori con questo ruolo");
+				return 0;
+			}
+			else
+			{
+				int sommaGol = 0;
+				for(Giocatore giocatoreCorrente : giocatoriPerRuolo)
+				{
+					sommaGol += giocatoreCorrente.getGolSegnati();
+				}
+				double mediaGol = (double) sommaGol / giocatoriPerRuolo.size();
+				System.out.println("La media dei gol per il ruolo " + ruolo + " è: " + mediaGol);
+				return mediaGol;
+			}
+		}
+	}
 	
 	
 	
@@ -252,7 +307,7 @@ public class GestoreSquadra {
 	
 	//metodi controllo
 	
-	public boolean controlloLista(List giocatori)
+	public boolean controlloLista(List<Giocatore> giocatori)
 	{
 		return giocatori == null || giocatori.isEmpty();
 	}

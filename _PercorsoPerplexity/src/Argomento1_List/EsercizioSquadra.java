@@ -260,6 +260,86 @@ download.java
 
 
 		 */
+		
+		Giocatore giocatore1 = new Giocatore("Rossi", "Attaccante", 9, 15);
+		Giocatore giocatore2 = new Giocatore("Bianchi", "Attaccante", 10, 12);
+		Giocatore giocatore3 = new Giocatore("Verdi", "Difensore", 4, 1);	
+		Giocatore giocatore4 = new Giocatore("Neri", "Centrocampista", 8, 5);
+		Giocatore giocatore5 = new Giocatore("Gialli", "Portiere", 1, 0);
+		Giocatore giocatore6 = new Giocatore("Viola", "Attaccante", 11, 8);
+		
+		GestoreSquadra giocatori = new GestoreSquadra();
+		
+		giocatori.aggiungiGiocatore(giocatore1);
+		giocatori.aggiungiGiocatore(giocatore2);
+		giocatori.aggiungiGiocatore(giocatore3);
+		giocatori.aggiungiGiocatore(giocatore4);
+		giocatori.aggiungiGiocatore(giocatore5);
+		giocatori.aggiungiGiocatore(giocatore6);
+		
+		
+		giocatori.stampaTuttiGiocatori();
+		
+		System.out.println("=== Ricerca per nome (esistente) ===");
+		giocatori.cercaGiocatorePerNome("Rossi");
+		System.out.println();
+		
+		System.out.println("=== Ricerca per nome (inesistente) ===");
+		giocatori.cercaGiocatorePerNome("Nome inesistente");
+		System.out.println();
+		
+		System.out.println("=== Ricerca per ruolo ===");
+		giocatori.cercaGiocatorePerRuolo("Attaccante");
+		System.out.println();
+		
+		System.out.println("=== Ricerca per numero di maglia ===");
+		giocatori.cercaGiocatorePerNumeroMaglia(10);
+		System.out.println();
+		
+		System.out.println("=== Ricerca per indice (valido) ===");
+		giocatori.cercaGiocatorePerIndice(0);
+		System.out.println();
+		
+		System.out.println("=== Ricerca per indice (non valido) ===");
+		giocatori.cercaGiocatorePerIndice(100);
+		System.out.println();
+		
+		System.out.println("=== Rimozione per nome (esistente) ===");
+		giocatori.rimuoviGiocatorePerNome("Viola");
+		System.out.println();
+		
+		System.out.println("=== Rimozione per nome (inesistente) ===");
+		giocatori.rimuoviGiocatorePerNome("Nome inesistente");
+		System.out.println();
+		
+		System.out.println("=== Rimozione per indice (valido) ===");
+		giocatori.rimuoviGiocatorePerIndice(1);
+		System.out.println();
+		
+		System.out.println("=== Rimozione per indice (non valido) ===");
+		giocatori.rimuoviGiocatorePerIndice(100);
+		System.out.println();
+		
+		System.out.println("=== Aggiornamento gol (esistente) ===");
+		giocatori.aggiornaGol("Rossi", 3);
+		System.out.println();
+		
+		System.out.println("=== Aggiornamento gol (inesistente) ===");
+		giocatori.aggiornaGol("Nome inesistente", 5);
+		System.out.println();
+		
+		System.out.println("=== Stampa giocatori per ruolo ===");
+		giocatori.stampaGiocatoriPerRuolo("Attaccante");
+		System.out.println();
+		
+		System.out.println("=== Stampa capocannoniere ===");
+		giocatori.stampaCapocannoniere();
+		
+		
+		
+		
+		
+		
 	}
 
 }
