@@ -355,7 +355,40 @@ public class GestioneOrdini {
 	
 	public void stampaOrdiniConTotaleMinimo ( double minimo)
 	{
-		
+		if(controllaLista(ordini))
+		{
+			System.out.println("La lista è vuota");
+			return;
+		}
+		else if (minimo <= 0)
+		{
+			System.out.println("Il valore minimo inserito non è valido");
+			return;
+		}
+		else
+		{
+			List<Ordine> ordiniSottoMinimo = new ArrayList<>();
+			
+			for(Ordine ordine : ordini)
+			{
+				if(minimo >= ordine.getTotale())
+				{
+					 ordiniSottoMinimo.add(ordine);
+				}
+			}
+			if(ordiniSottoMinimo.isEmpty())
+			{
+				System.out.println("Non ci sono ordini con valore sopra il minimo");
+				return;
+			}
+			else
+			{
+			  for(Ordine ordineCorrente : ordiniSottoMinimo)
+			  {
+				  System.out.println(ordineCorrente.toString());
+			  }
+			}
+		}
 	}
 	
 	
