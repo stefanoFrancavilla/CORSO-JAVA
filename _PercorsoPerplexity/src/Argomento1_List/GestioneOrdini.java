@@ -1,6 +1,7 @@
 package Argomento1_List;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class GestioneOrdini {
@@ -391,6 +392,65 @@ public class GestioneOrdini {
 		}
 	}
 	
+	public void ordinaOrdinePerTotaleCrescente()
+	{
+		if(controllaLista(ordini))
+		{
+			System.out.println("La lista è vuota");
+			return;
+		}
+		else
+		{
+			ordini.sort(Comparator.comparingDouble(Ordine::getTotale));
+		}
+	}
+	
+	public void stampaOrdineConTotaleMax()
+	{
+		if(controllaLista(ordini))
+		{
+			System.out.println("La lista è vuota");
+			return;
+		}
+		else
+		{
+			ordinaOrdinePerTotaleCrescente();
+			Ordine ordineMax = ordini.get(ordini.size()-1);
+			System.out.println(ordineMax.toString());
+		}
+	}
+	
+	public void stampaTotaleIncassiPerCliente(String cliente)
+	{
+		if(controllaLista(ordini))
+		{
+			System.out.println("La lista è vuota");
+			return;
+		}
+		else if (cliente == null || cliente.isEmpty())
+		{
+			System.out.println("Il cliente inserito non è valido");
+			return;
+		}
+		else
+		{
+			List<Ordine> listaOrdiniCliente = cercaOrdinePerCliente(cliente);
+			if(listaOrdiniCliente == null)
+			{
+				System.out.println("Non ci sono ordini per il cliente");
+			}
+			else
+			{
+				double somma = 0;
+				for(Ordine ordine : listaOrdiniCliente)
+				{
+					somma += ordine.getTotale();
+				}
+				
+				System.out.println("L'incasso totale per il cliente " + cliente + " è: " + somma + " CHF");
+			}
+		}
+	}
 	
 	
 	
