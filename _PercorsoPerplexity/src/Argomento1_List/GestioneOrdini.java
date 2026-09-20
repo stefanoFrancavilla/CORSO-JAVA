@@ -12,12 +12,7 @@ public class GestioneOrdini {
 	//metodi 
 	public void aggiungiOrdine(Ordine ordine)
 	{
-		if(ordini.isEmpty())
-		{
-			System.out.println("La lista è vuota");
-			return;
-		}
-		else if(controlloOrdine(ordine))
+		if(controlloOrdine(ordine))
 		{
 			System.out.println("L'ordine è null");
 			return;
@@ -59,52 +54,35 @@ public class GestioneOrdini {
 		}
 		else
 		{
-			Ordine ordineDaCercare = null;
+			
 			
 			for(Ordine ordineCorrente : ordini)
 			{
 				if(numeroOrdine == ordineCorrente.getNumeroOrdine())
 				{
-				ordineDaCercare = ordineCorrente;	
-				}
-			}
-			return ordineDaCercare;
-		}
-	}
-	
-	public List<Ordine> cercaOrdinePerCliente(String cliente)
-	{
-		if(controllaLista(ordini))
-		{
-		System.out.println("La lista è vuota");	
-		return null;
-		}
-		else if (cliente == null || cliente.isEmpty())
-		{
-			System.out.println("Il cliente inserito non è valido");
-			return null;
-		}
-		else
-		{
-			List<Ordine> ordiniPerCliente = null;
-			for(Ordine ordine : ordini)
-			{
-				if(cliente.equals(ordine.getCliente()))
-				{
-					ordiniPerCliente.add(ordine);
+					return ordineCorrente;	
 				}
 			}
 			
-			if(ordiniPerCliente.isEmpty())
-			{
-				System.out.println("La lista è vuota");	
-				return ordiniPerCliente;
-			}
-			else
-			{
-				return ordiniPerCliente;
-			}
+			return null;
 		}
+	}
+	
+	public List<Ordine> cercaOrdiniPerCliente(String cliente) {
+	    List<Ordine> ordiniPerCliente = new ArrayList<>();
+
+	    if (cliente == null || cliente.isBlank()) {
+	        System.out.println("Il cliente inserito non è valido");
+	        return ordiniPerCliente;
+	    }
+
+	    for (Ordine ordine : ordini) {
+	        if (ordine.getCliente().equalsIgnoreCase(cliente)) {
+	            ordiniPerCliente.add(ordine);
+	        }
+	    }
+
+	    return ordiniPerCliente;
 	}
 	
 	  public int cercaIndicePrimoOrdine(String cliente) 
@@ -124,9 +102,10 @@ public class GestioneOrdini {
 				int indicePrimoOrdine = -1;
 				for (int i = 0;i <ordini.size(); i++)
 				{
-					if(cliente.equals(ordini.get(i)))
+					if (ordini.get(i).getCliente().equalsIgnoreCase(cliente))
 					{
 						indicePrimoOrdine = i;
+						break;
 					}
 				}
 				if(indicePrimoOrdine == -1)
@@ -160,9 +139,9 @@ public class GestioneOrdini {
 				int indiceUltimoOrdine = -1;
 				for(int i = ordini.size() -1; i >= 0; i--)
 				{
-					if(cliente.equals(ordini.get(i)))
-					{
-						indiceUltimoOrdine = i;
+					if (ordini.get(i).getCliente().equalsIgnoreCase(cliente)) {
+					    indiceUltimoOrdine = i;
+					    break;
 					}
 				}
 				
@@ -221,9 +200,8 @@ public class GestioneOrdini {
 		   }
 		   else
 		   {
-			   Ordine ordineDaEliminare = ordini.get(indice);
-			   ordini.remove(ordineDaEliminare);
-			   System.out.println("L'ordine è stato eliminato con successo");
+			   Ordine ordineRimosso = ordini.remove(indice);
+			   System.out.println("L'ordine è stato eliminato con successo: " + ordineRimosso);
 		   }
 	   }
 	   
@@ -239,6 +217,10 @@ public class GestioneOrdini {
 		    	 System.out.println("Il numero dell'ordine inserito non è valido");
 		    	 return;
 		     }
+		   else if (nuovoStato == null) {
+			    System.out.println("Il nuovo stato non può essere null");
+			    return;
+			}
 		   else
 		   {
 			   Ordine ordineDaAggiornare = cercaOrdinePerNumero(numeroOrdine);
@@ -272,87 +254,25 @@ public class GestioneOrdini {
 		   }
 	   }
 	
-	   public void stampaOrdinePerStato()
-	   {
-		   if(controllaLista(ordini))
-		   {
-			 System.out.println("La lista è vuota");
-			 return;
-		   }
-		   else
-		   {
-			   
-			   List<Ordine> inPreparazione = new ArrayList<>();
-			   List<Ordine> spedito = new ArrayList<>();
-			   List<Ordine> consegnato = new ArrayList<>();
-			   
-			   for(Ordine ordineCorrente : ordini)
-			   {
-				   if(ordineCorrente.getStato() == StatoOrdine.IN_PREPARAZIONE)
-				   {
-					   inPreparazione.add(ordineCorrente);
-				   }
-				   else if (ordineCorrente.getStato() == StatoOrdine.SPEDITO)
-				   {
-					  spedito.add(ordineCorrente);
-				   }
-				   else
-				   {
-					   consegnato.add(ordineCorrente);
-				   }
-			   }
-			   
-			   if(inPreparazione.isEmpty())
-			   {
-				   
-				   System.out.println("---------Lista ordini in Preparazione---------");
-				   System.out.println("Non ci sono ordini in preparazione");
-				   System.out.println("------------------------------------------");
-				   System.out.println();
-			   }
-			   else
-			   {
-				   System.out.println("---------Lista ordini in Preparazione---------");
-				   for(Ordine ordineInPreparazione : inPreparazione)
-				   {
-					   System.out.println(ordineInPreparazione.toString());
-					   System.out.println("------------------------------------------");
-					   System.out.println();
-				   }
-			   }
-			   
-			   if(spedito.isEmpty())
-			   {
-				   System.out.println("---------Lista ordini spediti---------");
-				   System.out.println("Non ci sono ordini spediti");
-				   System.out.println("------------------------------------------");
-				   System.out.println();
-			   }
-			   System.out.println("---------Lista ordini spediti---------");
-			   for(Ordine ordineSpedito : spedito)
-			   {
-				   System.out.println(ordineSpedito.toString());
-				   System.out.println("------------------------------------------");
-				   System.out.println();
-			   }
-			   
-			   
-			   if(consegnato.isEmpty())
-			   {
-				   System.out.println("---------Lista ordini consegnati---------");
-				   System.out.println("Non ci sono ordini consegnati");
-				   System.out.println("------------------------------------------");
-				   System.out.println();
-			   }
-			   System.out.println("---------Lista ordini consegnati---------");
-			   for(Ordine ordineConsegnato : spedito)
-			   {
-				   System.out.println(ordineConsegnato.toString());
-				   System.out.println("------------------------------------------");
-				   System.out.println();
-			   }
-		  }
-	   }
+	   public void stampaOrdiniPerStato(StatoOrdine stato) {
+		    if (stato == null) {
+		        System.out.println("Lo stato inserito non è valido");
+		        return;
+		    }
+
+		    boolean trovato = false;
+
+		    for (Ordine ordine : ordini) {
+		        if (ordine.getStato() == stato) {
+		            System.out.println(ordine);
+		            trovato = true;
+		        }
+		    }
+
+		    if (!trovato) {
+		        System.out.println("Non ci sono ordini con stato: " + stato);
+		    }
+		}
 	
 	public void stampaOrdiniConTotaleMinimo ( double minimo)
 	{
@@ -361,30 +281,30 @@ public class GestioneOrdini {
 			System.out.println("La lista è vuota");
 			return;
 		}
-		else if (minimo <= 0)
+		else if (minimo < 0)
 		{
 			System.out.println("Il valore minimo inserito non è valido");
 			return;
 		}
 		else
 		{
-			List<Ordine> ordiniSottoMinimo = new ArrayList<>();
+			List<Ordine>  ordiniConTotaleMinimo = new ArrayList<>();
 			
 			for(Ordine ordine : ordini)
 			{
-				if(minimo >= ordine.getTotale())
+				if(ordine.getTotale() >= minimo) 
 				{
-					 ordiniSottoMinimo.add(ordine);
+					 ordiniConTotaleMinimo.add(ordine);
 				}
 			}
-			if(ordiniSottoMinimo.isEmpty())
+			if( ordiniConTotaleMinimo.isEmpty())
 			{
 				System.out.println("Non ci sono ordini con valore sopra il minimo");
 				return;
 			}
 			else
 			{
-			  for(Ordine ordineCorrente : ordiniSottoMinimo)
+			  for(Ordine ordineCorrente :  ordiniConTotaleMinimo)
 			  {
 				  System.out.println(ordineCorrente.toString());
 			  }
@@ -392,7 +312,7 @@ public class GestioneOrdini {
 		}
 	}
 	
-	public void ordinaOrdinePerTotaleCrescente()
+	public void ordinaOrdiniPerTotaleCrescente()
 	{
 		if(controllaLista(ordini))
 		{
@@ -405,21 +325,23 @@ public class GestioneOrdini {
 		}
 	}
 	
-	public void stampaOrdineConTotaleMax()
-	{
-		if(controllaLista(ordini))
-		{
-			System.out.println("La lista è vuota");
-			return;
-		}
-		else
-		{
-			ordinaOrdinePerTotaleCrescente();
-			Ordine ordineMax = ordini.get(ordini.size()-1);
-			System.out.println(ordineMax.toString());
-		}
+	public void stampaOrdineConTotaleMassimo() {
+	    if (controllaLista(ordini)) {
+	        System.out.println("La lista è vuota");
+	        return;
+	    }
+
+	    Ordine ordineMassimo = ordini.get(0);
+
+	    for (Ordine ordine : ordini) {
+	        if (ordine.getTotale() > ordineMassimo.getTotale()) {
+	            ordineMassimo = ordine;
+	        }
+	    }
+
+	    System.out.println("Ordine con totale massimo:");
+	    System.out.println(ordineMassimo);
 	}
-	
 	public void stampaTotaleIncassiPerCliente(String cliente)
 	{
 		if(controllaLista(ordini))
@@ -434,8 +356,8 @@ public class GestioneOrdini {
 		}
 		else
 		{
-			List<Ordine> listaOrdiniCliente = cercaOrdinePerCliente(cliente);
-			if(listaOrdiniCliente == null)
+			List<Ordine> listaOrdiniCliente = cercaOrdiniPerCliente(cliente);
+			if(listaOrdiniCliente == null || listaOrdiniCliente.isEmpty())
 			{
 				System.out.println("Non ci sono ordini per il cliente");
 			}

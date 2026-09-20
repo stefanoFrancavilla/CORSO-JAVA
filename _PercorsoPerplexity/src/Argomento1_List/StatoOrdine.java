@@ -4,5 +4,6 @@ public enum StatoOrdine {
 
 	IN_PREPARAZIONE,
 	SPEDITO,
-	CONSEGNATO;
+	CONSEGNATO,
+	ANNULLATO;
 }
