@@ -15,8 +15,8 @@ public class Bicicletta {
 		setCodiceBicicletta(codiceBicicletta);
 		setProprietario(proprietario);
 		setTipoIntervento(tipoIntervento);
-		this.giorniPrevisti = giorniPrevisti;
-		this.costoStimato = costoStimato;
+		setGiorniPrevisti(giorniPrevisti);
+		setCostoStimato(costoStimato);
 	}
 
 
@@ -30,7 +30,7 @@ public class Bicicletta {
 
 
 
-	public void setCodiceBicicletta(int codiceBibicletta) {
+	public void setCodiceBicicletta(int codiceBicicletta) {
 		
 		if(codiceBicicletta <= 0)
 		{
@@ -38,7 +38,10 @@ public class Bicicletta {
 			System.out.println("Il codice della bicicletta non è valido");
 			this.codiceBicicletta = 0;
 		}
-		this.codiceBicicletta = codiceBibicletta;
+		else
+		{
+			this.codiceBicicletta = codiceBicicletta;
+		}
 	}
 
 	//Proprietario
@@ -49,12 +52,16 @@ public class Bicicletta {
 
 
 	public void setProprietario(String proprietario) {
-		if(proprietario == null || proprietario.isEmpty() || proprietario.isBlank())
+		if(proprietario == null || proprietario.isBlank())
 		{
 			System.out.println("Il proprietario non è valido");
 			this.proprietario = "Sconosciuto";
 		}
-		this.proprietario = proprietario;
+		else
+		{
+			this.proprietario = proprietario;
+		}
+		
 	}
 
 
@@ -65,13 +72,17 @@ public class Bicicletta {
 
 
 	public void setTipoIntervento(String tipoIntervento) {
-		if(tipoIntervento == null || tipoIntervento.isEmpty() || tipoIntervento.isBlank())
+		if(tipoIntervento == null || tipoIntervento.isBlank())
 		{
-			System.out.println("Il tipo di proprietario inserito non è valido");
+			System.out.println("Il tipo di intervento inserito non è valido");
 			this.tipoIntervento = "Sconosciuto";
 		}
+		else
+		{
+			this.tipoIntervento = tipoIntervento;
+		}
 		
-		this.tipoIntervento = tipoIntervento;
+		
 	}
 
 	//giorni previsti
@@ -84,11 +95,15 @@ public class Bicicletta {
 	public void setGiorniPrevisti(int giorniPrevisti) {
 		if(giorniPrevisti <= 0)
 		{
-			System.out.println("Numeo di giorni previsti non valido");
+			System.out.println("Numero di giorni previsti non valido");
 			this.giorniPrevisti = 0;
 		}
+		else
+		{
+			this.giorniPrevisti = giorniPrevisti;
+		}
 		
-		this.giorniPrevisti = giorniPrevisti;
+	
 	}
 
 
@@ -104,7 +119,11 @@ public class Bicicletta {
 			System.out.println("Il costo stimato non può essere inferiore a 0");
 			this.costoStimato = 0.0;
 		}
-		this.costoStimato = costoStimato;
+		else
+		{
+			this.costoStimato = costoStimato;
+		}
+		
 	}
 
     // metodo toString
