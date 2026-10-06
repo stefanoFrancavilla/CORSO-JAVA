@@ -1,13 +1,18 @@
 package Argomento_3_Map;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import Argomento2_Set.Attrezzatura;
 
 public class GestioneNoleggio {
 
-	List<Noleggio> noleggi = new ArrayList<>();
+
+	private	Set<Attrezzatura> attrezzature = new HashSet<>();
+
+	private	List<Noleggio> noleggi = new ArrayList<>();
 	
 	// metodo aggiunto correttamente
 	public void aggiungiNoleggio(Noleggio noleggio)
@@ -19,7 +24,6 @@ public class GestioneNoleggio {
 		else
 		{
 			noleggi.add(noleggio);
-			System.out.println("Noleggio aggiunto correttamente");
 		}
 	}
 	
@@ -42,6 +46,50 @@ public class GestioneNoleggio {
 		}
 	}
 
+	// metodo aggiungi attrezzatura
+	public void aggiungiAttrezzatura(Attrezzatura attrezzatura)
+	{
+
+		if (attrezzatura == null)
+		{
+			return;
+		}
+		else
+		{
+			for(Attrezzatura attrezzaturaCorrente : attrezzature)
+			{
+				if(attrezzaturaCorrente.getCodiceAttrezzatura() == attrezzatura.getCodiceAttrezzatura())
+				{
+					return;			
+				}
+			}
+			
+			attrezzature.add(attrezzatura);
+		}
+	}
+	
+	// metodo cerca attrezzatura per codice
+	
+		public Attrezzatura cercaAttrezzaturaPerCodice (int codiceAttrezzatura)
+		{
+			if (codiceAttrezzatura <= 0)
+			{
+				return null;
+			}
+			else
+			{
+				for(Attrezzatura attrezzatura : attrezzature)
+				{
+					if (attrezzatura.getCodiceAttrezzatura() == codiceAttrezzatura)
+					{
+						return attrezzatura;
+					}
+				}
+				return null;
+			}
+		}
+	
+	
 	
 	// metodo crea noleggio
 	
@@ -85,6 +133,88 @@ public class GestioneNoleggio {
 			    return nuovoNoleggio;
 					
 		}
+	}
+	
+	// metodo completo noleggio
+	
+	public boolean completaNoleggio(int codiceNoleggio)
+	{
+	    if (codiceNoleggio <= 0)
+	    {
+	        return false;
+	    }
+
+	    for (Noleggio noleggio : noleggi)
+	    {
+	        if (noleggio.getCodiceNoleggio() == codiceNoleggio)
+	        {
+	            if (noleggio.isCompletato())
+	            {
+	                return false;
+	            }
+
+	            Attrezzatura attrezzatura = noleggio.getAttrezzatura();
+
+	            if (attrezzatura == null) 
+	            {
+	                return false;
+	            }
+
+	            noleggio.setCompletato(true);
+	            attrezzatura.setDisponibile(true);
+	            attrezzatura.setNumeroGiorniNoleggio(0);
+
+	            return true;
+	        }
+	    }
+
+	    return false;
+	}
+	
+	// metodo conta noleggi attivi
+	
+	public int contaNoleggiAttivi()
+	{
+		int noleggiAttivi = 0;
+		
+		if (noleggi.isEmpty())
+		{
+			return noleggiAttivi;
+		}
+		else
+		{
+			for (Noleggio noleggio : noleggi)
+			{
+				if (noleggio.isCompletato() == false)
+				{
+					noleggiAttivi++;
+				}
+			}
+			return noleggiAttivi;
+		}
+	}
+	
+	// metodo conta noleggi completati
+	
+	public int contaNoleggiCompletati()
+	{
+			int noleggiCompletati = 0;
+			
+			if (noleggi.isEmpty())
+			{
+				return noleggiCompletati;
+			}
+			else
+			{
+				for (Noleggio noleggio : noleggi)
+				{
+					if (noleggio.isCompletato())
+					{
+						noleggiCompletati++;
+					}
+				}
+				return noleggiCompletati;
+			}
 	}
 	
 	
