@@ -32,8 +32,8 @@ public class AssistenzaTecnica {
 				{
 					String id = recuperaId(richiesta);
 					String cliente = recuperaCliente(richiesta);
-					String problema = recuperaProblema(cliente);
-					String priorita = recuperaPriorita(cliente).toUpperCase();
+					String problema = recuperaProblema(richiesta);
+					String priorita = recuperaPriorita(richiesta);
 					
 					if(id.isEmpty() || cliente.isEmpty() || problema.isEmpty())
 					{
@@ -43,9 +43,8 @@ public class AssistenzaTecnica {
 					{
 						return false;
 					}
-					else if (!id.startsWith("T"))
-					{
-						return false;
+					else if (!id.matches("T\\d{3,}")) {
+					    return false;
 					}
 					else 
 					{
@@ -133,7 +132,7 @@ public class AssistenzaTecnica {
 		{
 		 
 			String priorita = recuperaPriorita(richiesta);
-			if (priorita != "ALTA")
+			if (!priorita.equals("ALTA"))
 			{
 				richieste.addLast(richiesta);
 				return true;
@@ -224,7 +223,7 @@ public class AssistenzaTecnica {
 
         richieste.stream()
            
-            .filter(r -> r != null && r.toUpperCase().contains("ALTA"))
+        .filter(r -> recuperaPriorita(r).equals("ALTA"))
             .map(r -> {
                 String[] parti = r.split(":");
                 return parti[0].trim();
@@ -243,7 +242,7 @@ public class AssistenzaTecnica {
 	{
 		StringBuilder riepilogo = new StringBuilder();
 
-		Map<String, Integer> nomiERichieste = new LinkedHashMap<>();
+		Map<String, Integer> nomiERichieste = richiestePerCliente(richieste);
 		
 		Set<String> clienti = new LinkedHashSet<>();
 		for(String richiesta : richieste)
@@ -257,7 +256,8 @@ public class AssistenzaTecnica {
 			if(nomiERichieste.containsKey(cliente))
 			{
 				int countRichieste = nomiERichieste.get(cliente);
-				riepilogo.append(cliente).append(" ha ").append(countRichieste).append(" in attesa");
+				riepilogo.append(cliente).append(" ha ").append(countRichieste)
+				.append(" richieste").append(" in attesa").append("\n");
 			}
 		}
 		
