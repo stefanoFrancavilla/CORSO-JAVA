@@ -13,8 +13,7 @@ public class ripassoStream {
 		.filter(r -> r.matches("T\\d{3,}"))
 		.forEach(r -> System.out.println(r));
 
-		System.out.println();
-		System.out.println("----------------------------------");
+		
 		
 		// esercizio 2
 		List<Integer> numeri = List.of(3, 8, 12, 7, 20, 25, 30);

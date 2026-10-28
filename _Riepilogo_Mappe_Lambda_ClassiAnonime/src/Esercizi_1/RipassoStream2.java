@@ -108,13 +108,7 @@ public class RipassoStream2 {
 					        "Cavo:12.00"
 					);
 					
-				Double prezzo =	prodotti.stream()
-					.mapToDouble(String::Duoble)
-					.reduce(0, (a, b) -> a + b);
-				System.out.println(prezzo);
-				
-				System.out.println();
-				System.out.println("----------------------------------");
+			
 				
 				
 			
